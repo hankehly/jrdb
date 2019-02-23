@@ -1,6 +1,6 @@
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = 'd4kx)0065a5)1att4)lfdh^opyn-9^^x7@04+^ly4fdfn6m*vd'
 
 DEBUG = True
@@ -26,7 +26,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'jrdb.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
