@@ -12,10 +12,17 @@ class DocType(ABC):
     def __init__(self, filepath):
         self.filepath = filepath
 
+    def _validate(self):
+        invalid_idx = [str(i) for i, item in enumerate(self.items) if len(item) != 7]
+        if invalid_idx:
+            idx_list = ', '.join(invalid_idx)
+            raise ValueError(f'invalid item indices: {idx_list}')
+        return True
+
     @property
     def spec(self):
         df = pd.DataFrame(self.items, columns=COLS)
-        df.OCC = df.OCC.astype(float)
+        df.OCC = df.OCC.fillna(1).astype(int)
         df.width = df.width.astype(int)
         df.startpos = df.startpos.astype(int) - 1
         df.comment = df.comment.fillna('')
@@ -23,21 +30,32 @@ class DocType(ABC):
         return df
 
     def parse(self):
+        self._validate()
         with open(self.filepath, 'rb') as f:
             spec_len = len(self.spec.index)
             rows = []
+            cols = []
             for line in f:
                 if line == b'\n':
                     continue
                 row = []
                 for i in range(spec_len):
                     item = self.spec.iloc[i]
-                    start = item.startpos
-                    stop = start + item.width
-                    cell = line[start:stop].decode('cp932')
-                    row.append(cell)
+                    if item.OCC > 1:
+                        for j in range(item.OCC):
+                            start = item.startpos + (item.width * j)
+                            stop = start + item.width
+                            cell = line[start:stop].decode('cp932')
+                            row.append(cell)
+                            cols.append(f'{item.key}_{j}')
+                    else:
+                        start = item.startpos
+                        stop = start + item.width
+                        cell = line[start:stop].decode('cp932')
+                        row.append(cell)
+                        cols.append(item.key)
                 rows.append(row)
-        return pd.DataFrame(rows, columns=self.spec.key)
+        return pd.DataFrame(rows, columns=cols)
 
 
 def parse_template(path):

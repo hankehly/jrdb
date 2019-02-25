@@ -6,12 +6,12 @@ class SED(DocType):
     items = [
         ['racetrack', '場コード', None, '2', '99', '1', None],
         ['year', '年', None, '2', '99', '3', None],
-        ['number', '回', None, '1', '9', '5', None],
+        ['', '回', None, '1', '9', '5', None],
         ['number_day', '日', None, '1', 'F', '6', None],
         ['race_number', 'Ｒ', None, '2', '99', '7', None],
         ['horse_number', '馬番', None, '2', '99', '9', None],
-        ['horse_id', '血統登録番号', None, '8', 'X', '11', None],
-        ['date', '年月日', None, '8', '9', '19', 'YYYYMMDD <-暫定版より順序'],
+        ['pedigree_registration_number', '血統登録番号', None, '8', 'X', '11', None],
+        ['race_date', '年月日', None, '8', '9', '19', 'YYYYMMDD <-暫定版より順序'],
         ['horse_name', '馬名', None, '36', 'X', '27', '全角１８文字 <-入れ替え'],
         ['distance', '距離', None, '4', '9999', '63', None],
         ['surface_code', '芝ダ障害コード', None, '1', '9', '67', '1:芝, 2:ダート, 3:障害'],
@@ -86,5 +86,5 @@ class SED(DocType):
         ['', '馬ペース流れ', None, '2', '99', '368', '→成績データの説明'],
         ['', '４角コース取り', None, '1', '9', '370', '1:最内,2:内,3:中,4:外,5:大外'],
         ['reserved', '予備', None, '4', 'X', '371', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '375', 'ＣＲ・ＬＦ'],
+        ['newline', '改行', None, '2', 'X', '375', 'ＣＲ・ＬＦ']
     ]
