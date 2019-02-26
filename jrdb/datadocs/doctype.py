@@ -1,4 +1,5 @@
 from abc import ABC
+from typing import List
 
 import pandas as pd
 
@@ -12,15 +13,17 @@ class DocType(ABC):
     def __init__(self, filepath):
         self.filepath = filepath
 
-    def _validate(self):
+    def _validate(self, raise_on_invalid=True) -> bool:
         invalid_idx = [str(i) for i, item in enumerate(self.items) if len(item) != 7]
         if invalid_idx:
             idx_list = ', '.join(invalid_idx)
-            raise ValueError(f'invalid item indices: {idx_list}')
+            if raise_on_invalid:
+                raise ValueError(f'invalid item indices: {idx_list}')
+            return False
         return True
 
     @property
-    def spec(self):
+    def spec(self) -> pd.DataFrame:
         df = pd.DataFrame(self.items, columns=COLS)
         df.OCC = df.OCC.fillna(1).astype(int)
         df.width = df.width.astype(int)
@@ -29,33 +32,44 @@ class DocType(ABC):
         df.name = self.name
         return df
 
-    def parse(self):
+    @property
+    def colnames(self) -> List[str]:
+        cols = []
+        offset = 1
+        for row in self.spec.itertuples():
+            if row.OCC > 1:
+                for i in range(offset, row.OCC + offset):
+                    cols.append(f'{row.key}_{i}')
+            else:
+                cols.append(row.key)
+        return cols
+
+    def parse(self) -> pd.DataFrame:
+        """
+        Parse contents of self.filepath into DataFrame
+
+        It is slightly faster to decode each cell individually than use
+        np.char.decode(byterows, encoding='cp932')
+        """
         self._validate()
         with open(self.filepath, 'rb') as f:
-            spec_len = len(self.spec.index)
             rows = []
-            cols = []
-            for line in f:
-                if line == b'\n':
-                    continue
+            for line in filter(None, f.read().splitlines()):
                 row = []
-                for i in range(spec_len):
-                    item = self.spec.iloc[i]
+                for item in self.spec.itertuples():
                     if item.OCC > 1:
                         for j in range(item.OCC):
                             start = item.startpos + (item.width * j)
                             stop = start + item.width
                             cell = line[start:stop].decode('cp932')
                             row.append(cell)
-                            cols.append(f'{item.key}_{j}')
                     else:
                         start = item.startpos
-                        stop = start + item.width
+                        stop = item.startpos + item.width
                         cell = line[start:stop].decode('cp932')
                         row.append(cell)
-                        cols.append(item.key)
                 rows.append(row)
-        return pd.DataFrame(rows, columns=cols)
+        return pd.DataFrame(rows, columns=self.colnames)
 
 
 def parse_template(path):
