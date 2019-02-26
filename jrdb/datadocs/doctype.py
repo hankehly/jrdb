@@ -1,7 +1,10 @@
+import logging
 from abc import ABC
 from typing import List
 
 import pandas as pd
+
+logger = logging.getLogger(__name__)
 
 COLS = ['key', 'label', 'OCC', 'width', 'type', 'startpos', 'comment']
 
@@ -12,15 +15,18 @@ class DocType(ABC):
 
     def __init__(self, filepath):
         self.filepath = filepath
+        self._df = None
 
-    def _validate(self, raise_on_invalid=True) -> bool:
-        invalid_idx = [str(i) for i, item in enumerate(self.items) if len(item) != 7]
-        if invalid_idx:
-            idx_list = ', '.join(invalid_idx)
-            if raise_on_invalid:
-                raise ValueError(f'invalid item indices: {idx_list}')
-            return False
-        return True
+    @property
+    def df(self):
+        if isinstance(self._df, pd.DataFrame):
+            return self._df.copy()
+        logger.warning(f'{self.__class__.__name__}.df is not set. Please run {self.__class__.__name__}.parse first.')
+        return None
+
+    @df.setter
+    def df(self, value):
+        self._df = value
 
     @property
     def spec(self) -> pd.DataFrame:
@@ -69,7 +75,18 @@ class DocType(ABC):
                         cell = line[start:stop].decode('cp932')
                         row.append(cell)
                 rows.append(row)
-        return pd.DataFrame(rows, columns=self.colnames)
+        df = pd.DataFrame(rows, columns=self.colnames)
+        self.df = df
+        return df
+
+    def _validate(self, raise_on_invalid=True) -> bool:
+        invalid_idx = [str(i) for i, item in enumerate(self.items) if len(item) != 7]
+        if invalid_idx:
+            idx_list = ', '.join(invalid_idx)
+            if raise_on_invalid:
+                raise ValueError(f'invalid item indices: {idx_list}')
+            return False
+        return True
 
 
 def parse_template(path):
