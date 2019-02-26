@@ -2,6 +2,9 @@ from jrdb.datadocs.doctype import DocType
 
 
 class SKB(DocType):
+    """
+    http://www.jrdb.com/program/Skb/skb_doc.txt
+    """
     name = 'JRDB成績拡張データ（SKB）'
     items = [
         ['racetrack_code', '場コード', None, '2', '99', '1', None],

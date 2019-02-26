@@ -6,7 +6,7 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-COLS = ['key', 'label', 'OCC', 'width', 'type', 'startpos', 'comment']
+COLS = ['key', 'label', 'OCC', 'width', 'type', 'startpos', 'notes']
 
 
 class DocType(ABC):
@@ -34,7 +34,7 @@ class DocType(ABC):
         df.OCC = df.OCC.fillna(1).astype(int)
         df.width = df.width.astype(int)
         df.startpos = df.startpos.astype(int) - 1
-        df.comment = df.comment.fillna('')
+        df.notes = df.notes.fillna('')
         df.name = self.name
         return df
 
@@ -75,9 +75,8 @@ class DocType(ABC):
                         cell = line[start:stop].decode('cp932')
                         row.append(cell)
                 rows.append(row)
-        df = pd.DataFrame(rows, columns=self.colnames)
-        self.df = df
-        return df
+        self.df = pd.DataFrame(rows, columns=self.colnames)
+        return self.df
 
     def _validate(self, raise_on_invalid=True) -> bool:
         invalid_idx = [str(i) for i, item in enumerate(self.items) if len(item) != 7]
@@ -94,8 +93,8 @@ def parse_template(path):
     Helper function for developer to extract template rows from data doc files
     and print them as lists
 
-    Exported rows may contain missing information (OCC field, comments)
-    and incorrectly parsed comment strings
+    Exported rows may contain missing information (OCC field, notes)
+    and incorrectly parsed notes strings
     """
     with open(path, 'rb') as f:
         nonnull_fields = []
