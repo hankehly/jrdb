@@ -4,7 +4,6 @@ from jrdb.datadocs.doctype import DocType
 class SKB(DocType):
     name = 'JRDB成績拡張データ（SKB）'
     items = [
-        # レースキー
         ['racetrack_code', '場コード', None, '2', '99', '1', None],
         ['year', '年', None, '2', '99', '3', None],
         ['round', '回', None, '1', '9', '5', None],
@@ -15,7 +14,6 @@ class SKB(DocType):
         ['race_date', '年月日', None, '8', '9', '19', 'YYYYMMDD'],
         ['special_mention_code', '特記コード', '6', '3', '999', '27', '特記コード表参照 ※1'],
         ['horse_gear_code', '馬具コード', '8', '3', '999', '45', '馬具コード表参照 ※1 ※3'],
-        # 脚元コード
         ['hoof_code_overall', '総合', '3', '3', '999', '69', None],
         ['hoof_code_front_left', '左前', '3', '3', '999', '78', None],
         ['hoof_code_front_right', '右前', '3', '3', '999', '87', None],
@@ -25,13 +23,10 @@ class SKB(DocType):
         ['hoof_comment', '脚元コメント', None, '40', 'X', '154', '全角半角混在'],
         ['horse_gear_or_other_comment', '馬具(その他)コメント', None, '40', 'X', '194', '全角半角混在'],
         ['race_comment', 'レースコメント', None, '40', 'X', '234', '全角半角混在'],
-        # 分析用データ
-        # https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%9F_(%E9%A6%AC%E5%85%B7)
         ['bit', 'ハミ', None, '3', '999', '274', '馬具コード表参照 ※5'],
         ['bandage', 'バンテージ', None, '3', '999', '277', '007:バンテージ'],
         ['horseshoe', '蹄鉄', None, '3', '999', '280', '馬具コード表参照 ※5'],
         ['hoof_condition', '蹄状態', None, '3', '999', '283', '馬具コード表参照 ※5'],
-        # http://www.dictionaryofgambling.com/gambling_terms/horse_racing/p/
         ['periostitis', 'ソエ', None, '3', '999', '286', '馬具コード表参照 ※5'],
         ['exostosis', '骨瘤', None, '3', '999', '289', '馬具コード表参照 ※5'],
         ['reserved', '予備', None, '11', 'X', '292', 'スペース'],
