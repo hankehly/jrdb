@@ -1,4 +1,4 @@
-from jrdb.datadocs.template import Template
+from jrdb.templates.template import Template
 
 
 class SKB(Template):
