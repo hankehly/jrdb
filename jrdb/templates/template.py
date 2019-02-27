@@ -7,8 +7,6 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-COLS = ['key', 'label', 'OCC', 'width', 'type', 'startpos', 'notes']
-
 
 class Template(ABC):
     name = ''
@@ -31,7 +29,7 @@ class Template(ABC):
 
     @property
     def spec(self) -> pd.DataFrame:
-        df = pd.DataFrame(self.items, columns=COLS)
+        df = pd.DataFrame(self.items, columns=['key', 'label', 'OCC', 'width', 'type', 'startpos', 'notes'])
         df.OCC = df.OCC.fillna(1).astype(int)
         df.width = df.width.astype(int)
         df.startpos = df.startpos.astype(int) - 1
