@@ -79,8 +79,9 @@ class DocType(ABC):
         self.df = pd.DataFrame(rows, columns=self.colnames)
         return self.df
 
-    def _validate(self, raise_on_invalid=True) -> bool:
-        invalid_idx = [str(i) for i, item in enumerate(self.items) if len(item) != 7]
+    @classmethod
+    def _validate(cls, raise_on_invalid=True) -> bool:
+        invalid_idx = [str(i) for i, item in enumerate(cls.items) if len(item) != 7]
         if invalid_idx:
             idx_list = ', '.join(invalid_idx)
             if raise_on_invalid:
