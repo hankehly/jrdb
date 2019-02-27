@@ -22,7 +22,7 @@ class Template(ABC):
     def df(self):
         if isinstance(self._df, pd.DataFrame):
             return self._df.copy()
-        logger.warning(f'{self.__class__.__name__}.df is not set. Please run {self.__class__.__name__}.parse first.')
+        logger.warning(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.parse.')
         return None
 
     @df.setter
