@@ -1,4 +1,6 @@
-**\* = files used**
+# JRDB Document Types
+
+Files handled in this repository are denoted with an asterisk (*)
 
 #### SED（JRDB成績データ）*
 This file superceeds SEC as the main JRDB成績データ file. It contains past race results. This is the same type of data you would find on a netkeiba db race page and should be the basis of your "contenders" table.
