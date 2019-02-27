@@ -1,5 +1,6 @@
 import logging
 from abc import ABC
+from pprint import pprint
 from typing import List
 
 import pandas as pd
@@ -45,9 +46,9 @@ class DocType(ABC):
         for row in self.spec.itertuples():
             if row.OCC > 1:
                 for i in range(offset, row.OCC + offset):
-                    cols.append(f'{row.key}_{i}')
+                    cols.append(f'{row.label}_{i}')
             else:
-                cols.append(row.key)
+                cols.append(row.label)
         return cols
 
     def parse(self) -> pd.DataFrame:
@@ -116,5 +117,4 @@ def parse_template(path):
                 break
 
         template_fields = [field for field in nonnull_fields[startpos:endpos] if len(field) > 3]
-        for field in template_fields:
-            print(field)
+        pprint(template_fields)
