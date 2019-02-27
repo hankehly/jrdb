@@ -5,5 +5,5 @@ A library to handle [JRDB](http://www.jrdb.com/) horse racing analysis data. JRD
 ### Table of Contents
 - Installation
 - Usage
-- [JRDB document types](./docs/filetypes.md)
+- [JRDB Document Types](./docs/doctypes.md)
 - [Glossary](./docs/glossary.md)
