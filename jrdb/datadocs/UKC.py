@@ -20,7 +20,7 @@ class UKC(Template):
         ['owners_association_code', '馬主会コード', None, '2', '99', '218', '競馬場毎にある。場コードと同じ'],
         ['breeder_name', '生産者名', None, '40', 'X', '220', '全角２０文字'],
         ['breeding_location_name', '産地名', None, '8', 'X', '260', '全角４文字'],
-        ['deregistration_flag', '登録抹消フラグ', None, '1', '9', '268', '0:現役,1:抹消'],
+        ['deregistered_flag', '登録抹消フラグ', None, '1', '9', '268', '0:現役,1:抹消'],
         ['data_saved_on', 'データ年月日', None, '8', '9', '269', 'YYYYMMDD'],  # same as filename date
         ['sire_genealogy_code', '父系統コード', None, '4', '9', '277', None],
         ['damsire_genealogy_code', '母父系統コード', None, '4', '9', '281', None],

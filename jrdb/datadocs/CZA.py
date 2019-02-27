@@ -8,8 +8,8 @@ class CZA(Template):
     name = '全調教師'
     items = [
         ['trainer_code', '調教師コード', None, '5', '99999', '1', None],
-        ['deregistration_flag', '登録抹消フラグ', None, '1', '9', '6', '1:抹消,0:現役'],
-        ['deregistration_date', '登録抹消年月日', None, '8', '9', '7', 'YYYYMMDD'],
+        ['deregistered_flag', '登録抹消フラグ', None, '1', '9', '6', '1:抹消,0:現役'],
+        ['deregistered_on', '登録抹消年月日', None, '8', '9', '7', 'YYYYMMDD'],
         ['trainer_name', '調教師名', None, '12', 'X', '15', '全角６文字'],
         ['trainer_kana', '調教師カナ', None, '30', 'X', '27', '全角１５文字'],
         ['trainer_name_short', '調教師名略称', None, '6', 'X', '57', '全角３文字'],
