@@ -52,3 +52,6 @@ A list of horse ids (血統登録番号) of horses who are no longer registered 
 
 #### MSA（JRDB抹消馬データ）
 Exact same as MZA; but listed as “差分”.. Not clear what this “difference” is..
+
+#### OZ（JRDB基準オッズデータ）* 
+単勝・複勝・連勝オッズ 
