@@ -9,11 +9,11 @@
 | ソエ  | そえ | periostitis | Inflammation of the tissue that overlies bone. |
 | 単勝 | たんしょう | win | |
 | 複勝 | ふくしょう | show | |
-| 馬連 | うまれん | QUINELLA | |
+| 馬連 | うまれん | quinella | |
 | 馬単 | うまたん | exacta | |
 | 三連複 | さんれんぷく | trio | |
 | 三連単 | さんれんたん | trifecta | |
-| 枠連 | わくれん | BRACKET QUINELLA | |
+| 枠連 | わくれん | bracket quinella | |
 | ワイド | わいど | duet | |
 | 母父馬 | ぼふば | damsire | お母さんのお父さん ([1](https://www.thesprucepets.com/what-is-a-horses-sire-1886753)) |
 | 生産者 | せいさんしゃ | breeder | ([1](http://cwareno.com/breeder.html)) |
