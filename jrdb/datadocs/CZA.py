@@ -1,7 +1,7 @@
-from jrdb.datadocs.doctype import DocType
+from jrdb.datadocs.template import Template
 
 
-class CZA(DocType):
+class CZA(Template):
     """
     http://www.jrdb.com/program/Cs/Cs_doc1.txt
     """

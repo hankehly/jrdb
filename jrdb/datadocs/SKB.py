@@ -1,7 +1,7 @@
-from jrdb.datadocs.doctype import DocType
+from jrdb.datadocs.template import Template
 
 
-class SKB(DocType):
+class SKB(Template):
     """
     http://www.jrdb.com/program/Skb/skb_doc.txt
     """

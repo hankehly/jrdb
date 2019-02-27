@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 COLS = ['key', 'label', 'OCC', 'width', 'type', 'startpos', 'notes']
 
 
-class DocType(ABC):
+class Template(ABC):
     name = ''
     items = []
 

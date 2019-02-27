@@ -1,7 +1,7 @@
-from jrdb.datadocs.doctype import DocType
+from jrdb.datadocs.template import Template
 
 
-class KYI(DocType):
+class KYI(Template):
     """
     http://www.jrdb.com/program/Kyi/kyi_doc.txt
     """

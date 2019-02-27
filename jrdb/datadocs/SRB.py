@@ -1,7 +1,7 @@
-from jrdb.datadocs.doctype import DocType
+from jrdb.datadocs.template import Template
 
 
-class SRB(DocType):
+class SRB(Template):
     """
     http://www.jrdb.com/program/Srb/srb_doc.txt
     """

@@ -1,7 +1,7 @@
-from jrdb.datadocs.doctype import DocType
+from jrdb.datadocs.template import Template
 
 
-class SED(DocType):
+class SED(Template):
     """
     http://www.jrdb.com/program/Sed/sed_doc.txt
     """

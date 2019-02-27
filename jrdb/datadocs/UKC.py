@@ -1,7 +1,7 @@
-from jrdb.datadocs.doctype import DocType
+from jrdb.datadocs.template import Template
 
 
-class UKC(DocType):
+class UKC(Template):
     name = 'JRDB馬基本データ（UKC）'
     items = [
         ['pedigree_registration_number', '血統登録番号', None, '8', 'X', '1', None],
