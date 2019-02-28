@@ -64,3 +64,7 @@ Exact same as MZA; but listed as “差分”.. Not clear what this “differenc
 
 #### OT（３連複基準オッズデータ）*
 三連複のオッズデータ
+
+#### OV（３連単基準オッズデータ）*
+３連単のオッズデータ
+ 
