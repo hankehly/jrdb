@@ -95,6 +95,12 @@ def parse_template(path):
 
     Exported rows may contain missing information (OCC field, notes)
     and incorrectly parsed notes strings
+
+    Usage:
+        $ wget http://www.jrdb.com/program/Kab/kab_doc.txt
+        $ python
+        >> from jrdb.templates.template import parse_template
+        >> parse_template('kab_doc.txt')
     """
     with open(path, 'rb') as f:
         nonnull_fields = []

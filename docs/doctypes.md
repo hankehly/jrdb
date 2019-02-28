@@ -67,4 +67,9 @@ Exact same as MZA; but listed as “差分”.. Not clear what this “differenc
 
 #### OV（３連単基準オッズデータ）*
 ３連単のオッズデータ
+
+#### KAB（JRDB開催データ）*
+馬場・天候予想等の開催に対するデータ
  
+#### KAA（JRDB開催データ）
+KABの前に使われていたもの 
