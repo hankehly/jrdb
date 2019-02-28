@@ -1180,3 +1180,24 @@ RACETRACK = {
     '78': 'カタール',
     '79': '韓国'
 }
+
+"""
+馬場状態
+
+http://www.jrdb.com/program/jrdb_code.txt
+https://horseicon.web.fc2.com/track_surface.htm
+"""
+TRACK_CONDITION = {
+    '10': 'GOOD',
+    '11': '速良',
+    '12': '遅良',
+    '20': '稍重',
+    '21': '速稍重',
+    '22': '遅稍重',
+    '30': '重',
+    '31': '速重',
+    '32': '遅重',
+    '40': '不良',
+    '41': '速不良',
+    '42': '遅不良'
+}
