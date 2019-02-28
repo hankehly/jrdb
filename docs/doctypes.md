@@ -61,3 +61,6 @@ Exact same as MZA; but listed as “差分”.. Not clear what this “differenc
 
 #### OU（馬単基準オッズデータ）*
 馬単のオッズデータ
+
+#### OT（３連複基準オッズデータ）*
+三連複のオッズデータ
