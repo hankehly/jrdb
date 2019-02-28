@@ -58,3 +58,6 @@ Exact same as MZA; but listed as “差分”.. Not clear what this “differenc
 
 #### OW（ワイド基準オッズデータ）* 
 ワイドのオッズデータ
+
+#### OU（馬単基準オッズデータ）*
+馬単のオッズデータ
