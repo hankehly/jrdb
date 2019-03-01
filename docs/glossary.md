@@ -20,3 +20,6 @@
 | ウッドコース | | wood chip course | ([1](http://www.jra.go.jp/kouza/yougo/w388.html)) |
 | プール調教 | | pool training | ([1](http://www.jra.go.jp/kouza/yougo/w69.html))([2](https://www.youtube.com/watch?v=q7IFAloig5g)) |
 | ポリトラック | | poly track | ([1](http://www.jra.go.jp/kouza/yougo/w466.html))([2](http://www.fukushima-umanushi.jp/column/body/body139.html)) |
+| 追い切り | おいきり | 基本的にレース週の水曜、木曜の調教で1番強い調教を【本追い切り】としています | ([1](http://www.jra.go.jp/kouza/yougo/w449.html)) |
+| 調教時計 | ちょうきょうとけい | | 調教タイムとも ([1](http://maishumanba.com/blog-entry-938.html))([2](https://speedkeiba.com/%E8%AA%BF%E6%95%99%E3%82%BF%E3%82%A4%E3%83%A0/%E8%AA%BF%E6%95%99%E3%82%BF%E3%82%A4%E3%83%A0%E3%81%AE%E8%A6%8B%E6%96%B9/)) |
+ 
