@@ -51,7 +51,7 @@ This file has the exact same description and contents as KZA, but is described a
 A list of horse ids (血統登録番号) of horses who are no longer registered JRA race horses. Essentially, a list of horses that are no longer competing currently.
 
 #### MSA（JRDB抹消馬データ）
-Exact same as MZA; but listed as “差分”.. Not clear what this “difference” is..
+Exact same as MZA; but listed as "差分".. Not clear what this "difference" is..
 
 #### OZ（JRDB基準オッズデータ）* 
 単勝・複勝・連勝（馬蓮）オッズ 
@@ -73,3 +73,16 @@ Exact same as MZA; but listed as “差分”.. Not clear what this “differenc
  
 #### KAA（JRDB開催データ）
 KABの前に使われていたもの 
+
+#### BAC（レース番組情報）
+レースの基本情報（レース名や頭数とか）
+多くの項目がSEDと重複するため対象外 
+
+#### BAB（レース番組情報）
+BACの前に使われていたもの
+
+#### CYB（JRDB調教分析データ）*
+とあるレースでのとある馬の調教データ（調教距離、調教量評価など）
+ 
+#### CYA（JRDB調教分析データ）
+CYBの前に使われていたもの 
