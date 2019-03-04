@@ -1,0 +1,6698 @@
+[
+    {
+        "model": "jrdb.special_mention",
+        "pk": 1,
+        "fields": {
+            "key": "033",
+            "value": "口向き悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 2,
+        "fields": {
+            "key": "034",
+            "value": "放馬"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 3,
+        "fields": {
+            "key": "035",
+            "value": "落鉄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 4,
+        "fields": {
+            "key": "037",
+            "value": "揉まれ弱い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 5,
+        "fields": {
+            "key": "038",
+            "value": "芝向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 6,
+        "fields": {
+            "key": "039",
+            "value": "ダート向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 7,
+        "fields": {
+            "key": "040",
+            "value": "心房細動"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 8,
+        "fields": {
+            "key": "041",
+            "value": "喉鳴り"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 9,
+        "fields": {
+            "key": "042",
+            "value": "熱発"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 10,
+        "fields": {
+            "key": "043",
+            "value": "鼻出血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 11,
+        "fields": {
+            "key": "044",
+            "value": "ソエ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 12,
+        "fields": {
+            "key": "045",
+            "value": "恐がり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 13,
+        "fields": {
+            "key": "046",
+            "value": "脚腫れる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 14,
+        "fields": {
+            "key": "047",
+            "value": "コズミ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 15,
+        "fields": {
+            "key": "048",
+            "value": "腰フラ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 16,
+        "fields": {
+            "key": "049",
+            "value": "気悪"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 17,
+        "fields": {
+            "key": "050",
+            "value": "素直"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 18,
+        "fields": {
+            "key": "051",
+            "value": "根性有り"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 19,
+        "fields": {
+            "key": "052",
+            "value": "ハミ悪"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 20,
+        "fields": {
+            "key": "053",
+            "value": "頭高い(レース中)"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 21,
+        "fields": {
+            "key": "054",
+            "value": "内枠×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 22,
+        "fields": {
+            "key": "055",
+            "value": "外枠×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 23,
+        "fields": {
+            "key": "056",
+            "value": "内枠○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 24,
+        "fields": {
+            "key": "057",
+            "value": "外枠○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 25,
+        "fields": {
+            "key": "058",
+            "value": "スタート良い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 26,
+        "fields": {
+            "key": "059",
+            "value": "スタート悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 27,
+        "fields": {
+            "key": "060",
+            "value": "内もたれ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 28,
+        "fields": {
+            "key": "061",
+            "value": "外もたれ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 29,
+        "fields": {
+            "key": "062",
+            "value": "ハナ条件"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 30,
+        "fields": {
+            "key": "063",
+            "value": "ダ重い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 31,
+        "fields": {
+            "key": "064",
+            "value": "ダ重い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 32,
+        "fields": {
+            "key": "065",
+            "value": "ダ軽い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 33,
+        "fields": {
+            "key": "066",
+            "value": "ダ軽い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 34,
+        "fields": {
+            "key": "067",
+            "value": "ダ少し掛○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 35,
+        "fields": {
+            "key": "068",
+            "value": "ダ少し掛×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 36,
+        "fields": {
+            "key": "069",
+            "value": "芝重い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 37,
+        "fields": {
+            "key": "070",
+            "value": "芝重い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 38,
+        "fields": {
+            "key": "071",
+            "value": "芝軽い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 39,
+        "fields": {
+            "key": "072",
+            "value": "芝軽い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 40,
+        "fields": {
+            "key": "073",
+            "value": "芝滑る○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 41,
+        "fields": {
+            "key": "074",
+            "value": "芝滑る×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 42,
+        "fields": {
+            "key": "075",
+            "value": "芝少し掛○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 43,
+        "fields": {
+            "key": "076",
+            "value": "芝少し掛×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 44,
+        "fields": {
+            "key": "077",
+            "value": "雨嫌い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 45,
+        "fields": {
+            "key": "078",
+            "value": "ズブイ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 46,
+        "fields": {
+            "key": "079",
+            "value": "シブトイ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 47,
+        "fields": {
+            "key": "080",
+            "value": "折り合い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 48,
+        "fields": {
+            "key": "081",
+            "value": "折り合い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 49,
+        "fields": {
+            "key": "082",
+            "value": "先行力○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 50,
+        "fields": {
+            "key": "083",
+            "value": "先行力×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 51,
+        "fields": {
+            "key": "084",
+            "value": "瞬発力○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 52,
+        "fields": {
+            "key": "085",
+            "value": "瞬発力×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 53,
+        "fields": {
+            "key": "086",
+            "value": "調教良い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 54,
+        "fields": {
+            "key": "087",
+            "value": "大トビ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 55,
+        "fields": {
+            "key": "088",
+            "value": "調教出来ず"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 56,
+        "fields": {
+            "key": "089",
+            "value": "右回り○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 57,
+        "fields": {
+            "key": "090",
+            "value": "左回り○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 58,
+        "fields": {
+            "key": "091",
+            "value": "トモ甘い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 59,
+        "fields": {
+            "key": "092",
+            "value": "馬込み×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 60,
+        "fields": {
+            "key": "093",
+            "value": "骨膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 61,
+        "fields": {
+            "key": "094",
+            "value": "裂蹄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 62,
+        "fields": {
+            "key": "095",
+            "value": "ゴトゴト"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 63,
+        "fields": {
+            "key": "096",
+            "value": "物見"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 64,
+        "fields": {
+            "key": "097",
+            "value": "鐙外れ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 65,
+        "fields": {
+            "key": "098",
+            "value": "ソラ使う"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 66,
+        "fields": {
+            "key": "099",
+            "value": "左回り×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 67,
+        "fields": {
+            "key": "100",
+            "value": "右回り×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 68,
+        "fields": {
+            "key": "101",
+            "value": "ダート×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 69,
+        "fields": {
+            "key": "102",
+            "value": "芝×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 70,
+        "fields": {
+            "key": "103",
+            "value": "左モタレ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 71,
+        "fields": {
+            "key": "104",
+            "value": "右モタレ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 72,
+        "fields": {
+            "key": "105",
+            "value": "センスある"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 73,
+        "fields": {
+            "key": "106",
+            "value": "落馬"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 74,
+        "fields": {
+            "key": "107",
+            "value": "輸送ダメ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 75,
+        "fields": {
+            "key": "108",
+            "value": "馬込ダメ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 76,
+        "fields": {
+            "key": "109",
+            "value": "冬ダメ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 77,
+        "fields": {
+            "key": "110",
+            "value": "外逃解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 78,
+        "fields": {
+            "key": "111",
+            "value": "鞍ズレ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 79,
+        "fields": {
+            "key": "112",
+            "value": "ジリ脚"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 80,
+        "fields": {
+            "key": "113",
+            "value": "口向解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 81,
+        "fields": {
+            "key": "114",
+            "value": "ローカル向"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 82,
+        "fields": {
+            "key": "115",
+            "value": "外逃げる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 83,
+        "fields": {
+            "key": "116",
+            "value": "恐い解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 84,
+        "fields": {
+            "key": "117",
+            "value": "ソエ解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 85,
+        "fields": {
+            "key": "118",
+            "value": "モタレ解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 86,
+        "fields": {
+            "key": "119",
+            "value": "コーナーワーク×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 87,
+        "fields": {
+            "key": "120",
+            "value": "小回り向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 88,
+        "fields": {
+            "key": "121",
+            "value": "外枠発走"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 89,
+        "fields": {
+            "key": "122",
+            "value": "冬○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 90,
+        "fields": {
+            "key": "123",
+            "value": "追って甘い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 91,
+        "fields": {
+            "key": "124",
+            "value": "坂○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 92,
+        "fields": {
+            "key": "125",
+            "value": "体質弱い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 93,
+        "fields": {
+            "key": "126",
+            "value": "走る気ない"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 94,
+        "fields": {
+            "key": "127",
+            "value": "素質あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 95,
+        "fields": {
+            "key": "128",
+            "value": "鉄砲○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 96,
+        "fields": {
+            "key": "129",
+            "value": "気が小さい"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 97,
+        "fields": {
+            "key": "130",
+            "value": "終い甘い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 98,
+        "fields": {
+            "key": "131",
+            "value": "他馬気にする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 99,
+        "fields": {
+            "key": "132",
+            "value": "輸送熱"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 100,
+        "fields": {
+            "key": "133",
+            "value": "パドック転倒"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 101,
+        "fields": {
+            "key": "134",
+            "value": "ゲート内転倒"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 102,
+        "fields": {
+            "key": "135",
+            "value": "ハミ外す"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 103,
+        "fields": {
+            "key": "136",
+            "value": "腰悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 104,
+        "fields": {
+            "key": "137",
+            "value": "ソエ焼き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 105,
+        "fields": {
+            "key": "138",
+            "value": "筋肉痛"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 106,
+        "fields": {
+            "key": "140",
+            "value": "ゲート良い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 107,
+        "fields": {
+            "key": "141",
+            "value": "ゲート悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 108,
+        "fields": {
+            "key": "142",
+            "value": "気が強い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 109,
+        "fields": {
+            "key": "143",
+            "value": "斤量泣き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 110,
+        "fields": {
+            "key": "144",
+            "value": "器用さ欠く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 111,
+        "fields": {
+            "key": "145",
+            "value": "使い込む×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 112,
+        "fields": {
+            "key": "146",
+            "value": "手前替え×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 113,
+        "fields": {
+            "key": "147",
+            "value": "小回り×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 114,
+        "fields": {
+            "key": "148",
+            "value": "追って甘い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 115,
+        "fields": {
+            "key": "149",
+            "value": "後方から"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 116,
+        "fields": {
+            "key": "150",
+            "value": "お終い確実"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 117,
+        "fields": {
+            "key": "151",
+            "value": "展開待ち"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 118,
+        "fields": {
+            "key": "152",
+            "value": "砂被る○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 119,
+        "fields": {
+            "key": "153",
+            "value": "砂被る×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 120,
+        "fields": {
+            "key": "154",
+            "value": "コーナーワーク○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 121,
+        "fields": {
+            "key": "155",
+            "value": "坂×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 122,
+        "fields": {
+            "key": "156",
+            "value": "ふらつく"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 123,
+        "fields": {
+            "key": "157",
+            "value": "ダッシュ○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 124,
+        "fields": {
+            "key": "158",
+            "value": "ダッシュ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 125,
+        "fields": {
+            "key": "159",
+            "value": "フワフワ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 126,
+        "fields": {
+            "key": "160",
+            "value": "中山向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 127,
+        "fields": {
+            "key": "161",
+            "value": "府中向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 128,
+        "fields": {
+            "key": "162",
+            "value": "腰甘い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 129,
+        "fields": {
+            "key": "163",
+            "value": "怯む"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 130,
+        "fields": {
+            "key": "164",
+            "value": "足元弱い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 131,
+        "fields": {
+            "key": "165",
+            "value": "馬気"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 132,
+        "fields": {
+            "key": "166",
+            "value": "歩様悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 133,
+        "fields": {
+            "key": "167",
+            "value": "気難しい"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 134,
+        "fields": {
+            "key": "168",
+            "value": "小頭数○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 135,
+        "fields": {
+            "key": "169",
+            "value": "ノメル"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 136,
+        "fields": {
+            "key": "170",
+            "value": "トウ骨"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 137,
+        "fields": {
+            "key": "171",
+            "value": "追って頭上げる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 138,
+        "fields": {
+            "key": "172",
+            "value": "砂被頭上げる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 139,
+        "fields": {
+            "key": "173",
+            "value": "広いコース向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 140,
+        "fields": {
+            "key": "174",
+            "value": "ラチ接触"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 141,
+        "fields": {
+            "key": "175",
+            "value": "エビ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 142,
+        "fields": {
+            "key": "176",
+            "value": "フケ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 143,
+        "fields": {
+            "key": "177",
+            "value": "追ってしっかり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 144,
+        "fields": {
+            "key": "178",
+            "value": "トモ落とす"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 145,
+        "fields": {
+            "key": "179",
+            "value": "外被せられる×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 146,
+        "fields": {
+            "key": "180",
+            "value": "泥被る○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 147,
+        "fields": {
+            "key": "181",
+            "value": "泥被る×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 148,
+        "fields": {
+            "key": "182",
+            "value": "一頭だと気を抜く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 149,
+        "fields": {
+            "key": "183",
+            "value": "ラチ頼る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 150,
+        "fields": {
+            "key": "184",
+            "value": "耳絞る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 151,
+        "fields": {
+            "key": "185",
+            "value": "首使い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 152,
+        "fields": {
+            "key": "186",
+            "value": "首使い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 153,
+        "fields": {
+            "key": "187",
+            "value": "砂被○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 154,
+        "fields": {
+            "key": "188",
+            "value": "砂被×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 155,
+        "fields": {
+            "key": "189",
+            "value": "フットワーク×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 156,
+        "fields": {
+            "key": "190",
+            "value": "中間角膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 157,
+        "fields": {
+            "key": "191",
+            "value": "中間挫跖"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 158,
+        "fields": {
+            "key": "192",
+            "value": "気性成長"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 159,
+        "fields": {
+            "key": "193",
+            "value": "拍車"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 160,
+        "fields": {
+            "key": "194",
+            "value": "気性若い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 161,
+        "fields": {
+            "key": "195",
+            "value": "フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 162,
+        "fields": {
+            "key": "196",
+            "value": "入線後故障"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 163,
+        "fields": {
+            "key": "197",
+            "value": "道中気を抜く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 164,
+        "fields": {
+            "key": "198",
+            "value": "直線長いコース向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 165,
+        "fields": {
+            "key": "199",
+            "value": "外から被せられる×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 166,
+        "fields": {
+            "key": "200",
+            "value": "トモの状態悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 167,
+        "fields": {
+            "key": "201",
+            "value": "飛越○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 168,
+        "fields": {
+            "key": "202",
+            "value": "飛越×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 169,
+        "fields": {
+            "key": "203",
+            "value": "水濠○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 170,
+        "fields": {
+            "key": "204",
+            "value": "水濠×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 171,
+        "fields": {
+            "key": "205",
+            "value": "飛越に気を遣う"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 172,
+        "fields": {
+            "key": "206",
+            "value": "落馬影響"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 173,
+        "fields": {
+            "key": "207",
+            "value": "着地○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 174,
+        "fields": {
+            "key": "208",
+            "value": "着地×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 175,
+        "fields": {
+            "key": "209",
+            "value": "立ち回り○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 176,
+        "fields": {
+            "key": "210",
+            "value": "立ち回り×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 177,
+        "fields": {
+            "key": "211",
+            "value": "飛越慎重"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 178,
+        "fields": {
+            "key": "212",
+            "value": "平地力○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 179,
+        "fields": {
+            "key": "213",
+            "value": "平地力×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 180,
+        "fields": {
+            "key": "215",
+            "value": "スタミナ○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 181,
+        "fields": {
+            "key": "216",
+            "value": "スタミナ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 182,
+        "fields": {
+            "key": "217",
+            "value": "道悪○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 183,
+        "fields": {
+            "key": "218",
+            "value": "道悪×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 184,
+        "fields": {
+            "key": "219",
+            "value": "飛越時気を抜く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 185,
+        "fields": {
+            "key": "221",
+            "value": "障害接触"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 186,
+        "fields": {
+            "key": "222",
+            "value": "バンケット×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 187,
+        "fields": {
+            "key": "223",
+            "value": "斜飛"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 188,
+        "fields": {
+            "key": "224",
+            "value": "バンケット○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 189,
+        "fields": {
+            "key": "225",
+            "value": "飛越高い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 190,
+        "fields": {
+            "key": "226",
+            "value": "飛越△"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 191,
+        "fields": {
+            "key": "227",
+            "value": "飛越安定"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 192,
+        "fields": {
+            "key": "228",
+            "value": "着地△"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 193,
+        "fields": {
+            "key": "229",
+            "value": "水濠トモ落"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 194,
+        "fields": {
+            "key": "230",
+            "value": "障害飛ばず"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 195,
+        "fields": {
+            "key": "231",
+            "value": "障害調教再審査"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 196,
+        "fields": {
+            "key": "232",
+            "value": "終ダ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 197,
+        "fields": {
+            "key": "233",
+            "value": "落馬寸前"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 198,
+        "fields": {
+            "key": "234",
+            "value": "時計掛○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 199,
+        "fields": {
+            "key": "235",
+            "value": "時計掛×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 200,
+        "fields": {
+            "key": "236",
+            "value": "飛越◎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 201,
+        "fields": {
+            "key": "237",
+            "value": "斤量応"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 202,
+        "fields": {
+            "key": "238",
+            "value": "平地力◎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 203,
+        "fields": {
+            "key": "239",
+            "value": "障害調教注意"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 204,
+        "fields": {
+            "key": "240",
+            "value": "終いダ○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 205,
+        "fields": {
+            "key": "241",
+            "value": "落馬後遺症残"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 206,
+        "fields": {
+            "key": "242",
+            "value": "飛越時ブレーキ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 207,
+        "fields": {
+            "key": "245",
+            "value": "直線芝○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 208,
+        "fields": {
+            "key": "246",
+            "value": "直線芝×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 209,
+        "fields": {
+            "key": "247",
+            "value": "落馬再騎乗"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 210,
+        "fields": {
+            "key": "249",
+            "value": "背が低い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 211,
+        "fields": {
+            "key": "250",
+            "value": "脚短い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 212,
+        "fields": {
+            "key": "251",
+            "value": "連続障害○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 213,
+        "fields": {
+            "key": "252",
+            "value": "連続障害×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 214,
+        "fields": {
+            "key": "253",
+            "value": "踏み切り○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 215,
+        "fields": {
+            "key": "254",
+            "value": "踏み切り×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 216,
+        "fields": {
+            "key": "255",
+            "value": "助走○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 217,
+        "fields": {
+            "key": "256",
+            "value": "助走×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 218,
+        "fields": {
+            "key": "257",
+            "value": "右斜飛"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 219,
+        "fields": {
+            "key": "258",
+            "value": "左斜飛"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 220,
+        "fields": {
+            "key": "301",
+            "value": "非力"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 221,
+        "fields": {
+            "key": "302",
+            "value": "腰良化"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 222,
+        "fields": {
+            "key": "303",
+            "value": "トモ良化"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 223,
+        "fields": {
+            "key": "304",
+            "value": "高脚使う"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 224,
+        "fields": {
+            "key": "305",
+            "value": "平坦向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 225,
+        "fields": {
+            "key": "306",
+            "value": "遊びながら走る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 226,
+        "fields": {
+            "key": "307",
+            "value": "尻尾振る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 227,
+        "fields": {
+            "key": "308",
+            "value": "揉まれ弱い解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 228,
+        "fields": {
+            "key": "309",
+            "value": "他馬と接触"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 229,
+        "fields": {
+            "key": "310",
+            "value": "レース中脚気にする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 230,
+        "fields": {
+            "key": "311",
+            "value": "揉まれ強い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 231,
+        "fields": {
+            "key": "313",
+            "value": "トモ治療中"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 232,
+        "fields": {
+            "key": "314",
+            "value": "熱発明け"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 233,
+        "fields": {
+            "key": "315",
+            "value": "一頭だと走る気出す"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 234,
+        "fields": {
+            "key": "316",
+            "value": "口で息をする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 235,
+        "fields": {
+            "key": "317",
+            "value": "口が硬い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 236,
+        "fields": {
+            "key": "320",
+            "value": "スピード非凡"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 237,
+        "fields": {
+            "key": "321",
+            "value": "脚を外に振って走る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 238,
+        "fields": {
+            "key": "322",
+            "value": "喉弱い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 239,
+        "fields": {
+            "key": "323",
+            "value": "背中が良い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 240,
+        "fields": {
+            "key": "324",
+            "value": "レース中故障(入線)"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 241,
+        "fields": {
+            "key": "325",
+            "value": "器用"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 242,
+        "fields": {
+            "key": "326",
+            "value": "次走ハミ替え○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 243,
+        "fields": {
+            "key": "327",
+            "value": "今回ハミ替え○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 244,
+        "fields": {
+            "key": "328",
+            "value": "今回ハミ替え×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 245,
+        "fields": {
+            "key": "329",
+            "value": "連闘○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 246,
+        "fields": {
+            "key": "330",
+            "value": "輸送弱い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 247,
+        "fields": {
+            "key": "331",
+            "value": "脚元悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 248,
+        "fields": {
+            "key": "332",
+            "value": "使い込む○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 249,
+        "fields": {
+            "key": "333",
+            "value": "鉄砲×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 250,
+        "fields": {
+            "key": "334",
+            "value": "中間順調さ欠く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 251,
+        "fields": {
+            "key": "335",
+            "value": "中間放馬"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 252,
+        "fields": {
+            "key": "336",
+            "value": "ゲートもたれ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 253,
+        "fields": {
+            "key": "337",
+            "value": "ベタ爪"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 254,
+        "fields": {
+            "key": "338",
+            "value": "最内枠×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 255,
+        "fields": {
+            "key": "339",
+            "value": "パドック落馬"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 256,
+        "fields": {
+            "key": "340",
+            "value": "夏○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 257,
+        "fields": {
+            "key": "341",
+            "value": "夏×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 258,
+        "fields": {
+            "key": "342",
+            "value": "歩様良化"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 259,
+        "fields": {
+            "key": "343",
+            "value": "(競争中)鼻出血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 260,
+        "fields": {
+            "key": "344",
+            "value": "滞在競馬○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 261,
+        "fields": {
+            "key": "345",
+            "value": "リズム悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 262,
+        "fields": {
+            "key": "346",
+            "value": "皮膚病"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 263,
+        "fields": {
+            "key": "347",
+            "value": "(馬場入場後)暴走"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 264,
+        "fields": {
+            "key": "348",
+            "value": "外傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 265,
+        "fields": {
+            "key": "349",
+            "value": "タイムオーバー"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 266,
+        "fields": {
+            "key": "350",
+            "value": "レース中骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 267,
+        "fields": {
+            "key": "351",
+            "value": "舌がハミ越す"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 268,
+        "fields": {
+            "key": "352",
+            "value": "ハミ頼る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 269,
+        "fields": {
+            "key": "353",
+            "value": "レース前落鉄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 270,
+        "fields": {
+            "key": "354",
+            "value": "ハミもたれ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 271,
+        "fields": {
+            "key": "355",
+            "value": "トモ疲れ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 272,
+        "fields": {
+            "key": "356",
+            "value": "冬毛出てくる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 273,
+        "fields": {
+            "key": "357",
+            "value": "声で気合"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 274,
+        "fields": {
+            "key": "358",
+            "value": "疲れ気味"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 275,
+        "fields": {
+            "key": "359",
+            "value": "砂被ハミ掛悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 276,
+        "fields": {
+            "key": "360",
+            "value": "ブリ効果あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 277,
+        "fields": {
+            "key": "361",
+            "value": "脚不安解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 278,
+        "fields": {
+            "key": "362",
+            "value": "水浮ダ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 279,
+        "fields": {
+            "key": "363",
+            "value": "躓きやすい"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 280,
+        "fields": {
+            "key": "364",
+            "value": "札幌向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 281,
+        "fields": {
+            "key": "365",
+            "value": "函館向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 282,
+        "fields": {
+            "key": "366",
+            "value": "福島向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 283,
+        "fields": {
+            "key": "367",
+            "value": "新潟向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 284,
+        "fields": {
+            "key": "368",
+            "value": "中京向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 285,
+        "fields": {
+            "key": "369",
+            "value": "阪神向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 286,
+        "fields": {
+            "key": "370",
+            "value": "京都向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 287,
+        "fields": {
+            "key": "371",
+            "value": "小倉向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 288,
+        "fields": {
+            "key": "372",
+            "value": "鳴く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 289,
+        "fields": {
+            "key": "373",
+            "value": "夏負け気味"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 290,
+        "fields": {
+            "key": "374",
+            "value": "タマ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 291,
+        "fields": {
+            "key": "375",
+            "value": "ツメ悪い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 292,
+        "fields": {
+            "key": "376",
+            "value": "多頭数×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 293,
+        "fields": {
+            "key": "378",
+            "value": "シャド効果あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 294,
+        "fields": {
+            "key": "379",
+            "value": "馬場入場後転倒"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 295,
+        "fields": {
+            "key": "380",
+            "value": "膠着"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 296,
+        "fields": {
+            "key": "381",
+            "value": "体質シッカリ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 297,
+        "fields": {
+            "key": "382",
+            "value": "喉良化"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 298,
+        "fields": {
+            "key": "383",
+            "value": "芝切れ目が飛ぶ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 299,
+        "fields": {
+            "key": "384",
+            "value": "渋馬場○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 300,
+        "fields": {
+            "key": "385",
+            "value": "渋馬場×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 301,
+        "fields": {
+            "key": "386",
+            "value": "メンコ効果あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 302,
+        "fields": {
+            "key": "387",
+            "value": "不利"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 303,
+        "fields": {
+            "key": "388",
+            "value": "アオル"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 304,
+        "fields": {
+            "key": "389",
+            "value": "ブリ外効果あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 305,
+        "fields": {
+            "key": "390",
+            "value": "京都×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 306,
+        "fields": {
+            "key": "391",
+            "value": "距離長"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 307,
+        "fields": {
+            "key": "392",
+            "value": "距離短"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 308,
+        "fields": {
+            "key": "393",
+            "value": "鉄唇横"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 309,
+        "fields": {
+            "key": "394",
+            "value": "瞬発力非凡"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 310,
+        "fields": {
+            "key": "395",
+            "value": "スピード有"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 311,
+        "fields": {
+            "key": "396",
+            "value": "スピード無"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 312,
+        "fields": {
+            "key": "397",
+            "value": "集中力出る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 313,
+        "fields": {
+            "key": "398",
+            "value": "集中力ない"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 314,
+        "fields": {
+            "key": "399",
+            "value": "下を気にする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 315,
+        "fields": {
+            "key": "400",
+            "value": "内側に斜行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 316,
+        "fields": {
+            "key": "401",
+            "value": "外側に斜行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 317,
+        "fields": {
+            "key": "402",
+            "value": "返し馬入念"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 318,
+        "fields": {
+            "key": "403",
+            "value": "(道中)息入る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 319,
+        "fields": {
+            "key": "404",
+            "value": "(道中)息入らず"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 320,
+        "fields": {
+            "key": "405",
+            "value": "ハミ替え２走目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 321,
+        "fields": {
+            "key": "406",
+            "value": "ハミ替え３走目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 322,
+        "fields": {
+            "key": "407",
+            "value": "今回馬具替え○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 323,
+        "fields": {
+            "key": "408",
+            "value": "今回馬具替え×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 324,
+        "fields": {
+            "key": "409",
+            "value": "直線手前替える"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 325,
+        "fields": {
+            "key": "410",
+            "value": "本格化"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 326,
+        "fields": {
+            "key": "411",
+            "value": "ハミ取る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 327,
+        "fields": {
+            "key": "412",
+            "value": "ハミ取らず"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 328,
+        "fields": {
+            "key": "413",
+            "value": "躓く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 329,
+        "fields": {
+            "key": "414",
+            "value": "輸送慣れ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 330,
+        "fields": {
+            "key": "415",
+            "value": "大外回る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 331,
+        "fields": {
+            "key": "416",
+            "value": "コズミ解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 332,
+        "fields": {
+            "key": "417",
+            "value": "攻め軽目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 333,
+        "fields": {
+            "key": "418",
+            "value": "急仕上げ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 334,
+        "fields": {
+            "key": "419",
+            "value": "掛かる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 335,
+        "fields": {
+            "key": "420",
+            "value": "掛かり気味"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 336,
+        "fields": {
+            "key": "421",
+            "value": "突っ張る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 337,
+        "fields": {
+            "key": "422",
+            "value": "行きたがる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 338,
+        "fields": {
+            "key": "423",
+            "value": "デキ一息"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 339,
+        "fields": {
+            "key": "424",
+            "value": "出走停止"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 340,
+        "fields": {
+            "key": "425",
+            "value": "調教再審査"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 341,
+        "fields": {
+            "key": "426",
+            "value": "発走再審査"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 342,
+        "fields": {
+            "key": "427",
+            "value": "発走調教再審査"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 343,
+        "fields": {
+            "key": "428",
+            "value": "枠内駐立不良"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 344,
+        "fields": {
+            "key": "429",
+            "value": "枠入不良"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 345,
+        "fields": {
+            "key": "430",
+            "value": "阪神×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 346,
+        "fields": {
+            "key": "431",
+            "value": "腰力つく"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 347,
+        "fields": {
+            "key": "432",
+            "value": "連闘×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 348,
+        "fields": {
+            "key": "433",
+            "value": "パワー○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 349,
+        "fields": {
+            "key": "434",
+            "value": "スタート芝×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 350,
+        "fields": {
+            "key": "435",
+            "value": "息切れ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 351,
+        "fields": {
+            "key": "436",
+            "value": "逆手前"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 352,
+        "fields": {
+            "key": "437",
+            "value": "気を抜く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 353,
+        "fields": {
+            "key": "438",
+            "value": "二走ボケ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 354,
+        "fields": {
+            "key": "439",
+            "value": "捌き硬い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 355,
+        "fields": {
+            "key": "440",
+            "value": "追い通し"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 356,
+        "fields": {
+            "key": "441",
+            "value": "余力なし"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 357,
+        "fields": {
+            "key": "442",
+            "value": "いい脚長く使う"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 358,
+        "fields": {
+            "key": "443",
+            "value": "落ち着きほしい"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 359,
+        "fields": {
+            "key": "444",
+            "value": "落ち着きでる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 360,
+        "fields": {
+            "key": "445",
+            "value": "レースせず"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 361,
+        "fields": {
+            "key": "446",
+            "value": "シャド外効果アリ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 362,
+        "fields": {
+            "key": "447",
+            "value": "トモぶつける"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 363,
+        "fields": {
+            "key": "448",
+            "value": "バランス崩す"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 364,
+        "fields": {
+            "key": "449",
+            "value": "ペース速い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 365,
+        "fields": {
+            "key": "450",
+            "value": "ペース速い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 366,
+        "fields": {
+            "key": "451",
+            "value": "ペース遅い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 367,
+        "fields": {
+            "key": "452",
+            "value": "ペース遅い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 368,
+        "fields": {
+            "key": "453",
+            "value": "モタつく"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 369,
+        "fields": {
+            "key": "454",
+            "value": "調教注意"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 370,
+        "fields": {
+            "key": "455",
+            "value": "返し馬ウルサイ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 371,
+        "fields": {
+            "key": "456",
+            "value": "返し馬できない"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 372,
+        "fields": {
+            "key": "457",
+            "value": "馬具変更２走目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 373,
+        "fields": {
+            "key": "458",
+            "value": "中間フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 374,
+        "fields": {
+            "key": "459",
+            "value": "口割る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 375,
+        "fields": {
+            "key": "460",
+            "value": "ズブイ解消"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 376,
+        "fields": {
+            "key": "461",
+            "value": "減量効果あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 377,
+        "fields": {
+            "key": "462",
+            "value": "いい脚少しだけ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 378,
+        "fields": {
+            "key": "463",
+            "value": "ダ少し速○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 379,
+        "fields": {
+            "key": "464",
+            "value": "ダ少し速×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 380,
+        "fields": {
+            "key": "465",
+            "value": "馬込平気"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 381,
+        "fields": {
+            "key": "466",
+            "value": "ないら"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 382,
+        "fields": {
+            "key": "467",
+            "value": "蹄良化"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 383,
+        "fields": {
+            "key": "468",
+            "value": "フラッシュ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 384,
+        "fields": {
+            "key": "469",
+            "value": "ひざ外傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 385,
+        "fields": {
+            "key": "470",
+            "value": "スネ外傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 386,
+        "fields": {
+            "key": "471",
+            "value": "食い細"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 387,
+        "fields": {
+            "key": "472",
+            "value": "瞬発力△"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 388,
+        "fields": {
+            "key": "473",
+            "value": "エンジン掛速"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 389,
+        "fields": {
+            "key": "474",
+            "value": "エンジン掛遅"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 390,
+        "fields": {
+            "key": "475",
+            "value": "裂蹄のため次走延期"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 391,
+        "fields": {
+            "key": "476",
+            "value": "ゲート音怖がる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 392,
+        "fields": {
+            "key": "477",
+            "value": "軟ら芝×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 393,
+        "fields": {
+            "key": "478",
+            "value": "次走良化気配"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 394,
+        "fields": {
+            "key": "479",
+            "value": "次走一変可"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 395,
+        "fields": {
+            "key": "480",
+            "value": "芝大丈夫"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 396,
+        "fields": {
+            "key": "481",
+            "value": "ダ大丈夫"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 397,
+        "fields": {
+            "key": "482",
+            "value": "ゲート潜る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 398,
+        "fields": {
+            "key": "483",
+            "value": "連闘ダメ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 399,
+        "fields": {
+            "key": "484",
+            "value": "前行くとダメ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 400,
+        "fields": {
+            "key": "485",
+            "value": "見せ場なし"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 401,
+        "fields": {
+            "key": "486",
+            "value": "後方まま"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 402,
+        "fields": {
+            "key": "487",
+            "value": "中間熱発"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 403,
+        "fields": {
+            "key": "488",
+            "value": "軟ら芝○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 404,
+        "fields": {
+            "key": "489",
+            "value": "故障アオリ食"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 405,
+        "fields": {
+            "key": "490",
+            "value": "馬込△"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 406,
+        "fields": {
+            "key": "491",
+            "value": "フットワーク△"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 407,
+        "fields": {
+            "key": "492",
+            "value": "トビ小さい"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 408,
+        "fields": {
+            "key": "493",
+            "value": "挫跖のため次走延期"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 409,
+        "fields": {
+            "key": "494",
+            "value": "熱発のため次走延期"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 410,
+        "fields": {
+            "key": "495",
+            "value": "裂蹄のため放牧"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 411,
+        "fields": {
+            "key": "496",
+            "value": "輸送食い細"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 412,
+        "fields": {
+            "key": "497",
+            "value": "皮膚色抜ける"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 413,
+        "fields": {
+            "key": "498",
+            "value": "馬体緩める"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 414,
+        "fields": {
+            "key": "499",
+            "value": "ブリンカー２走目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 415,
+        "fields": {
+            "key": "500",
+            "value": "ブリンカー３走目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 416,
+        "fields": {
+            "key": "501",
+            "value": "感冒"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 417,
+        "fields": {
+            "key": "502",
+            "value": "疝痛"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 418,
+        "fields": {
+            "key": "503",
+            "value": "角膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 419,
+        "fields": {
+            "key": "504",
+            "value": "右前踏創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 420,
+        "fields": {
+            "key": "505",
+            "value": "左前踏創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 421,
+        "fields": {
+            "key": "506",
+            "value": "右後踏創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 422,
+        "fields": {
+            "key": "507",
+            "value": "左後踏創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 423,
+        "fields": {
+            "key": "508",
+            "value": "両前踏創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 424,
+        "fields": {
+            "key": "509",
+            "value": "両後踏創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 425,
+        "fields": {
+            "key": "510",
+            "value": "右前管骨々膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 426,
+        "fields": {
+            "key": "511",
+            "value": "左前管骨々膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 427,
+        "fields": {
+            "key": "512",
+            "value": "右後管骨々膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 428,
+        "fields": {
+            "key": "513",
+            "value": "左後管骨々膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 429,
+        "fields": {
+            "key": "514",
+            "value": "両前管骨々膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 430,
+        "fields": {
+            "key": "515",
+            "value": "両後管骨々膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 431,
+        "fields": {
+            "key": "516",
+            "value": "右前肢挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 432,
+        "fields": {
+            "key": "517",
+            "value": "左前肢挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 433,
+        "fields": {
+            "key": "518",
+            "value": "右後肢挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 434,
+        "fields": {
+            "key": "519",
+            "value": "左後肢挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 435,
+        "fields": {
+            "key": "520",
+            "value": "両前肢挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 436,
+        "fields": {
+            "key": "521",
+            "value": "両後肢挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 437,
+        "fields": {
+            "key": "522",
+            "value": "右前球節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 438,
+        "fields": {
+            "key": "523",
+            "value": "左前球節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 439,
+        "fields": {
+            "key": "524",
+            "value": "右後球節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 440,
+        "fields": {
+            "key": "525",
+            "value": "左後球節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 441,
+        "fields": {
+            "key": "526",
+            "value": "両前球節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 442,
+        "fields": {
+            "key": "527",
+            "value": "両後球節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 443,
+        "fields": {
+            "key": "528",
+            "value": "右前球節部フレグモー"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 444,
+        "fields": {
+            "key": "529",
+            "value": "左前球節部フレグモー"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 445,
+        "fields": {
+            "key": "530",
+            "value": "右後球節部フレグモー"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 446,
+        "fields": {
+            "key": "531",
+            "value": "左後球節部フレグモー"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 447,
+        "fields": {
+            "key": "532",
+            "value": "両前球節部フレグモー"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 448,
+        "fields": {
+            "key": "533",
+            "value": "右前肢フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 449,
+        "fields": {
+            "key": "534",
+            "value": "左前肢フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 450,
+        "fields": {
+            "key": "535",
+            "value": "右後肢フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 451,
+        "fields": {
+            "key": "536",
+            "value": "左後肢フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 452,
+        "fields": {
+            "key": "537",
+            "value": "両前肢フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 453,
+        "fields": {
+            "key": "538",
+            "value": "両後肢フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 454,
+        "fields": {
+            "key": "539",
+            "value": "右前屈腱炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 455,
+        "fields": {
+            "key": "540",
+            "value": "左前屈腱炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 456,
+        "fields": {
+            "key": "541",
+            "value": "両前屈腱炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 457,
+        "fields": {
+            "key": "542",
+            "value": "外傷性鼻出血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 458,
+        "fields": {
+            "key": "543",
+            "value": "右前挫跖"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 459,
+        "fields": {
+            "key": "544",
+            "value": "左前挫跖"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 460,
+        "fields": {
+            "key": "545",
+            "value": "右後挫跖"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 461,
+        "fields": {
+            "key": "546",
+            "value": "左後挫跖"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 462,
+        "fields": {
+            "key": "547",
+            "value": "両後挫跖"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 463,
+        "fields": {
+            "key": "548",
+            "value": "両前挫跖"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 464,
+        "fields": {
+            "key": "549",
+            "value": "右前裂蹄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 465,
+        "fields": {
+            "key": "550",
+            "value": "左前裂蹄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 466,
+        "fields": {
+            "key": "551",
+            "value": "右後裂蹄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 467,
+        "fields": {
+            "key": "552",
+            "value": "左後裂蹄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 468,
+        "fields": {
+            "key": "553",
+            "value": "両前裂蹄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 469,
+        "fields": {
+            "key": "554",
+            "value": "両後裂蹄"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 470,
+        "fields": {
+            "key": "555",
+            "value": "右寛跛行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 471,
+        "fields": {
+            "key": "556",
+            "value": "左寛跛行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 472,
+        "fields": {
+            "key": "557",
+            "value": "右肩跛行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 473,
+        "fields": {
+            "key": "558",
+            "value": "左肩跛行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 474,
+        "fields": {
+            "key": "559",
+            "value": "右前繋部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 475,
+        "fields": {
+            "key": "560",
+            "value": "左前繋部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 476,
+        "fields": {
+            "key": "561",
+            "value": "右後繋部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 477,
+        "fields": {
+            "key": "562",
+            "value": "左後繋部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 478,
+        "fields": {
+            "key": "563",
+            "value": "両前繋部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 479,
+        "fields": {
+            "key": "564",
+            "value": "両後繋部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 480,
+        "fields": {
+            "key": "565",
+            "value": "右第１骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 481,
+        "fields": {
+            "key": "572",
+            "value": "左第１指骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 482,
+        "fields": {
+            "key": "573",
+            "value": "ジンマシン"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 483,
+        "fields": {
+            "key": "575",
+            "value": "左前繋靭帯断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 484,
+        "fields": {
+            "key": "576",
+            "value": "左第１指関節脱臼"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 485,
+        "fields": {
+            "key": "578",
+            "value": "左前屈腱部打撲傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 486,
+        "fields": {
+            "key": "579",
+            "value": "右前屈腱断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 487,
+        "fields": {
+            "key": "580",
+            "value": "両前浅屈腱断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 488,
+        "fields": {
+            "key": "581",
+            "value": "寛骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 489,
+        "fields": {
+            "key": "582",
+            "value": "右前浅屈腱不全断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 490,
+        "fields": {
+            "key": "583",
+            "value": "左前繋靭帯炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 491,
+        "fields": {
+            "key": "584",
+            "value": "右肘部フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 492,
+        "fields": {
+            "key": "585",
+            "value": "右前浅屈腱炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 493,
+        "fields": {
+            "key": "586",
+            "value": "左前腕部蹴傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 494,
+        "fields": {
+            "key": "587",
+            "value": "右第１指関節脱臼"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 495,
+        "fields": {
+            "key": "588",
+            "value": "キ甲部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 496,
+        "fields": {
+            "key": "589",
+            "value": "両腕接部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 497,
+        "fields": {
+            "key": "590",
+            "value": "両頚部打撲傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 498,
+        "fields": {
+            "key": "591",
+            "value": "疲労が著しいため除外"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 499,
+        "fields": {
+            "key": "592",
+            "value": "鞍傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 500,
+        "fields": {
+            "key": "593",
+            "value": "右第1指節種子骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 501,
+        "fields": {
+            "key": "594",
+            "value": "右腰角部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 502,
+        "fields": {
+            "key": "595",
+            "value": "右前繋靭帯炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 503,
+        "fields": {
+            "key": "596",
+            "value": "両前腕部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 504,
+        "fields": {
+            "key": "597",
+            "value": "右膝蓋部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 505,
+        "fields": {
+            "key": "598",
+            "value": "左後蹄冠部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 506,
+        "fields": {
+            "key": "599",
+            "value": "左副手根骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 507,
+        "fields": {
+            "key": "600",
+            "value": "両飛節挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 508,
+        "fields": {
+            "key": "601",
+            "value": "寛跛行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 509,
+        "fields": {
+            "key": "602",
+            "value": "便秘疝"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 510,
+        "fields": {
+            "key": "603",
+            "value": "右飛節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 511,
+        "fields": {
+            "key": "604",
+            "value": "右上眼瞼部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 512,
+        "fields": {
+            "key": "605",
+            "value": "腰椎骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 513,
+        "fields": {
+            "key": "606",
+            "value": "両前管部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 514,
+        "fields": {
+            "key": "607",
+            "value": "左腕節部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 515,
+        "fields": {
+            "key": "608",
+            "value": "事故のため除外"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 516,
+        "fields": {
+            "key": "609",
+            "value": "パドック蹄鉄打ち直し"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 517,
+        "fields": {
+            "key": "610",
+            "value": "左前球節部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 518,
+        "fields": {
+            "key": "611",
+            "value": "右大腿骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 519,
+        "fields": {
+            "key": "612",
+            "value": "右前屈腱部打撲傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 520,
+        "fields": {
+            "key": "613",
+            "value": "左第３中手骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 521,
+        "fields": {
+            "key": "614",
+            "value": "右口角節"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 522,
+        "fields": {
+            "key": "615",
+            "value": "肩跛行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 523,
+        "fields": {
+            "key": "616",
+            "value": "右前管部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 524,
+        "fields": {
+            "key": "617",
+            "value": "左第３指趾骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 525,
+        "fields": {
+            "key": "618",
+            "value": "左前繋靭帯炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 526,
+        "fields": {
+            "key": "619",
+            "value": "右飛節部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 527,
+        "fields": {
+            "key": "620",
+            "value": "左前蹄球炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 528,
+        "fields": {
+            "key": "621",
+            "value": "右下腿部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 529,
+        "fields": {
+            "key": "622",
+            "value": "左第３指骨骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 530,
+        "fields": {
+            "key": "623",
+            "value": "左腰角部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 531,
+        "fields": {
+            "key": "624",
+            "value": "額部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 532,
+        "fields": {
+            "key": "625",
+            "value": "右第３中足骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 533,
+        "fields": {
+            "key": "626",
+            "value": "左飛節部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 534,
+        "fields": {
+            "key": "627",
+            "value": "左後繋靭帯断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 535,
+        "fields": {
+            "key": "628",
+            "value": "左後管部打撲傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 536,
+        "fields": {
+            "key": "629",
+            "value": "右後管部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 537,
+        "fields": {
+            "key": "630",
+            "value": "左腰部打撲"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 538,
+        "fields": {
+            "key": "631",
+            "value": "左前飛節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 539,
+        "fields": {
+            "key": "632",
+            "value": "頚部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 540,
+        "fields": {
+            "key": "633",
+            "value": "左第３手根骨板状骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 541,
+        "fields": {
+            "key": "634",
+            "value": "右前腕骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 542,
+        "fields": {
+            "key": "635",
+            "value": "右前浅屈腱断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 543,
+        "fields": {
+            "key": "636",
+            "value": "創傷性右角膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 544,
+        "fields": {
+            "key": "637",
+            "value": "外傷性右鼻出血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 545,
+        "fields": {
+            "key": "638",
+            "value": "左上腕骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 546,
+        "fields": {
+            "key": "639",
+            "value": "創傷性左角膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 547,
+        "fields": {
+            "key": "640",
+            "value": "右腕節部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 548,
+        "fields": {
+            "key": "641",
+            "value": "左前浅屈腱不全断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 549,
+        "fields": {
+            "key": "642",
+            "value": "右第３指骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 550,
+        "fields": {
+            "key": "643",
+            "value": "左前腕部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 551,
+        "fields": {
+            "key": "644",
+            "value": "右前繋靭帯断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 552,
+        "fields": {
+            "key": "645",
+            "value": "蹄冠挫石"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 553,
+        "fields": {
+            "key": "646",
+            "value": "右第１趾骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 554,
+        "fields": {
+            "key": "647",
+            "value": "左第３中手骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 555,
+        "fields": {
+            "key": "648",
+            "value": "左第３中足骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 556,
+        "fields": {
+            "key": "649",
+            "value": "左副手根骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 557,
+        "fields": {
+            "key": "650",
+            "value": "左橈骨遠位端骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 558,
+        "fields": {
+            "key": "651",
+            "value": "左前靭帯不全断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 559,
+        "fields": {
+            "key": "652",
+            "value": "急性心不全"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 560,
+        "fields": {
+            "key": "653",
+            "value": "左肩部蹴傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 561,
+        "fields": {
+            "key": "654",
+            "value": "左後球節部切創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 562,
+        "fields": {
+            "key": "655",
+            "value": "胸部フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 563,
+        "fields": {
+            "key": "656",
+            "value": "右第３中足骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 564,
+        "fields": {
+            "key": "657",
+            "value": "両前肢打撲傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 565,
+        "fields": {
+            "key": "658",
+            "value": "右アキレス腱脱位"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 566,
+        "fields": {
+            "key": "659",
+            "value": "左下腿骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 567,
+        "fields": {
+            "key": "660",
+            "value": "食道梗塞"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 568,
+        "fields": {
+            "key": "661",
+            "value": "右前蹄球炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 569,
+        "fields": {
+            "key": "662",
+            "value": "左上腕骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 570,
+        "fields": {
+            "key": "663",
+            "value": "左手根骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 571,
+        "fields": {
+            "key": "664",
+            "value": "左第１指骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 572,
+        "fields": {
+            "key": "665",
+            "value": "キ甲部打撲傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 573,
+        "fields": {
+            "key": "666",
+            "value": "左膝蓋部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 574,
+        "fields": {
+            "key": "667",
+            "value": "右第３中足骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 575,
+        "fields": {
+            "key": "668",
+            "value": "右肘腫"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 576,
+        "fields": {
+            "key": "669",
+            "value": "四肢挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 577,
+        "fields": {
+            "key": "670",
+            "value": "左第２指関節開放性脱"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 578,
+        "fields": {
+            "key": "671",
+            "value": "左前繋靭帯不全断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 579,
+        "fields": {
+            "key": "672",
+            "value": "背部フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 580,
+        "fields": {
+            "key": "673",
+            "value": "右前球節部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 581,
+        "fields": {
+            "key": "674",
+            "value": "左前浅屈腱断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 582,
+        "fields": {
+            "key": "675",
+            "value": "両後球節部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 583,
+        "fields": {
+            "key": "676",
+            "value": "右上腕骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 584,
+        "fields": {
+            "key": "677",
+            "value": "右中手骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 585,
+        "fields": {
+            "key": "678",
+            "value": "右脛骨々膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 586,
+        "fields": {
+            "key": "679",
+            "value": "左股関節脱臼"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 587,
+        "fields": {
+            "key": "680",
+            "value": "左第３中足骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 588,
+        "fields": {
+            "key": "681",
+            "value": "左第１指骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 589,
+        "fields": {
+            "key": "682",
+            "value": "左前深管骨瘤"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 590,
+        "fields": {
+            "key": "683",
+            "value": "右第３中手骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 591,
+        "fields": {
+            "key": "684",
+            "value": "右後肢蹴傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 592,
+        "fields": {
+            "key": "685",
+            "value": "左前腕部打撲傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 593,
+        "fields": {
+            "key": "686",
+            "value": "左結膜炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 594,
+        "fields": {
+            "key": "687",
+            "value": "右腕節炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 595,
+        "fields": {
+            "key": "688",
+            "value": "右後肢裂創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 596,
+        "fields": {
+            "key": "689",
+            "value": "右膝蓋部蹴傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 597,
+        "fields": {
+            "key": "690",
+            "value": "頭部打撲症"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 598,
+        "fields": {
+            "key": "691",
+            "value": "左後球節部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 599,
+        "fields": {
+            "key": "692",
+            "value": "左第１趾骨々折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 600,
+        "fields": {
+            "key": "693",
+            "value": "左第１指節種子骨複骨"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 601,
+        "fields": {
+            "key": "694",
+            "value": "口内炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 602,
+        "fields": {
+            "key": "695",
+            "value": "鼻部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 603,
+        "fields": {
+            "key": "696",
+            "value": "左肋部蹴傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 604,
+        "fields": {
+            "key": "697",
+            "value": "左前管部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 605,
+        "fields": {
+            "key": "698",
+            "value": "左腰部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 606,
+        "fields": {
+            "key": "699",
+            "value": "乳房炎"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 607,
+        "fields": {
+            "key": "700",
+            "value": "シャド２走目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 608,
+        "fields": {
+            "key": "701",
+            "value": "シャド３走目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 609,
+        "fields": {
+            "key": "702",
+            "value": "ブリ逆効果"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 610,
+        "fields": {
+            "key": "703",
+            "value": "発進不良"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 611,
+        "fields": {
+            "key": "704",
+            "value": "つかみどころない"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 612,
+        "fields": {
+            "key": "705",
+            "value": "内側に逃避"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 613,
+        "fields": {
+            "key": "706",
+            "value": "外側に逃避"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 614,
+        "fields": {
+            "key": "707",
+            "value": "フットワーク○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 615,
+        "fields": {
+            "key": "708",
+            "value": "落馬再騎乗"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 616,
+        "fields": {
+            "key": "709",
+            "value": "トモ傷める(ゲート内)"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 617,
+        "fields": {
+            "key": "710",
+            "value": "障害練習効果"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 618,
+        "fields": {
+            "key": "711",
+            "value": "空馬影響"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 619,
+        "fields": {
+            "key": "712",
+            "value": "馬体検査"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 620,
+        "fields": {
+            "key": "713",
+            "value": "今回蹄鉄替○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 621,
+        "fields": {
+            "key": "714",
+            "value": "今回蹄鉄替×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 622,
+        "fields": {
+            "key": "715",
+            "value": "バドック放馬"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 623,
+        "fields": {
+            "key": "716",
+            "value": "発進不良"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 624,
+        "fields": {
+            "key": "717",
+            "value": "ステッキ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 625,
+        "fields": {
+            "key": "718",
+            "value": "道中外々"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 626,
+        "fields": {
+            "key": "719",
+            "value": "雨○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 627,
+        "fields": {
+            "key": "720",
+            "value": "雨×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 628,
+        "fields": {
+            "key": "721",
+            "value": "スタート芝○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 629,
+        "fields": {
+            "key": "722",
+            "value": "勝負所モタつく"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 630,
+        "fields": {
+            "key": "723",
+            "value": "適距離"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 631,
+        "fields": {
+            "key": "724",
+            "value": "ゲート練習"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 632,
+        "fields": {
+            "key": "725",
+            "value": "障害練習"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 633,
+        "fields": {
+            "key": "726",
+            "value": "中間鞍傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 634,
+        "fields": {
+            "key": "727",
+            "value": "次走オッズチェック"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 635,
+        "fields": {
+            "key": "728",
+            "value": "時計速○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 636,
+        "fields": {
+            "key": "729",
+            "value": "時計速×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 637,
+        "fields": {
+            "key": "730",
+            "value": "脚使処難"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 638,
+        "fields": {
+            "key": "731",
+            "value": "根性なし"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 639,
+        "fields": {
+            "key": "732",
+            "value": "レース振スムーズ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 640,
+        "fields": {
+            "key": "733",
+            "value": "一本調子"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 641,
+        "fields": {
+            "key": "734",
+            "value": "完歩小さい"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 642,
+        "fields": {
+            "key": "735",
+            "value": "芝ダＯＫ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 643,
+        "fields": {
+            "key": "736",
+            "value": "スムーズさ欠"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 644,
+        "fields": {
+            "key": "737",
+            "value": "生ズルイ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 645,
+        "fields": {
+            "key": "738",
+            "value": "絞れれば"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 646,
+        "fields": {
+            "key": "739",
+            "value": "水浮ダ○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 647,
+        "fields": {
+            "key": "740",
+            "value": "追いかけられる○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 648,
+        "fields": {
+            "key": "741",
+            "value": "口出血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 649,
+        "fields": {
+            "key": "742",
+            "value": "馬装整備"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 650,
+        "fields": {
+            "key": "743",
+            "value": "芝ダ切れ目飛ぶ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 651,
+        "fields": {
+            "key": "744",
+            "value": "中間外傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 652,
+        "fields": {
+            "key": "745",
+            "value": "中間感冒"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 653,
+        "fields": {
+            "key": "746",
+            "value": "中間抜歯"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 654,
+        "fields": {
+            "key": "747",
+            "value": "調教不足"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 655,
+        "fields": {
+            "key": "748",
+            "value": "歯替わり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 656,
+        "fields": {
+            "key": "749",
+            "value": "馬場入り１番早い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 657,
+        "fields": {
+            "key": "750",
+            "value": "Pブリンカー効果あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 658,
+        "fields": {
+            "key": "751",
+            "value": "舌くくり効果あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 659,
+        "fields": {
+            "key": "752",
+            "value": "ノーズバンド効果あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 660,
+        "fields": {
+            "key": "753",
+            "value": "鼻逆効果"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 661,
+        "fields": {
+            "key": "754",
+            "value": "舌くくりで出血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 662,
+        "fields": {
+            "key": "755",
+            "value": "ハミで口切る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 663,
+        "fields": {
+            "key": "756",
+            "value": "馬場入り前蹄鉄打ち直"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 664,
+        "fields": {
+            "key": "757",
+            "value": "ハミ替え"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 665,
+        "fields": {
+            "key": "758",
+            "value": "馬具変更"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 666,
+        "fields": {
+            "key": "759",
+            "value": "ハミ替え逆効果"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 667,
+        "fields": {
+            "key": "760",
+            "value": "転厩"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 668,
+        "fields": {
+            "key": "761",
+            "value": "厩務員替り"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 669,
+        "fields": {
+            "key": "762",
+            "value": "腰疲れ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 670,
+        "fields": {
+            "key": "763",
+            "value": "口硬い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 671,
+        "fields": {
+            "key": "764",
+            "value": "返し馬気合乗りすぎ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 672,
+        "fields": {
+            "key": "765",
+            "value": "口開けたまま走る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 673,
+        "fields": {
+            "key": "766",
+            "value": "パドック後出し"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 674,
+        "fields": {
+            "key": "767",
+            "value": "返し馬後出し"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 675,
+        "fields": {
+            "key": "768",
+            "value": "ハミ効かず"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 676,
+        "fields": {
+            "key": "769",
+            "value": "もたれる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 677,
+        "fields": {
+            "key": "770",
+            "value": "頭上げる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 678,
+        "fields": {
+            "key": "771",
+            "value": "ブリンカー必要"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 679,
+        "fields": {
+            "key": "772",
+            "value": "フラフラ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 680,
+        "fields": {
+            "key": "773",
+            "value": "芝切れ目気にする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 681,
+        "fields": {
+            "key": "774",
+            "value": "芝切れ目躓く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 682,
+        "fields": {
+            "key": "775",
+            "value": "脚部不安"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 683,
+        "fields": {
+            "key": "779",
+            "value": "再ゲートやる気失う"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 684,
+        "fields": {
+            "key": "780",
+            "value": "攻め駆けする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 685,
+        "fields": {
+            "key": "781",
+            "value": "直線追うのやめる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 686,
+        "fields": {
+            "key": "782",
+            "value": "異常歩様"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 687,
+        "fields": {
+            "key": "783",
+            "value": "針立て直し効果○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 688,
+        "fields": {
+            "key": "784",
+            "value": "ムキになって走る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 689,
+        "fields": {
+            "key": "785",
+            "value": "仕掛け遅れる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 690,
+        "fields": {
+            "key": "786",
+            "value": "手綱切れる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 691,
+        "fields": {
+            "key": "787",
+            "value": "ゴチャつく"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 692,
+        "fields": {
+            "key": "789",
+            "value": "併せる形○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 693,
+        "fields": {
+            "key": "790",
+            "value": "ハミ敏感"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 694,
+        "fields": {
+            "key": "791",
+            "value": "トビ綺麗"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 695,
+        "fields": {
+            "key": "792",
+            "value": "硬い馬場○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 696,
+        "fields": {
+            "key": "793",
+            "value": "硬い馬場×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 697,
+        "fields": {
+            "key": "794",
+            "value": "調教注意（戒告）"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 698,
+        "fields": {
+            "key": "795",
+            "value": "脚抜きいいダ○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 699,
+        "fields": {
+            "key": "796",
+            "value": "脚抜きいいダ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 700,
+        "fields": {
+            "key": "797",
+            "value": "乾いたダ○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 701,
+        "fields": {
+            "key": "798",
+            "value": "乾いたダ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 702,
+        "fields": {
+            "key": "799",
+            "value": "中間フレグモーネ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 703,
+        "fields": {
+            "key": "800",
+            "value": "ソエ良化"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 704,
+        "fields": {
+            "key": "801",
+            "value": "馬場入場後再検量"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 705,
+        "fields": {
+            "key": "802",
+            "value": "多頭数○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 706,
+        "fields": {
+            "key": "803",
+            "value": "耳立てる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 707,
+        "fields": {
+            "key": "804",
+            "value": "直線余力あり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 708,
+        "fields": {
+            "key": "805",
+            "value": "ゲート入り嫌がる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 709,
+        "fields": {
+            "key": "806",
+            "value": "ヨレる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 710,
+        "fields": {
+            "key": "807",
+            "value": "併せる形×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 711,
+        "fields": {
+            "key": "808",
+            "value": "右回り△"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 712,
+        "fields": {
+            "key": "809",
+            "value": "荒れ馬場○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 713,
+        "fields": {
+            "key": "810",
+            "value": "荒れ馬場△"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 714,
+        "fields": {
+            "key": "811",
+            "value": "荒れ馬場×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 715,
+        "fields": {
+            "key": "812",
+            "value": "ハナこだわらず"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 716,
+        "fields": {
+            "key": "813",
+            "value": "スタート抜群"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 717,
+        "fields": {
+            "key": "814",
+            "value": "蹄鉄ずれる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 718,
+        "fields": {
+            "key": "815",
+            "value": "レース直前ボロ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 719,
+        "fields": {
+            "key": "816",
+            "value": "仕掛け早い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 720,
+        "fields": {
+            "key": "817",
+            "value": "馬場良い所通る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 721,
+        "fields": {
+            "key": "818",
+            "value": "馬場悪い所通る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 722,
+        "fields": {
+            "key": "819",
+            "value": "展開厳しい"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 723,
+        "fields": {
+            "key": "820",
+            "value": "展開恵まれ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 724,
+        "fields": {
+            "key": "821",
+            "value": "不正駆歩"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 725,
+        "fields": {
+            "key": "822",
+            "value": "濡れたダ○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 726,
+        "fields": {
+            "key": "823",
+            "value": "返し馬落馬"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 727,
+        "fields": {
+            "key": "824",
+            "value": "暖かくなってくる○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 728,
+        "fields": {
+            "key": "825",
+            "value": "水浮くダ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 729,
+        "fields": {
+            "key": "826",
+            "value": "パドック先頭"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 730,
+        "fields": {
+            "key": "827",
+            "value": "返し馬スムーズ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 731,
+        "fields": {
+            "key": "828",
+            "value": "返し馬逆方向へ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 732,
+        "fields": {
+            "key": "829",
+            "value": "パドック尻尾振る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 733,
+        "fields": {
+            "key": "830",
+            "value": "制御が乱暴"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 734,
+        "fields": {
+            "key": "831",
+            "value": "濡れたダ×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 735,
+        "fields": {
+            "key": "832",
+            "value": "パドック立ち上がる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 736,
+        "fields": {
+            "key": "833",
+            "value": "パドック舌出す"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 737,
+        "fields": {
+            "key": "834",
+            "value": "返し馬気合つける"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 738,
+        "fields": {
+            "key": "835",
+            "value": "返し馬元気"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 739,
+        "fields": {
+            "key": "836",
+            "value": "返し馬のびのび"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 740,
+        "fields": {
+            "key": "837",
+            "value": "返し馬口割る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 741,
+        "fields": {
+            "key": "838",
+            "value": "返し馬掛かる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 742,
+        "fields": {
+            "key": "839",
+            "value": "返し馬舌越す"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 743,
+        "fields": {
+            "key": "840",
+            "value": "ハミ気にする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 744,
+        "fields": {
+            "key": "841",
+            "value": "尻尾短い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 745,
+        "fields": {
+            "key": "842",
+            "value": "尻っ跳ね"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 746,
+        "fields": {
+            "key": "843",
+            "value": "あくび"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 747,
+        "fields": {
+            "key": "844",
+            "value": "馬場入り嫌がる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 748,
+        "fields": {
+            "key": "845",
+            "value": "厩務員に引かれて歩く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 749,
+        "fields": {
+            "key": "846",
+            "value": "パドックハミ気にする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 750,
+        "fields": {
+            "key": "847",
+            "value": "軟らかい芝×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 751,
+        "fields": {
+            "key": "848",
+            "value": "背ったる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 752,
+        "fields": {
+            "key": "849",
+            "value": "馬場入場後騎乗"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 753,
+        "fields": {
+            "key": "850",
+            "value": "返し馬立ち上がる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 754,
+        "fields": {
+            "key": "851",
+            "value": "返し馬尻っぱね"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 755,
+        "fields": {
+            "key": "852",
+            "value": "パドック外側から馬引"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 756,
+        "fields": {
+            "key": "853",
+            "value": "レースセンス抜群"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 757,
+        "fields": {
+            "key": "854",
+            "value": "蛇行"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 758,
+        "fields": {
+            "key": "855",
+            "value": "(名パド)文字気にする"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 759,
+        "fields": {
+            "key": "856",
+            "value": "厩務員に甘える"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 760,
+        "fields": {
+            "key": "857",
+            "value": "返し馬軽目"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 761,
+        "fields": {
+            "key": "858",
+            "value": "返し馬抑える"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 762,
+        "fields": {
+            "key": "859",
+            "value": "器官疾患"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 763,
+        "fields": {
+            "key": "860",
+            "value": "返し馬怒る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 764,
+        "fields": {
+            "key": "861",
+            "value": "パドック柵蹴る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 765,
+        "fields": {
+            "key": "862",
+            "value": "パドック機嫌良し"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 766,
+        "fields": {
+            "key": "863",
+            "value": "パドック口出血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 767,
+        "fields": {
+            "key": "864",
+            "value": "返し馬気負う"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 768,
+        "fields": {
+            "key": "865",
+            "value": "パドック耳動かす"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 769,
+        "fields": {
+            "key": "866",
+            "value": "返し馬やる気"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 770,
+        "fields": {
+            "key": "867",
+            "value": "返し馬しっかり"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 771,
+        "fields": {
+            "key": "868",
+            "value": "返し馬バネ利いた動き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 772,
+        "fields": {
+            "key": "869",
+            "value": "緩急苦手"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 773,
+        "fields": {
+            "key": "870",
+            "value": "高速馬場○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 774,
+        "fields": {
+            "key": "871",
+            "value": "高速馬場×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 775,
+        "fields": {
+            "key": "872",
+            "value": "上がり速い○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 776,
+        "fields": {
+            "key": "873",
+            "value": "上がり速い×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 777,
+        "fields": {
+            "key": "874",
+            "value": "上がり掛かる○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 778,
+        "fields": {
+            "key": "875",
+            "value": "上がり掛かる×"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 779,
+        "fields": {
+            "key": "876",
+            "value": "直線挟まる"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 780,
+        "fields": {
+            "key": "877",
+            "value": "新潟外回り向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 781,
+        "fields": {
+            "key": "878",
+            "value": "新潟内回り向き"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 782,
+        "fields": {
+            "key": "879",
+            "value": "競走中止"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 783,
+        "fields": {
+            "key": "880",
+            "value": "完勝"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 784,
+        "fields": {
+            "key": "881",
+            "value": "距離○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 785,
+        "fields": {
+            "key": "882",
+            "value": "展開向かず"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 786,
+        "fields": {
+            "key": "883",
+            "value": "追って案外"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 787,
+        "fields": {
+            "key": "884",
+            "value": "４角一杯"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 788,
+        "fields": {
+            "key": "885",
+            "value": "出ムチ入る"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 789,
+        "fields": {
+            "key": "886",
+            "value": "展開向く"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 790,
+        "fields": {
+            "key": "887",
+            "value": "二の脚速い"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 791,
+        "fields": {
+            "key": "888",
+            "value": "後ろから行くとダメ"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 792,
+        "fields": {
+            "key": "889",
+            "value": "前に行く○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 793,
+        "fields": {
+            "key": "890",
+            "value": "後ろから行く○"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 794,
+        "fields": {
+            "key": "901",
+            "value": "左第１趾骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 795,
+        "fields": {
+            "key": "902",
+            "value": "右第１趾骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 796,
+        "fields": {
+            "key": "903",
+            "value": "左中手骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 797,
+        "fields": {
+            "key": "904",
+            "value": "右第３中手骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 798,
+        "fields": {
+            "key": "905",
+            "value": "右第１指骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 799,
+        "fields": {
+            "key": "906",
+            "value": "左第１指骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 800,
+        "fields": {
+            "key": "907",
+            "value": "右第３中手骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 801,
+        "fields": {
+            "key": "908",
+            "value": "左第１指関節開放脱臼"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 802,
+        "fields": {
+            "key": "909",
+            "value": "左下腿骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 803,
+        "fields": {
+            "key": "910",
+            "value": "左第１指節種子骨粉砕"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 804,
+        "fields": {
+            "key": "911",
+            "value": "右第３中手骨罅裂骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 805,
+        "fields": {
+            "key": "912",
+            "value": "左手根骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 806,
+        "fields": {
+            "key": "913",
+            "value": "右第１指骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 807,
+        "fields": {
+            "key": "914",
+            "value": "心不全"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 808,
+        "fields": {
+            "key": "915",
+            "value": "左第３中手骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 809,
+        "fields": {
+            "key": "916",
+            "value": "右下腿骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 810,
+        "fields": {
+            "key": "917",
+            "value": "右中足骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 811,
+        "fields": {
+            "key": "918",
+            "value": "右第１指骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 812,
+        "fields": {
+            "key": "919",
+            "value": "右第１指関節脱臼"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 813,
+        "fields": {
+            "key": "920",
+            "value": "右第１指関節開放性脱"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 814,
+        "fields": {
+            "key": "921",
+            "value": "左第３手根骨複骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 815,
+        "fields": {
+            "key": "922",
+            "value": "左第１指関節開放性脱"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 816,
+        "fields": {
+            "key": "923",
+            "value": "左第３中手骨開放骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 817,
+        "fields": {
+            "key": "924",
+            "value": "右前種子骨靱帯断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 818,
+        "fields": {
+            "key": "925",
+            "value": "両第１指関節開放性脱"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 819,
+        "fields": {
+            "key": "926",
+            "value": "右前繋靭帯不全断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 820,
+        "fields": {
+            "key": "927",
+            "value": "歯ぎしり（パドック）"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 821,
+        "fields": {
+            "key": "928",
+            "value": "レース後口出血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 822,
+        "fields": {
+            "key": "929",
+            "value": "騎乗してパドック周回"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 823,
+        "fields": {
+            "key": "930",
+            "value": "喉不安"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 824,
+        "fields": {
+            "key": "931",
+            "value": "右手根骨粉砕骨折"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 825,
+        "fields": {
+            "key": "932",
+            "value": "両前浅屈腱不全断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 826,
+        "fields": {
+            "key": "933",
+            "value": "両後繋靭帯不全断裂"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 827,
+        "fields": {
+            "key": "934",
+            "value": "両後管部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 828,
+        "fields": {
+            "key": "935",
+            "value": "腹部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 829,
+        "fields": {
+            "key": "936",
+            "value": "鼻梁部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 830,
+        "fields": {
+            "key": "937",
+            "value": "背部挫創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 831,
+        "fields": {
+            "key": "938",
+            "value": "頭部打撲傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 832,
+        "fields": {
+            "key": "939",
+            "value": "頭部挫傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 833,
+        "fields": {
+            "key": "940",
+            "value": "頭部外傷"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 834,
+        "fields": {
+            "key": "941",
+            "value": "舌部裂創"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 835,
+        "fields": {
+            "key": "942",
+            "value": "肺充血"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 836,
+        "fields": {
+            "key": "943",
+            "value": "右第１指節種子骨粉砕"
+        }
+    },
+    {
+        "model": "jrdb.special_mention",
+        "pk": 837,
+        "fields": {
+            "key": "944",
+            "value": "右腸骨々折"
+        }
+    }
+]
