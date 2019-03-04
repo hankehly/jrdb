@@ -6,8 +6,8 @@ class UKC(Template):
     items = [
         ['pedigree_registration_number', '血統登録番号', None, '8', 'X', '1', None],
         ['horse_name', '馬名', None, '36', 'X', '9', '全角１８文字'],
-        ['sex_code', '性別コード', None, '1', '9', '45', '1:牡,2:牝,3,セン'],
-        ['hair_color_code', '毛色コード', None, '2', '9', '46', 'コード表参照'],
+        ['sex', '性別コード', None, '1', '9', '45', '1:牡,2:牝,3,セン'],
+        ['hair_color', '毛色コード', None, '2', '9', '46', 'コード表参照'],
         ['horse_symbol', '馬記号コード', None, '2', '9', '48', 'コード表参照'],
         ['sire_name', '父馬名', None, '36', 'X', '50', '全角１８文字'],
         ['dam_name', '母馬名', None, '36', 'X', '86', '全角１８文字'],
