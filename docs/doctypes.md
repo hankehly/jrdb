@@ -3,10 +3,10 @@
 Files handled in this repository are denoted with an asterisk (*)
 
 #### SED（JRDB成績データ）*
-This file superceeds SEC as the main JRDB成績データ file. It contains past race results. This is the same type of data you would find on a netkeiba db race page and should be the basis of your "contenders" table.
+This file supersedes SEC as the main JRDB成績データ file. It contains past race results. This is the same type of data you would find on a netkeiba db race page and should be the basis of your "contenders" table.
 
 #### SEC（JRDB成績データ）
-The predecessor to SED
+The predecessor of SED
 
 #### SKB（JRDB成績拡張データ）*
 This file contains extra 成績 data like "paddock comment." Each record in this file should correspond to a record in SED, so you can essentially join the 2 to form a single table.
@@ -15,19 +15,19 @@ This file contains extra 成績 data like "paddock comment." Each record in this
 This file contains a small amount of per-race (1 record per race) data, like corner positions and race comment. Corner positions can be inferred from SEC. Other parameters like トラックバイアス (the inner, mid, outer track condition for each of the 4 corners, etc..) could be useful. Because this is per-race data, it could be added to a races table.
 
 #### SRA（JRDB成績レースデータ）
-The predecessor to SRB
+The predecessor of SRB
 
 #### UKC（JRDB馬基本データ）*
 This file contains horse basic information, like sex, hair color, names of mother and father, etc.. It is the "horses" table.
 
 #### KYI（JRDB競走馬データ）*
-This file superceeds KYH. It is updated on friday and saturday and contains 1 record per race horse. The data includes a wide variety of data like whether its’ the horses’ first time on a grass track, the keys to the previous 5 races, the weight carried and expected odds. This file seems to be similar to the netkeiba "race" page (the one you used during prediction)
+This file supersedes KYH. It is updated on friday and saturday and contains 1 record per race horse. The data includes a wide variety of data like whether its’ the horses’ first time on a grass track, the keys to the previous 5 races, the weight carried and expected odds. This file seems to be similar to the netkeiba "race" page (the one you used during prediction)
 
 #### KYH（JRDB競走馬データ）
-The predecessor to KYI
+The predecessor of KYI
 
 #### KYG（JRDB競走馬データ）
-The predecessory to KYH
+The predecessor of KYH
 
 #### ZEC（JRDB前走データ）
 This contains the previous 5 races for a horse in the exact same format as SED. It is just a subset of data for convenience purposes I think.
@@ -72,17 +72,17 @@ Exact same as MZA; but listed as "差分".. Not clear what this "difference" is.
 馬場・天候予想等の開催に対するデータ
  
 #### KAA（JRDB開催データ）
-KABの前に使われていたもの 
+The predecessor of KAB 
 
 #### BAC（レース番組情報）
 レースの基本情報（レース名や頭数とか）
 多くの項目がSEDと重複するため対象外 
 
 #### BAB（レース番組情報）
-BACの前に使われていたもの
+The predecessor of BAC
 
 #### CYB（JRDB調教分析データ）*
 とあるレースでのとある馬の調教データ（調教距離、調教量評価など）
  
 #### CYA（JRDB調教分析データ）
-CYBの前に使われていたもの 
+The predecessor of CYB 
