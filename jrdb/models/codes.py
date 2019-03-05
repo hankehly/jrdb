@@ -26,7 +26,9 @@ class RunningStyle(SimpleCode):
     脚質コード（競走馬が得意とする走り）
     過去の競走実績よりその馬の脚質を判断したコード。
     """
-    pass
+
+    class Meta:
+        db_table = 'running_style'
 
 
 class SpecialMention(SimpleCode):
@@ -35,7 +37,9 @@ class SpecialMention(SimpleCode):
 
     http://www.jrdb.com/program/tokki_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'special_mention'
 
 
 class HorseGearCategory(SimpleCode):
@@ -44,10 +48,12 @@ class HorseGearCategory(SimpleCode):
 
     http://www.jrdb.com/program/bagu_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'horse_gear_category'
 
 
-class HorseGearCode(SimpleCode):
+class HorseGear(SimpleCode):
     """
     馬具コード
     短縮 / 内容
@@ -57,6 +63,9 @@ class HorseGearCode(SimpleCode):
     horse_gear_category = models.ForeignKey('jrdb.HorseGearCategory', on_delete=models.CASCADE)
     value_abbr = models.CharField(max_length=255)
 
+    class Meta:
+        db_table = 'horse_gear'
+
 
 class HorseSymbol(SimpleCode):
     """
@@ -64,16 +73,20 @@ class HorseSymbol(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'horse_symbol'
 
 
-class RaceTrack(SimpleCode):
+class Racetrack(SimpleCode):
     """
     場コード
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'racetrack'
 
 
 class TrackCondition(SimpleCode):
@@ -83,7 +96,9 @@ class TrackCondition(SimpleCode):
     http://www.jrdb.com/program/jrdb_code.txt
     https://horseicon.web.fc2.com/track_surface.htm
     """
-    pass
+
+    class Meta:
+        db_table = 'track_condition'
 
 
 class Impost(SimpleCode):
@@ -92,7 +107,9 @@ class Impost(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'impost'
 
 
 class Grade(SimpleCode):
@@ -101,7 +118,9 @@ class Grade(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'grade'
 
 
 class HorseCondition(SimpleCode):
@@ -114,7 +133,9 @@ class HorseCondition(SimpleCode):
 
     Note: イレチ = イレ込+チャカつき
     """
-    pass
+
+    class Meta:
+        db_table = 'horse_condition'
 
 
 class RacingLine(SimpleCode):
@@ -129,7 +150,9 @@ class RacingLine(SimpleCode):
 
     https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1373948028
     """
-    pass
+
+    class Meta:
+        db_table = 'racing_line'
 
 
 class TrainingStyle(SimpleCode):
@@ -149,7 +172,9 @@ class TrainingStyle(SimpleCode):
 
     http://www.jrdb.com/program/Cyb/cybsiyo_doc.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'training_style'
 
 
 class TrainingCourseCategory(SimpleCode):
@@ -160,7 +185,9 @@ class TrainingCourseCategory(SimpleCode):
 
     http://www.jrdb.com/program/Cyb/cybsiyo_doc.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'training_course_category'
 
 
 class Weather(SimpleCode):
@@ -169,7 +196,9 @@ class Weather(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'weather'
 
 
 class RestReason(SimpleCode):
@@ -178,7 +207,9 @@ class RestReason(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'rest_reason'
 
 
 class HairColor(SimpleCode):
@@ -201,7 +232,9 @@ class HairColor(SimpleCode):
     http://home.catv-yokohama.ne.jp/22/hnasb/uma/uma.ryoko/uma.ryo.ke.kasu.html
     http://home.catv-yokohama.ne.jp/22/hnasb/uma/uma.ryoko/uma.ryo.ke.kuri.html
     """
-    pass
+
+    class Meta:
+        db_table = 'hair_color'
 
 
 class HorseBody(SimpleCode):
@@ -211,7 +244,9 @@ class HorseBody(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'horse_body'
 
 
 class RaceClass(SimpleCode):
@@ -225,10 +260,12 @@ class RaceClass(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'race_class'
 
 
-class PaddockObservedHoff(SimpleCode):
+class PaddockObservedHoof(SimpleCode):
     """
     蹄コード
 
@@ -241,7 +278,9 @@ class PaddockObservedHoff(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    pass
+
+    class Meta:
+        db_table = 'paddock_observed_hoof'
 
 
 class HoofCode(SimpleCode):
@@ -251,3 +290,6 @@ class HoofCode(SimpleCode):
     http://www.jrdb.com/program/ashimoto_code.txt
     """
     value_abbr = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'hoof'

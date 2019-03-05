@@ -1,6 +1,6 @@
 [
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 1,
         "fields": {
             "key": "000",
@@ -9,7 +9,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 2,
         "fields": {
             "key": "001",
@@ -18,7 +18,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 3,
         "fields": {
             "key": "002",
@@ -27,7 +27,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 4,
         "fields": {
             "key": "003",
@@ -36,7 +36,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 5,
         "fields": {
             "key": "004",
@@ -45,7 +45,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 6,
         "fields": {
             "key": "005",
@@ -54,7 +54,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 7,
         "fields": {
             "key": "006",
@@ -63,7 +63,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 8,
         "fields": {
             "key": "007",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 9,
         "fields": {
             "key": "008",
@@ -81,7 +81,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 10,
         "fields": {
             "key": "009",
@@ -90,7 +90,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 11,
         "fields": {
             "key": "010",
@@ -99,7 +99,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 12,
         "fields": {
             "key": "011",
@@ -108,7 +108,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 13,
         "fields": {
             "key": "012",
@@ -117,7 +117,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 14,
         "fields": {
             "key": "013",
@@ -126,7 +126,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 15,
         "fields": {
             "key": "014",
@@ -135,7 +135,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 16,
         "fields": {
             "key": "015",
@@ -144,7 +144,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 17,
         "fields": {
             "key": "017",
@@ -153,7 +153,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 18,
         "fields": {
             "key": "018",
@@ -162,7 +162,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 19,
         "fields": {
             "key": "019",
@@ -171,7 +171,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 20,
         "fields": {
             "key": "020",
@@ -180,7 +180,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 21,
         "fields": {
             "key": "021",
@@ -189,7 +189,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 22,
         "fields": {
             "key": "022",
@@ -198,7 +198,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 23,
         "fields": {
             "key": "023",
@@ -207,7 +207,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 24,
         "fields": {
             "key": "024",
@@ -216,7 +216,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 25,
         "fields": {
             "key": "025",
@@ -225,7 +225,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 26,
         "fields": {
             "key": "026",
@@ -234,7 +234,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 27,
         "fields": {
             "key": "027",
@@ -243,7 +243,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 28,
         "fields": {
             "key": "028",
@@ -252,7 +252,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 29,
         "fields": {
             "key": "029",
@@ -261,7 +261,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 30,
         "fields": {
             "key": "030",
@@ -270,7 +270,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 31,
         "fields": {
             "key": "031",
@@ -279,7 +279,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 32,
         "fields": {
             "key": "032",
@@ -288,7 +288,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 33,
         "fields": {
             "key": "033",
@@ -297,7 +297,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 34,
         "fields": {
             "key": "034",
@@ -306,7 +306,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 35,
         "fields": {
             "key": "035",
@@ -315,7 +315,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 36,
         "fields": {
             "key": "036",
@@ -324,7 +324,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 37,
         "fields": {
             "key": "037",
@@ -333,7 +333,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 38,
         "fields": {
             "key": "038",
@@ -342,7 +342,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 39,
         "fields": {
             "key": "040",
@@ -351,7 +351,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 40,
         "fields": {
             "key": "041",
@@ -360,7 +360,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 41,
         "fields": {
             "key": "042",
@@ -369,7 +369,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 42,
         "fields": {
             "key": "043",
@@ -378,7 +378,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 43,
         "fields": {
             "key": "045",
@@ -387,7 +387,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 44,
         "fields": {
             "key": "046",
@@ -396,7 +396,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 45,
         "fields": {
             "key": "047",
@@ -405,7 +405,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 46,
         "fields": {
             "key": "048",
@@ -414,7 +414,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 47,
         "fields": {
             "key": "049",
@@ -423,7 +423,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 48,
         "fields": {
             "key": "050",
@@ -432,7 +432,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 49,
         "fields": {
             "key": "051",
@@ -441,7 +441,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 50,
         "fields": {
             "key": "052",
@@ -450,7 +450,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 51,
         "fields": {
             "key": "053",
@@ -459,7 +459,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 52,
         "fields": {
             "key": "054",
@@ -468,7 +468,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 53,
         "fields": {
             "key": "055",
@@ -477,7 +477,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 54,
         "fields": {
             "key": "056",
@@ -486,7 +486,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 55,
         "fields": {
             "key": "057",
@@ -495,7 +495,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 56,
         "fields": {
             "key": "058",
@@ -504,7 +504,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 57,
         "fields": {
             "key": "059",
@@ -513,7 +513,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 58,
         "fields": {
             "key": "060",
@@ -522,7 +522,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 59,
         "fields": {
             "key": "061",
@@ -531,7 +531,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 60,
         "fields": {
             "key": "062",
@@ -540,7 +540,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 61,
         "fields": {
             "key": "063",
@@ -549,7 +549,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 62,
         "fields": {
             "key": "064",
@@ -558,7 +558,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 63,
         "fields": {
             "key": "065",
@@ -567,7 +567,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 64,
         "fields": {
             "key": "066",
@@ -576,7 +576,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 65,
         "fields": {
             "key": "067",
@@ -585,7 +585,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 66,
         "fields": {
             "key": "068",
@@ -594,7 +594,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 67,
         "fields": {
             "key": "069",
@@ -603,7 +603,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 68,
         "fields": {
             "key": "070",
@@ -612,7 +612,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 69,
         "fields": {
             "key": "071",
@@ -621,7 +621,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 70,
         "fields": {
             "key": "072",
@@ -630,7 +630,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 71,
         "fields": {
             "key": "073",
@@ -639,7 +639,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 72,
         "fields": {
             "key": "074",
@@ -648,7 +648,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 73,
         "fields": {
             "key": "075",
@@ -657,7 +657,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 74,
         "fields": {
             "key": "076",
@@ -666,7 +666,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 75,
         "fields": {
             "key": "077",
@@ -675,7 +675,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 76,
         "fields": {
             "key": "078",
@@ -684,7 +684,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 77,
         "fields": {
             "key": "079",
@@ -693,7 +693,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 78,
         "fields": {
             "key": "080",
@@ -702,7 +702,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 79,
         "fields": {
             "key": "081",
@@ -711,7 +711,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 80,
         "fields": {
             "key": "082",
@@ -720,7 +720,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 81,
         "fields": {
             "key": "083",
@@ -729,7 +729,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 82,
         "fields": {
             "key": "084",
@@ -738,7 +738,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 83,
         "fields": {
             "key": "085",
@@ -747,7 +747,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 84,
         "fields": {
             "key": "100",
@@ -756,7 +756,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 85,
         "fields": {
             "key": "101",
@@ -765,7 +765,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 86,
         "fields": {
             "key": "102",
@@ -774,7 +774,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 87,
         "fields": {
             "key": "103",
@@ -783,7 +783,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 88,
         "fields": {
             "key": "104",
@@ -792,7 +792,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 89,
         "fields": {
             "key": "105",
@@ -801,7 +801,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 90,
         "fields": {
             "key": "106",
@@ -810,7 +810,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 91,
         "fields": {
             "key": "107",
@@ -819,7 +819,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 92,
         "fields": {
             "key": "108",
@@ -828,7 +828,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 93,
         "fields": {
             "key": "109",
@@ -837,7 +837,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 94,
         "fields": {
             "key": "110",
@@ -846,7 +846,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 95,
         "fields": {
             "key": "111",
@@ -855,7 +855,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 96,
         "fields": {
             "key": "112",
@@ -864,7 +864,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 97,
         "fields": {
             "key": "113",
@@ -873,7 +873,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 98,
         "fields": {
             "key": "114",
@@ -882,7 +882,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 99,
         "fields": {
             "key": "115",
@@ -891,7 +891,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 100,
         "fields": {
             "key": "116",
@@ -900,7 +900,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 101,
         "fields": {
             "key": "117",
@@ -909,7 +909,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 102,
         "fields": {
             "key": "118",
@@ -918,7 +918,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 103,
         "fields": {
             "key": "119",
@@ -927,7 +927,7 @@
         }
     },
     {
-        "model": "hoof",
+        "model": "hoof_code",
         "pk": 104,
         "fields": {
             "key": "120",
