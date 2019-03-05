@@ -1,3 +1,4 @@
+from .base import BaseModel
 from .codes import (
     Grade,
     HairColor,
@@ -20,5 +21,4 @@ from .codes import (
     TrainingStyle,
     Weather
 )
-from .base import BaseModel
 from .horse import Horse
