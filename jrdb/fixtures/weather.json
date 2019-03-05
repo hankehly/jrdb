@@ -1,0 +1,50 @@
+[
+    {
+        "model": "jrdb.weather",
+        "pk": 1,
+        "fields": {
+            "key": 1,
+            "value": "晴"
+        }
+    },
+    {
+        "model": "jrdb.weather",
+        "pk": 2,
+        "fields": {
+            "key": 2,
+            "value": "曇"
+        }
+    },
+    {
+        "model": "jrdb.weather",
+        "pk": 3,
+        "fields": {
+            "key": 3,
+            "value": "小雨"
+        }
+    },
+    {
+        "model": "jrdb.weather",
+        "pk": 4,
+        "fields": {
+            "key": 4,
+            "value": "雨"
+        }
+    },
+    {
+        "model": "jrdb.weather",
+        "pk": 5,
+        "fields": {
+            "key": 5,
+            "value": "小雪"
+        }
+    },
+    {
+        "model": "jrdb.weather",
+        "pk": 6,
+        "fields": {
+            "key": 6,
+            "value": "雪"
+        }
+    }
+]

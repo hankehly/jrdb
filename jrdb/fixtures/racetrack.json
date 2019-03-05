@@ -1,0 +1,458 @@
+[
+    {
+        "model": "jrdb.racetrack",
+        "pk": 1,
+        "fields": {
+            "key": "01",
+            "value": "札幌"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 2,
+        "fields": {
+            "key": "02",
+            "value": "函館"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 3,
+        "fields": {
+            "key": "03",
+            "value": "福島"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 4,
+        "fields": {
+            "key": "04",
+            "value": "新潟"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 5,
+        "fields": {
+            "key": "05",
+            "value": "東京"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 6,
+        "fields": {
+            "key": "06",
+            "value": "中山"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 7,
+        "fields": {
+            "key": "07",
+            "value": "中京"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 8,
+        "fields": {
+            "key": "08",
+            "value": "京都"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 9,
+        "fields": {
+            "key": "09",
+            "value": "阪神"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 10,
+        "fields": {
+            "key": "10",
+            "value": "小倉"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 11,
+        "fields": {
+            "key": "21",
+            "value": "旭川"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 12,
+        "fields": {
+            "key": "22",
+            "value": "札幌"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 13,
+        "fields": {
+            "key": "23",
+            "value": "門別"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 14,
+        "fields": {
+            "key": "24",
+            "value": "函館"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 15,
+        "fields": {
+            "key": "25",
+            "value": "盛岡"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 16,
+        "fields": {
+            "key": "26",
+            "value": "水沢"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 17,
+        "fields": {
+            "key": "27",
+            "value": "上山"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 18,
+        "fields": {
+            "key": "28",
+            "value": "新潟"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 19,
+        "fields": {
+            "key": "29",
+            "value": "三条"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 20,
+        "fields": {
+            "key": "30",
+            "value": "足利"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 21,
+        "fields": {
+            "key": "31",
+            "value": "宇都"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 22,
+        "fields": {
+            "key": "32",
+            "value": "高崎"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 23,
+        "fields": {
+            "key": "33",
+            "value": "浦和"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 24,
+        "fields": {
+            "key": "34",
+            "value": "船橋"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 25,
+        "fields": {
+            "key": "35",
+            "value": "大井"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 26,
+        "fields": {
+            "key": "36",
+            "value": "川崎"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 27,
+        "fields": {
+            "key": "37",
+            "value": "金沢"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 28,
+        "fields": {
+            "key": "38",
+            "value": "笠松"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 29,
+        "fields": {
+            "key": "39",
+            "value": "名古"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 30,
+        "fields": {
+            "key": "40",
+            "value": "中京"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 31,
+        "fields": {
+            "key": "41",
+            "value": "園田"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 32,
+        "fields": {
+            "key": "42",
+            "value": "姫路"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 33,
+        "fields": {
+            "key": "43",
+            "value": "益田"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 34,
+        "fields": {
+            "key": "44",
+            "value": "福山"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 35,
+        "fields": {
+            "key": "45",
+            "value": "高知"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 36,
+        "fields": {
+            "key": "46",
+            "value": "佐賀"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 37,
+        "fields": {
+            "key": "47",
+            "value": "荒尾"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 38,
+        "fields": {
+            "key": "48",
+            "value": "中津"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 39,
+        "fields": {
+            "key": "61",
+            "value": "英国"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 40,
+        "fields": {
+            "key": "62",
+            "value": "アイルランド"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 41,
+        "fields": {
+            "key": "63",
+            "value": "仏国"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 42,
+        "fields": {
+            "key": "64",
+            "value": "伊国"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 43,
+        "fields": {
+            "key": "65",
+            "value": "独国"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 44,
+        "fields": {
+            "key": "66",
+            "value": "米国"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 45,
+        "fields": {
+            "key": "67",
+            "value": "カナダ"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 46,
+        "fields": {
+            "key": "68",
+            "value": "アラブ首長国連邦"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 47,
+        "fields": {
+            "key": "69",
+            "value": "オーストラリア"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 48,
+        "fields": {
+            "key": "70",
+            "value": "ニュージーランド"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 49,
+        "fields": {
+            "key": "71",
+            "value": "香港"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 50,
+        "fields": {
+            "key": "72",
+            "value": "チリ"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 51,
+        "fields": {
+            "key": "73",
+            "value": "シンガポール"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 52,
+        "fields": {
+            "key": "74",
+            "value": "スウェーデン"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 53,
+        "fields": {
+            "key": "75",
+            "value": "マカ"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 54,
+        "fields": {
+            "key": "76",
+            "value": "オーストリア"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 55,
+        "fields": {
+            "key": "77",
+            "value": "トルコ"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 56,
+        "fields": {
+            "key": "78",
+            "value": "カタール"
+        }
+    },
+    {
+        "model": "jrdb.racetrack",
+        "pk": 57,
+        "fields": {
+            "key": "79",
+            "value": "韓国"
+        }
+    }
+]

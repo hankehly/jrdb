@@ -1,0 +1,386 @@
+[
+    {
+        "model": "jrdb.race_class",
+        "pk": 1,
+        "fields": {
+            "key": "01",
+            "value": "芝Ｇ１"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 2,
+        "fields": {
+            "key": "02",
+            "value": "芝Ｇ２"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 3,
+        "fields": {
+            "key": "03",
+            "value": "芝Ｇ３"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 4,
+        "fields": {
+            "key": "04",
+            "value": "芝ＯＰ A"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 5,
+        "fields": {
+            "key": "05",
+            "value": "芝ＯＰ B"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 6,
+        "fields": {
+            "key": "06",
+            "value": "芝ＯＰ C"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 7,
+        "fields": {
+            "key": "07",
+            "value": "芝1600万A"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 8,
+        "fields": {
+            "key": "08",
+            "value": "芝1600万B"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 9,
+        "fields": {
+            "key": "09",
+            "value": "芝1600万C"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 10,
+        "fields": {
+            "key": "10",
+            "value": "芝1000万A"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 11,
+        "fields": {
+            "key": "11",
+            "value": "芝1000万B"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 12,
+        "fields": {
+            "key": "12",
+            "value": "芝1000万C"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 13,
+        "fields": {
+            "key": "13",
+            "value": "芝500万A"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 14,
+        "fields": {
+            "key": "14",
+            "value": "芝500万B"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 15,
+        "fields": {
+            "key": "15",
+            "value": "芝500万C"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 16,
+        "fields": {
+            "key": "16",
+            "value": "芝未 A"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 17,
+        "fields": {
+            "key": "17",
+            "value": "芝未 B"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 18,
+        "fields": {
+            "key": "18",
+            "value": "芝未 C"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 19,
+        "fields": {
+            "key": "21",
+            "value": "ダＧ１"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 20,
+        "fields": {
+            "key": "22",
+            "value": "ダＧ２"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 21,
+        "fields": {
+            "key": "23",
+            "value": "ダＧ３"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 22,
+        "fields": {
+            "key": "24",
+            "value": "ダＯＰ Ａ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 23,
+        "fields": {
+            "key": "25",
+            "value": "ダＯＰ Ｂ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 24,
+        "fields": {
+            "key": "26",
+            "value": "ダＯＰ Ｃ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 25,
+        "fields": {
+            "key": "27",
+            "value": "ダ1600万Ａ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 26,
+        "fields": {
+            "key": "28",
+            "value": "ダ1600万Ｂ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 27,
+        "fields": {
+            "key": "29",
+            "value": "ダ1600万Ｃ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 28,
+        "fields": {
+            "key": "30",
+            "value": "ダ1000万Ａ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 29,
+        "fields": {
+            "key": "31",
+            "value": "ダ1000万Ｂ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 30,
+        "fields": {
+            "key": "32",
+            "value": "ダ1000万Ｃ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 31,
+        "fields": {
+            "key": "33",
+            "value": "ダ500万Ａ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 32,
+        "fields": {
+            "key": "34",
+            "value": "ダ500万Ｂ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 33,
+        "fields": {
+            "key": "35",
+            "value": "ダ500万Ｃ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 34,
+        "fields": {
+            "key": "36",
+            "value": "ダ未 Ａ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 35,
+        "fields": {
+            "key": "37",
+            "value": "ダ未 Ｂ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 36,
+        "fields": {
+            "key": "38",
+            "value": "ダ未 Ｃ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 37,
+        "fields": {
+            "key": "51",
+            "value": "障Ｇ１"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 38,
+        "fields": {
+            "key": "52",
+            "value": "障Ｇ２"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 39,
+        "fields": {
+            "key": "53",
+            "value": "障Ｇ３"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 40,
+        "fields": {
+            "key": "54",
+            "value": "障ＯＰ Ａ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 41,
+        "fields": {
+            "key": "55",
+            "value": "障ＯＰ Ｂ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 42,
+        "fields": {
+            "key": "56",
+            "value": "障ＯＰ Ｃ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 43,
+        "fields": {
+            "key": "57",
+            "value": "障500万Ａ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 44,
+        "fields": {
+            "key": "58",
+            "value": "障500万Ｂ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 45,
+        "fields": {
+            "key": "59",
+            "value": "障500万Ｃ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 46,
+        "fields": {
+            "key": "60",
+            "value": "障未 Ａ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 47,
+        "fields": {
+            "key": "61",
+            "value": "障未 Ｂ"
+        }
+    },
+    {
+        "model": "jrdb.race_class",
+        "pk": 48,
+        "fields": {
+            "key": "62",
+            "value": "障未 Ｃ"
+        }
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 1,
+        "fields": {
+            "key": "01",
+            "value": "放牧"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 2,
+        "fields": {
+            "key": "02",
+            "value": "放牧(故障、骨折等)"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 3,
+        "fields": {
+            "key": "03",
+            "value": "放牧(不安、ソエ等)"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 4,
+        "fields": {
+            "key": "04",
+            "value": "放牧(病気)"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 5,
+        "fields": {
+            "key": "05",
+            "value": "放牧(再審査)"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 6,
+        "fields": {
+            "key": "06",
+            "value": "放牧(出走停止)"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 7,
+        "fields": {
+            "key": "07",
+            "value": "放牧(手術）"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 8,
+        "fields": {
+            "key": "11",
+            "value": "調整"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 9,
+        "fields": {
+            "key": "12",
+            "value": "調整(故障、骨折等)"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 10,
+        "fields": {
+            "key": "13",
+            "value": "調整(不安、ソエ等)"
+        }
+    },
+    {
+        "model": "jrdb.rest_reason",
+        "pk": 11,
+        "fields": {
+            "key": "14",
+            "value": "調整(病気)"
+        }
+    }
+]

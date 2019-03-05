@@ -1,0 +1,50 @@
+[
+    {
+        "model": "jrdb.grade",
+        "pk": 1,
+        "fields": {
+            "key": 1,
+            "value": "Ｇ１"
+        }
+    },
+    {
+        "model": "jrdb.grade",
+        "pk": 2,
+        "fields": {
+            "key": 2,
+            "value": "Ｇ２"
+        }
+    },
+    {
+        "model": "jrdb.grade",
+        "pk": 3,
+        "fields": {
+            "key": 3,
+            "value": "Ｇ３"
+        }
+    },
+    {
+        "model": "jrdb.grade",
+        "pk": 4,
+        "fields": {
+            "key": 4,
+            "value": "重賞"
+        }
+    },
+    {
+        "model": "jrdb.grade",
+        "pk": 5,
+        "fields": {
+            "key": 5,
+            "value": "特別"
+        }
+    },
+    {
+        "model": "jrdb.grade",
+        "pk": 6,
+        "fields": {
+            "key": 6,
+            "value": "Ｌ　（リステッド競走）"
+        }
+    }
+]

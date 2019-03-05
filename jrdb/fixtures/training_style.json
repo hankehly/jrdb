@@ -1,0 +1,90 @@
+[
+    {
+        "model": "jrdb.training_style",
+        "pk": 1,
+        "fields": {
+            "key": "01",
+            "value": "スパルタ"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 2,
+        "fields": {
+            "key": "02",
+            "value": "標準多め"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 3,
+        "fields": {
+            "key": "03",
+            "value": "乗込"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 4,
+        "fields": {
+            "key": "04",
+            "value": "一杯平均"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 5,
+        "fields": {
+            "key": "05",
+            "value": "標準"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 6,
+        "fields": {
+            "key": "06",
+            "value": "馬ナリ平均"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 7,
+        "fields": {
+            "key": "07",
+            "value": "急仕上げ"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 8,
+        "fields": {
+            "key": "08",
+            "value": "標準少め"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 9,
+        "fields": {
+            "key": "09",
+            "value": "軽目"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 10,
+        "fields": {
+            "key": "10",
+            "value": "連闘"
+        }
+    },
+    {
+        "model": "jrdb.training_style",
+        "pk": 11,
+        "fields": {
+            "key": "11",
+            "value": "調教なし"
+        }
+    }
+]

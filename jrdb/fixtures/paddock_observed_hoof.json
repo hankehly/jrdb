@@ -1,0 +1,162 @@
+[
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 1,
+        "fields": {
+            "key": "01",
+            "value": "大ベタ"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 2,
+        "fields": {
+            "key": "02",
+            "value": "中ベタ"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 3,
+        "fields": {
+            "key": "03",
+            "value": "小ベタ"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 4,
+        "fields": {
+            "key": "04",
+            "value": "細ベタ"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 5,
+        "fields": {
+            "key": "05",
+            "value": "大立"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 6,
+        "fields": {
+            "key": "06",
+            "value": "中立"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 7,
+        "fields": {
+            "key": "07",
+            "value": "小立"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 8,
+        "fields": {
+            "key": "08",
+            "value": "細立"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 9,
+        "fields": {
+            "key": "09",
+            "value": "大標準"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 10,
+        "fields": {
+            "key": "10",
+            "value": "中標準"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 11,
+        "fields": {
+            "key": "11",
+            "value": "小標準"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 12,
+        "fields": {
+            "key": "12",
+            "value": "細標準"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 13,
+        "fields": {
+            "key": "17",
+            "value": "大標起"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 14,
+        "fields": {
+            "key": "18",
+            "value": "中標起"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 15,
+        "fields": {
+            "key": "19",
+            "value": "小標起"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 16,
+        "fields": {
+            "key": "20",
+            "value": "細標起"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 17,
+        "fields": {
+            "key": "21",
+            "value": "大標ベ"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 18,
+        "fields": {
+            "key": "22",
+            "value": "中標ベ"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 19,
+        "fields": {
+            "key": "23",
+            "value": "小標ベ"
+        }
+    },
+    {
+        "model": "jrdb.paddock_observed_hoof",
+        "pk": 20,
+        "fields": {
+            "key": "24",
+            "value": "細標ベ"
+        }
+    }
+]

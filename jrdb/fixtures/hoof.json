@@ -1,0 +1,938 @@
+[
+    {
+        "model": "hoof",
+        "pk": 1,
+        "fields": {
+            "key": "000",
+            "value": "バンテージ腕節まで",
+            "value_abbr": "バン"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 2,
+        "fields": {
+            "key": "001",
+            "value": "蹄汚い",
+            "value_abbr": "蹄汚"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 3,
+        "fields": {
+            "key": "002",
+            "value": "球節腫れる",
+            "value_abbr": "球腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 4,
+        "fields": {
+            "key": "003",
+            "value": "交突バ繋部分",
+            "value_abbr": "繋巻"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 5,
+        "fields": {
+            "key": "004",
+            "value": "交突防止帯",
+            "value_abbr": "交突"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 6,
+        "fields": {
+            "key": "005",
+            "value": "蹄鉄浮く",
+            "value_abbr": "蹄浮"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 7,
+        "fields": {
+            "key": "006",
+            "value": "蹄冠部全面裂蹄防止テープ",
+            "value_abbr": "裂蹄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 8,
+        "fields": {
+            "key": "007",
+            "value": "蹄壁部裂蹄防止テープ",
+            "value_abbr": "保護"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 9,
+        "fields": {
+            "key": "008",
+            "value": "ブーツ",
+            "value_abbr": "ブー"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 10,
+        "fields": {
+            "key": "009",
+            "value": "バンテージ外す",
+            "value_abbr": "バ外"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 11,
+        "fields": {
+            "key": "010",
+            "value": "バンテージ巻く（変更）",
+            "value_abbr": "バ巻"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 12,
+        "fields": {
+            "key": "011",
+            "value": "ソエ焼き",
+            "value_abbr": "ソ焼"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 13,
+        "fields": {
+            "key": "012",
+            "value": "半鉄",
+            "value_abbr": "半鉄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 14,
+        "fields": {
+            "key": "013",
+            "value": "連尾鉄",
+            "value_abbr": "丸鉄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 15,
+        "fields": {
+            "key": "014",
+            "value": "曲鉄",
+            "value_abbr": "曲鉄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 16,
+        "fields": {
+            "key": "015",
+            "value": "鉄橋",
+            "value_abbr": "鉄橋"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 17,
+        "fields": {
+            "key": "017",
+            "value": "四分の三鉄",
+            "value_abbr": "J鉄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 18,
+        "fields": {
+            "key": "018",
+            "value": "脚腫れる",
+            "value_abbr": "脚腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 19,
+        "fields": {
+            "key": "019",
+            "value": "繋ぎキズ",
+            "value_abbr": "繋傷"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 20,
+        "fields": {
+            "key": "020",
+            "value": "ソエ傷",
+            "value_abbr": "ソ傷"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 21,
+        "fields": {
+            "key": "021",
+            "value": "アダプターパッド",
+            "value_abbr": "アダ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 22,
+        "fields": {
+            "key": "022",
+            "value": "調教バンテージ",
+            "value_abbr": "調バ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 23,
+        "fields": {
+            "key": "023",
+            "value": "左前球節キズ",
+            "value_abbr": "球傷"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 24,
+        "fields": {
+            "key": "024",
+            "value": "バンテージ巻き跡",
+            "value_abbr": "巻跡"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 25,
+        "fields": {
+            "key": "025",
+            "value": "交突蹄冠部分",
+            "value_abbr": "交蹄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 26,
+        "fields": {
+            "key": "026",
+            "value": "蹄冠部キズ",
+            "value_abbr": "蹄傷"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 27,
+        "fields": {
+            "key": "027",
+            "value": "裏筋腫れる",
+            "value_abbr": "裏腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 28,
+        "fields": {
+            "key": "028",
+            "value": "骨瘤",
+            "value_abbr": "骨大"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 29,
+        "fields": {
+            "key": "029",
+            "value": "骨瘤腫れ小",
+            "value_abbr": "骨小"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 30,
+        "fields": {
+            "key": "030",
+            "value": "ソエ腫れる",
+            "value_abbr": "ソ大"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 31,
+        "fields": {
+            "key": "031",
+            "value": "ソエ腫れ小",
+            "value_abbr": "ソ小"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 32,
+        "fields": {
+            "key": "032",
+            "value": "膝焼く",
+            "value_abbr": "膝焼"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 33,
+        "fields": {
+            "key": "033",
+            "value": "膝キズ",
+            "value_abbr": "膝傷"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 34,
+        "fields": {
+            "key": "034",
+            "value": "膝裏焼く",
+            "value_abbr": "膝焼"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 35,
+        "fields": {
+            "key": "035",
+            "value": "エクイロックス",
+            "value_abbr": "エク"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 36,
+        "fields": {
+            "key": "036",
+            "value": "裏筋傷",
+            "value_abbr": "裏傷"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 37,
+        "fields": {
+            "key": "037",
+            "value": "骨瘤焼く",
+            "value_abbr": "骨焼"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 38,
+        "fields": {
+            "key": "038",
+            "value": "水ブリスター",
+            "value_abbr": "ブリ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 39,
+        "fields": {
+            "key": "040",
+            "value": "裸足",
+            "value_abbr": "裸足"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 40,
+        "fields": {
+            "key": "041",
+            "value": "追突防止パッド",
+            "value_abbr": "追防パ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 41,
+        "fields": {
+            "key": "042",
+            "value": "新エクイロックス",
+            "value_abbr": "新エク"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 42,
+        "fields": {
+            "key": "043",
+            "value": "蹄欠損",
+            "value_abbr": "蹄欠損"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 43,
+        "fields": {
+            "key": "045",
+            "value": "スプーンヒール鉄",
+            "value_abbr": "スプ鉄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 44,
+        "fields": {
+            "key": "046",
+            "value": "柿元鉄",
+            "value_abbr": "柿元鉄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 45,
+        "fields": {
+            "key": "047",
+            "value": "飛節焼き治療",
+            "value_abbr": "飛節焼"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 46,
+        "fields": {
+            "key": "048",
+            "value": "蹄切り込み線",
+            "value_abbr": "蹄線"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 47,
+        "fields": {
+            "key": "049",
+            "value": "着地時に蹄をひねる",
+            "value_abbr": "蹄捻"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 48,
+        "fields": {
+            "key": "050",
+            "value": "着地時に蹄踵が浮く",
+            "value_abbr": "踵浮"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 49,
+        "fields": {
+            "key": "051",
+            "value": "着地時に球節が沈む",
+            "value_abbr": "球沈"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 50,
+        "fields": {
+            "key": "052",
+            "value": "鉄唇横",
+            "value_abbr": "横唇"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 51,
+        "fields": {
+            "key": "053",
+            "value": "鉄唇なし",
+            "value_abbr": "無唇"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 52,
+        "fields": {
+            "key": "054",
+            "value": "鉄唇３つ",
+            "value_abbr": "３唇"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 53,
+        "fields": {
+            "key": "055",
+            "value": "内に入る歩様",
+            "value_abbr": "内歩"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 54,
+        "fields": {
+            "key": "056",
+            "value": "高く上げて歩く",
+            "value_abbr": "後高"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 55,
+        "fields": {
+            "key": "057",
+            "value": "球節バンテージ",
+            "value_abbr": "球バ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 56,
+        "fields": {
+            "key": "058",
+            "value": "蹄踵部交突防止帯",
+            "value_abbr": "交踵"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 57,
+        "fields": {
+            "key": "059",
+            "value": "繋腫れ",
+            "value_abbr": "繋腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 58,
+        "fields": {
+            "key": "060",
+            "value": "繋弾く",
+            "value_abbr": "繋弾"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 59,
+        "fields": {
+            "key": "061",
+            "value": "２度踏み",
+            "value_abbr": "２踏"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 60,
+        "fields": {
+            "key": "062",
+            "value": "球節の毛剃る",
+            "value_abbr": "球剃"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 61,
+        "fields": {
+            "key": "063",
+            "value": "繋の毛剃る",
+            "value_abbr": "繋剃"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 62,
+        "fields": {
+            "key": "064",
+            "value": "飛節傷",
+            "value_abbr": "飛傷"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 63,
+        "fields": {
+            "key": "065",
+            "value": "球節に小さい瘤",
+            "value_abbr": "球瘤"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 64,
+        "fields": {
+            "key": "066",
+            "value": "裏筋に小さい瘤",
+            "value_abbr": "裏瘤"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 65,
+        "fields": {
+            "key": "067",
+            "value": "繋に小さい瘤",
+            "value_abbr": "繋瘤"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 66,
+        "fields": {
+            "key": "068",
+            "value": "管骨に透明の巻物",
+            "value_abbr": "管透"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 67,
+        "fields": {
+            "key": "069",
+            "value": "繋に透明の巻物",
+            "value_abbr": "繋透"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 68,
+        "fields": {
+            "key": "070",
+            "value": "球節に透明の巻物",
+            "value_abbr": "球透"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 69,
+        "fields": {
+            "key": "071",
+            "value": "球節焼き治療",
+            "value_abbr": "球焼"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 70,
+        "fields": {
+            "key": "072",
+            "value": "裏筋イボ",
+            "value_abbr": "裏イ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 71,
+        "fields": {
+            "key": "073",
+            "value": "着地時に飛節傾く",
+            "value_abbr": "飛傾"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 72,
+        "fields": {
+            "key": "074",
+            "value": "肘腫（髄液溜まる）",
+            "value_abbr": "肘腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 73,
+        "fields": {
+            "key": "075",
+            "value": "球節腫れ（髄液溜まる）",
+            "value_abbr": "球髄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 74,
+        "fields": {
+            "key": "076",
+            "value": "ヒールパッド",
+            "value_abbr": "ヒＰ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 75,
+        "fields": {
+            "key": "077",
+            "value": "リバーシブル鉄",
+            "value_abbr": "リ鉄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 76,
+        "fields": {
+            "key": "078",
+            "value": "脇の肘腫",
+            "value_abbr": "脇腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 77,
+        "fields": {
+            "key": "079",
+            "value": "裏筋の毛を剃る",
+            "value_abbr": "裏剃"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 78,
+        "fields": {
+            "key": "080",
+            "value": "外に振って歩く",
+            "value_abbr": "外歩"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 79,
+        "fields": {
+            "key": "081",
+            "value": "蹄亀裂",
+            "value_abbr": "亀裂"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 80,
+        "fields": {
+            "key": "082",
+            "value": "蹄底パッド",
+            "value_abbr": "蹄Ｐ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 81,
+        "fields": {
+            "key": "083",
+            "value": "シガフース蹄鉄",
+            "value_abbr": "シ鉄"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 82,
+        "fields": {
+            "key": "084",
+            "value": "唇削",
+            "value_abbr": "唇削"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 83,
+        "fields": {
+            "key": "085",
+            "value": "脚皮膚病",
+            "value_abbr": "脚皮"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 84,
+        "fields": {
+            "key": "100",
+            "value": "痛そうな歩様",
+            "value_abbr": "歩様悪"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 85,
+        "fields": {
+            "key": "101",
+            "value": "周回中躓く",
+            "value_abbr": "躓く"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 86,
+        "fields": {
+            "key": "102",
+            "value": "蹄汚い",
+            "value_abbr": "蹄汚い"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 87,
+        "fields": {
+            "key": "103",
+            "value": "裏筋腫れる",
+            "value_abbr": "裏筋腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 88,
+        "fields": {
+            "key": "104",
+            "value": "トモ流れる",
+            "value_abbr": "トモ流"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 89,
+        "fields": {
+            "key": "105",
+            "value": "骨瘤",
+            "value_abbr": "骨瘤"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 90,
+        "fields": {
+            "key": "106",
+            "value": "前脚腫れ大",
+            "value_abbr": "前腫大"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 91,
+        "fields": {
+            "key": "107",
+            "value": "前脚腫れ小",
+            "value_abbr": "前腫小"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 92,
+        "fields": {
+            "key": "108",
+            "value": "両前バンテージ外す（変更）",
+            "value_abbr": "前バ外"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 93,
+        "fields": {
+            "key": "109",
+            "value": "両前バンテージ巻く（変更）",
+            "value_abbr": "前バ巻"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 94,
+        "fields": {
+            "key": "110",
+            "value": "後脚腫れる",
+            "value_abbr": "後脚腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 95,
+        "fields": {
+            "key": "111",
+            "value": "ソエ腫れる",
+            "value_abbr": "ソエ腫"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 96,
+        "fields": {
+            "key": "112",
+            "value": "膝焼く",
+            "value_abbr": "膝焼く"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 97,
+        "fields": {
+            "key": "113",
+            "value": "脚部不安",
+            "value_abbr": "脚不安"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 98,
+        "fields": {
+            "key": "114",
+            "value": "後肢踏み込み甘い",
+            "value_abbr": "後浅い"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 99,
+        "fields": {
+            "key": "115",
+            "value": "着地時に膝が震える",
+            "value_abbr": "膝震る"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 100,
+        "fields": {
+            "key": "116",
+            "value": "着地時に飛節がブレる",
+            "value_abbr": "飛ブレ"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 101,
+        "fields": {
+            "key": "117",
+            "value": "膝硬い",
+            "value_abbr": "膝硬い"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 102,
+        "fields": {
+            "key": "118",
+            "value": "後肢躓く",
+            "value_abbr": "後肢躓"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 103,
+        "fields": {
+            "key": "119",
+            "value": "交差する歩様",
+            "value_abbr": "交差"
+        }
+    },
+    {
+        "model": "hoof",
+        "pk": 104,
+        "fields": {
+            "key": "120",
+            "value": "肩の出窮屈",
+            "value_abbr": "肩窮"
+        }
+    }
+]

@@ -1,0 +1,58 @@
+[
+    {
+        "model": "jrdb.horse_body",
+        "pk": 1,
+        "fields": {
+            "key": 1,
+            "value": "太い"
+        }
+    },
+    {
+        "model": "jrdb.horse_body",
+        "pk": 2,
+        "fields": {
+            "key": 2,
+            "value": "余裕"
+        }
+    },
+    {
+        "model": "jrdb.horse_body",
+        "pk": 3,
+        "fields": {
+            "key": 3,
+            "value": "良い"
+        }
+    },
+    {
+        "model": "jrdb.horse_body",
+        "pk": 4,
+        "fields": {
+            "key": 4,
+            "value": "普通"
+        }
+    },
+    {
+        "model": "jrdb.horse_body",
+        "pk": 5,
+        "fields": {
+            "key": 5,
+            "value": "細い"
+        }
+    },
+    {
+        "model": "jrdb.horse_body",
+        "pk": 6,
+        "fields": {
+            "key": 6,
+            "value": "張り"
+        }
+    },
+    {
+        "model": "jrdb.horse_body",
+        "pk": 7,
+        "fields": {
+            "key": 7,
+            "value": "緩い"
+        }
+    }
+]

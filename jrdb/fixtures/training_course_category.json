@@ -1,0 +1,50 @@
+[
+    {
+        "model": "jrdb.training_course_category",
+        "pk": 1,
+        "fields": {
+            "key": "1",
+            "value": "坂路調教"
+        }
+    },
+    {
+        "model": "jrdb.training_course_category",
+        "pk": 2,
+        "fields": {
+            "key": "2",
+            "value": "コース調教"
+        }
+    },
+    {
+        "model": "jrdb.training_course_category",
+        "pk": 3,
+        "fields": {
+            "key": "3",
+            "value": "併用(坂路、コース併用)"
+        }
+    },
+    {
+        "model": "jrdb.training_course_category",
+        "pk": 4,
+        "fields": {
+            "key": "4",
+            "value": "障害（障害練習）"
+        }
+    },
+    {
+        "model": "jrdb.training_course_category",
+        "pk": 5,
+        "fields": {
+            "key": "5",
+            "value": "障害他（障害練習＋α）"
+        }
+    },
+    {
+        "model": "jrdb.training_course_category",
+        "pk": 6,
+        "fields": {
+            "key": "0",
+            "value": "他（調教なし、不明）"
+        }
+    }
+]
