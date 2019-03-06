@@ -3,6 +3,7 @@ from abc import ABC
 from pprint import pprint
 from typing import List
 
+import numpy as np
 import pandas as pd
 
 logger = logging.getLogger(__name__)
@@ -39,11 +40,14 @@ class Template(ABC):
 
     @property
     def colnames(self) -> List[str]:
+        """
+        Provide a list of str column names that match self.df column count.
+        By default, OCC > 1 items have an index appended to the key name (ie. key_0, key_1, etc..)
+        """
         cols = []
-        offset = 1
         for row in self.spec.itertuples():
             if row.OCC > 1:
-                for i in range(offset, row.OCC + offset):
+                for i in range(1, row.OCC + 1):
                     cols.append(f'{row.label}_{i}')
             else:
                 cols.append(row.label)
@@ -53,29 +57,41 @@ class Template(ABC):
         """
         Parse contents of self.filepath into DataFrame
 
-        It is slightly faster to decode each cell individually than use
-        np.char.decode(byterows, encoding='cp932')
+        Using the slightly slower np.char.decode(byterows, encoding='cp932') rather than decoding
+        each cell individually to make parsing less of a hassle for subclasses
         """
         self._validate()
         with open(self.filepath, 'rb') as f:
-            rows = []
-            for line in filter(None, f.read().splitlines()):
-                row = []
-                for item in self.spec.itertuples():
-                    if item.OCC > 1:
-                        for j in range(item.OCC):
-                            start = item.startpos + (item.width * j)
-                            stop = start + item.width
-                            cell = line[start:stop].decode('cp932')
-                            row.append(cell)
-                    else:
-                        start = item.startpos
-                        stop = item.startpos + item.width
-                        cell = line[start:stop].decode('cp932')
-                        row.append(cell)
-                rows.append(row)
-        self.df = pd.DataFrame(rows, columns=self.colnames)
+            byterows = []
+            lines = filter(None, f.read().splitlines())
+            for line in lines:
+                byterow = []
+                for spec in self.spec.itertuples():
+                    row = self.parse_row(line, spec)
+                    byterow.append(row)
+                byterows.append(byterow)
+        encoded_rows = np.char.decode(byterows, encoding='cp932')
+        self.df = pd.DataFrame(encoded_rows, columns=self.colnames)
         return self.df
+
+    def parse_row(self, line, spec):
+        """
+        Given a byte string (line) and a spec item (spec)
+        return an array of byte strings where each item matches a specific column
+        """
+        row = []
+        if spec.OCC > 1:
+            for j in range(spec.OCC):
+                start = spec.startpos + (spec.width * j)
+                stop = start + spec.width
+                cell = line[start:stop]
+                row.append(cell)
+        else:
+            start = spec.startpos
+            stop = spec.startpos + spec.width
+            cell = line[start:stop]
+            row.append(cell)
+        return row
 
     @classmethod
     def _validate(cls, raise_on_invalid=True) -> bool:
@@ -83,7 +99,7 @@ class Template(ABC):
         if invalid_idx:
             idx_list = ', '.join(invalid_idx)
             if raise_on_invalid:
-                raise ValueError(f'invalid item indices: {idx_list}')
+                raise ValueError(f'Check following indices: {idx_list}')
             return False
         return True
 
