@@ -66,16 +66,18 @@ class Template(ABC):
             for line in lines:
                 byterow = []
                 for spec in self.spec.itertuples():
-                    byterow.extend(self.parse_row(line, spec))
+                    byterow.extend(self.parse_item(line, spec))
                 byterows.append(byterow)
         encoded_rows = np.char.decode(byterows, encoding='cp932')
         self.df = pd.DataFrame(encoded_rows, columns=self.colnames)
         return self.df
 
-    def parse_row(self, line, spec) -> List:
+    def parse_item(self, line, spec) -> List:
         """
         Given a byte string (line) and a spec item (spec)
-        return an array of byte strings where each item matches a specific column
+        return an array of on or more byte strings where each item matches a specific column
+
+        Unless the item OCC is greater than 1, the return value will be a single-item list
         """
         row = []
         if spec.OCC > 1:
