@@ -1,6 +1,6 @@
 [
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 1,
         "fields": {
             "key": "01",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 2,
         "fields": {
             "key": "02",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 3,
         "fields": {
             "key": "03",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 4,
         "fields": {
             "key": "04",
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 5,
         "fields": {
             "key": "05",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 6,
         "fields": {
             "key": "06",
@@ -48,7 +48,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 7,
         "fields": {
             "key": "07",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 8,
         "fields": {
             "key": "08",
@@ -64,7 +64,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 9,
         "fields": {
             "key": "09",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 10,
         "fields": {
             "key": "10",
@@ -80,7 +80,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 11,
         "fields": {
             "key": "21",
@@ -88,7 +88,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 12,
         "fields": {
             "key": "22",
@@ -96,7 +96,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 13,
         "fields": {
             "key": "23",
@@ -104,7 +104,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 14,
         "fields": {
             "key": "24",
@@ -112,7 +112,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 15,
         "fields": {
             "key": "25",
@@ -120,7 +120,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 16,
         "fields": {
             "key": "26",
@@ -128,7 +128,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 17,
         "fields": {
             "key": "27",
@@ -136,7 +136,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 18,
         "fields": {
             "key": "28",
@@ -144,7 +144,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 19,
         "fields": {
             "key": "29",
@@ -152,7 +152,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 20,
         "fields": {
             "key": "30",
@@ -160,7 +160,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 21,
         "fields": {
             "key": "31",
@@ -168,7 +168,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 22,
         "fields": {
             "key": "32",
@@ -176,7 +176,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 23,
         "fields": {
             "key": "33",
@@ -184,7 +184,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 24,
         "fields": {
             "key": "34",
@@ -192,7 +192,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 25,
         "fields": {
             "key": "35",
@@ -200,7 +200,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 26,
         "fields": {
             "key": "36",
@@ -208,7 +208,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 27,
         "fields": {
             "key": "37",
@@ -216,7 +216,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 28,
         "fields": {
             "key": "38",
@@ -224,7 +224,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 29,
         "fields": {
             "key": "39",
@@ -232,7 +232,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 30,
         "fields": {
             "key": "40",
@@ -240,7 +240,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 31,
         "fields": {
             "key": "41",
@@ -248,7 +248,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 32,
         "fields": {
             "key": "42",
@@ -256,7 +256,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 33,
         "fields": {
             "key": "43",
@@ -264,7 +264,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 34,
         "fields": {
             "key": "44",
@@ -272,7 +272,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 35,
         "fields": {
             "key": "45",
@@ -280,7 +280,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 36,
         "fields": {
             "key": "46",
@@ -288,7 +288,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 37,
         "fields": {
             "key": "47",
@@ -296,7 +296,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 38,
         "fields": {
             "key": "48",
@@ -304,7 +304,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 39,
         "fields": {
             "key": "61",
@@ -312,7 +312,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 40,
         "fields": {
             "key": "62",
@@ -320,7 +320,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 41,
         "fields": {
             "key": "63",
@@ -328,7 +328,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 42,
         "fields": {
             "key": "64",
@@ -336,7 +336,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 43,
         "fields": {
             "key": "65",
@@ -344,7 +344,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 44,
         "fields": {
             "key": "66",
@@ -352,7 +352,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 45,
         "fields": {
             "key": "67",
@@ -360,7 +360,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 46,
         "fields": {
             "key": "68",
@@ -368,7 +368,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 47,
         "fields": {
             "key": "69",
@@ -376,7 +376,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 48,
         "fields": {
             "key": "70",
@@ -384,7 +384,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 49,
         "fields": {
             "key": "71",
@@ -392,7 +392,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 50,
         "fields": {
             "key": "72",
@@ -400,7 +400,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 51,
         "fields": {
             "key": "73",
@@ -408,7 +408,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 52,
         "fields": {
             "key": "74",
@@ -416,7 +416,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 53,
         "fields": {
             "key": "75",
@@ -424,7 +424,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 54,
         "fields": {
             "key": "76",
@@ -432,7 +432,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 55,
         "fields": {
             "key": "77",
@@ -440,7 +440,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 56,
         "fields": {
             "key": "78",
@@ -448,7 +448,7 @@
         }
     },
     {
-        "model": "jrdb.racetrack",
+        "model": "jrdb.RacetrackCode",
         "pk": 57,
         "fields": {
             "key": "79",

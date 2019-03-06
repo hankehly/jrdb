@@ -1,6 +1,6 @@
 [
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 1,
         "fields": {
             "key": "01",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 2,
         "fields": {
             "key": "02",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 3,
         "fields": {
             "key": "03",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 4,
         "fields": {
             "key": "04",
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 5,
         "fields": {
             "key": "05",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 6,
         "fields": {
             "key": "06",
@@ -48,7 +48,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 7,
         "fields": {
             "key": "07",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 8,
         "fields": {
             "key": "11",
@@ -64,7 +64,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 9,
         "fields": {
             "key": "12",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 10,
         "fields": {
             "key": "13",
@@ -80,7 +80,7 @@
         }
     },
     {
-        "model": "jrdb.rest_reason",
+        "model": "jrdb.RestReasonCode",
         "pk": 11,
         "fields": {
             "key": "14",

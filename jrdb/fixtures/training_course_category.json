@@ -1,6 +1,6 @@
 [
     {
-        "model": "jrdb.training_course_category",
+        "model": "jrdb.TrainingCourseCategory",
         "pk": 1,
         "fields": {
             "key": "1",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "jrdb.training_course_category",
+        "model": "jrdb.TrainingCourseCategory",
         "pk": 2,
         "fields": {
             "key": "2",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "jrdb.training_course_category",
+        "model": "jrdb.TrainingCourseCategory",
         "pk": 3,
         "fields": {
             "key": "3",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "jrdb.training_course_category",
+        "model": "jrdb.TrainingCourseCategory",
         "pk": 4,
         "fields": {
             "key": "4",
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "jrdb.training_course_category",
+        "model": "jrdb.TrainingCourseCategory",
         "pk": 5,
         "fields": {
             "key": "5",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "jrdb.training_course_category",
+        "model": "jrdb.TrainingCourseCategory",
         "pk": 6,
         "fields": {
             "key": "0",

@@ -1,984 +1,984 @@
 [
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 1,
         "fields": {
             "key": "001",
             "value": "ブリンカー",
             "value_abbr": "ブ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 2,
         "fields": {
             "key": "002",
             "value": "シャドーロール",
             "value_abbr": "鼻",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 3,
         "fields": {
             "key": "003",
             "value": "リングハミ",
             "value_abbr": "Ｒ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 4,
         "fields": {
             "key": "004",
             "value": "Dハミ",
             "value_abbr": "Ｄ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 5,
         "fields": {
             "key": "005",
             "value": "エッグハミ",
             "value_abbr": "Ｅ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 6,
         "fields": {
             "key": "006",
             "value": "枝ハミ",
             "value_abbr": "枝",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 7,
         "fields": {
             "key": "007",
             "value": "バンテージ",
             "value_abbr": "バ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 8
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 8,
         "fields": {
             "key": "008",
             "value": "メンコ",
             "value_abbr": "面",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 9,
         "fields": {
             "key": "009",
             "value": "ガムチェーン",
             "value_abbr": "Ｇ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 10,
         "fields": {
             "key": "010",
             "value": "ハートハミ",
             "value_abbr": "Ｈ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 11,
         "fields": {
             "key": "011",
             "value": "ハミ吊",
             "value_abbr": "吊",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 12,
         "fields": {
             "key": "012",
             "value": "ビットガード",
             "value_abbr": "ビ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 13,
         "fields": {
             "key": "013",
             "value": "ノートンハミ",
             "value_abbr": "ノ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 14,
         "fields": {
             "key": "014",
             "value": "ジョウハミ",
             "value_abbr": "ジ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 15,
         "fields": {
             "key": "015",
             "value": "スライド",
             "value_abbr": "ス",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 16,
         "fields": {
             "key": "016",
             "value": "てこハミ",
             "value_abbr": "テ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 17,
         "fields": {
             "key": "017",
             "value": "イタイタ",
             "value_abbr": "痛",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 18,
         "fields": {
             "key": "018",
             "value": "ノーズバンド",
             "value_abbr": "Ｎ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 19,
         "fields": {
             "key": "019",
             "value": "チェーンシャンク",
             "value_abbr": "Ｃ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 20,
         "fields": {
             "key": "020",
             "value": "パドックブリンカー",
             "value_abbr": "Ｐ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 21,
         "fields": {
             "key": "021",
             "value": "舌くくる",
             "value_abbr": "舌",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 22,
         "fields": {
             "key": "022",
             "value": "上唇くくる",
             "value_abbr": "口",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 23,
         "fields": {
             "key": "023",
             "value": "馬気",
             "value_abbr": "馬",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 24,
         "fields": {
             "key": "024",
             "value": "下痢",
             "value_abbr": "下",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 25,
         "fields": {
             "key": "025",
             "value": "二度汗",
             "value_abbr": "汗",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 26,
         "fields": {
             "key": "026",
             "value": "頭高い",
             "value_abbr": "頭",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 27,
         "fields": {
             "key": "028",
             "value": "毛艶良い",
             "value_abbr": "艶",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 28,
         "fields": {
             "key": "030",
             "value": "毛艶悪い",
             "value_abbr": "毛",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 29,
         "fields": {
             "key": "031",
             "value": "ミックレム頭絡",
             "value_abbr": "ミ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 30,
         "fields": {
             "key": "032",
             "value": "引き返し",
             "value_abbr": "引",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 31,
         "fields": {
             "key": "036",
             "value": "レバーノーズバンド",
             "value_abbr": "レ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 32,
         "fields": {
             "key": "037",
             "value": "保護テープ",
             "value_abbr": "保",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 4
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 33,
         "fields": {
             "key": "038",
             "value": "キネトンノーズバンド",
             "value_abbr": "キ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 34,
         "fields": {
             "key": "039",
             "value": "アダプターパッド",
             "value_abbr": "ア",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 35,
         "fields": {
             "key": "040",
             "value": "ノーマルハミポチつき",
             "value_abbr": "ポ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 36,
         "fields": {
             "key": "041",
             "value": "皮膚病",
             "value_abbr": "皮",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 37,
         "fields": {
             "key": "042",
             "value": "玉腫れる",
             "value_abbr": "玉",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 38,
         "fields": {
             "key": "043",
             "value": "フケ",
             "value_abbr": "発",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 39,
         "fields": {
             "key": "044",
             "value": "スリーリングハミ",
             "value_abbr": "Ｔ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 40,
         "fields": {
             "key": "045",
             "value": "ソエ焼く",
             "value_abbr": "焼",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 5
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 41,
         "fields": {
             "key": "047",
             "value": "半鉄",
             "value_abbr": "半",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 42,
         "fields": {
             "key": "048",
             "value": "連尾鉄",
             "value_abbr": "丸",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 43,
         "fields": {
             "key": "049",
             "value": "四分の三蹄鉄（曲）",
             "value_abbr": "曲",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 44,
         "fields": {
             "key": "050",
             "value": "鉄橋鉄",
             "value_abbr": "橋",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 45,
         "fields": {
             "key": "054",
             "value": "四分の三蹄鉄",
             "value_abbr": "J",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 46,
         "fields": {
             "key": "055",
             "value": "目の下黒い",
             "value_abbr": "黒",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 47,
         "fields": {
             "key": "056",
             "value": "エクイロックス",
             "value_abbr": "エ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 4
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 48,
         "fields": {
             "key": "061",
             "value": "骨瘤大",
             "value_abbr": "骨",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 6
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 49,
         "fields": {
             "key": "062",
             "value": "骨瘤小",
             "value_abbr": "小",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 6
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 50,
         "fields": {
             "key": "063",
             "value": "ソエ腫れ大",
             "value_abbr": "腫",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 5
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 51,
         "fields": {
             "key": "064",
             "value": "ソエ腫れ小",
             "value_abbr": "小",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 5
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 52,
         "fields": {
             "key": "067",
             "value": "サイテーションハミ",
             "value_abbr": "サ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 53,
         "fields": {
             "key": "068",
             "value": "ネックストラップ",
             "value_abbr": "ネ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 54,
         "fields": {
             "key": "069",
             "value": "ホライゾネット（レース）",
             "value_abbr": "網",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 55,
         "fields": {
             "key": "070",
             "value": "ホライゾネット（パドック）",
             "value_abbr": "網",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 56,
         "fields": {
             "key": "071",
             "value": "ハナゴム",
             "value_abbr": "ゴ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 57,
         "fields": {
             "key": "072",
             "value": "ユニバーサルハミ",
             "value_abbr": "ユ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 58,
         "fields": {
             "key": "073",
             "value": "蹄鉄なし",
             "value_abbr": "裸",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 59,
         "fields": {
             "key": "074",
             "value": "チークピース ",
             "value_abbr": "ち",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 60,
         "fields": {
             "key": "075",
             "value": "追突防止パッド",
             "value_abbr": "追",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 4
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 61,
         "fields": {
             "key": "076",
             "value": "新エクイロックス",
             "value_abbr": "新",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 4
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 62,
         "fields": {
             "key": "077",
             "value": "スプーンヒール鉄",
             "value_abbr": "ス",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 63,
         "fields": {
             "key": "078",
             "value": "柿元鉄",
             "value_abbr": "柿",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 64,
         "fields": {
             "key": "079",
             "value": "耳当て",
             "value_abbr": "耳",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 65,
         "fields": {
             "key": "080",
             "value": "体毛剃る",
             "value_abbr": "剃",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 5
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 66,
         "fields": {
             "key": "081",
             "value": "プラスチックカップ",
             "value_abbr": "プ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 67,
         "fields": {
             "key": "082",
             "value": "マウスネット",
             "value_abbr": "マ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 68,
         "fields": {
             "key": "083",
             "value": "ブロウピース",
             "value_abbr": "ｂ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 69,
         "fields": {
             "key": "084",
             "value": "ヒールパッド",
             "value_abbr": "ひ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 4
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 70,
         "fields": {
             "key": "085",
             "value": "リバーシブル鉄",
             "value_abbr": "り",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 3
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 71,
         "fields": {
             "key": "087",
             "value": "歯ぎしり",
             "value_abbr": "歯",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 7
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 72,
         "fields": {
             "key": "088",
             "value": "リーグルハミ",
             "value_abbr": "リ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 73,
         "fields": {
             "key": "089",
             "value": "ホートンハミ",
             "value_abbr": "ほ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 74,
         "fields": {
             "key": "090",
             "value": "トライアハミ",
             "value_abbr": "ト",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 75,
         "fields": {
             "key": "091",
             "value": "シガフース蹄鉄",
             "value_abbr": "シ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 4
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 76,
         "fields": {
             "key": "092",
             "value": "ピーウィーハミ",
             "value_abbr": "ぴ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 77,
         "fields": {
             "key": "094",
             "value": "裂蹄",
             "value_abbr": "裂",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 4
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 78,
         "fields": {
             "key": "095",
             "value": "蹄底パッド",
             "value_abbr": "ぱ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 4
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 79,
         "fields": {
             "key": "096",
             "value": "アイシールド",
             "value_abbr": "あ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 80,
         "fields": {
             "key": "097",
             "value": "ｅ（ＨＳ社ハミ）",
             "value_abbr": "ｅ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 81,
         "fields": {
             "key": "098",
             "value": "タンプレートハミ",
             "value_abbr": "タ",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 1
             ]
         }
     },
     {
-        "model": "jrdb.horse_gear",
+        "model": "jrdb.HorseGearCode",
         "pk": 82,
         "fields": {
             "key": "099",
             "value": "耳栓",
             "value_abbr": "栓",
-            "horse_gear_category": [
+            "horse_gear_code_category": [
                 2
             ]
         }

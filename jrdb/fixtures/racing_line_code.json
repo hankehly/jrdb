@@ -1,42 +1,42 @@
 [
     {
-        "model": "jrdb.racing_line",
+        "model": "jrdb.RacingLineCode",
         "pk": 1,
         "fields": {
             "key": 1,
-            "value": "INNERMOST"
+            "value": "最内"
         }
     },
     {
-        "model": "jrdb.racing_line",
+        "model": "jrdb.RacingLineCode",
         "pk": 2,
         "fields": {
             "key": 2,
-            "value": "INNER"
+            "value": "内"
         }
     },
     {
-        "model": "jrdb.racing_line",
+        "model": "jrdb.RacingLineCode",
         "pk": 3,
         "fields": {
             "key": 3,
-            "value": "MIDDLE"
+            "value": "中"
         }
     },
     {
-        "model": "jrdb.racing_line",
+        "model": "jrdb.RacingLineCode",
         "pk": 4,
         "fields": {
             "key": 4,
-            "value": "OUTER"
+            "value": "外"
         }
     },
     {
-        "model": "jrdb.racing_line",
+        "model": "jrdb.RacingLineCode",
         "pk": 5,
         "fields": {
             "key": 5,
-            "value": "OUTERMOST"
+            "value": "大外"
         }
     }
 ]

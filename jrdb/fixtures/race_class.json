@@ -1,6 +1,6 @@
 [
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 1,
         "fields": {
             "key": "01",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 2,
         "fields": {
             "key": "02",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 3,
         "fields": {
             "key": "03",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 4,
         "fields": {
             "key": "04",
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 5,
         "fields": {
             "key": "05",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 6,
         "fields": {
             "key": "06",
@@ -48,7 +48,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 7,
         "fields": {
             "key": "07",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 8,
         "fields": {
             "key": "08",
@@ -64,7 +64,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 9,
         "fields": {
             "key": "09",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 10,
         "fields": {
             "key": "10",
@@ -80,7 +80,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 11,
         "fields": {
             "key": "11",
@@ -88,7 +88,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 12,
         "fields": {
             "key": "12",
@@ -96,7 +96,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 13,
         "fields": {
             "key": "13",
@@ -104,7 +104,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 14,
         "fields": {
             "key": "14",
@@ -112,7 +112,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 15,
         "fields": {
             "key": "15",
@@ -120,7 +120,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 16,
         "fields": {
             "key": "16",
@@ -128,7 +128,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 17,
         "fields": {
             "key": "17",
@@ -136,7 +136,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 18,
         "fields": {
             "key": "18",
@@ -144,7 +144,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 19,
         "fields": {
             "key": "21",
@@ -152,7 +152,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 20,
         "fields": {
             "key": "22",
@@ -160,7 +160,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 21,
         "fields": {
             "key": "23",
@@ -168,7 +168,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 22,
         "fields": {
             "key": "24",
@@ -176,7 +176,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 23,
         "fields": {
             "key": "25",
@@ -184,7 +184,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 24,
         "fields": {
             "key": "26",
@@ -192,7 +192,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 25,
         "fields": {
             "key": "27",
@@ -200,7 +200,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 26,
         "fields": {
             "key": "28",
@@ -208,7 +208,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 27,
         "fields": {
             "key": "29",
@@ -216,7 +216,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 28,
         "fields": {
             "key": "30",
@@ -224,7 +224,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 29,
         "fields": {
             "key": "31",
@@ -232,7 +232,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 30,
         "fields": {
             "key": "32",
@@ -240,7 +240,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 31,
         "fields": {
             "key": "33",
@@ -248,7 +248,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 32,
         "fields": {
             "key": "34",
@@ -256,7 +256,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 33,
         "fields": {
             "key": "35",
@@ -264,7 +264,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 34,
         "fields": {
             "key": "36",
@@ -272,7 +272,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 35,
         "fields": {
             "key": "37",
@@ -280,7 +280,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 36,
         "fields": {
             "key": "38",
@@ -288,7 +288,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 37,
         "fields": {
             "key": "51",
@@ -296,7 +296,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 38,
         "fields": {
             "key": "52",
@@ -304,7 +304,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 39,
         "fields": {
             "key": "53",
@@ -312,7 +312,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 40,
         "fields": {
             "key": "54",
@@ -320,7 +320,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 41,
         "fields": {
             "key": "55",
@@ -328,7 +328,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 42,
         "fields": {
             "key": "56",
@@ -336,7 +336,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 43,
         "fields": {
             "key": "57",
@@ -344,7 +344,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 44,
         "fields": {
             "key": "58",
@@ -352,7 +352,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 45,
         "fields": {
             "key": "59",
@@ -360,7 +360,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 46,
         "fields": {
             "key": "60",
@@ -368,7 +368,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 47,
         "fields": {
             "key": "61",
@@ -376,7 +376,7 @@
         }
     },
     {
-        "model": "jrdb.race_class",
+        "model": "jrdb.RaceClass",
         "pk": 48,
         "fields": {
             "key": "62",

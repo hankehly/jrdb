@@ -1,50 +1,50 @@
 [
     {
-        "model": "jrdb.weather",
+        "model": "jrdb.GradeCode",
         "pk": 1,
         "fields": {
             "key": 1,
-            "value": "晴"
+            "value": "Ｇ１"
         }
     },
     {
-        "model": "jrdb.weather",
+        "model": "jrdb.GradeCode",
         "pk": 2,
         "fields": {
             "key": 2,
-            "value": "曇"
+            "value": "Ｇ２"
         }
     },
     {
-        "model": "jrdb.weather",
+        "model": "jrdb.GradeCode",
         "pk": 3,
         "fields": {
             "key": 3,
-            "value": "小雨"
+            "value": "Ｇ３"
         }
     },
     {
-        "model": "jrdb.weather",
+        "model": "jrdb.GradeCode",
         "pk": 4,
         "fields": {
             "key": 4,
-            "value": "雨"
+            "value": "重賞"
         }
     },
     {
-        "model": "jrdb.weather",
+        "model": "jrdb.GradeCode",
         "pk": 5,
         "fields": {
             "key": 5,
-            "value": "小雪"
+            "value": "特別"
         }
     },
     {
-        "model": "jrdb.weather",
+        "model": "jrdb.GradeCode",
         "pk": 6,
         "fields": {
             "key": 6,
-            "value": "雪"
+            "value": "Ｌ　（リステッド競走）"
         }
     }
 ]

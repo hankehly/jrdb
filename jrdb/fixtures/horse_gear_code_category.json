@@ -1,6 +1,6 @@
 [
     {
-        "model": "jrdb.horse_gear_category",
+        "model": "jrdb.HorseGearCodeCategory",
         "pk": 1,
         "fields": {
             "key": 1,
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "jrdb.horse_gear_category",
+        "model": "jrdb.HorseGearCodeCategory",
         "pk": 2,
         "fields": {
             "key": 2,
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "jrdb.horse_gear_category",
+        "model": "jrdb.HorseGearCodeCategory",
         "pk": 3,
         "fields": {
             "key": 3,
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "jrdb.horse_gear_category",
+        "model": "jrdb.HorseGearCodeCategory",
         "pk": 4,
         "fields": {
             "key": 4,
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "jrdb.horse_gear_category",
+        "model": "jrdb.HorseGearCodeCategory",
         "pk": 5,
         "fields": {
             "key": 5,
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "jrdb.horse_gear_category",
+        "model": "jrdb.HorseGearCodeCategory",
         "pk": 6,
         "fields": {
             "key": 6,
@@ -48,7 +48,7 @@
         }
     },
     {
-        "model": "jrdb.horse_gear_category",
+        "model": "jrdb.HorseGearCodeCategory",
         "pk": 7,
         "fields": {
             "key": 7,
@@ -56,7 +56,7 @@
         }
     },
     {
-        "model": "jrdb.horse_gear_category",
+        "model": "jrdb.HorseGearCodeCategory",
         "pk": 8,
         "fields": {
             "key": 8,

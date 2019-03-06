@@ -1,6 +1,6 @@
 [
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 1,
         "fields": {
             "key": "033",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 2,
         "fields": {
             "key": "034",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 3,
         "fields": {
             "key": "035",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 4,
         "fields": {
             "key": "037",
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 5,
         "fields": {
             "key": "038",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 6,
         "fields": {
             "key": "039",
@@ -48,7 +48,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 7,
         "fields": {
             "key": "040",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 8,
         "fields": {
             "key": "041",
@@ -64,7 +64,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 9,
         "fields": {
             "key": "042",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 10,
         "fields": {
             "key": "043",
@@ -80,7 +80,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 11,
         "fields": {
             "key": "044",
@@ -88,7 +88,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 12,
         "fields": {
             "key": "045",
@@ -96,7 +96,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 13,
         "fields": {
             "key": "046",
@@ -104,7 +104,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 14,
         "fields": {
             "key": "047",
@@ -112,7 +112,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 15,
         "fields": {
             "key": "048",
@@ -120,7 +120,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 16,
         "fields": {
             "key": "049",
@@ -128,7 +128,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 17,
         "fields": {
             "key": "050",
@@ -136,7 +136,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 18,
         "fields": {
             "key": "051",
@@ -144,7 +144,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 19,
         "fields": {
             "key": "052",
@@ -152,7 +152,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 20,
         "fields": {
             "key": "053",
@@ -160,7 +160,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 21,
         "fields": {
             "key": "054",
@@ -168,7 +168,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 22,
         "fields": {
             "key": "055",
@@ -176,7 +176,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 23,
         "fields": {
             "key": "056",
@@ -184,7 +184,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 24,
         "fields": {
             "key": "057",
@@ -192,7 +192,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 25,
         "fields": {
             "key": "058",
@@ -200,7 +200,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 26,
         "fields": {
             "key": "059",
@@ -208,7 +208,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 27,
         "fields": {
             "key": "060",
@@ -216,7 +216,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 28,
         "fields": {
             "key": "061",
@@ -224,7 +224,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 29,
         "fields": {
             "key": "062",
@@ -232,7 +232,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 30,
         "fields": {
             "key": "063",
@@ -240,7 +240,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 31,
         "fields": {
             "key": "064",
@@ -248,7 +248,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 32,
         "fields": {
             "key": "065",
@@ -256,7 +256,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 33,
         "fields": {
             "key": "066",
@@ -264,7 +264,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 34,
         "fields": {
             "key": "067",
@@ -272,7 +272,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 35,
         "fields": {
             "key": "068",
@@ -280,7 +280,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 36,
         "fields": {
             "key": "069",
@@ -288,7 +288,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 37,
         "fields": {
             "key": "070",
@@ -296,7 +296,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 38,
         "fields": {
             "key": "071",
@@ -304,7 +304,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 39,
         "fields": {
             "key": "072",
@@ -312,7 +312,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 40,
         "fields": {
             "key": "073",
@@ -320,7 +320,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 41,
         "fields": {
             "key": "074",
@@ -328,7 +328,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 42,
         "fields": {
             "key": "075",
@@ -336,7 +336,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 43,
         "fields": {
             "key": "076",
@@ -344,7 +344,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 44,
         "fields": {
             "key": "077",
@@ -352,7 +352,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 45,
         "fields": {
             "key": "078",
@@ -360,7 +360,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 46,
         "fields": {
             "key": "079",
@@ -368,7 +368,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 47,
         "fields": {
             "key": "080",
@@ -376,7 +376,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 48,
         "fields": {
             "key": "081",
@@ -384,7 +384,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 49,
         "fields": {
             "key": "082",
@@ -392,7 +392,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 50,
         "fields": {
             "key": "083",
@@ -400,7 +400,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 51,
         "fields": {
             "key": "084",
@@ -408,7 +408,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 52,
         "fields": {
             "key": "085",
@@ -416,7 +416,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 53,
         "fields": {
             "key": "086",
@@ -424,7 +424,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 54,
         "fields": {
             "key": "087",
@@ -432,7 +432,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 55,
         "fields": {
             "key": "088",
@@ -440,7 +440,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 56,
         "fields": {
             "key": "089",
@@ -448,7 +448,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 57,
         "fields": {
             "key": "090",
@@ -456,7 +456,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 58,
         "fields": {
             "key": "091",
@@ -464,7 +464,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 59,
         "fields": {
             "key": "092",
@@ -472,7 +472,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 60,
         "fields": {
             "key": "093",
@@ -480,7 +480,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 61,
         "fields": {
             "key": "094",
@@ -488,7 +488,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 62,
         "fields": {
             "key": "095",
@@ -496,7 +496,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 63,
         "fields": {
             "key": "096",
@@ -504,7 +504,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 64,
         "fields": {
             "key": "097",
@@ -512,7 +512,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 65,
         "fields": {
             "key": "098",
@@ -520,7 +520,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 66,
         "fields": {
             "key": "099",
@@ -528,7 +528,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 67,
         "fields": {
             "key": "100",
@@ -536,7 +536,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 68,
         "fields": {
             "key": "101",
@@ -544,7 +544,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 69,
         "fields": {
             "key": "102",
@@ -552,7 +552,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 70,
         "fields": {
             "key": "103",
@@ -560,7 +560,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 71,
         "fields": {
             "key": "104",
@@ -568,7 +568,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 72,
         "fields": {
             "key": "105",
@@ -576,7 +576,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 73,
         "fields": {
             "key": "106",
@@ -584,7 +584,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 74,
         "fields": {
             "key": "107",
@@ -592,7 +592,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 75,
         "fields": {
             "key": "108",
@@ -600,7 +600,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 76,
         "fields": {
             "key": "109",
@@ -608,7 +608,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 77,
         "fields": {
             "key": "110",
@@ -616,7 +616,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 78,
         "fields": {
             "key": "111",
@@ -624,7 +624,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 79,
         "fields": {
             "key": "112",
@@ -632,7 +632,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 80,
         "fields": {
             "key": "113",
@@ -640,7 +640,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 81,
         "fields": {
             "key": "114",
@@ -648,7 +648,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 82,
         "fields": {
             "key": "115",
@@ -656,7 +656,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 83,
         "fields": {
             "key": "116",
@@ -664,7 +664,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 84,
         "fields": {
             "key": "117",
@@ -672,7 +672,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 85,
         "fields": {
             "key": "118",
@@ -680,7 +680,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 86,
         "fields": {
             "key": "119",
@@ -688,7 +688,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 87,
         "fields": {
             "key": "120",
@@ -696,7 +696,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 88,
         "fields": {
             "key": "121",
@@ -704,7 +704,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 89,
         "fields": {
             "key": "122",
@@ -712,7 +712,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 90,
         "fields": {
             "key": "123",
@@ -720,7 +720,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 91,
         "fields": {
             "key": "124",
@@ -728,7 +728,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 92,
         "fields": {
             "key": "125",
@@ -736,7 +736,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 93,
         "fields": {
             "key": "126",
@@ -744,7 +744,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 94,
         "fields": {
             "key": "127",
@@ -752,7 +752,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 95,
         "fields": {
             "key": "128",
@@ -760,7 +760,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 96,
         "fields": {
             "key": "129",
@@ -768,7 +768,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 97,
         "fields": {
             "key": "130",
@@ -776,7 +776,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 98,
         "fields": {
             "key": "131",
@@ -784,7 +784,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 99,
         "fields": {
             "key": "132",
@@ -792,7 +792,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 100,
         "fields": {
             "key": "133",
@@ -800,7 +800,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 101,
         "fields": {
             "key": "134",
@@ -808,7 +808,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 102,
         "fields": {
             "key": "135",
@@ -816,7 +816,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 103,
         "fields": {
             "key": "136",
@@ -824,7 +824,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 104,
         "fields": {
             "key": "137",
@@ -832,7 +832,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 105,
         "fields": {
             "key": "138",
@@ -840,7 +840,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 106,
         "fields": {
             "key": "140",
@@ -848,7 +848,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 107,
         "fields": {
             "key": "141",
@@ -856,7 +856,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 108,
         "fields": {
             "key": "142",
@@ -864,7 +864,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 109,
         "fields": {
             "key": "143",
@@ -872,7 +872,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 110,
         "fields": {
             "key": "144",
@@ -880,7 +880,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 111,
         "fields": {
             "key": "145",
@@ -888,7 +888,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 112,
         "fields": {
             "key": "146",
@@ -896,7 +896,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 113,
         "fields": {
             "key": "147",
@@ -904,7 +904,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 114,
         "fields": {
             "key": "148",
@@ -912,7 +912,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 115,
         "fields": {
             "key": "149",
@@ -920,7 +920,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 116,
         "fields": {
             "key": "150",
@@ -928,7 +928,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 117,
         "fields": {
             "key": "151",
@@ -936,7 +936,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 118,
         "fields": {
             "key": "152",
@@ -944,7 +944,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 119,
         "fields": {
             "key": "153",
@@ -952,7 +952,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 120,
         "fields": {
             "key": "154",
@@ -960,7 +960,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 121,
         "fields": {
             "key": "155",
@@ -968,7 +968,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 122,
         "fields": {
             "key": "156",
@@ -976,7 +976,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 123,
         "fields": {
             "key": "157",
@@ -984,7 +984,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 124,
         "fields": {
             "key": "158",
@@ -992,7 +992,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 125,
         "fields": {
             "key": "159",
@@ -1000,7 +1000,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 126,
         "fields": {
             "key": "160",
@@ -1008,7 +1008,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 127,
         "fields": {
             "key": "161",
@@ -1016,7 +1016,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 128,
         "fields": {
             "key": "162",
@@ -1024,7 +1024,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 129,
         "fields": {
             "key": "163",
@@ -1032,7 +1032,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 130,
         "fields": {
             "key": "164",
@@ -1040,7 +1040,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 131,
         "fields": {
             "key": "165",
@@ -1048,7 +1048,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 132,
         "fields": {
             "key": "166",
@@ -1056,7 +1056,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 133,
         "fields": {
             "key": "167",
@@ -1064,7 +1064,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 134,
         "fields": {
             "key": "168",
@@ -1072,7 +1072,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 135,
         "fields": {
             "key": "169",
@@ -1080,7 +1080,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 136,
         "fields": {
             "key": "170",
@@ -1088,7 +1088,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 137,
         "fields": {
             "key": "171",
@@ -1096,7 +1096,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 138,
         "fields": {
             "key": "172",
@@ -1104,7 +1104,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 139,
         "fields": {
             "key": "173",
@@ -1112,7 +1112,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 140,
         "fields": {
             "key": "174",
@@ -1120,7 +1120,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 141,
         "fields": {
             "key": "175",
@@ -1128,7 +1128,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 142,
         "fields": {
             "key": "176",
@@ -1136,7 +1136,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 143,
         "fields": {
             "key": "177",
@@ -1144,7 +1144,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 144,
         "fields": {
             "key": "178",
@@ -1152,7 +1152,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 145,
         "fields": {
             "key": "179",
@@ -1160,7 +1160,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 146,
         "fields": {
             "key": "180",
@@ -1168,7 +1168,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 147,
         "fields": {
             "key": "181",
@@ -1176,7 +1176,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 148,
         "fields": {
             "key": "182",
@@ -1184,7 +1184,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 149,
         "fields": {
             "key": "183",
@@ -1192,7 +1192,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 150,
         "fields": {
             "key": "184",
@@ -1200,7 +1200,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 151,
         "fields": {
             "key": "185",
@@ -1208,7 +1208,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 152,
         "fields": {
             "key": "186",
@@ -1216,7 +1216,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 153,
         "fields": {
             "key": "187",
@@ -1224,7 +1224,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 154,
         "fields": {
             "key": "188",
@@ -1232,7 +1232,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 155,
         "fields": {
             "key": "189",
@@ -1240,7 +1240,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 156,
         "fields": {
             "key": "190",
@@ -1248,7 +1248,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 157,
         "fields": {
             "key": "191",
@@ -1256,7 +1256,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 158,
         "fields": {
             "key": "192",
@@ -1264,7 +1264,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 159,
         "fields": {
             "key": "193",
@@ -1272,7 +1272,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 160,
         "fields": {
             "key": "194",
@@ -1280,7 +1280,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 161,
         "fields": {
             "key": "195",
@@ -1288,7 +1288,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 162,
         "fields": {
             "key": "196",
@@ -1296,7 +1296,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 163,
         "fields": {
             "key": "197",
@@ -1304,7 +1304,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 164,
         "fields": {
             "key": "198",
@@ -1312,7 +1312,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 165,
         "fields": {
             "key": "199",
@@ -1320,7 +1320,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 166,
         "fields": {
             "key": "200",
@@ -1328,7 +1328,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 167,
         "fields": {
             "key": "201",
@@ -1336,7 +1336,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 168,
         "fields": {
             "key": "202",
@@ -1344,7 +1344,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 169,
         "fields": {
             "key": "203",
@@ -1352,7 +1352,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 170,
         "fields": {
             "key": "204",
@@ -1360,7 +1360,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 171,
         "fields": {
             "key": "205",
@@ -1368,7 +1368,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 172,
         "fields": {
             "key": "206",
@@ -1376,7 +1376,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 173,
         "fields": {
             "key": "207",
@@ -1384,7 +1384,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 174,
         "fields": {
             "key": "208",
@@ -1392,7 +1392,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 175,
         "fields": {
             "key": "209",
@@ -1400,7 +1400,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 176,
         "fields": {
             "key": "210",
@@ -1408,7 +1408,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 177,
         "fields": {
             "key": "211",
@@ -1416,7 +1416,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 178,
         "fields": {
             "key": "212",
@@ -1424,7 +1424,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 179,
         "fields": {
             "key": "213",
@@ -1432,7 +1432,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 180,
         "fields": {
             "key": "215",
@@ -1440,7 +1440,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 181,
         "fields": {
             "key": "216",
@@ -1448,7 +1448,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 182,
         "fields": {
             "key": "217",
@@ -1456,7 +1456,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 183,
         "fields": {
             "key": "218",
@@ -1464,7 +1464,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 184,
         "fields": {
             "key": "219",
@@ -1472,7 +1472,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 185,
         "fields": {
             "key": "221",
@@ -1480,7 +1480,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 186,
         "fields": {
             "key": "222",
@@ -1488,7 +1488,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 187,
         "fields": {
             "key": "223",
@@ -1496,7 +1496,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 188,
         "fields": {
             "key": "224",
@@ -1504,7 +1504,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 189,
         "fields": {
             "key": "225",
@@ -1512,7 +1512,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 190,
         "fields": {
             "key": "226",
@@ -1520,7 +1520,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 191,
         "fields": {
             "key": "227",
@@ -1528,7 +1528,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 192,
         "fields": {
             "key": "228",
@@ -1536,7 +1536,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 193,
         "fields": {
             "key": "229",
@@ -1544,7 +1544,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 194,
         "fields": {
             "key": "230",
@@ -1552,7 +1552,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 195,
         "fields": {
             "key": "231",
@@ -1560,7 +1560,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 196,
         "fields": {
             "key": "232",
@@ -1568,7 +1568,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 197,
         "fields": {
             "key": "233",
@@ -1576,7 +1576,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 198,
         "fields": {
             "key": "234",
@@ -1584,7 +1584,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 199,
         "fields": {
             "key": "235",
@@ -1592,7 +1592,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 200,
         "fields": {
             "key": "236",
@@ -1600,7 +1600,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 201,
         "fields": {
             "key": "237",
@@ -1608,7 +1608,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 202,
         "fields": {
             "key": "238",
@@ -1616,7 +1616,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 203,
         "fields": {
             "key": "239",
@@ -1624,7 +1624,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 204,
         "fields": {
             "key": "240",
@@ -1632,7 +1632,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 205,
         "fields": {
             "key": "241",
@@ -1640,7 +1640,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 206,
         "fields": {
             "key": "242",
@@ -1648,7 +1648,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 207,
         "fields": {
             "key": "245",
@@ -1656,7 +1656,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 208,
         "fields": {
             "key": "246",
@@ -1664,7 +1664,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 209,
         "fields": {
             "key": "247",
@@ -1672,7 +1672,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 210,
         "fields": {
             "key": "249",
@@ -1680,7 +1680,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 211,
         "fields": {
             "key": "250",
@@ -1688,7 +1688,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 212,
         "fields": {
             "key": "251",
@@ -1696,7 +1696,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 213,
         "fields": {
             "key": "252",
@@ -1704,7 +1704,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 214,
         "fields": {
             "key": "253",
@@ -1712,7 +1712,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 215,
         "fields": {
             "key": "254",
@@ -1720,7 +1720,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 216,
         "fields": {
             "key": "255",
@@ -1728,7 +1728,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 217,
         "fields": {
             "key": "256",
@@ -1736,7 +1736,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 218,
         "fields": {
             "key": "257",
@@ -1744,7 +1744,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 219,
         "fields": {
             "key": "258",
@@ -1752,7 +1752,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 220,
         "fields": {
             "key": "301",
@@ -1760,7 +1760,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 221,
         "fields": {
             "key": "302",
@@ -1768,7 +1768,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 222,
         "fields": {
             "key": "303",
@@ -1776,7 +1776,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 223,
         "fields": {
             "key": "304",
@@ -1784,7 +1784,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 224,
         "fields": {
             "key": "305",
@@ -1792,7 +1792,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 225,
         "fields": {
             "key": "306",
@@ -1800,7 +1800,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 226,
         "fields": {
             "key": "307",
@@ -1808,7 +1808,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 227,
         "fields": {
             "key": "308",
@@ -1816,7 +1816,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 228,
         "fields": {
             "key": "309",
@@ -1824,7 +1824,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 229,
         "fields": {
             "key": "310",
@@ -1832,7 +1832,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 230,
         "fields": {
             "key": "311",
@@ -1840,7 +1840,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 231,
         "fields": {
             "key": "313",
@@ -1848,7 +1848,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 232,
         "fields": {
             "key": "314",
@@ -1856,7 +1856,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 233,
         "fields": {
             "key": "315",
@@ -1864,7 +1864,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 234,
         "fields": {
             "key": "316",
@@ -1872,7 +1872,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 235,
         "fields": {
             "key": "317",
@@ -1880,7 +1880,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 236,
         "fields": {
             "key": "320",
@@ -1888,7 +1888,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 237,
         "fields": {
             "key": "321",
@@ -1896,7 +1896,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 238,
         "fields": {
             "key": "322",
@@ -1904,7 +1904,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 239,
         "fields": {
             "key": "323",
@@ -1912,7 +1912,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 240,
         "fields": {
             "key": "324",
@@ -1920,7 +1920,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 241,
         "fields": {
             "key": "325",
@@ -1928,7 +1928,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 242,
         "fields": {
             "key": "326",
@@ -1936,7 +1936,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 243,
         "fields": {
             "key": "327",
@@ -1944,7 +1944,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 244,
         "fields": {
             "key": "328",
@@ -1952,7 +1952,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 245,
         "fields": {
             "key": "329",
@@ -1960,7 +1960,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 246,
         "fields": {
             "key": "330",
@@ -1968,7 +1968,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 247,
         "fields": {
             "key": "331",
@@ -1976,7 +1976,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 248,
         "fields": {
             "key": "332",
@@ -1984,7 +1984,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 249,
         "fields": {
             "key": "333",
@@ -1992,7 +1992,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 250,
         "fields": {
             "key": "334",
@@ -2000,7 +2000,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 251,
         "fields": {
             "key": "335",
@@ -2008,7 +2008,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 252,
         "fields": {
             "key": "336",
@@ -2016,7 +2016,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 253,
         "fields": {
             "key": "337",
@@ -2024,7 +2024,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 254,
         "fields": {
             "key": "338",
@@ -2032,7 +2032,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 255,
         "fields": {
             "key": "339",
@@ -2040,7 +2040,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 256,
         "fields": {
             "key": "340",
@@ -2048,7 +2048,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 257,
         "fields": {
             "key": "341",
@@ -2056,7 +2056,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 258,
         "fields": {
             "key": "342",
@@ -2064,7 +2064,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 259,
         "fields": {
             "key": "343",
@@ -2072,7 +2072,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 260,
         "fields": {
             "key": "344",
@@ -2080,7 +2080,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 261,
         "fields": {
             "key": "345",
@@ -2088,7 +2088,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 262,
         "fields": {
             "key": "346",
@@ -2096,7 +2096,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 263,
         "fields": {
             "key": "347",
@@ -2104,7 +2104,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 264,
         "fields": {
             "key": "348",
@@ -2112,7 +2112,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 265,
         "fields": {
             "key": "349",
@@ -2120,7 +2120,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 266,
         "fields": {
             "key": "350",
@@ -2128,7 +2128,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 267,
         "fields": {
             "key": "351",
@@ -2136,7 +2136,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 268,
         "fields": {
             "key": "352",
@@ -2144,7 +2144,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 269,
         "fields": {
             "key": "353",
@@ -2152,7 +2152,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 270,
         "fields": {
             "key": "354",
@@ -2160,7 +2160,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 271,
         "fields": {
             "key": "355",
@@ -2168,7 +2168,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 272,
         "fields": {
             "key": "356",
@@ -2176,7 +2176,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 273,
         "fields": {
             "key": "357",
@@ -2184,7 +2184,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 274,
         "fields": {
             "key": "358",
@@ -2192,7 +2192,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 275,
         "fields": {
             "key": "359",
@@ -2200,7 +2200,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 276,
         "fields": {
             "key": "360",
@@ -2208,7 +2208,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 277,
         "fields": {
             "key": "361",
@@ -2216,7 +2216,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 278,
         "fields": {
             "key": "362",
@@ -2224,7 +2224,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 279,
         "fields": {
             "key": "363",
@@ -2232,7 +2232,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 280,
         "fields": {
             "key": "364",
@@ -2240,7 +2240,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 281,
         "fields": {
             "key": "365",
@@ -2248,7 +2248,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 282,
         "fields": {
             "key": "366",
@@ -2256,7 +2256,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 283,
         "fields": {
             "key": "367",
@@ -2264,7 +2264,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 284,
         "fields": {
             "key": "368",
@@ -2272,7 +2272,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 285,
         "fields": {
             "key": "369",
@@ -2280,7 +2280,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 286,
         "fields": {
             "key": "370",
@@ -2288,7 +2288,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 287,
         "fields": {
             "key": "371",
@@ -2296,7 +2296,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 288,
         "fields": {
             "key": "372",
@@ -2304,7 +2304,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 289,
         "fields": {
             "key": "373",
@@ -2312,7 +2312,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 290,
         "fields": {
             "key": "374",
@@ -2320,7 +2320,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 291,
         "fields": {
             "key": "375",
@@ -2328,7 +2328,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 292,
         "fields": {
             "key": "376",
@@ -2336,7 +2336,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 293,
         "fields": {
             "key": "378",
@@ -2344,7 +2344,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 294,
         "fields": {
             "key": "379",
@@ -2352,7 +2352,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 295,
         "fields": {
             "key": "380",
@@ -2360,7 +2360,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 296,
         "fields": {
             "key": "381",
@@ -2368,7 +2368,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 297,
         "fields": {
             "key": "382",
@@ -2376,7 +2376,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 298,
         "fields": {
             "key": "383",
@@ -2384,7 +2384,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 299,
         "fields": {
             "key": "384",
@@ -2392,7 +2392,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 300,
         "fields": {
             "key": "385",
@@ -2400,7 +2400,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 301,
         "fields": {
             "key": "386",
@@ -2408,7 +2408,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 302,
         "fields": {
             "key": "387",
@@ -2416,7 +2416,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 303,
         "fields": {
             "key": "388",
@@ -2424,7 +2424,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 304,
         "fields": {
             "key": "389",
@@ -2432,7 +2432,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 305,
         "fields": {
             "key": "390",
@@ -2440,7 +2440,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 306,
         "fields": {
             "key": "391",
@@ -2448,7 +2448,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 307,
         "fields": {
             "key": "392",
@@ -2456,7 +2456,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 308,
         "fields": {
             "key": "393",
@@ -2464,7 +2464,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 309,
         "fields": {
             "key": "394",
@@ -2472,7 +2472,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 310,
         "fields": {
             "key": "395",
@@ -2480,7 +2480,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 311,
         "fields": {
             "key": "396",
@@ -2488,7 +2488,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 312,
         "fields": {
             "key": "397",
@@ -2496,7 +2496,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 313,
         "fields": {
             "key": "398",
@@ -2504,7 +2504,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 314,
         "fields": {
             "key": "399",
@@ -2512,7 +2512,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 315,
         "fields": {
             "key": "400",
@@ -2520,7 +2520,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 316,
         "fields": {
             "key": "401",
@@ -2528,7 +2528,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 317,
         "fields": {
             "key": "402",
@@ -2536,7 +2536,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 318,
         "fields": {
             "key": "403",
@@ -2544,7 +2544,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 319,
         "fields": {
             "key": "404",
@@ -2552,7 +2552,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 320,
         "fields": {
             "key": "405",
@@ -2560,7 +2560,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 321,
         "fields": {
             "key": "406",
@@ -2568,7 +2568,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 322,
         "fields": {
             "key": "407",
@@ -2576,7 +2576,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 323,
         "fields": {
             "key": "408",
@@ -2584,7 +2584,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 324,
         "fields": {
             "key": "409",
@@ -2592,7 +2592,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 325,
         "fields": {
             "key": "410",
@@ -2600,7 +2600,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 326,
         "fields": {
             "key": "411",
@@ -2608,7 +2608,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 327,
         "fields": {
             "key": "412",
@@ -2616,7 +2616,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 328,
         "fields": {
             "key": "413",
@@ -2624,7 +2624,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 329,
         "fields": {
             "key": "414",
@@ -2632,7 +2632,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 330,
         "fields": {
             "key": "415",
@@ -2640,7 +2640,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 331,
         "fields": {
             "key": "416",
@@ -2648,7 +2648,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 332,
         "fields": {
             "key": "417",
@@ -2656,7 +2656,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 333,
         "fields": {
             "key": "418",
@@ -2664,7 +2664,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 334,
         "fields": {
             "key": "419",
@@ -2672,7 +2672,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 335,
         "fields": {
             "key": "420",
@@ -2680,7 +2680,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 336,
         "fields": {
             "key": "421",
@@ -2688,7 +2688,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 337,
         "fields": {
             "key": "422",
@@ -2696,7 +2696,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 338,
         "fields": {
             "key": "423",
@@ -2704,7 +2704,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 339,
         "fields": {
             "key": "424",
@@ -2712,7 +2712,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 340,
         "fields": {
             "key": "425",
@@ -2720,7 +2720,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 341,
         "fields": {
             "key": "426",
@@ -2728,7 +2728,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 342,
         "fields": {
             "key": "427",
@@ -2736,7 +2736,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 343,
         "fields": {
             "key": "428",
@@ -2744,7 +2744,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 344,
         "fields": {
             "key": "429",
@@ -2752,7 +2752,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 345,
         "fields": {
             "key": "430",
@@ -2760,7 +2760,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 346,
         "fields": {
             "key": "431",
@@ -2768,7 +2768,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 347,
         "fields": {
             "key": "432",
@@ -2776,7 +2776,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 348,
         "fields": {
             "key": "433",
@@ -2784,7 +2784,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 349,
         "fields": {
             "key": "434",
@@ -2792,7 +2792,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 350,
         "fields": {
             "key": "435",
@@ -2800,7 +2800,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 351,
         "fields": {
             "key": "436",
@@ -2808,7 +2808,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 352,
         "fields": {
             "key": "437",
@@ -2816,7 +2816,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 353,
         "fields": {
             "key": "438",
@@ -2824,7 +2824,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 354,
         "fields": {
             "key": "439",
@@ -2832,7 +2832,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 355,
         "fields": {
             "key": "440",
@@ -2840,7 +2840,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 356,
         "fields": {
             "key": "441",
@@ -2848,7 +2848,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 357,
         "fields": {
             "key": "442",
@@ -2856,7 +2856,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 358,
         "fields": {
             "key": "443",
@@ -2864,7 +2864,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 359,
         "fields": {
             "key": "444",
@@ -2872,7 +2872,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 360,
         "fields": {
             "key": "445",
@@ -2880,7 +2880,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 361,
         "fields": {
             "key": "446",
@@ -2888,7 +2888,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 362,
         "fields": {
             "key": "447",
@@ -2896,7 +2896,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 363,
         "fields": {
             "key": "448",
@@ -2904,7 +2904,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 364,
         "fields": {
             "key": "449",
@@ -2912,7 +2912,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 365,
         "fields": {
             "key": "450",
@@ -2920,7 +2920,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 366,
         "fields": {
             "key": "451",
@@ -2928,7 +2928,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 367,
         "fields": {
             "key": "452",
@@ -2936,7 +2936,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 368,
         "fields": {
             "key": "453",
@@ -2944,7 +2944,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 369,
         "fields": {
             "key": "454",
@@ -2952,7 +2952,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 370,
         "fields": {
             "key": "455",
@@ -2960,7 +2960,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 371,
         "fields": {
             "key": "456",
@@ -2968,7 +2968,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 372,
         "fields": {
             "key": "457",
@@ -2976,7 +2976,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 373,
         "fields": {
             "key": "458",
@@ -2984,7 +2984,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 374,
         "fields": {
             "key": "459",
@@ -2992,7 +2992,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 375,
         "fields": {
             "key": "460",
@@ -3000,7 +3000,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 376,
         "fields": {
             "key": "461",
@@ -3008,7 +3008,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 377,
         "fields": {
             "key": "462",
@@ -3016,7 +3016,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 378,
         "fields": {
             "key": "463",
@@ -3024,7 +3024,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 379,
         "fields": {
             "key": "464",
@@ -3032,7 +3032,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 380,
         "fields": {
             "key": "465",
@@ -3040,7 +3040,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 381,
         "fields": {
             "key": "466",
@@ -3048,7 +3048,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 382,
         "fields": {
             "key": "467",
@@ -3056,7 +3056,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 383,
         "fields": {
             "key": "468",
@@ -3064,7 +3064,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 384,
         "fields": {
             "key": "469",
@@ -3072,7 +3072,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 385,
         "fields": {
             "key": "470",
@@ -3080,7 +3080,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 386,
         "fields": {
             "key": "471",
@@ -3088,7 +3088,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 387,
         "fields": {
             "key": "472",
@@ -3096,7 +3096,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 388,
         "fields": {
             "key": "473",
@@ -3104,7 +3104,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 389,
         "fields": {
             "key": "474",
@@ -3112,7 +3112,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 390,
         "fields": {
             "key": "475",
@@ -3120,7 +3120,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 391,
         "fields": {
             "key": "476",
@@ -3128,7 +3128,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 392,
         "fields": {
             "key": "477",
@@ -3136,7 +3136,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 393,
         "fields": {
             "key": "478",
@@ -3144,7 +3144,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 394,
         "fields": {
             "key": "479",
@@ -3152,7 +3152,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 395,
         "fields": {
             "key": "480",
@@ -3160,7 +3160,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 396,
         "fields": {
             "key": "481",
@@ -3168,7 +3168,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 397,
         "fields": {
             "key": "482",
@@ -3176,7 +3176,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 398,
         "fields": {
             "key": "483",
@@ -3184,7 +3184,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 399,
         "fields": {
             "key": "484",
@@ -3192,7 +3192,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 400,
         "fields": {
             "key": "485",
@@ -3200,7 +3200,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 401,
         "fields": {
             "key": "486",
@@ -3208,7 +3208,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 402,
         "fields": {
             "key": "487",
@@ -3216,7 +3216,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 403,
         "fields": {
             "key": "488",
@@ -3224,7 +3224,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 404,
         "fields": {
             "key": "489",
@@ -3232,7 +3232,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 405,
         "fields": {
             "key": "490",
@@ -3240,7 +3240,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 406,
         "fields": {
             "key": "491",
@@ -3248,7 +3248,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 407,
         "fields": {
             "key": "492",
@@ -3256,7 +3256,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 408,
         "fields": {
             "key": "493",
@@ -3264,7 +3264,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 409,
         "fields": {
             "key": "494",
@@ -3272,7 +3272,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 410,
         "fields": {
             "key": "495",
@@ -3280,7 +3280,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 411,
         "fields": {
             "key": "496",
@@ -3288,7 +3288,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 412,
         "fields": {
             "key": "497",
@@ -3296,7 +3296,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 413,
         "fields": {
             "key": "498",
@@ -3304,7 +3304,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 414,
         "fields": {
             "key": "499",
@@ -3312,7 +3312,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 415,
         "fields": {
             "key": "500",
@@ -3320,7 +3320,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 416,
         "fields": {
             "key": "501",
@@ -3328,7 +3328,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 417,
         "fields": {
             "key": "502",
@@ -3336,7 +3336,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 418,
         "fields": {
             "key": "503",
@@ -3344,7 +3344,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 419,
         "fields": {
             "key": "504",
@@ -3352,7 +3352,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 420,
         "fields": {
             "key": "505",
@@ -3360,7 +3360,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 421,
         "fields": {
             "key": "506",
@@ -3368,7 +3368,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 422,
         "fields": {
             "key": "507",
@@ -3376,7 +3376,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 423,
         "fields": {
             "key": "508",
@@ -3384,7 +3384,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 424,
         "fields": {
             "key": "509",
@@ -3392,7 +3392,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 425,
         "fields": {
             "key": "510",
@@ -3400,7 +3400,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 426,
         "fields": {
             "key": "511",
@@ -3408,7 +3408,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 427,
         "fields": {
             "key": "512",
@@ -3416,7 +3416,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 428,
         "fields": {
             "key": "513",
@@ -3424,7 +3424,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 429,
         "fields": {
             "key": "514",
@@ -3432,7 +3432,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 430,
         "fields": {
             "key": "515",
@@ -3440,7 +3440,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 431,
         "fields": {
             "key": "516",
@@ -3448,7 +3448,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 432,
         "fields": {
             "key": "517",
@@ -3456,7 +3456,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 433,
         "fields": {
             "key": "518",
@@ -3464,7 +3464,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 434,
         "fields": {
             "key": "519",
@@ -3472,7 +3472,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 435,
         "fields": {
             "key": "520",
@@ -3480,7 +3480,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 436,
         "fields": {
             "key": "521",
@@ -3488,7 +3488,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 437,
         "fields": {
             "key": "522",
@@ -3496,7 +3496,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 438,
         "fields": {
             "key": "523",
@@ -3504,7 +3504,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 439,
         "fields": {
             "key": "524",
@@ -3512,7 +3512,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 440,
         "fields": {
             "key": "525",
@@ -3520,7 +3520,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 441,
         "fields": {
             "key": "526",
@@ -3528,7 +3528,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 442,
         "fields": {
             "key": "527",
@@ -3536,7 +3536,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 443,
         "fields": {
             "key": "528",
@@ -3544,7 +3544,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 444,
         "fields": {
             "key": "529",
@@ -3552,7 +3552,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 445,
         "fields": {
             "key": "530",
@@ -3560,7 +3560,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 446,
         "fields": {
             "key": "531",
@@ -3568,7 +3568,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 447,
         "fields": {
             "key": "532",
@@ -3576,7 +3576,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 448,
         "fields": {
             "key": "533",
@@ -3584,7 +3584,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 449,
         "fields": {
             "key": "534",
@@ -3592,7 +3592,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 450,
         "fields": {
             "key": "535",
@@ -3600,7 +3600,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 451,
         "fields": {
             "key": "536",
@@ -3608,7 +3608,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 452,
         "fields": {
             "key": "537",
@@ -3616,7 +3616,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 453,
         "fields": {
             "key": "538",
@@ -3624,7 +3624,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 454,
         "fields": {
             "key": "539",
@@ -3632,7 +3632,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 455,
         "fields": {
             "key": "540",
@@ -3640,7 +3640,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 456,
         "fields": {
             "key": "541",
@@ -3648,7 +3648,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 457,
         "fields": {
             "key": "542",
@@ -3656,7 +3656,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 458,
         "fields": {
             "key": "543",
@@ -3664,7 +3664,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 459,
         "fields": {
             "key": "544",
@@ -3672,7 +3672,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 460,
         "fields": {
             "key": "545",
@@ -3680,7 +3680,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 461,
         "fields": {
             "key": "546",
@@ -3688,7 +3688,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 462,
         "fields": {
             "key": "547",
@@ -3696,7 +3696,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 463,
         "fields": {
             "key": "548",
@@ -3704,7 +3704,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 464,
         "fields": {
             "key": "549",
@@ -3712,7 +3712,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 465,
         "fields": {
             "key": "550",
@@ -3720,7 +3720,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 466,
         "fields": {
             "key": "551",
@@ -3728,7 +3728,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 467,
         "fields": {
             "key": "552",
@@ -3736,7 +3736,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 468,
         "fields": {
             "key": "553",
@@ -3744,7 +3744,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 469,
         "fields": {
             "key": "554",
@@ -3752,7 +3752,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 470,
         "fields": {
             "key": "555",
@@ -3760,7 +3760,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 471,
         "fields": {
             "key": "556",
@@ -3768,7 +3768,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 472,
         "fields": {
             "key": "557",
@@ -3776,7 +3776,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 473,
         "fields": {
             "key": "558",
@@ -3784,7 +3784,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 474,
         "fields": {
             "key": "559",
@@ -3792,7 +3792,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 475,
         "fields": {
             "key": "560",
@@ -3800,7 +3800,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 476,
         "fields": {
             "key": "561",
@@ -3808,7 +3808,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 477,
         "fields": {
             "key": "562",
@@ -3816,7 +3816,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 478,
         "fields": {
             "key": "563",
@@ -3824,7 +3824,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 479,
         "fields": {
             "key": "564",
@@ -3832,7 +3832,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 480,
         "fields": {
             "key": "565",
@@ -3840,7 +3840,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 481,
         "fields": {
             "key": "572",
@@ -3848,7 +3848,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 482,
         "fields": {
             "key": "573",
@@ -3856,7 +3856,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 483,
         "fields": {
             "key": "575",
@@ -3864,7 +3864,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 484,
         "fields": {
             "key": "576",
@@ -3872,7 +3872,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 485,
         "fields": {
             "key": "578",
@@ -3880,7 +3880,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 486,
         "fields": {
             "key": "579",
@@ -3888,7 +3888,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 487,
         "fields": {
             "key": "580",
@@ -3896,7 +3896,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 488,
         "fields": {
             "key": "581",
@@ -3904,7 +3904,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 489,
         "fields": {
             "key": "582",
@@ -3912,7 +3912,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 490,
         "fields": {
             "key": "583",
@@ -3920,7 +3920,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 491,
         "fields": {
             "key": "584",
@@ -3928,7 +3928,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 492,
         "fields": {
             "key": "585",
@@ -3936,7 +3936,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 493,
         "fields": {
             "key": "586",
@@ -3944,7 +3944,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 494,
         "fields": {
             "key": "587",
@@ -3952,7 +3952,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 495,
         "fields": {
             "key": "588",
@@ -3960,7 +3960,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 496,
         "fields": {
             "key": "589",
@@ -3968,7 +3968,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 497,
         "fields": {
             "key": "590",
@@ -3976,7 +3976,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 498,
         "fields": {
             "key": "591",
@@ -3984,7 +3984,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 499,
         "fields": {
             "key": "592",
@@ -3992,7 +3992,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 500,
         "fields": {
             "key": "593",
@@ -4000,7 +4000,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 501,
         "fields": {
             "key": "594",
@@ -4008,7 +4008,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 502,
         "fields": {
             "key": "595",
@@ -4016,7 +4016,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 503,
         "fields": {
             "key": "596",
@@ -4024,7 +4024,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 504,
         "fields": {
             "key": "597",
@@ -4032,7 +4032,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 505,
         "fields": {
             "key": "598",
@@ -4040,7 +4040,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 506,
         "fields": {
             "key": "599",
@@ -4048,7 +4048,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 507,
         "fields": {
             "key": "600",
@@ -4056,7 +4056,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 508,
         "fields": {
             "key": "601",
@@ -4064,7 +4064,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 509,
         "fields": {
             "key": "602",
@@ -4072,7 +4072,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 510,
         "fields": {
             "key": "603",
@@ -4080,7 +4080,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 511,
         "fields": {
             "key": "604",
@@ -4088,7 +4088,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 512,
         "fields": {
             "key": "605",
@@ -4096,7 +4096,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 513,
         "fields": {
             "key": "606",
@@ -4104,7 +4104,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 514,
         "fields": {
             "key": "607",
@@ -4112,7 +4112,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 515,
         "fields": {
             "key": "608",
@@ -4120,7 +4120,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 516,
         "fields": {
             "key": "609",
@@ -4128,7 +4128,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 517,
         "fields": {
             "key": "610",
@@ -4136,7 +4136,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 518,
         "fields": {
             "key": "611",
@@ -4144,7 +4144,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 519,
         "fields": {
             "key": "612",
@@ -4152,7 +4152,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 520,
         "fields": {
             "key": "613",
@@ -4160,7 +4160,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 521,
         "fields": {
             "key": "614",
@@ -4168,7 +4168,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 522,
         "fields": {
             "key": "615",
@@ -4176,7 +4176,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 523,
         "fields": {
             "key": "616",
@@ -4184,7 +4184,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 524,
         "fields": {
             "key": "617",
@@ -4192,7 +4192,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 525,
         "fields": {
             "key": "618",
@@ -4200,7 +4200,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 526,
         "fields": {
             "key": "619",
@@ -4208,7 +4208,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 527,
         "fields": {
             "key": "620",
@@ -4216,7 +4216,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 528,
         "fields": {
             "key": "621",
@@ -4224,7 +4224,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 529,
         "fields": {
             "key": "622",
@@ -4232,7 +4232,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 530,
         "fields": {
             "key": "623",
@@ -4240,7 +4240,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 531,
         "fields": {
             "key": "624",
@@ -4248,7 +4248,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 532,
         "fields": {
             "key": "625",
@@ -4256,7 +4256,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 533,
         "fields": {
             "key": "626",
@@ -4264,7 +4264,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 534,
         "fields": {
             "key": "627",
@@ -4272,7 +4272,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 535,
         "fields": {
             "key": "628",
@@ -4280,7 +4280,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 536,
         "fields": {
             "key": "629",
@@ -4288,7 +4288,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 537,
         "fields": {
             "key": "630",
@@ -4296,7 +4296,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 538,
         "fields": {
             "key": "631",
@@ -4304,7 +4304,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 539,
         "fields": {
             "key": "632",
@@ -4312,7 +4312,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 540,
         "fields": {
             "key": "633",
@@ -4320,7 +4320,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 541,
         "fields": {
             "key": "634",
@@ -4328,7 +4328,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 542,
         "fields": {
             "key": "635",
@@ -4336,7 +4336,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 543,
         "fields": {
             "key": "636",
@@ -4344,7 +4344,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 544,
         "fields": {
             "key": "637",
@@ -4352,7 +4352,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 545,
         "fields": {
             "key": "638",
@@ -4360,7 +4360,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 546,
         "fields": {
             "key": "639",
@@ -4368,7 +4368,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 547,
         "fields": {
             "key": "640",
@@ -4376,7 +4376,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 548,
         "fields": {
             "key": "641",
@@ -4384,7 +4384,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 549,
         "fields": {
             "key": "642",
@@ -4392,7 +4392,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 550,
         "fields": {
             "key": "643",
@@ -4400,7 +4400,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 551,
         "fields": {
             "key": "644",
@@ -4408,7 +4408,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 552,
         "fields": {
             "key": "645",
@@ -4416,7 +4416,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 553,
         "fields": {
             "key": "646",
@@ -4424,7 +4424,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 554,
         "fields": {
             "key": "647",
@@ -4432,7 +4432,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 555,
         "fields": {
             "key": "648",
@@ -4440,7 +4440,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 556,
         "fields": {
             "key": "649",
@@ -4448,7 +4448,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 557,
         "fields": {
             "key": "650",
@@ -4456,7 +4456,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 558,
         "fields": {
             "key": "651",
@@ -4464,7 +4464,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 559,
         "fields": {
             "key": "652",
@@ -4472,7 +4472,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 560,
         "fields": {
             "key": "653",
@@ -4480,7 +4480,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 561,
         "fields": {
             "key": "654",
@@ -4488,7 +4488,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 562,
         "fields": {
             "key": "655",
@@ -4496,7 +4496,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 563,
         "fields": {
             "key": "656",
@@ -4504,7 +4504,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 564,
         "fields": {
             "key": "657",
@@ -4512,7 +4512,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 565,
         "fields": {
             "key": "658",
@@ -4520,7 +4520,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 566,
         "fields": {
             "key": "659",
@@ -4528,7 +4528,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 567,
         "fields": {
             "key": "660",
@@ -4536,7 +4536,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 568,
         "fields": {
             "key": "661",
@@ -4544,7 +4544,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 569,
         "fields": {
             "key": "662",
@@ -4552,7 +4552,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 570,
         "fields": {
             "key": "663",
@@ -4560,7 +4560,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 571,
         "fields": {
             "key": "664",
@@ -4568,7 +4568,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 572,
         "fields": {
             "key": "665",
@@ -4576,7 +4576,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 573,
         "fields": {
             "key": "666",
@@ -4584,7 +4584,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 574,
         "fields": {
             "key": "667",
@@ -4592,7 +4592,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 575,
         "fields": {
             "key": "668",
@@ -4600,7 +4600,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 576,
         "fields": {
             "key": "669",
@@ -4608,7 +4608,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 577,
         "fields": {
             "key": "670",
@@ -4616,7 +4616,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 578,
         "fields": {
             "key": "671",
@@ -4624,7 +4624,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 579,
         "fields": {
             "key": "672",
@@ -4632,7 +4632,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 580,
         "fields": {
             "key": "673",
@@ -4640,7 +4640,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 581,
         "fields": {
             "key": "674",
@@ -4648,7 +4648,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 582,
         "fields": {
             "key": "675",
@@ -4656,7 +4656,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 583,
         "fields": {
             "key": "676",
@@ -4664,7 +4664,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 584,
         "fields": {
             "key": "677",
@@ -4672,7 +4672,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 585,
         "fields": {
             "key": "678",
@@ -4680,7 +4680,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 586,
         "fields": {
             "key": "679",
@@ -4688,7 +4688,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 587,
         "fields": {
             "key": "680",
@@ -4696,7 +4696,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 588,
         "fields": {
             "key": "681",
@@ -4704,7 +4704,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 589,
         "fields": {
             "key": "682",
@@ -4712,7 +4712,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 590,
         "fields": {
             "key": "683",
@@ -4720,7 +4720,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 591,
         "fields": {
             "key": "684",
@@ -4728,7 +4728,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 592,
         "fields": {
             "key": "685",
@@ -4736,7 +4736,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 593,
         "fields": {
             "key": "686",
@@ -4744,7 +4744,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 594,
         "fields": {
             "key": "687",
@@ -4752,7 +4752,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 595,
         "fields": {
             "key": "688",
@@ -4760,7 +4760,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 596,
         "fields": {
             "key": "689",
@@ -4768,7 +4768,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 597,
         "fields": {
             "key": "690",
@@ -4776,7 +4776,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 598,
         "fields": {
             "key": "691",
@@ -4784,7 +4784,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 599,
         "fields": {
             "key": "692",
@@ -4792,7 +4792,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 600,
         "fields": {
             "key": "693",
@@ -4800,7 +4800,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 601,
         "fields": {
             "key": "694",
@@ -4808,7 +4808,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 602,
         "fields": {
             "key": "695",
@@ -4816,7 +4816,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 603,
         "fields": {
             "key": "696",
@@ -4824,7 +4824,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 604,
         "fields": {
             "key": "697",
@@ -4832,7 +4832,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 605,
         "fields": {
             "key": "698",
@@ -4840,7 +4840,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 606,
         "fields": {
             "key": "699",
@@ -4848,7 +4848,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 607,
         "fields": {
             "key": "700",
@@ -4856,7 +4856,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 608,
         "fields": {
             "key": "701",
@@ -4864,7 +4864,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 609,
         "fields": {
             "key": "702",
@@ -4872,7 +4872,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 610,
         "fields": {
             "key": "703",
@@ -4880,7 +4880,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 611,
         "fields": {
             "key": "704",
@@ -4888,7 +4888,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 612,
         "fields": {
             "key": "705",
@@ -4896,7 +4896,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 613,
         "fields": {
             "key": "706",
@@ -4904,7 +4904,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 614,
         "fields": {
             "key": "707",
@@ -4912,7 +4912,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 615,
         "fields": {
             "key": "708",
@@ -4920,7 +4920,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 616,
         "fields": {
             "key": "709",
@@ -4928,7 +4928,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 617,
         "fields": {
             "key": "710",
@@ -4936,7 +4936,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 618,
         "fields": {
             "key": "711",
@@ -4944,7 +4944,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 619,
         "fields": {
             "key": "712",
@@ -4952,7 +4952,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 620,
         "fields": {
             "key": "713",
@@ -4960,7 +4960,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 621,
         "fields": {
             "key": "714",
@@ -4968,7 +4968,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 622,
         "fields": {
             "key": "715",
@@ -4976,7 +4976,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 623,
         "fields": {
             "key": "716",
@@ -4984,7 +4984,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 624,
         "fields": {
             "key": "717",
@@ -4992,7 +4992,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 625,
         "fields": {
             "key": "718",
@@ -5000,7 +5000,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 626,
         "fields": {
             "key": "719",
@@ -5008,7 +5008,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 627,
         "fields": {
             "key": "720",
@@ -5016,7 +5016,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 628,
         "fields": {
             "key": "721",
@@ -5024,7 +5024,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 629,
         "fields": {
             "key": "722",
@@ -5032,7 +5032,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 630,
         "fields": {
             "key": "723",
@@ -5040,7 +5040,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 631,
         "fields": {
             "key": "724",
@@ -5048,7 +5048,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 632,
         "fields": {
             "key": "725",
@@ -5056,7 +5056,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 633,
         "fields": {
             "key": "726",
@@ -5064,7 +5064,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 634,
         "fields": {
             "key": "727",
@@ -5072,7 +5072,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 635,
         "fields": {
             "key": "728",
@@ -5080,7 +5080,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 636,
         "fields": {
             "key": "729",
@@ -5088,7 +5088,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 637,
         "fields": {
             "key": "730",
@@ -5096,7 +5096,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 638,
         "fields": {
             "key": "731",
@@ -5104,7 +5104,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 639,
         "fields": {
             "key": "732",
@@ -5112,7 +5112,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 640,
         "fields": {
             "key": "733",
@@ -5120,7 +5120,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 641,
         "fields": {
             "key": "734",
@@ -5128,7 +5128,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 642,
         "fields": {
             "key": "735",
@@ -5136,7 +5136,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 643,
         "fields": {
             "key": "736",
@@ -5144,7 +5144,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 644,
         "fields": {
             "key": "737",
@@ -5152,7 +5152,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 645,
         "fields": {
             "key": "738",
@@ -5160,7 +5160,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 646,
         "fields": {
             "key": "739",
@@ -5168,7 +5168,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 647,
         "fields": {
             "key": "740",
@@ -5176,7 +5176,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 648,
         "fields": {
             "key": "741",
@@ -5184,7 +5184,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 649,
         "fields": {
             "key": "742",
@@ -5192,7 +5192,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 650,
         "fields": {
             "key": "743",
@@ -5200,7 +5200,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 651,
         "fields": {
             "key": "744",
@@ -5208,7 +5208,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 652,
         "fields": {
             "key": "745",
@@ -5216,7 +5216,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 653,
         "fields": {
             "key": "746",
@@ -5224,7 +5224,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 654,
         "fields": {
             "key": "747",
@@ -5232,7 +5232,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 655,
         "fields": {
             "key": "748",
@@ -5240,7 +5240,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 656,
         "fields": {
             "key": "749",
@@ -5248,7 +5248,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 657,
         "fields": {
             "key": "750",
@@ -5256,7 +5256,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 658,
         "fields": {
             "key": "751",
@@ -5264,7 +5264,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 659,
         "fields": {
             "key": "752",
@@ -5272,7 +5272,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 660,
         "fields": {
             "key": "753",
@@ -5280,7 +5280,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 661,
         "fields": {
             "key": "754",
@@ -5288,7 +5288,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 662,
         "fields": {
             "key": "755",
@@ -5296,7 +5296,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 663,
         "fields": {
             "key": "756",
@@ -5304,7 +5304,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 664,
         "fields": {
             "key": "757",
@@ -5312,7 +5312,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 665,
         "fields": {
             "key": "758",
@@ -5320,7 +5320,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 666,
         "fields": {
             "key": "759",
@@ -5328,7 +5328,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 667,
         "fields": {
             "key": "760",
@@ -5336,7 +5336,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 668,
         "fields": {
             "key": "761",
@@ -5344,7 +5344,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 669,
         "fields": {
             "key": "762",
@@ -5352,7 +5352,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 670,
         "fields": {
             "key": "763",
@@ -5360,7 +5360,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 671,
         "fields": {
             "key": "764",
@@ -5368,7 +5368,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 672,
         "fields": {
             "key": "765",
@@ -5376,7 +5376,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 673,
         "fields": {
             "key": "766",
@@ -5384,7 +5384,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 674,
         "fields": {
             "key": "767",
@@ -5392,7 +5392,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 675,
         "fields": {
             "key": "768",
@@ -5400,7 +5400,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 676,
         "fields": {
             "key": "769",
@@ -5408,7 +5408,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 677,
         "fields": {
             "key": "770",
@@ -5416,7 +5416,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 678,
         "fields": {
             "key": "771",
@@ -5424,7 +5424,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 679,
         "fields": {
             "key": "772",
@@ -5432,7 +5432,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 680,
         "fields": {
             "key": "773",
@@ -5440,7 +5440,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 681,
         "fields": {
             "key": "774",
@@ -5448,7 +5448,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 682,
         "fields": {
             "key": "775",
@@ -5456,7 +5456,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 683,
         "fields": {
             "key": "779",
@@ -5464,7 +5464,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 684,
         "fields": {
             "key": "780",
@@ -5472,7 +5472,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 685,
         "fields": {
             "key": "781",
@@ -5480,7 +5480,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 686,
         "fields": {
             "key": "782",
@@ -5488,7 +5488,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 687,
         "fields": {
             "key": "783",
@@ -5496,7 +5496,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 688,
         "fields": {
             "key": "784",
@@ -5504,7 +5504,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 689,
         "fields": {
             "key": "785",
@@ -5512,7 +5512,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 690,
         "fields": {
             "key": "786",
@@ -5520,7 +5520,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 691,
         "fields": {
             "key": "787",
@@ -5528,7 +5528,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 692,
         "fields": {
             "key": "789",
@@ -5536,7 +5536,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 693,
         "fields": {
             "key": "790",
@@ -5544,7 +5544,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 694,
         "fields": {
             "key": "791",
@@ -5552,7 +5552,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 695,
         "fields": {
             "key": "792",
@@ -5560,7 +5560,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 696,
         "fields": {
             "key": "793",
@@ -5568,7 +5568,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 697,
         "fields": {
             "key": "794",
@@ -5576,7 +5576,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 698,
         "fields": {
             "key": "795",
@@ -5584,7 +5584,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 699,
         "fields": {
             "key": "796",
@@ -5592,7 +5592,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 700,
         "fields": {
             "key": "797",
@@ -5600,7 +5600,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 701,
         "fields": {
             "key": "798",
@@ -5608,7 +5608,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 702,
         "fields": {
             "key": "799",
@@ -5616,7 +5616,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 703,
         "fields": {
             "key": "800",
@@ -5624,7 +5624,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 704,
         "fields": {
             "key": "801",
@@ -5632,7 +5632,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 705,
         "fields": {
             "key": "802",
@@ -5640,7 +5640,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 706,
         "fields": {
             "key": "803",
@@ -5648,7 +5648,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 707,
         "fields": {
             "key": "804",
@@ -5656,7 +5656,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 708,
         "fields": {
             "key": "805",
@@ -5664,7 +5664,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 709,
         "fields": {
             "key": "806",
@@ -5672,7 +5672,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 710,
         "fields": {
             "key": "807",
@@ -5680,7 +5680,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 711,
         "fields": {
             "key": "808",
@@ -5688,7 +5688,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 712,
         "fields": {
             "key": "809",
@@ -5696,7 +5696,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 713,
         "fields": {
             "key": "810",
@@ -5704,7 +5704,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 714,
         "fields": {
             "key": "811",
@@ -5712,7 +5712,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 715,
         "fields": {
             "key": "812",
@@ -5720,7 +5720,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 716,
         "fields": {
             "key": "813",
@@ -5728,7 +5728,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 717,
         "fields": {
             "key": "814",
@@ -5736,7 +5736,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 718,
         "fields": {
             "key": "815",
@@ -5744,7 +5744,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 719,
         "fields": {
             "key": "816",
@@ -5752,7 +5752,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 720,
         "fields": {
             "key": "817",
@@ -5760,7 +5760,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 721,
         "fields": {
             "key": "818",
@@ -5768,7 +5768,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 722,
         "fields": {
             "key": "819",
@@ -5776,7 +5776,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 723,
         "fields": {
             "key": "820",
@@ -5784,7 +5784,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 724,
         "fields": {
             "key": "821",
@@ -5792,7 +5792,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 725,
         "fields": {
             "key": "822",
@@ -5800,7 +5800,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 726,
         "fields": {
             "key": "823",
@@ -5808,7 +5808,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 727,
         "fields": {
             "key": "824",
@@ -5816,7 +5816,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 728,
         "fields": {
             "key": "825",
@@ -5824,7 +5824,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 729,
         "fields": {
             "key": "826",
@@ -5832,7 +5832,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 730,
         "fields": {
             "key": "827",
@@ -5840,7 +5840,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 731,
         "fields": {
             "key": "828",
@@ -5848,7 +5848,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 732,
         "fields": {
             "key": "829",
@@ -5856,7 +5856,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 733,
         "fields": {
             "key": "830",
@@ -5864,7 +5864,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 734,
         "fields": {
             "key": "831",
@@ -5872,7 +5872,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 735,
         "fields": {
             "key": "832",
@@ -5880,7 +5880,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 736,
         "fields": {
             "key": "833",
@@ -5888,7 +5888,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 737,
         "fields": {
             "key": "834",
@@ -5896,7 +5896,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 738,
         "fields": {
             "key": "835",
@@ -5904,7 +5904,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 739,
         "fields": {
             "key": "836",
@@ -5912,7 +5912,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 740,
         "fields": {
             "key": "837",
@@ -5920,7 +5920,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 741,
         "fields": {
             "key": "838",
@@ -5928,7 +5928,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 742,
         "fields": {
             "key": "839",
@@ -5936,7 +5936,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 743,
         "fields": {
             "key": "840",
@@ -5944,7 +5944,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 744,
         "fields": {
             "key": "841",
@@ -5952,7 +5952,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 745,
         "fields": {
             "key": "842",
@@ -5960,7 +5960,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 746,
         "fields": {
             "key": "843",
@@ -5968,7 +5968,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 747,
         "fields": {
             "key": "844",
@@ -5976,7 +5976,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 748,
         "fields": {
             "key": "845",
@@ -5984,7 +5984,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 749,
         "fields": {
             "key": "846",
@@ -5992,7 +5992,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 750,
         "fields": {
             "key": "847",
@@ -6000,7 +6000,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 751,
         "fields": {
             "key": "848",
@@ -6008,7 +6008,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 752,
         "fields": {
             "key": "849",
@@ -6016,7 +6016,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 753,
         "fields": {
             "key": "850",
@@ -6024,7 +6024,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 754,
         "fields": {
             "key": "851",
@@ -6032,7 +6032,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 755,
         "fields": {
             "key": "852",
@@ -6040,7 +6040,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 756,
         "fields": {
             "key": "853",
@@ -6048,7 +6048,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 757,
         "fields": {
             "key": "854",
@@ -6056,7 +6056,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 758,
         "fields": {
             "key": "855",
@@ -6064,7 +6064,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 759,
         "fields": {
             "key": "856",
@@ -6072,7 +6072,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 760,
         "fields": {
             "key": "857",
@@ -6080,7 +6080,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 761,
         "fields": {
             "key": "858",
@@ -6088,7 +6088,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 762,
         "fields": {
             "key": "859",
@@ -6096,7 +6096,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 763,
         "fields": {
             "key": "860",
@@ -6104,7 +6104,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 764,
         "fields": {
             "key": "861",
@@ -6112,7 +6112,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 765,
         "fields": {
             "key": "862",
@@ -6120,7 +6120,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 766,
         "fields": {
             "key": "863",
@@ -6128,7 +6128,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 767,
         "fields": {
             "key": "864",
@@ -6136,7 +6136,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 768,
         "fields": {
             "key": "865",
@@ -6144,7 +6144,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 769,
         "fields": {
             "key": "866",
@@ -6152,7 +6152,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 770,
         "fields": {
             "key": "867",
@@ -6160,7 +6160,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 771,
         "fields": {
             "key": "868",
@@ -6168,7 +6168,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 772,
         "fields": {
             "key": "869",
@@ -6176,7 +6176,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 773,
         "fields": {
             "key": "870",
@@ -6184,7 +6184,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 774,
         "fields": {
             "key": "871",
@@ -6192,7 +6192,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 775,
         "fields": {
             "key": "872",
@@ -6200,7 +6200,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 776,
         "fields": {
             "key": "873",
@@ -6208,7 +6208,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 777,
         "fields": {
             "key": "874",
@@ -6216,7 +6216,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 778,
         "fields": {
             "key": "875",
@@ -6224,7 +6224,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 779,
         "fields": {
             "key": "876",
@@ -6232,7 +6232,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 780,
         "fields": {
             "key": "877",
@@ -6240,7 +6240,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 781,
         "fields": {
             "key": "878",
@@ -6248,7 +6248,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 782,
         "fields": {
             "key": "879",
@@ -6256,7 +6256,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 783,
         "fields": {
             "key": "880",
@@ -6264,7 +6264,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 784,
         "fields": {
             "key": "881",
@@ -6272,7 +6272,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 785,
         "fields": {
             "key": "882",
@@ -6280,7 +6280,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 786,
         "fields": {
             "key": "883",
@@ -6288,7 +6288,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 787,
         "fields": {
             "key": "884",
@@ -6296,7 +6296,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 788,
         "fields": {
             "key": "885",
@@ -6304,7 +6304,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 789,
         "fields": {
             "key": "886",
@@ -6312,7 +6312,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 790,
         "fields": {
             "key": "887",
@@ -6320,7 +6320,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 791,
         "fields": {
             "key": "888",
@@ -6328,7 +6328,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 792,
         "fields": {
             "key": "889",
@@ -6336,7 +6336,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 793,
         "fields": {
             "key": "890",
@@ -6344,7 +6344,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 794,
         "fields": {
             "key": "901",
@@ -6352,7 +6352,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 795,
         "fields": {
             "key": "902",
@@ -6360,7 +6360,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 796,
         "fields": {
             "key": "903",
@@ -6368,7 +6368,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 797,
         "fields": {
             "key": "904",
@@ -6376,7 +6376,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 798,
         "fields": {
             "key": "905",
@@ -6384,7 +6384,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 799,
         "fields": {
             "key": "906",
@@ -6392,7 +6392,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 800,
         "fields": {
             "key": "907",
@@ -6400,7 +6400,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 801,
         "fields": {
             "key": "908",
@@ -6408,7 +6408,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 802,
         "fields": {
             "key": "909",
@@ -6416,7 +6416,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 803,
         "fields": {
             "key": "910",
@@ -6424,7 +6424,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 804,
         "fields": {
             "key": "911",
@@ -6432,7 +6432,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 805,
         "fields": {
             "key": "912",
@@ -6440,7 +6440,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 806,
         "fields": {
             "key": "913",
@@ -6448,7 +6448,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 807,
         "fields": {
             "key": "914",
@@ -6456,7 +6456,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 808,
         "fields": {
             "key": "915",
@@ -6464,7 +6464,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 809,
         "fields": {
             "key": "916",
@@ -6472,7 +6472,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 810,
         "fields": {
             "key": "917",
@@ -6480,7 +6480,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 811,
         "fields": {
             "key": "918",
@@ -6488,7 +6488,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 812,
         "fields": {
             "key": "919",
@@ -6496,7 +6496,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 813,
         "fields": {
             "key": "920",
@@ -6504,7 +6504,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 814,
         "fields": {
             "key": "921",
@@ -6512,7 +6512,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 815,
         "fields": {
             "key": "922",
@@ -6520,7 +6520,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 816,
         "fields": {
             "key": "923",
@@ -6528,7 +6528,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 817,
         "fields": {
             "key": "924",
@@ -6536,7 +6536,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 818,
         "fields": {
             "key": "925",
@@ -6544,7 +6544,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 819,
         "fields": {
             "key": "926",
@@ -6552,7 +6552,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 820,
         "fields": {
             "key": "927",
@@ -6560,7 +6560,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 821,
         "fields": {
             "key": "928",
@@ -6568,7 +6568,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 822,
         "fields": {
             "key": "929",
@@ -6576,7 +6576,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 823,
         "fields": {
             "key": "930",
@@ -6584,7 +6584,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 824,
         "fields": {
             "key": "931",
@@ -6592,7 +6592,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 825,
         "fields": {
             "key": "932",
@@ -6600,7 +6600,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 826,
         "fields": {
             "key": "933",
@@ -6608,7 +6608,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 827,
         "fields": {
             "key": "934",
@@ -6616,7 +6616,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 828,
         "fields": {
             "key": "935",
@@ -6624,7 +6624,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 829,
         "fields": {
             "key": "936",
@@ -6632,7 +6632,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 830,
         "fields": {
             "key": "937",
@@ -6640,7 +6640,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 831,
         "fields": {
             "key": "938",
@@ -6648,7 +6648,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 832,
         "fields": {
             "key": "939",
@@ -6656,7 +6656,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 833,
         "fields": {
             "key": "940",
@@ -6664,7 +6664,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 834,
         "fields": {
             "key": "941",
@@ -6672,7 +6672,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 835,
         "fields": {
             "key": "942",
@@ -6680,7 +6680,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 836,
         "fields": {
             "key": "943",
@@ -6688,7 +6688,7 @@
         }
     },
     {
-        "model": "jrdb.special_mention",
+        "model": "jrdb.SpecialMentionCode",
         "pk": 837,
         "fields": {
             "key": "944",

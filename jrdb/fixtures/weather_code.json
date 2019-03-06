@@ -1,50 +1,50 @@
 [
     {
-        "model": "jrdb.running_style",
+        "model": "jrdb.WeatherCode",
         "pk": 1,
         "fields": {
             "key": 1,
-            "value": "逃げ"
+            "value": "晴"
         }
     },
     {
-        "model": "jrdb.running_style",
+        "model": "jrdb.WeatherCode",
         "pk": 2,
         "fields": {
             "key": 2,
-            "value": "先行"
+            "value": "曇"
         }
     },
     {
-        "model": "jrdb.running_style",
+        "model": "jrdb.WeatherCode",
         "pk": 3,
         "fields": {
             "key": 3,
-            "value": "差し"
+            "value": "小雨"
         }
     },
     {
-        "model": "jrdb.running_style",
+        "model": "jrdb.WeatherCode",
         "pk": 4,
         "fields": {
             "key": 4,
-            "value": "追込"
+            "value": "雨"
         }
     },
     {
-        "model": "jrdb.running_style",
+        "model": "jrdb.WeatherCode",
         "pk": 5,
         "fields": {
             "key": 5,
-            "value": "好位差し"
+            "value": "小雪"
         }
     },
     {
-        "model": "jrdb.running_style",
+        "model": "jrdb.WeatherCode",
         "pk": 6,
         "fields": {
             "key": 6,
-            "value": "自在"
+            "value": "雪"
         }
     }
 ]

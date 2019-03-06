@@ -1,6 +1,6 @@
 [
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 1,
         "fields": {
             "key": "01",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 2,
         "fields": {
             "key": "02",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 3,
         "fields": {
             "key": "03",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 4,
         "fields": {
             "key": "04",
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 5,
         "fields": {
             "key": "05",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 6,
         "fields": {
             "key": "06",
@@ -48,7 +48,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 7,
         "fields": {
             "key": "07",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 8,
         "fields": {
             "key": "08",
@@ -64,7 +64,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 9,
         "fields": {
             "key": "09",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 10,
         "fields": {
             "key": "10",
@@ -80,7 +80,7 @@
         }
     },
     {
-        "model": "jrdb.training_style",
+        "model": "jrdb.TrainingStyle",
         "pk": 11,
         "fields": {
             "key": "11",
