@@ -1,5 +1,5 @@
 # Glossary
-| 名称 | 読み方 | 英語 | 意味 |
+| term | pronunciation | english | meaning |
 |:-|:-|:-|:-|
 | 回 | かい | round | 5ヶ月目の開催となる中山競馬場の8日目の開催日 ([1](https://www.keibainfo.jp/1149)) |
 | (競走馬登録の)抹消 | まっしょう | deregister | 競走するのをやめること ([1](http://www.jra.go.jp/owner/members/faq/category_g.html)) ([2](https://ja.wikipedia.org/wiki/%E7%AB%B6%E8%B5%B0%E9%A6%AC#.E7.AB.B6.E8.B5.B0.E7.94.9F.E6.B4.BB.E3.81.8B.E3.82.89.E3.81.AE.E5.BC.95.E9.80.80)) |
@@ -32,7 +32,7 @@
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used throughout the code to prevent users from having to type unnecessarily long lines.  
  
-| word | abbreviation |
+| term | abbreviation |
 |:-|:-|
 | year | yr |
 | current | cur |
