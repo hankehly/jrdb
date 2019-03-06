@@ -28,3 +28,19 @@
 | 先行 | せんこう | Stalker | |
 | 差し | さし | Off the pace | |
 | 追込 | おいこみ | Off the pace (stretch runner) | |
+
+## Abbreviations
+In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used throughout the code to prevent users from having to type unnecessarily long lines.  
+ 
+| word | abbreviation |
+|:-|:-|
+| year | yr |
+| current | cur |
+| previous | prev |
+| license | lic |
+| results | r |
+| rating | rtg |
+| abbreviation | abbr |
+| obstacle | obst |
+| high stake | hs |
+| special | sp |
