@@ -18,11 +18,10 @@ class Template(ABC):
         self._df = None
 
     @property
-    def df(self):
+    def df(self) -> pd.DataFrame:
         if isinstance(self._df, pd.DataFrame):
             return self._df.copy()
-        logger.warning(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.parse.')
-        return None
+        raise ValueError(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.parse.')
 
     @df.setter
     def df(self, value):
@@ -48,9 +47,9 @@ class Template(ABC):
         for row in self.spec.itertuples():
             if row.OCC > 1:
                 for i in range(1, row.OCC + 1):
-                    cols.append(f'{row.label}_{i}')
+                    cols.append(f'{row.key}_{i}')
             else:
-                cols.append(row.label)
+                cols.append(row.key)
         return cols
 
     def parse(self) -> pd.DataFrame:
@@ -67,14 +66,13 @@ class Template(ABC):
             for line in lines:
                 byterow = []
                 for spec in self.spec.itertuples():
-                    row = self.parse_row(line, spec)
-                    byterow.append(row)
+                    byterow.extend(self.parse_row(line, spec))
                 byterows.append(byterow)
         encoded_rows = np.char.decode(byterows, encoding='cp932')
         self.df = pd.DataFrame(encoded_rows, columns=self.colnames)
         return self.df
 
-    def parse_row(self, line, spec):
+    def parse_row(self, line, spec) -> List:
         """
         Given a byte string (line) and a spec item (spec)
         return an array of byte strings where each item matches a specific column
@@ -92,6 +90,9 @@ class Template(ABC):
             cell = line[start:stop]
             row.append(cell)
         return row
+
+    def persist(self) -> None:
+        raise NotImplementedError
 
     @classmethod
     def _validate(cls, raise_on_invalid=True) -> bool:
