@@ -14,7 +14,7 @@ class Trainer(BaseModel):
         (OTHER, '他'),
     )
 
-    code = models.CharField(max_length=5)
+    code = models.CharField(max_length=5, unique=True)
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=12)
     name_kana = models.CharField(max_length=30)
