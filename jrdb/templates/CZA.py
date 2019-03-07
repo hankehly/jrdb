@@ -1,19 +1,12 @@
 import re
 from datetime import datetime
 
+from django.db import IntegrityError
+import numpy as np
+
 from jrdb.models.trainer import Trainer
+from jrdb.templates.parse import parse_date, parse_int_or, parse_comma_separated_integer_list, filter_na
 from jrdb.templates.template import Template
-
-
-def parse_date(value, format):
-    try:
-        return datetime.strptime(value, format).strftime('%Y-%m-%d')
-    except ValueError:
-        return None
-
-
-# def foo(value, l):
-#     return re.findall(f'.{l}', value)
 
 
 class CZA(Template):
@@ -51,27 +44,42 @@ class CZA(Template):
         ['newline', '改行', None, '2', 'X', '271', 'ＣＲ・ＬＦ']
     ]
 
-    def persist(self):
+    def clean(self):
         df = self.df.drop(columns=['is_retired', 'training_center_name', 'saved_on', 'reserved', 'newline'])
+
+        df.name = df.name.str.strip()
+        df.name_kana = df.name_kana.str.strip()
+        df.name_abbr = df.name_abbr.str.strip()
 
         df.retired_on = df.retired_on.apply(parse_date, args=('%Y%m%d',))
         df.area = df.area.astype(int).map({1: Trainer.KANTOU, 2: Trainer.KANSAI, 3: Trainer.OTHER})
         df.birthday = df.birthday.apply(parse_date, args=('%Y%m%d',))
         df.lic_acquired_yr = df.lic_acquired_yr.astype(int)
+        df.jrdb_comment = df.jrdb_comment.str.strip()
         df.jrdb_comment_date = df.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))
 
-        s = df.cur_yr_rtg.str.strip()
-        s.loc[s == ''] = None
-        df.cur_yr_rtg = s.astype(float)
+        df.cur_yr_rtg = df.cur_yr_rtg.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        df.cur_yr_flat_r = df.cur_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
+        df.cur_yr_obst_r = df.cur_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
+        df.cur_yr_sp_wins = df.cur_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+        df.cur_yr_hs_wins = df.cur_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
 
-        # working in ipython..
-        # df.cur_yr_flat_r.apply(foo)
-        # re.findall('.{3}', line)
-        # ['  6', '  8', '  7', '134']
+        df.prev_yr_rtg = df.prev_yr_rtg.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        df.prev_yr_flat_r = df.prev_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
+        df.prev_yr_obst_r = df.prev_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
+        df.prev_yr_sp_wins = df.prev_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+        df.prev_yr_hs_wins = df.prev_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
 
-        # for entry in df.to_dict(orient='records'):
-        #     try:
-        #         Trainer.objects.create(**entry)
-        #     except IntegrityError:
-        #         Trainer.objects.filter(code=entry['code']).update(**entry)
-        print('WIP')
+        df.sum_flat_r = df.sum_flat_r.apply(parse_comma_separated_integer_list, args=(5,))
+        df.sum_obst_r = df.sum_obst_r.apply(parse_comma_separated_integer_list, args=(5,))
+
+        return df
+
+    def persist(self):
+        df = self.clean()
+        for row in df.to_dict('records'):
+            obj = filter_na(row)
+            try:
+                Trainer.objects.create(**obj)
+            except IntegrityError:
+                Trainer.objects.filter(code=obj['code']).update(**obj)
