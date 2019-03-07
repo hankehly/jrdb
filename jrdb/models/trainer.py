@@ -20,6 +20,7 @@ class Trainer(BaseModel):
     name_kana = models.CharField(max_length=30)
     name_abbr = models.CharField(max_length=6)
     area = models.CharField(choices=AREA_CHOICES)
+    training_center_name = models.CharField(max_length=4)
     birthday = models.DateField()
     lic_acquired_yr = models.PositiveIntegerField()
     jrdb_comment = models.CharField(max_length=40)
