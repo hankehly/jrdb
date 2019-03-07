@@ -22,3 +22,4 @@ from .codes import (
     WeatherCode
 )
 from .horse import Horse
+from .trainer import Trainer
