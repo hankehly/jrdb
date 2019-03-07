@@ -1,4 +1,19 @@
+import re
+from datetime import datetime
+
+from jrdb.models.trainer import Trainer
 from jrdb.templates.template import Template
+
+
+def parse_date(value, format):
+    try:
+        return datetime.strptime(value, format).strftime('%Y-%m-%d')
+    except ValueError:
+        return None
+
+
+# def foo(value, l):
+#     return re.findall(f'.{l}', value)
 
 
 class CZA(Template):
@@ -11,7 +26,7 @@ class CZA(Template):
         ['is_retired', '登録抹消フラグ', None, '1', '9', '6', '1:抹消,0:現役'],
         ['retired_on', '登録抹消年月日', None, '8', '9', '7', 'YYYYMMDD'],
         ['name', '調教師名', None, '12', 'X', '15', '全角６文字'],
-        ['kana', '調教師カナ', None, '30', 'X', '27', '全角１５文字'],
+        ['name_kana', '調教師カナ', None, '30', 'X', '27', '全角１５文字'],
         ['name_abbr', '調教師名略称', None, '6', 'X', '57', '全角３文字'],
         ['area', '所属コード', None, '1', '9', '63', '1:関東,2:関西,3:他'],
         ['training_center_name', '所属地域名', None, '4', 'X', '64', '全角２文字、地方の場合'],
@@ -35,3 +50,28 @@ class CZA(Template):
         ['reserved', '予備', None, '29', 'X', '242', 'スペース'],
         ['newline', '改行', None, '2', 'X', '271', 'ＣＲ・ＬＦ']
     ]
+
+    def persist(self):
+        df = self.df.drop(columns=['is_retired', 'training_center_name', 'saved_on', 'reserved', 'newline'])
+
+        df.retired_on = df.retired_on.apply(parse_date, args=('%Y%m%d',))
+        df.area = df.area.astype(int).map({1: Trainer.KANTOU, 2: Trainer.KANSAI, 3: Trainer.OTHER})
+        df.birthday = df.birthday.apply(parse_date, args=('%Y%m%d',))
+        df.lic_acquired_yr = df.lic_acquired_yr.astype(int)
+        df.jrdb_comment_date = df.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))
+
+        s = df.cur_yr_rtg.str.strip()
+        s.loc[s == ''] = None
+        df.cur_yr_rtg = s.astype(float)
+
+        # working in ipython..
+        # df.cur_yr_flat_r.apply(foo)
+        # re.findall('.{3}', line)
+        # ['  6', '  8', '  7', '134']
+
+        # for entry in df.to_dict(orient='records'):
+        #     try:
+        #         Trainer.objects.create(**entry)
+        #     except IntegrityError:
+        #         Trainer.objects.filter(code=entry['code']).update(**entry)
+        print('WIP')
