@@ -93,6 +93,9 @@ class Template(ABC):
             row.append(cell)
         return row
 
+    def clean(self) -> pd.DataFrame:
+        return self.df
+
     def persist(self) -> None:
         raise NotImplementedError
 
