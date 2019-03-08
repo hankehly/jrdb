@@ -7,46 +7,31 @@ class Horse(BaseModel):
     MALE = 'MALE'
     FEMALE = 'FEMALE'
     CASTRATED = 'CASTRATED'
-    SEX = (
+    SEX_CHOICES = (
         (MALE, 'Male'),
         (FEMALE, 'Female'),
         (CASTRATED, 'Castrated')
     )
 
-    CHESTNUT = 'CHESTNUT'
-    DARK_CHESTNUT = 'DARK_CHESTNUT'
-    BAY = 'BAY'
-    DARK_BAY = 'DARK_BAY'
-    BROWN = 'BROWN'
-    BLACK = 'BLACK'
-    GRAY = 'GRAY'
-    RED_ROAN = 'RED_ROAN'
-    BAY_ROAN = 'BAY_ROAN'
-    BLUE_ROAN = 'BLUE_ROAN'
-    WHITE = 'WHITE'
-    HAIR_COLOR = (
-        (CHESTNUT, 'Chestnut'),
-        (DARK_CHESTNUT, 'Dark chestnut'),
-        (BAY, 'Bay'),
-        (DARK_BAY, 'Dark bay'),
-        (BROWN, 'Brown'),
-        (BLACK, 'Black'),
-        (GRAY, 'Gray'),
-        (RED_ROAN, 'Red roan'),
-        (BAY_ROAN, 'Bay roan'),
-        (BLUE_ROAN, 'Blue roan'),
-        (WHITE, 'WHITE'),
-    )
-
-    prn = models.CharField(max_length=8, unique=True, verbose_name='Pedigree Registration Number')
+    pedigree_reg_num = models.CharField(max_length=8, unique=True)
     name = models.CharField(max_length=36)
-
-    # TODO: Move to separate table
-    # Valid values are _data_ not code. They belong in the database.
-    # Use fixtures files to organize
-    # https://softwareengineering.stackexchange.com/questions/305148/why-would-you-store-an-enum-in-db
-    # sex = models.CharField(max_length=255, choices=SEX)
-    # hair_color = models.CharField(max_length=255, choices=HAIR_COLOR)
+    sex = models.CharField(max_length=255, choices=SEX_CHOICES)
+    hair_color_code = models.ForeignKey('jrdb.HairColorCode', on_delete=models.CASCADE)
+    symbol = models.ForeignKey('jrdb.HorseSymbol', null=True, on_delete=models.SET_NULL)
+    sire_name = models.CharField(max_length=36)
+    dam_name = models.CharField(max_length=36)
+    damsire_name = models.CharField(max_length=36)
+    birthday = models.DateField()
+    sire_birth_yr = models.PositiveIntegerField()
+    dam_birth_yr = models.PositiveIntegerField()
+    damsire_birth_yr = models.PositiveIntegerField(null=True)
+    owner_name = models.CharField(max_length=40)
+    owner_racetrack_code = models.ForeignKey('jrdb.RacetrackCode', null=True, on_delete=models.SET_NULL)
+    breeder_name = models.CharField(max_length=40)
+    breeding_loc_name = models.CharField(max_length=8)
+    is_retired = models.BooleanField()
+    sire_genealogy_code = models.CharField(max_length=4)
+    damsire_genealogy_code = models.CharField(max_length=4)
 
     class Meta:
         db_table = 'horses'
