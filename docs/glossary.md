@@ -30,7 +30,7 @@
 | 追込 | おいこみ | Off the pace (stretch runner) | |
 
 ## Abbreviations
-In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used throughout the code to prevent users from having to type unnecessarily long lines.  
+In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
  
 | term | abbreviation |
 |:-|:-|
@@ -44,3 +44,6 @@ In general, it is best not to abbreviate variable names for understandability; h
 | obstacle | obst |
 | high stake | hs |
 | special | sp |
+| registration | reg |
+| number | num |
+| location | loc |
