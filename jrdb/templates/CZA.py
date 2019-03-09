@@ -27,12 +27,12 @@ class CZA(Template):
         ['lic_acquired_yr', '初免許年', None, '4', '9', '76', 'YYYY'],
         ['jrdb_comment', '調教師コメント', None, '40', 'X', '80', 'ＪＲＤＢスタッフの厩舎見解'],
         ['jrdb_comment_date', 'コメント入力年月日', None, '8', 'X', '120', '調教師コメントを入力した年月日'],
-        ['cur_yr_rtg', '本年リーディング', None, '3', 'ZZ9', '128', None],
+        ['cur_yr_leading', '本年リーディング', None, '3', 'ZZ9', '128', None],
         ['cur_yr_flat_r', '本年平地成績', None, '12', 'ZZ9*4', '131', '１－２－３－着外(3*4)'],
         ['cur_yr_obst_r', '本年障害成績', None, '12', 'ZZ9*4', '143', '１－２－３－着外(3*4)'],
         ['cur_yr_sp_wins', '本年特別勝数', None, '3', 'ZZ9', '155', None],
         ['cur_yr_hs_wins', '本年重賞勝数', None, '3', 'ZZ9', '158', None],
-        ['prev_yr_rtg', '昨年リーディング', None, '3', 'ZZ9', '161', None],
+        ['prev_yr_leading', '昨年リーディング', None, '3', 'ZZ9', '161', None],
         ['prev_yr_flat_r', '昨年平地成績', None, '12', 'ZZ9*4', '164', '１－２－３－着外(3*4)'],
         ['prev_yr_obst_r', '昨年障害成績', None, '12', 'ZZ9*4', '176', '１－２－３－着外(3*4)'],
         ['prev_yr_sp_wins', '昨年特別勝数', None, '3', 'ZZ9', '188', None],
@@ -45,26 +45,28 @@ class CZA(Template):
     ]
 
     def clean(self):
-        df = self.df.drop(columns=['is_retired', 'training_center_name', 'saved_on', 'reserved', 'newline'])
+        df = self.df.drop(columns=['is_retired', 'saved_on', 'reserved', 'newline'])
+
+        df.retired_on = df.retired_on.apply(parse_date, args=('%Y%m%d',))
 
         df.name = df.name.str.strip()
         df.name_kana = df.name_kana.str.strip()
         df.name_abbr = df.name_abbr.str.strip()
 
-        df.retired_on = df.retired_on.apply(parse_date, args=('%Y%m%d',))
         df.area = df.area.astype(int).map({1: Trainer.KANTOU, 2: Trainer.KANSAI, 3: Trainer.OTHER})
+        df.training_center_name = df.training_center_name.str.strip()
         df.birthday = df.birthday.apply(parse_date, args=('%Y%m%d',))
         df.lic_acquired_yr = df.lic_acquired_yr.astype(int)
         df.jrdb_comment = df.jrdb_comment.str.strip()
         df.jrdb_comment_date = df.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))
 
-        df.cur_yr_rtg = df.cur_yr_rtg.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        df.cur_yr_leading = df.cur_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
         df.cur_yr_flat_r = df.cur_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
         df.cur_yr_obst_r = df.cur_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
         df.cur_yr_sp_wins = df.cur_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
         df.cur_yr_hs_wins = df.cur_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
 
-        df.prev_yr_rtg = df.prev_yr_rtg.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        df.prev_yr_leading = df.prev_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
         df.prev_yr_flat_r = df.prev_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
         df.prev_yr_obst_r = df.prev_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
         df.prev_yr_sp_wins = df.prev_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
