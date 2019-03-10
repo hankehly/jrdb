@@ -4,16 +4,18 @@ from jrdb.templates.template import Template
 class SED(Template):
     """
     http://www.jrdb.com/program/Sed/sed_doc.txt
+
+    種別コードの定義が２つあって、値が異なる。。
     """
     name = 'JRDB成績データ（SED）'
     items = [
         ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['year', '年', None, '2', '99', '3', None],
+        ['yr', '年', None, '2', '99', '3', None],
         ['round', '回', None, '1', '9', '5', None],
         ['day', '日', None, '1', 'F', '6', None],
-        ['race_number', 'Ｒ', None, '2', '99', '7', None],
-        ['horse_number', '馬番', None, '2', '99', '9', None],
-        ['pedigree_registration_number', '血統登録番号', None, '8', 'X', '11', None],
+        ['race_num', 'Ｒ', None, '2', '99', '7', None],
+        ['horse_num', '馬番', None, '2', '99', '9', None],
+        ['pedigree_reg_num', '血統登録番号', None, '8', 'X', '11', None],
         ['race_date', '年月日', None, '8', '9', '19', 'YYYYMMDD <-暫定版より順序'],
         ['horse_name', '馬名', None, '36', 'X', '27', '全角１８文字 <-入れ替え'],
         ['distance', '距離', None, '4', '9999', '63', None],
@@ -22,15 +24,15 @@ class SED(Template):
         ['course', '内外', None, '1', '9', '69', '1:通常(内), 2:外, 3,直ダ, 9:他'],
         ['track_condition', '馬場状態', None, '2', '99', '70', None],
         ['', '種別', None, '2', '99', '72', '４歳以上等、→成績データの説明'],
-        ['', '条件', None, '2', 'XX', '74', '900万下等、 →成績データの説明'],
-        ['', '記号', None, '3', '999', '76', '○混等、 →成績データの説明'],
-        ['', '重量', None, '1', '9', '79', 'ハンデ等、 →成績データの説明'],
+        ['race_condition_code', '条件', None, '2', 'XX', '74', '900万下等、 →成績データの説明'],
+        ['race_symbol', '記号', None, '3', '999', '76', '○混等、 →成績データの説明'],
+        ['impost_class_code', '重量', None, '1', '9', '79', 'ハンデ等、 →成績データの説明'],
         ['grade', 'グレード', None, '1', '9', '80', None],
         ['race_name', 'レース名', None, '50', 'X', '81', 'レース名の通称（全角２５文字）'],
         ['contender_count', '頭数', None, '2', '99', '131', None],
-        ['race_name_short', 'レース名略称', None, '8', 'X', '133', '全角４文字'],
+        ['race_name_abbr', 'レース名略称', None, '8', 'X', '133', '全角４文字'],
         ['order_of_finish', '着順', None, '2', '99', '141', None],
-        ['', '異常区分', None, '1', '9', '143', None],
+        ['penalty_code', '異常区分', None, '1', '9', '143', None],
         ['time', 'タイム', None, '4', '9999', '144', '1byte:分, 2-4byte:秒(0.1秒単位)'],
         ['mounted_weight', '斤量', None, '3', '999', '148', '0.1Kg単位'],
         ['jockey_name', '騎手名', None, '12', 'X', '151', '全角６文字'],

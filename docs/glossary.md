@@ -42,9 +42,12 @@ In general, it is best not to abbreviate variable names for understandability; h
 | results | r |
 | rating | rtg |
 | abbreviation | abbr |
-| obstacle | obst |
+| obstacle (steeple-chase) | obst |
 | high stake | hs |
 | special | sp |
 | registration | reg |
 | number | num |
 | location | loc |
+
+## Helpful links
+- http://cattle.x-winz.net/edb2_manual/12-3-99-CODE.html

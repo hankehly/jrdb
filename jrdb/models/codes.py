@@ -131,7 +131,7 @@ class HorseSymbol(SimpleCode):
         db_table = 'horse_symbols'
 
 
-class ImpostCode(SimpleCode):
+class ImpostClassCode(SimpleCode):
     """
     重量
 
@@ -139,7 +139,7 @@ class ImpostCode(SimpleCode):
     """
 
     class Meta:
-        db_table = 'impost_codes'
+        db_table = 'impost_class_codes'
 
 
 class PaddockObservedHoofCode(SimpleCode):
@@ -158,6 +158,17 @@ class PaddockObservedHoofCode(SimpleCode):
 
     class Meta:
         db_table = 'paddock_observed_hoof_codes'
+
+
+class PenaltyCode(SimpleCode):
+    """
+    異常区分
+
+    http://www.jrdb.com/program/Sed/sedsiyo_doc.txt
+    """
+
+    class Meta:
+        db_table = 'penalty_codes'
 
 
 class RaceClass(SimpleCode):
