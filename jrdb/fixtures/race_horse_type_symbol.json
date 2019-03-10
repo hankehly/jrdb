@@ -1,0 +1,50 @@
+[
+    {
+        "model": "jrdb.RaceHorseTypeSymbol",
+        "pk": 1,
+        "fields": {
+            "key": 0,
+            "value": "なし"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseTypeSymbol",
+        "pk": 2,
+        "fields": {
+            "key": 1,
+            "value": "○混"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseTypeSymbol",
+        "pk": 3,
+        "fields": {
+            "key": 2,
+            "value": "○父"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseTypeSymbol",
+        "pk": 4,
+        "fields": {
+            "key": 3,
+            "value": "○市○抽"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseTypeSymbol",
+        "pk": 5,
+        "fields": {
+            "key": 4,
+            "value": "九州産限定"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseTypeSymbol",
+        "pk": 6,
+        "fields": {
+            "key": 5,
+            "value": "○国際混"
+        }
+    }
+]

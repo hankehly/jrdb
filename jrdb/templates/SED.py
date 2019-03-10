@@ -26,7 +26,7 @@ class SED(Template):
         ['track_condition', '馬場状態', None, '2', '99', '70', None],
         ['race_category', '種別', None, '2', '99', '72', '４歳以上等、→成績データの説明'],
         ['race_condition_code', '条件', None, '2', 'XX', '74', '900万下等、 →成績データの説明'],
-        ['race_symbol', '記号', None, '3', '999', '76', '○混等、 →成績データの説明'],
+        ['race_symbols', '記号', None, '3', '999', '76', '○混等、 →成績データの説明'],
         ['impost_class_code', '重量', None, '1', '9', '79', 'ハンデ等、 →成績データの説明'],
         ['grade', 'グレード', None, '1', '9', '80', None],
         ['race_name', 'レース名', None, '50', 'X', '81', 'レース名の通称（全角２５文字）'],

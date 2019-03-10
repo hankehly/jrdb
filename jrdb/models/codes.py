@@ -229,6 +229,55 @@ class RaceConditionGroupCode(SimpleCode):
         db_table = 'race_condition_group_codes'
 
 
+class RaceHorseSexSymbol(SimpleCode):
+    """
+    ２桁目　馬の性別による条件
+        0　なし
+        1　牡馬限定
+        2　牝馬限定
+        3　牡・せん馬限定
+        4　牡・牝馬限定
+    """
+
+    class Meta:
+        db_table = 'race_horse_sex_symbols'
+
+
+class RaceHorseTypeSymbol(SimpleCode):
+    """
+    競走記号をコード化
+
+    １桁目　馬の種類による条件
+        0　なし
+        1　○混
+        2　○父
+        3　○市○抽
+        4　九州産限定
+        5　○国際混
+
+    http://www.jrdb.com/program/jrdb_code.txt
+    """
+
+    class Meta:
+        db_table = 'race_horse_type_symbols'
+
+
+class RaceInterleagueSymbol(SimpleCode):
+    """
+    競走記号をコード化
+
+    ３桁目　交流競走の指定
+        0　なし
+        1　○指
+        2　□指
+        3　○特指
+        4　若手
+    """
+
+    class Meta:
+        db_table = 'race_interleague_symbols'
+
+
 class RacetrackCode(SimpleCode):
     """
     場コード

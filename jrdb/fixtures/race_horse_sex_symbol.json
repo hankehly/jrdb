@@ -1,0 +1,42 @@
+[
+    {
+        "model": "jrdb.RaceHorseSexSymbol",
+        "pk": 1,
+        "fields": {
+            "key": 0,
+            "value": "なし"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseSexSymbol",
+        "pk": 2,
+        "fields": {
+            "key": 1,
+            "value": "牡馬限定"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseSexSymbol",
+        "pk": 3,
+        "fields": {
+            "key": 2,
+            "value": "牝馬限定"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseSexSymbol",
+        "pk": 4,
+        "fields": {
+            "key": 3,
+            "value": "牡・せん馬限定"
+        }
+    },
+    {
+        "model": "jrdb.RaceHorseSexSymbol",
+        "pk": 5,
+        "fields": {
+            "key": 4,
+            "value": "牡・牝馬限定"
+        }
+    }
+]
