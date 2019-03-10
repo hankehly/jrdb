@@ -5,6 +5,7 @@ from .KAB import KAB
 from .KSA import KSA
 from .KYI import KYI
 from .KZA import KZA
+from .MSA import MSA
 from .MZA import MZA
 from .OT import OT
 from .OU import OU
