@@ -1,0 +1,42 @@
+[
+    {
+        "model": "jrdb.RaceConditionGroupCode",
+        "pk": 1,
+        "fields": {
+            "key": 1,
+            "value": "1勝クラス"
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionGroupCode",
+        "pk": 2,
+        "fields": {
+            "key": 2,
+            "value": "2勝クラス"
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionGroupCode",
+        "pk": 3,
+        "fields": {
+            "key": 3,
+            "value": "準オープンクラス"
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionGroupCode",
+        "pk": 4,
+        "fields": {
+            "key": 0,
+            "value": "未勝利クラス"
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionGroupCode",
+        "pk": 5,
+        "fields": {
+            "key": 9,
+            "value": "オープンクラス"
+        }
+    }
+]

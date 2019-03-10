@@ -1,0 +1,101 @@
+[
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 1,
+        "fields": {
+            "key": "04",
+            "value": "400万下",
+            "race_condition_group_code": 1
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 2,
+        "fields": {
+            "key": "05",
+            "value": "500万下",
+            "race_condition_group_code": 1
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 3,
+        "fields": {
+            "key": "08",
+            "value": "800万下",
+            "race_condition_group_code": 2
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 4,
+        "fields": {
+            "key": "09",
+            "value": "900万下",
+            "race_condition_group_code": 2
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 5,
+        "fields": {
+            "key": "10",
+            "value": "1000万下",
+            "race_condition_group_code": 2
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 6,
+        "fields": {
+            "key": "15",
+            "value": "1500万下",
+            "race_condition_group_code": 3
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 7,
+        "fields": {
+            "key": "16",
+            "value": "1600万下",
+            "race_condition_group_code": 3
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 8,
+        "fields": {
+            "key": "A1",
+            "value": "新馬",
+            "race_condition_group_code": 4
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 9,
+        "fields": {
+            "key": "A2",
+            "value": "未出走",
+            "race_condition_group_code": 4
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 10,
+        "fields": {
+            "key": "A3",
+            "value": "未勝利",
+            "race_condition_group_code": 4
+        }
+    },
+    {
+        "model": "jrdb.RaceConditionCode",
+        "pk": 11,
+        "fields": {
+            "key": "OP",
+            "value": "オープン",
+            "race_condition_group_code": 5
+        }
+    }
+]

@@ -1,9 +1,8 @@
 from django.db import models
 
-from jrdb.models import BaseModel
-
 
 class SimpleCodeManager(models.Manager):
+
     def get_by_natural_key(self, key):
         return self.get(key=key)
 
@@ -175,6 +174,30 @@ class RaceClass(SimpleCode):
 
     class Meta:
         db_table = 'race_classes'
+
+
+class RaceConditionCode(SimpleCode):
+    """
+    競走条件をコード化
+
+    http://www.jrdb.com/program/jrdb_code.txt
+    """
+    race_condition_group_code = models.ForeignKey('jrdb.RaceConditionGroupCode', on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'race_condition_codes'
+
+
+class RaceConditionGroupCode(SimpleCode):
+    """
+    条件グループコード
+    同クラスの条件をグループ化したコード
+
+    http://www.jrdb.com/program/jrdb_code.txt
+    """
+
+    class Meta:
+        db_table = 'race_condition_group_codes'
 
 
 class RacetrackCode(SimpleCode):

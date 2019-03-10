@@ -11,6 +11,8 @@ from .codes import (
     ImpostCode,
     PaddockObservedHoofCode,
     RaceClass,
+    RaceConditionCode,
+    RaceConditionGroupCode,
     RacetrackCode,
     RacingLineCode,
     RestReasonCode,
