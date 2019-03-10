@@ -1,0 +1,50 @@
+[
+    {
+        "model": "jrdb.RaceCategoryCode",
+        "pk": 1,
+        "fields": {
+            "key": "11",
+            "value": "2歳"
+        }
+    },
+    {
+        "model": "jrdb.RaceCategoryCode",
+        "pk": 2,
+        "fields": {
+            "key": "12",
+            "value": "3歳"
+        }
+    },
+    {
+        "model": "jrdb.RaceCategoryCode",
+        "pk": 3,
+        "fields": {
+            "key": "13",
+            "value": "3歳以上"
+        }
+    },
+    {
+        "model": "jrdb.RaceCategoryCode",
+        "pk": 4,
+        "fields": {
+            "key": "14",
+            "value": "4歳以上"
+        }
+    },
+    {
+        "model": "jrdb.RaceCategoryCode",
+        "pk": 5,
+        "fields": {
+            "key": "20",
+            "value": "障害"
+        }
+    },
+    {
+        "model": "jrdb.RaceCategoryCode",
+        "pk": 6,
+        "fields": {
+            "key": "99",
+            "value": "その他"
+        }
+    }
+]

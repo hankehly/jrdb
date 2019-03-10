@@ -5,7 +5,8 @@ class SED(Template):
     """
     http://www.jrdb.com/program/Sed/sed_doc.txt
 
-    種別コードの定義が２つあって、値が異なる。。
+    The "種別" values in the above document are incorrect.
+    The correct values can be found [here](http://www.jrdb.com/program/jrdb_code.txt)
     """
     name = 'JRDB成績データ（SED）'
     items = [
@@ -23,7 +24,7 @@ class SED(Template):
         ['direction', '右左', None, '1', '9', '68', '1:右, 2:左, 3:直, 9:他'],
         ['course', '内外', None, '1', '9', '69', '1:通常(内), 2:外, 3,直ダ, 9:他'],
         ['track_condition', '馬場状態', None, '2', '99', '70', None],
-        ['', '種別', None, '2', '99', '72', '４歳以上等、→成績データの説明'],
+        ['race_category', '種別', None, '2', '99', '72', '４歳以上等、→成績データの説明'],
         ['race_condition_code', '条件', None, '2', 'XX', '74', '900万下等、 →成績データの説明'],
         ['race_symbol', '記号', None, '3', '999', '76', '○混等、 →成績データの説明'],
         ['impost_class_code', '重量', None, '1', '9', '79', 'ハンデ等、 →成績データの説明'],

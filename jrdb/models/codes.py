@@ -171,6 +171,24 @@ class PenaltyCode(SimpleCode):
         db_table = 'penalty_codes'
 
 
+class RaceCategoryCode(SimpleCode):
+    """
+    競走種別をコード化
+
+    11　２歳
+    12　３歳
+    13　３歳以上
+    14　４歳以上
+    20　障害
+    99　その他
+
+    http://www.jrdb.com/program/jrdb_code.txt
+    """
+
+    class Meta:
+        db_table = 'race_category_codes'
+
+
 class RaceClass(SimpleCode):
     """
     クラスコード
