@@ -17,8 +17,23 @@ This file contains a small amount of per-race (1 record per race) data, like cor
 #### SRA（JRDB成績レースデータ）
 The predecessor of SRB
 
-#### UKC（JRDB馬基本データ）*
-This file contains horse basic information, like sex, hair color, names of mother and father, etc.. It is the "horses" table.
+#### CZA（JRDB調教師データ）*
+Trainer master table
+
+#### CSA（JRDB調教師データ）*
+Most recent (2 week) updates to trainer master table (CZA). Same format as CZA.
+
+#### KZA（JRDB騎手データ）*
+This file is essentially the "jockey" table.
+
+#### KSA（JRDB騎手データ）*
+Most recent (2 week) updates to trainer master table (KZA). Same format as KZA.
+
+#### MZA（JRDB抹消馬データ）*
+A list of horse ids (血統登録番号) of horses who are no longer registered JRA race horses. Essentially, a list of horses that are no longer competing currently.
+
+#### MSA（JRDB抹消馬データ）
+Exact same as MZA; but listed as "差分".. Not clear what this "difference" is..
 
 #### KYI（JRDB競走馬データ）*
 This file supersedes KYH. It is updated on friday and saturday and contains 1 record per race horse. The data includes a wide variety of data like whether its’ the horses’ first time on a grass track, the keys to the previous 5 races, the weight carried and expected odds. This file seems to be similar to the netkeiba "race" page (the one you used during prediction)
@@ -29,29 +44,14 @@ The predecessor of KYI
 #### KYG（JRDB競走馬データ）
 The predecessor of KYH
 
-#### ZEC（JRDB前走データ）
-This contains the previous 5 races for a horse in the exact same format as SED. It is just a subset of data for convenience purposes I think.
+#### KKA（JRDB競走馬拡張データ）
+WIP
+ 
+#### UKC（JRDB馬基本データ）*
+This file contains horse basic information, like sex, hair color, names of mother and father, etc.. It is the "horses" table.
 
-#### ZKB（JRDB前走拡張データ）
-This file, like ZEC, is a subset of the last 5 races for a given horse, but it contains the same data as SKB.
-
-#### CZA（JRDB調教師データ）*
-Trainer master table
-
-#### CSA（JRDB調教師データ）
-Exactly same description and format as CZA, but described as "差分(今週出走分,先週成績更新分)"
-
-#### KZA（JRDB騎手データ）*
-This file is essentially the "jockey" table.
-
-#### KSA（JRDB騎手データ）
-This file has the exact same description and contents as KZA, but is described as the "差分(今週出走分,先週成績更新分)"
-
-#### MZA（JRDB抹消馬データ）*
-A list of horse ids (血統登録番号) of horses who are no longer registered JRA race horses. Essentially, a list of horses that are no longer competing currently.
-
-#### MSA（JRDB抹消馬データ）
-Exact same as MZA; but listed as "差分".. Not clear what this "difference" is..
+#### JOA（JRDB情報データ）
+WIP
 
 #### OZ（JRDB基準オッズデータ）* 
 単勝・複勝・連勝（馬蓮）オッズ 
@@ -68,11 +68,17 @@ Exact same as MZA; but listed as "差分".. Not clear what this "difference" is.
 #### OV（３連単基準オッズデータ）*
 ３連単のオッズデータ
 
+#### ZEC（JRDB前走データ）
+This contains the previous 5 races for a horse in the exact same format as SED. It is just a subset of data for convenience purposes I think.
+
+#### ZKB（JRDB前走拡張データ）
+This file, like ZEC, is a subset of the last 5 races for a given horse, but it contains the same data as SKB.
+
 #### KAB（JRDB開催データ）*
 馬場・天候予想等の開催に対するデータ
  
 #### KAA（JRDB開催データ）
-The predecessor of KAB 
+The predecessor of KAB
 
 #### BAC（レース番組情報）
 レースの基本情報（レース名や頭数とか）
@@ -85,4 +91,16 @@ The predecessor of BAC
 とあるレースでのとある馬の調教データ（調教距離、調教量評価など）
  
 #### CYA（JRDB調教分析データ）
-The predecessor of CYB 
+The predecessor of CYB
+
+#### CHA（JRDB調教分析データ）
+WIP
+
+#### TYB（JRDB直前情報データ）
+WIP
+
+#### HJC（JRDB払戻情報データ）
+WIP
+
+#### HJA（JRDB払戻情報データ）
+WIP
