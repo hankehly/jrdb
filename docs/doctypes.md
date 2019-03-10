@@ -33,7 +33,7 @@ Most recent (2 week) updates to trainer master table (KZA). Same format as KZA.
 A list of horse ids (血統登録番号) of horses who are no longer registered JRA race horses. Essentially, a list of horses that are no longer competing currently.
 
 #### MSA（JRDB抹消馬データ）
-Exact same as MZA; but listed as "差分".. Not clear what this "difference" is..
+Most recent updates (probably 2 weeks like other diff files) of MZA master
 
 #### KYI（JRDB競走馬データ）*
 This file supersedes KYH. It is updated on friday and saturday and contains 1 record per race horse. The data includes a wide variety of data like whether its’ the horses’ first time on a grass track, the keys to the previous 5 races, the weight carried and expected odds. This file seems to be similar to the netkeiba "race" page (the one you used during prediction)
@@ -88,7 +88,7 @@ The predecessor of KAB
 The predecessor of BAC
 
 #### CYB（JRDB調教分析データ）*
-とあるレースでのとある馬の調教データ（調教距離、調教量評価など）
+とあるレースのとある馬の調教データ（調教距離、調教量評価など）
  
 #### CYA（JRDB調教分析データ）
 The predecessor of CYB
