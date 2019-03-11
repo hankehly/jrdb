@@ -32,6 +32,10 @@
 | 指定交流競走 | していこうりゅうきょうそう |  interleague race (?) | ([1](http://www.jra.go.jp/kouza/yougo/w325.html)) |
 | テンの3F | てんのさんはろん | first 3 furlong | ([1](https://keibayosou.metabopro.com/tenno3fagari3f/))([2](https://ja.wikipedia.org/wiki/%E3%83%86%E3%83%B3_(%E7%AB%B6%E9%A6%AC)))([3](http://www.jra.go.jp/kouza/yougo/w280.html)) |
 | 上がり | あがり | close / end | ([1](http://jra.jp/kouza/yougo/w205.html)) |
+| | | racing line | ([1](https://www.weblio.jp/content/%E3%82%B3%E3%83%BC%E3%82%B9%E5%8F%96%E3%82%8A))([2](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1373948028)) |
+| ４角 | よんかく | 4th corner | ([1](http://www.geocities.jp/anato_senka2/dic.html)) |
+| 本賞金 | ほんしょうきん | purse | The prize money awarded to horses that places 1~5 ([1](http://www.jra.go.jp/kouza/yougo/w540.html))([2](https://en.wikipedia.org/wiki/Purse_distribution)) |
+| 収得賞金 | しゅうとくしょうきん | first place prize | ([1](http://www.jra.go.jp/kouza/yougo/w541.html)) |
 
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
