@@ -142,6 +142,27 @@ class ImpostClassCode(SimpleCode):
         db_table = 'impost_class_codes'
 
 
+class PaceFlowCode(SimpleCode):
+    """
+    ［前３Ｆ］［その間］［後３Ｆ］のタイムを利用してペースの流れを視覚で捉えます。
+
+    コード 表示 意味
+    33     ＼   前半飛ばす
+    22    ――    平均ペース
+    11    ／    後半型
+    32    ＼＿  テン飛ばす
+    31    ＼／  なかだるみ
+    23    ￣＼  テンから飛ばし失速
+    21    ＿／  上がり速い
+    13    ／＼  ペースアップが早く失速
+    12    ／￣  ペースアップが早く持続
+    """
+    display = models.CharField(max_length=2)
+
+    class Meta:
+        db_table = 'pace_flow_codes'
+
+
 class PaddockObservedHoofCode(SimpleCode):
     """
     蹄コード

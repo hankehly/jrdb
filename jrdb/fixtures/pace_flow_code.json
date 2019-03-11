@@ -1,0 +1,83 @@
+[
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 1,
+        "fields": {
+            "key": 33,
+            "value": "前半飛ばす",
+            "display": "＼"
+        }
+    },
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 2,
+        "fields": {
+            "key": 22,
+            "value": "平均ペース",
+            "display": "――"
+        }
+    },
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 3,
+        "fields": {
+            "key": 11,
+            "value": "後半型",
+            "display": "／"
+        }
+    },
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 4,
+        "fields": {
+            "key": 32,
+            "value": "テン飛ばす",
+            "display": "＼＿"
+        }
+    },
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 5,
+        "fields": {
+            "key": 31,
+            "value": "なかだるみ",
+            "display": "＼／"
+        }
+    },
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 6,
+        "fields": {
+            "key": 23,
+            "value": "テンから飛ばし失速",
+            "display": "￣＼"
+        }
+    },
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 7,
+        "fields": {
+            "key": 21,
+            "value": "上がり速い",
+            "display": "＿／"
+        }
+    },
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 8,
+        "fields": {
+            "key": 13,
+            "value": "ペースアップが早く失速",
+            "display": "／＼"
+        }
+    },
+    {
+        "model": "jrdb.PaceFlowCode",
+        "pk": 9,
+        "fields": {
+            "key": 12,
+            "value": "ペースアップが早く持続",
+            "display": "／￣"
+        }
+    }
+]
