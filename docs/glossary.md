@@ -30,6 +30,8 @@
 | 追込 | おいこみ | Off the pace (stretch runner) | |
 | リーディング | | leading | 成績の順位 ([1](https://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0_(%E7%AB%B6%E9%A6%AC))) |
 | 指定交流競走 | していこうりゅうきょうそう |  interleague race (?) | ([1](http://www.jra.go.jp/kouza/yougo/w325.html)) |
+| テンの3F | てんのさんはろん | first 3 furlong | ([1](https://keibayosou.metabopro.com/tenno3fagari3f/))([2](https://ja.wikipedia.org/wiki/%E3%83%86%E3%83%B3_(%E7%AB%B6%E9%A6%AC)))([3](http://www.jra.go.jp/kouza/yougo/w280.html)) |
+| 上がり | あがり | close / end | ([1](http://jra.jp/kouza/yougo/w205.html)) |
 
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
