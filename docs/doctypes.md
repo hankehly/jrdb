@@ -81,10 +81,9 @@ This file, like ZEC, is a subset of the last 5 races for a given horse, but it c
 #### KAA（JRDB開催データ）
 The predecessor of KAB
 
-#### BAC（レース番組情報）
-レースの基本情報（レース名や頭数とか）
-多くの項目がSEDと重複するため対象外 
-
+#### BAC（レース番組情報）*
+Details about a specific race. Contains the datetime of each race.
+ 
 #### BAB（レース番組情報）
 The predecessor of BAC
 
