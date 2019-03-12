@@ -9,6 +9,7 @@ from .codes import (
     HorseGearCodeCategory,
     HorseSymbol,
     ImpostClassCode,
+    ImprovementCode,
     PaceFlowCode,
     PaddockObservedHoofCode,
     PenaltyCode,

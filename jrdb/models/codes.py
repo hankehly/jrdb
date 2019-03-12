@@ -142,6 +142,21 @@ class ImpostClassCode(SimpleCode):
         db_table = 'impost_class_codes'
 
 
+class ImprovementCode(SimpleCode):
+    """
+    上昇度
+    1 AA かなりの上積みが期待でき、勝つ可能性は高い。
+    2  A まずまずの上積みが望め、好勝負ができる。
+    3  B 次走も同じ様な状態でレースに挑む。
+    4  C ギリギリの仕上げであったため、次走はガタの来そうな気配。
+    5  ? 調子落ちの傾向、厳しいレースになる。
+    """
+    description = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'improvement_codes'
+
+
 class PaceFlowCode(SimpleCode):
     """
     ［前３Ｆ］［その間］［後３Ｆ］のタイムを利用してペースの流れを視覚で捉えます。
