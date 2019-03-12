@@ -17,6 +17,9 @@ from .codes import (
     RaceClass,
     RaceConditionCode,
     RaceConditionGroupCode,
+    RaceHorseSexSymbol,
+    RaceHorseTypeSymbol,
+    RaceInterleagueSymbol,
     RaceLineCode,
     RacetrackCode,
     RestReasonCode,
@@ -29,4 +32,5 @@ from .codes import (
 )
 from .horse import Horse
 from .jockey import Jockey
+from .race import Race
 from .trainer import Trainer
