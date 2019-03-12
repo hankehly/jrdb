@@ -1,4 +1,4 @@
-from jrdb.templates import MZA
+from jrdb.templates.MZA import MZA
 
 
 class MSA(MZA):

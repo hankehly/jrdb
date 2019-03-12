@@ -1,4 +1,4 @@
-from jrdb.templates import CZA
+from jrdb.templates.CZA import CZA
 
 
 class CSA(CZA):

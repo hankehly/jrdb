@@ -1,4 +1,4 @@
-from jrdb.templates import KZA
+from jrdb.templates.KZA import KZA
 
 
 class KSA(KZA):
