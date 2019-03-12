@@ -35,7 +35,7 @@
 | | | racing line | ([1](https://www.weblio.jp/content/%E3%82%B3%E3%83%BC%E3%82%B9%E5%8F%96%E3%82%8A))([2](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1373948028)) |
 | ４角 | よんかく | 4th corner | ([1](http://www.geocities.jp/anato_senka2/dic.html)) |
 | 本賞金 | ほんしょうきん | purse | The prize money awarded to horses that places 1~5 ([1](http://www.jra.go.jp/kouza/yougo/w540.html))([2](https://en.wikipedia.org/wiki/Purse_distribution)) |
-| 収得賞金 | しゅうとくしょうきん | first place prize | ([1](http://www.jra.go.jp/kouza/yougo/w541.html)) |
+| 収得賞金 | しゅうとくしょうきん | first place prize | 算入賞金とも ([1](http://www.jra.go.jp/kouza/yougo/w541.html)) | 
 | コース | | course | Each racetrack has courses labeled A, B, C, etc.. ([1](http://www.jra.go.jp/facilities/race/nakayama/course/index.html#course_list)) |
 | キックバック | | kickback(?) | 馬の蹴って跳ね上がった泥 ([1](http://www.jrdb.com/kenkai/011114E.html)) |
 | 馬場差 | ばばさ | track speed shift (?) | 数字が小さいほど時計が早い馬場であることを示し、大きくなると時計が掛かる馬場を示す（1＝0.1秒で換算）([1](http://blog.livedoor.jp/keiba_check/archives/50560444.html))([2](http://www.haizara.com/dictionary/06-01.htm)) |
