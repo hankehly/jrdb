@@ -36,10 +36,14 @@
 | ４角 | よんかく | 4th corner | ([1](http://www.geocities.jp/anato_senka2/dic.html)) |
 | 本賞金 | ほんしょうきん | purse | The prize money awarded to horses that places 1~5 ([1](http://www.jra.go.jp/kouza/yougo/w540.html))([2](https://en.wikipedia.org/wiki/Purse_distribution)) |
 | 収得賞金 | しゅうとくしょうきん | first place prize | ([1](http://www.jra.go.jp/kouza/yougo/w541.html)) |
-
+| コース | | course | Each racetrack has courses labeled A, B, C, etc.. ([1](http://www.jra.go.jp/facilities/race/nakayama/course/index.html#course_list)) |
+| キックバック | | kickback(?) | 馬の蹴って跳ね上がった泥 ([1](http://www.jrdb.com/kenkai/011114E.html)) |
+| 馬場差 | ばばさ | track speed shift (?) | 数字が小さいほど時計が早い馬場であることを示し、大きくなると時計が掛かる馬場を示す（1＝0.1秒で換算）([1](http://blog.livedoor.jp/keiba_check/archives/50560444.html))([2](http://www.haizara.com/dictionary/06-01.htm)) |
+| 上積み | うわずみ | | ([1](http://www.kei-bank.com/dic/56)) | 
+ 
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
- 
+
 | term | abbreviation |
 |:-|:-|
 | year | yr |
@@ -55,6 +59,15 @@ In general, it is best not to abbreviate variable names for understandability; h
 | registration | reg |
 | number | num |
 | location | loc |
+| beginning | beg |
+| middle | mid |
+| indicator | ind |
+| disadvantage | disad |
+| final | fin |
+| condition | cond |
+| popularity | pop |
+| corner | cor |
 
-## Helpful links
-- http://cattle.x-winz.net/edb2_manual/12-3-99-CODE.html
+## Dictionaries and word lists
+- [JRA-VAN DB Code List](http://cattle.x-winz.net/edb2_manual/12-3-99-CODE.html)
+- [競馬バンク競馬用語集](http://www.kei-bank.com/dic)
