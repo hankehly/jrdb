@@ -50,11 +50,20 @@ class Race(BaseModel):
         (D, 'D'),
     )
 
-    racetrack_code = models.ForeignKey('jrdb.RacetrackCode', on_delete=models.CASCADE)
+    # codes
+    racetrack = models.ForeignKey('jrdb.RacetrackCode', on_delete=models.CASCADE)
+    category = models.ForeignKey('jrdb.RaceCategoryCode', on_delete=models.CASCADE)
+    cond = models.ForeignKey('jrdb.RaceConditionCode', on_delete=models.CASCADE)
+    horse_sex_symbol = models.ForeignKey('jrdb.RaceHorseSexSymbol', on_delete=models.CASCADE)
+    horse_type_symbol = models.ForeignKey('jrdb.RaceHorseTypeSymbol', on_delete=models.CASCADE)
+    interleague_symbol = models.ForeignKey('jrdb.RaceInterleagueSymbol', on_delete=models.CASCADE)
+    impost_class = models.ForeignKey('jrdb.ImpostClassCode', on_delete=models.CASCADE)
+    grade = models.ForeignKey('jrdb.GradeCode', on_delete=models.CASCADE)
+    track_cond = models.ForeignKey('jrdb.TrackConditionCode', on_delete=models.CASCADE)
 
-    race_name = models.CharField(max_length=50)
-    race_name_abbr = models.CharField(max_length=8)
-    race_name_short = models.CharField(max_length=18)
+    name = models.CharField(max_length=50)
+    name_abbr = models.CharField(max_length=8)
+    name_short = models.CharField(max_length=18)
 
     # composed of year/month/date + hh/mm from separate files
     started_at = models.DateTimeField()
@@ -62,18 +71,10 @@ class Race(BaseModel):
     # program related data
     round = models.PositiveSmallIntegerField()
     day = models.PositiveIntegerField()
-    race_num = models.PositiveSmallIntegerField()
+    num = models.PositiveSmallIntegerField()
 
     distance = models.PositiveIntegerField()
     surface = models.CharField(max_length=255, choices=SURFACE_CHOICES)
     direction = models.CharField(max_length=255, choices=DIRECTION_CHOICES)
     course_inout = models.CharField(max_length=255, choices=COURSE_INOUT_CHOICES)
     course_label = models.CharField(max_length=255, choices=COURSE_LABEL_CHOICES)
-
-    race_category_code = models.ForeignKey('jrdb.RaceCategoryCode', on_delete=models.CASCADE)
-    race_cond_code = models.ForeignKey('jrdb.RaceConditionCode', on_delete=models.CASCADE)
-    race_horse_sex_symbol = models.ForeignKey('jrdb.RaceHorseSexSymbol', on_delete=models.CASCADE)
-    race_horse_type_symbol = models.ForeignKey('jrdb.RaceHorseTypeSymbol', on_delete=models.CASCADE)
-    race_interleague_symbol = models.ForeignKey('jrdb.RaceInterleagueSymbol', on_delete=models.CASCADE)
-    impost_class_code = models.ForeignKey('jrdb.ImpostClassCode', on_delete=models.CASCADE)
-    grade_code = models.ForeignKey('jrdb.GradeCode', on_delete=models.CASCADE)
