@@ -299,18 +299,7 @@ class RaceInterleagueSymbol(SimpleCode):
         db_table = 'race_interleague_symbols'
 
 
-class RacetrackCode(SimpleCode):
-    """
-    場コード
-
-    http://www.jrdb.com/program/jrdb_code.txt
-    """
-
-    class Meta:
-        db_table = 'racetrack_codes'
-
-
-class RacingLineCode(SimpleCode):
+class RaceLineCode(SimpleCode):
     """
     コース取り
 
@@ -324,7 +313,18 @@ class RacingLineCode(SimpleCode):
     """
 
     class Meta:
-        db_table = 'racing_line_codes'
+        db_table = 'race_line_codes'
+
+
+class RacetrackCode(SimpleCode):
+    """
+    場コード
+
+    http://www.jrdb.com/program/jrdb_code.txt
+    """
+
+    class Meta:
+        db_table = 'racetrack_codes'
 
 
 class RestReasonCode(SimpleCode):
