@@ -55,6 +55,8 @@ In general, it is best not to abbreviate variable names for understandability; h
 | abbreviation | abbr |
 | obstacle (steeple-chase) | obst |
 | high stake | hs |
+| homestretch | hs |
+| backstretch | bs |
 | special | sp |
 | registration | reg |
 | number | num |
