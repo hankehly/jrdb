@@ -53,7 +53,7 @@ class Race(BaseModel):
 
     # key related data
     racetrack = models.ForeignKey('jrdb.RacetrackCode', on_delete=models.CASCADE)
-    year = models.PositiveSmallIntegerField()
+    yr = models.PositiveSmallIntegerField()
     round = models.PositiveSmallIntegerField()
     day = models.PositiveSmallIntegerField()
     num = models.PositiveSmallIntegerField()
@@ -72,7 +72,7 @@ class Race(BaseModel):
     name_abbr = models.CharField(max_length=8, null=True)
     name_short = models.CharField(max_length=18, null=True)
 
-    # composed of year/month/date + hh/mm from separate files
+    # composed of yr/month/date + hh/mm from separate files
     started_at = models.DateTimeField(null=True)
 
     distance = models.PositiveSmallIntegerField(null=True)
@@ -132,4 +132,4 @@ class Race(BaseModel):
     )
 
     class Meta:
-        unique_together = ('racetrack', 'year', 'round', 'day', 'num')
+        unique_together = ('racetrack', 'yr', 'round', 'day', 'num')

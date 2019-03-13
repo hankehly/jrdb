@@ -1,3 +1,8 @@
+import pandas as pd
+from django.db import IntegrityError
+
+from jrdb.models import RacetrackCode, Race
+from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
 
 
@@ -13,7 +18,7 @@ class BAC(Template):
         ['yr', '年', None, '2', '99', '3', None],
         ['round', '回', None, '1', '9', '5', None],
         ['day', '日', None, '1', 'F', '6', None],
-        ['race_num', 'Ｒ', None, '2', '99', '7', None],
+        ['num', 'Ｒ', None, '2', '99', '7', None],
         ['start_date', '年月日', None, '8', '9', '9', 'YYYYMMDD'],
         ['start_time', '発走時間', None, '4', 'X', '17', 'HHMM'],
         ['distance', '距離', None, '4', '9999', '21', None],
@@ -55,3 +60,35 @@ class BAC(Template):
         ['reserved', '予備', None, '5', 'X', '178', 'スペース'],
         ['newline', '改行', None, '2', 'X', '183', 'ＣＲ・ＬＦ']
     ]
+
+    def clean(self):
+        df = self.df[['racetrack_code']]
+
+        racetrack_codes = {code.key: code.id for code in RacetrackCode.objects.filter(key__in=df.racetrack_code)}
+        df['racetrack_id'] = df.racetrack_code.map(racetrack_codes).astype(int)
+        df.drop(columns=['racetrack_code'], inplace=True)
+
+        df['yr'] = self.df.yr.astype(int)
+        df['round'] = self.df['round'].astype(int)
+        df['day'] = self.df.day.astype(int)
+        df['num'] = self.df.num.astype(int)
+
+        started_at = self.df.start_date + self.df.start_time
+        df['started_at'] = pd.to_datetime(started_at, format='%Y%m%d%H%M').dt.tz_localize('Asia/Tokyo')
+
+        return df
+
+    def persist(self):
+        df = self.clean()
+        for row in df.to_dict('records'):
+            obj = filter_na(row)
+            try:
+                Race.objects.create(**obj)
+            except IntegrityError:
+                Race.objects.filter(
+                    racetrack_id=obj['racetrack_id'],
+                    yr=obj['yr'],
+                    round=obj['round'],
+                    day=obj['day'],
+                    num=obj['num']
+                ).update(**obj)

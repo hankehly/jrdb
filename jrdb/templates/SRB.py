@@ -12,7 +12,7 @@ class SRB(Template):
     name = 'JRDB成績レースデータ（SRB）'
     items = [
         ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['year', '年', None, '2', '99', '3', None],
+        ['yr', '年', None, '2', '99', '3', None],
         ['round', '回', None, '1', '9', '5', None],
         ['day', '日', None, '1', 'F', '6', None],
         ['num', 'Ｒ', None, '2', '99', '7', None],
@@ -40,7 +40,7 @@ class SRB(Template):
         df['racetrack_id'] = df.racetrack_code.map(racetrack_codes).astype(int)
         df.drop(columns=['racetrack_code'], inplace=True)
 
-        df['year'] = self.df.year.astype(int)
+        df['yr'] = self.df.yr.astype(int)
         df['round'] = self.df['round'].astype(int)
         df['day'] = self.df.day.astype(int)
         df['num'] = self.df.num.astype(int)
@@ -65,7 +65,7 @@ class SRB(Template):
             except IntegrityError:
                 Race.objects.filter(
                     racetrack_id=obj['racetrack_id'],
-                    year=obj['year'],
+                    yr=obj['yr'],
                     round=obj['round'],
                     day=obj['day'],
                     num=obj['num']
