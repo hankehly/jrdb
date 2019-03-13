@@ -1,7 +1,7 @@
 import pandas as pd
 from django.db import IntegrityError
 
-from jrdb.models import RacetrackCode, Race
+from jrdb.models import RacetrackCode, Race, RaceCategoryCode, RaceConditionCode, ImpostClassCode, GradeCode
 from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
 
@@ -22,7 +22,7 @@ class BAC(Template):
         ['start_date', '年月日', None, '8', '9', '9', 'YYYYMMDD'],
         ['start_time', '発走時間', None, '4', 'X', '17', 'HHMM'],
         ['distance', '距離', None, '4', '9999', '21', None],
-        ['surface_code', '芝ダ障害コード', None, '1', '9', '25', '1:芝, 2:ダート, 3:障害'],
+        ['surface', '芝ダ障害コード', None, '1', '9', '25', '1:芝, 2:ダート, 3:障害'],
         ['direction', '右左', None, '1', '9', '26', '1:右, 2:左, 3:直, 9:他'],
         ['course_inout', '内外', None, '1', '9', '27',
          '1:通常(内), 2:外, 3,直ダ, 9:他\n※障害のトラックは、以下の２通りとなります。\n"393":障害直線ダート\n"391":障害直線芝'],
@@ -64,8 +64,9 @@ class BAC(Template):
     def clean(self):
         df = self.df[['racetrack_code']]
 
-        racetrack_codes = {code.key: code.id for code in RacetrackCode.objects.filter(key__in=df.racetrack_code)}
-        df['racetrack_id'] = df.racetrack_code.map(racetrack_codes).astype(int)
+        racetrack_codes = RacetrackCode.objects.filter(key__in=self.df.racetrack_code)
+        racetrack_code_map = {code.key: code.id for code in racetrack_codes}
+        df['racetrack_id'] = df.racetrack_code.map(racetrack_code_map).astype(int)
         df.drop(columns=['racetrack_code'], inplace=True)
 
         df['yr'] = self.df.yr.astype(int)
@@ -75,6 +76,45 @@ class BAC(Template):
 
         started_at = self.df.start_date + self.df.start_time
         df['started_at'] = pd.to_datetime(started_at, format='%Y%m%d%H%M').dt.tz_localize('Asia/Tokyo')
+
+        df['distance'] = self.df.distance.astype(int)
+        df['surface'] = self.df.surface.astype(int).map({1: Race.TURF, 2: Race.DIRT, 3: Race.OBSTACLE})
+
+        df['direction'] = self.df.direction.astype(int).map({
+            1: Race.RIGHT,
+            2: Race.LEFT,
+            3: Race.STRAIGHT,
+            4: Race.OTHER
+        })
+
+        df['course_inout'] = self.df.course_inout.astype(int).map({
+            1: Race.INSIDE,
+            2: Race.OUTSIDE,
+            3: Race.STRAIGHT_DIRT,
+            9: Race.OTHER
+        })
+
+        category_codes = RaceCategoryCode.objects.filter(key__in=self.df.race_category_code)
+        category_code_map = {code.key: code.id for code in category_codes}
+        df['category_id'] = self.df.race_category_code.map(category_code_map).astype(int)
+
+        cond_codes = RaceConditionCode.objects.filter(key__in=self.df.race_cond_code)
+        cond_code_map = {code.key: code.id for code in cond_codes}
+        df['cond_id'] = self.df.race_cond_code.map(cond_code_map).astype(int)
+
+        # TODO: race symbols
+
+        impost_class_codes = ImpostClassCode.objects.filter(key__in=self.df.impost_class_code)
+        impost_class_code_map = {code.key: code.id for code in impost_class_codes}
+        df['impost_class_id'] = self.df.impost_class_code.map(impost_class_code_map).astype(int)
+
+        grade_codes = GradeCode.objects.filter(key__in=self.df.grade_code)
+        grade_code_map = {code.key: code.id for code in grade_codes}
+        df['grade_id'] = self.df.grade_code.map(grade_code_map).astype('Int64')
+
+        df['name'] = self.df.race_name.str.strip()
+        df['name_short'] = self.df.race_name_short.str.strip()
+        df['name_abbr'] = self.df.race_name_abbr.str.strip()
 
         return df
 
