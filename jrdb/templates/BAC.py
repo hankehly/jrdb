@@ -1,7 +1,17 @@
 import pandas as pd
 from django.db import IntegrityError
 
-from jrdb.models import RacetrackCode, Race, RaceCategoryCode, RaceConditionCode, ImpostClassCode, GradeCode
+from jrdb.models import (
+    RacetrackCode,
+    Race,
+    RaceCategoryCode,
+    RaceConditionCode,
+    ImpostClassCode,
+    GradeCode,
+    RaceHorseTypeSymbol,
+    RaceInterleagueSymbol,
+    RaceHorseSexSymbol
+)
 from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
 
@@ -32,13 +42,13 @@ class BAC(Template):
         ['impost_class_code', '重量', None, '1', '9', '35', 'ハンデ等、 →JRDBデータコード表'],
         ['grade_code', 'グレード', None, '1', '9', '36', 'Ｇ１等 →JRDBデータコード表'],
         ['race_name', 'レース名', None, '50', 'X', '37', 'レース名の通称（全角２５文字）'],
-        ['', '回数', None, '8', 'X', '87', '第ZZ9回（全角半角混在）'],
+        ['nth_occurrence', '回数', None, '8', 'X', '87', '第ZZ9回（全角半角混在）'],
         ['contender_count', '頭数', None, '2', '99', '95', None],
         ['course_label', 'コース', None, '1', 'X', '97', '1:A, 2:A1, 3:A2, 4:B, 5:C, 6:D'],
         ['', '開催区分', None, '1', 'X', '98', '1:関東, 2:関西, 3:ローカル'],
         ['race_name_abbr', 'レース名短縮', None, '8', 'X', '99', '全角４文字'],
         ['race_name_short', 'レース名９文字', None, '18', 'X', '107', '全角９文字'],
-        ['', 'データ区分', None, '1', 'X', '125', '1:特別登録, 2:想定確定, 3:前日'],
+        ['data_category', 'データ区分', None, '1', 'X', '125', '1:特別登録, 2:想定確定, 3:前日'],
         ['p1_purse', '１着賞金', None, '5', 'ZZZZ9', '126', '単位（万円）'],
         ['p2_purse', '２着賞金', None, '5', 'ZZZZ9', '131', '単位（万円）'],
         ['p3_purse', '３着賞金', None, '5', 'ZZZZ9', '136', '単位（万円）'],
@@ -62,59 +72,52 @@ class BAC(Template):
     ]
 
     def clean(self):
-        df = self.df[['racetrack_code']]
-
-        racetrack_codes = RacetrackCode.objects.filter(key__in=self.df.racetrack_code)
-        racetrack_code_map = {code.key: code.id for code in racetrack_codes}
-        df['racetrack_id'] = df.racetrack_code.map(racetrack_code_map).astype(int)
-        df.drop(columns=['racetrack_code'], inplace=True)
+        df = self._racetrack_id().to_frame()
 
         df['yr'] = self.df.yr.astype(int)
         df['round'] = self.df['round'].astype(int)
         df['day'] = self.df.day.astype(int)
         df['num'] = self.df.num.astype(int)
-
-        started_at = self.df.start_date + self.df.start_time
-        df['started_at'] = pd.to_datetime(started_at, format='%Y%m%d%H%M').dt.tz_localize('Asia/Tokyo')
-
+        df['started_at'] = self._started_at()
         df['distance'] = self.df.distance.astype(int)
-        df['surface'] = self.df.surface.astype(int).map({1: Race.TURF, 2: Race.DIRT, 3: Race.OBSTACLE})
 
-        df['direction'] = self.df.direction.astype(int).map({
-            1: Race.RIGHT,
-            2: Race.LEFT,
-            3: Race.STRAIGHT,
-            4: Race.OTHER
-        })
+        surface_map = {1: Race.TURF, 2: Race.DIRT, 3: Race.OBSTACLE}
+        df['surface'] = self.df.surface.astype(int).map(surface_map)
 
-        df['course_inout'] = self.df.course_inout.astype(int).map({
-            1: Race.INSIDE,
-            2: Race.OUTSIDE,
-            3: Race.STRAIGHT_DIRT,
-            9: Race.OTHER
-        })
+        direction_map = {1: Race.RIGHT, 2: Race.LEFT, 3: Race.STRAIGHT, 4: Race.OTHER}
+        df['direction'] = self.df.direction.astype(int).map(direction_map)
 
-        category_codes = RaceCategoryCode.objects.filter(key__in=self.df.race_category_code)
-        category_code_map = {code.key: code.id for code in category_codes}
-        df['category_id'] = self.df.race_category_code.map(category_code_map).astype(int)
+        course_inout_map = {1: Race.INSIDE, 2: Race.OUTSIDE, 3: Race.STRAIGHT_DIRT, 9: Race.OTHER}
+        df['course_inout'] = self.df.course_inout.astype(int).map(course_inout_map)
 
-        cond_codes = RaceConditionCode.objects.filter(key__in=self.df.race_cond_code)
-        cond_code_map = {code.key: code.id for code in cond_codes}
-        df['cond_id'] = self.df.race_cond_code.map(cond_code_map).astype(int)
+        course_label_map = {1: Race.A, 2: Race.A1, 3: Race.A2, 4: Race.B, 5: Race.C, 6: Race.D}
+        df['course_label'] = self.df.course_label.astype(int).map(course_label_map)
 
-        # TODO: race symbols
-
-        impost_class_codes = ImpostClassCode.objects.filter(key__in=self.df.impost_class_code)
-        impost_class_code_map = {code.key: code.id for code in impost_class_codes}
-        df['impost_class_id'] = self.df.impost_class_code.map(impost_class_code_map).astype(int)
-
-        grade_codes = GradeCode.objects.filter(key__in=self.df.grade_code)
-        grade_code_map = {code.key: code.id for code in grade_codes}
-        df['grade_id'] = self.df.grade_code.map(grade_code_map).astype('Int64')
+        df['category_id'] = self._category_id()
+        df['cond_id'] = self._cond_id()
+        df['horse_type_symbol_id'] = self._horse_type_symbol_id()
+        df['horse_sex_symbol_id'] = self._horse_sex_symbol_id()
+        df['interleague_symbol_id'] = self._interleague_symbol_id()
+        df['impost_class_id'] = self._impost_class_id()
+        df['grade_id'] = self._grade_id()
 
         df['name'] = self.df.race_name.str.strip()
         df['name_short'] = self.df.race_name_short.str.strip()
         df['name_abbr'] = self.df.race_name_abbr.str.strip()
+
+        # casting to float prior to Int64 is necessary
+        # to convert strings to numbers
+        df['nth_occurrence'] = self.df.nth_occurrence.str.extract(r'([0-9]+)', expand=False) \
+            .astype(float) \
+            .astype('Int64')
+
+        df['p1_purse'] = self.df.p1_purse.astype(int)
+        df['p2_purse'] = self.df.p2_purse.astype(int)
+        df['p3_purse'] = self.df.p3_purse.astype(int)
+        df['p4_purse'] = self.df.p4_purse.astype(int)
+        df['p5_purse'] = self.df.p5_purse.astype(int)
+        df['p1_prize'] = self.df.p1_prize.astype(int)
+        df['p2_prize'] = self.df.p2_prize.astype(int)
 
         return df
 
@@ -132,3 +135,46 @@ class BAC(Template):
                     day=obj['day'],
                     num=obj['num']
                 ).update(**obj)
+
+    def _racetrack_id(self) -> pd.Series:
+        codes = RacetrackCode.objects.filter(key__in=self.df.racetrack_code)
+        code_map = {code.key: code.id for code in codes}
+        return self.df.racetrack_code.map(code_map).astype(int).rename('racetrack_id')
+
+    def _started_at(self) -> pd.Series:
+        started_at = self.df.start_date + self.df.start_time
+        return pd.to_datetime(started_at, format='%Y%m%d%H%M').dt.tz_localize('Asia/Tokyo').rename('started_at')
+
+    def _category_id(self) -> pd.Series:
+        codes = RaceCategoryCode.objects.filter(key__in=self.df.race_category_code)
+        code_map = {code.key: code.id for code in codes}
+        return self.df.race_category_code.map(code_map).astype(int).rename('category_id')
+
+    def _cond_id(self) -> pd.Series:
+        codes = RaceConditionCode.objects.filter(key__in=self.df.race_cond_code)
+        return self.df.race_cond_code.map({code.key: code.id for code in codes}).astype(int).rename('cond_id')
+
+    def _horse_type_symbol_id(self) -> pd.Series:
+        codes = RaceHorseTypeSymbol.objects.filter(key__in=self.df.race_symbols.str[0])
+        code_map = {code.key: code.id for code in codes}
+        return self.df.race_symbols.str[0].map(code_map).astype(int).rename('horse_type_symbol_id')
+
+    def _horse_sex_symbol_id(self) -> pd.Series:
+        codes = RaceHorseSexSymbol.objects.filter(key__in=self.df.race_symbols.str[1])
+        code_map = {code.key: code.id for code in codes}
+        return self.df.race_symbols.str[1].map(code_map).astype(int).rename('horse_sex_symbol_id')
+
+    def _interleague_symbol_id(self) -> pd.Series:
+        codes = RaceInterleagueSymbol.objects.filter(key__in=self.df.race_symbols.str[2])
+        code_map = {code.key: code.id for code in codes}
+        return self.df.race_symbols.str[2].map(code_map).astype(int).rename('interleague_symbol_id')
+
+    def _impost_class_id(self) -> pd.Series:
+        codes = ImpostClassCode.objects.filter(key__in=self.df.impost_class_code)
+        code_map = {code.key: code.id for code in codes}
+        return self.df.impost_class_code.map(code_map).astype(int).rename('impost_class_id')
+
+    def _grade_id(self) -> pd.Series:
+        codes = GradeCode.objects.filter(key__in=self.df.grade_code)
+        code_map = {code.key: code.id for code in codes}
+        return self.df.grade_code.map(code_map).astype('Int64').rename('grade_id')

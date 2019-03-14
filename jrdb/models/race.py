@@ -81,6 +81,16 @@ class Race(BaseModel):
     course_inout = models.CharField(max_length=255, choices=COURSE_INOUT_CHOICES, null=True)
     course_label = models.CharField(max_length=255, choices=COURSE_LABEL_CHOICES, null=True)
     comment = models.TextField(max_length=500)
+    nth_occurrence = models.PositiveSmallIntegerField(null=True)
+
+    # earnings
+    p1_purse = models.PositiveSmallIntegerField(null=True)
+    p2_purse = models.PositiveSmallIntegerField(null=True)
+    p3_purse = models.PositiveSmallIntegerField(null=True)
+    p4_purse = models.PositiveSmallIntegerField(null=True)
+    p5_purse = models.PositiveSmallIntegerField(null=True)
+    p1_prize = models.PositiveSmallIntegerField(null=True)
+    p2_prize = models.PositiveSmallIntegerField(null=True)
 
     # track bias
     track_bias_1C = models.CharField(
