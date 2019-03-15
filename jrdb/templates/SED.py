@@ -1,3 +1,6 @@
+import pandas as pd
+
+from jrdb.models import RacetrackCode, Race, TrackConditionCode, RaceCategoryCode, RaceConditionCode
 from jrdb.templates.template import Template
 
 
@@ -18,22 +21,22 @@ class SED(Template):
         ['race_num', 'Ｒ', None, '2', '99', '7', None],
         ['horse_num', '馬番', None, '2', '99', '9', None],
         ['pedigree_reg_num', '血統登録番号', None, '8', 'X', '11', None],
-        ['race_date', '年月日', None, '8', '9', '19', 'YYYYMMDD <-暫定版より順序'],
+        ['race_date', '年月日', None, '8', '9', '19', 'YYYYMMDD <-暫定版より順序'],  # ignored in favor of BAC
         ['horse_name', '馬名', None, '36', 'X', '27', '全角１８文字 <-入れ替え'],
         # レース条件
-        ['distance', '距離', None, '4', '9999', '63', None],
-        ['surface_code', '芝ダ障害コード', None, '1', '9', '67', '1:芝, 2:ダート, 3:障害'],
-        ['direction', '右左', None, '1', '9', '68', '1:右, 2:左, 3:直, 9:他'],
-        ['course_inout', '内外', None, '1', '9', '69',
+        ['race_distance', '距離', None, '4', '9999', '63', None],
+        ['race_surface_code', '芝ダ障害コード', None, '1', '9', '67', '1:芝, 2:ダート, 3:障害'],
+        ['race_direction', '右左', None, '1', '9', '68', '1:右, 2:左, 3:直, 9:他'],
+        ['race_course_inout', '内外', None, '1', '9', '69',
          '1:通常(内), 2:外, 3,直ダ, 9:他\n※障害のトラックは、以下の２通りとなります。\n"393":障害直線ダート\n"391":障害直線芝'],
-        ['track_cond_code', '馬場状態', None, '2', '99', '70', None],
+        ['race_track_cond_code', '馬場状態', None, '2', '99', '70', None],
         ['race_category_code', '種別', None, '2', '99', '72', '４歳以上等、→成績データの説明'],
         ['race_cond_code', '条件', None, '2', 'XX', '74', '900万下等、 →成績データの説明'],
         ['race_symbols', '記号', None, '3', '999', '76', '○混等、 →成績データの説明'],
-        ['impost_class_code', '重量', None, '1', '9', '79', 'ハンデ等、 →成績データの説明'],
-        ['grade', 'グレード', None, '1', '9', '80', None],
+        ['race_impost_class_code', '重量', None, '1', '9', '79', 'ハンデ等、 →成績データの説明'],
+        ['race_grade', 'グレード', None, '1', '9', '80', None],
         ['race_name', 'レース名', None, '50', 'X', '81', 'レース名の通称（全角２５文字）'],
-        ['contender_count', '頭数', None, '2', '99', '131', None],
+        ['race_contender_count', '頭数', None, '2', '99', '131', None],
         ['race_name_abbr', 'レース名略称', None, '8', 'X', '133', '全角４文字'],
         # 馬成績
         ['order_of_finish', '着順', None, '2', '99', '141', None],
@@ -102,3 +105,36 @@ class SED(Template):
         ['reserved_1', '予備', None, '4', 'X', '371', 'スペース'],
         ['newline', '改行', None, '2', 'X', '375', 'ＣＲ・ＬＦ']
     ]
+
+    def clean(self):
+        # Race
+        rdf = RacetrackCode.key2id(self.df.racetrack_code, name='racetrack_id').to_frame()
+        rdf['yr'] = self.df.yr.astype(int)
+        rdf['round'] = self.df['round'].astype(int)
+        rdf['day'] = self.df.day.astype(int)
+        rdf['num'] = self.df.num.astype(int)
+        rdf['distance'] = self.df.race_distance.astype(int)
+
+        surface_map = {1: Race.TURF, 2: Race.DIRT, 3: Race.OBSTACLE}
+        rdf['surface'] = self.df.race_surface_code.astype(int).map(surface_map)
+
+        direction_map = {1: Race.RIGHT, 2: Race.LEFT, 3: Race.STRAIGHT, 4: Race.OTHER}
+        rdf['direction'] = self.df.race_direction.astype(int).map(direction_map)
+
+        course_inout_map = {1: Race.INSIDE, 2: Race.OUTSIDE, 3: Race.STRAIGHT_DIRT, 9: Race.OTHER}
+        rdf['course_inout'] = self.df.race_course_inout.astype(int).map(course_inout_map)
+
+        rdf['track_cond_id'] = TrackConditionCode.key2id(self.df.race_track_cond_code)
+        rdf['category_id'] = RaceCategoryCode.key2id(self.df.race_category_code)
+        rdf['cond_id'] = RaceConditionCode.key2id(self.df.race_cond_code)
+
+        # Contender
+        cdf = pd.DataFrame(index=rdf.index)
+        cdf['num'] = self.df.horse_num.astype(int)
+
+        # Horse
+        hdf = pd.DataFrame(index=rdf.index)
+        hdf['pedigree_reg_num'] = self.df.pedigree_reg_num
+        hdf['name'] = self.df.horse_name.str.strip()
+
+        return pd.concat([rdf, cdf, hdf], axis='columns')

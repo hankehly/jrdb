@@ -1,3 +1,5 @@
+from django.db import models
+
 from jrdb.models import BaseModel
 
 
@@ -12,3 +14,7 @@ class Contender(BaseModel):
         (NORMAL, '平均'),
         (SLOW, 'スロー'),
     )
+
+    race = models.ForeignKey('jrdb.Race', on_delete=models.CASCADE)
+    horse = models.ForeignKey('jrdb.Horse', on_delete=models.CASCADE)
+    num = models.PositiveSmallIntegerField()
