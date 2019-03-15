@@ -119,6 +119,16 @@ class BAC(Template):
         df['p1_prize'] = self.df.p1_prize.astype(int)
         df['p2_prize'] = self.df.p2_prize.astype(int)
 
+        int2bool = {1: True, 0: False}
+        df['issued_bt_win'] = self.df.betting_ticket_sale_flag.str[0].astype(int).map(int2bool)
+        df['issued_bt_show'] = self.df.betting_ticket_sale_flag.str[1].astype(int).map(int2bool)
+        df['issued_bt_bracket_quinella'] = self.df.betting_ticket_sale_flag.str[2].astype(int).map(int2bool)
+        df['issued_bt_quinella'] = self.df.betting_ticket_sale_flag.str[3].astype(int).map(int2bool)
+        df['issued_bt_exacta'] = self.df.betting_ticket_sale_flag.str[4].astype(int).map(int2bool)
+        df['issued_bt_duet'] = self.df.betting_ticket_sale_flag.str[5].astype(int).map(int2bool)
+        df['issued_bt_trio'] = self.df.betting_ticket_sale_flag.str[6].astype(int).map(int2bool)
+        df['issued_bt_trifecta'] = self.df.betting_ticket_sale_flag.str[7].astype(int).map(int2bool)
+
         return df
 
     def persist(self):

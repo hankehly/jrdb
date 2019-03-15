@@ -141,5 +141,15 @@ class Race(BaseModel):
         null=True
     )
 
+    # betting ticket sales
+    issued_bt_win = models.BooleanField(null=True)
+    issued_bt_show = models.BooleanField(null=True)
+    issued_bt_bracket_quinella = models.BooleanField(null=True)
+    issued_bt_quinella = models.BooleanField(null=True)
+    issued_bt_exacta = models.BooleanField(null=True)
+    issued_bt_duet = models.BooleanField(null=True)
+    issued_bt_trio = models.BooleanField(null=True)
+    issued_bt_trifecta = models.BooleanField(null=True)
+
     class Meta:
         unique_together = ('racetrack', 'yr', 'round', 'day', 'num')
