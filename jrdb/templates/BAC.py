@@ -12,8 +12,7 @@ from jrdb.models import (
     RaceInterleagueSymbol,
     RaceHorseSexSymbol
 )
-from jrdb.templates.parse import filter_na, category_id, cond_id, horse_type_symbol_id, horse_sex_symbol_id, \
-    interleague_symbol_id
+from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
 
 
