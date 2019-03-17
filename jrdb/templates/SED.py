@@ -226,8 +226,4 @@ class SED(Template):
         hdf['pedigree_reg_num'] = self.df.pedigree_reg_num
         hdf['name'] = self.df.horse_name.str.strip()
 
-        # TODO
-        # jockey_name
-        # trainer_name
-
         return pd.concat([rdf, cdf, hdf], axis='columns')
