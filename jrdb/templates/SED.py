@@ -1,6 +1,25 @@
+import numpy as np
 import pandas as pd
 
-from jrdb.models import RacetrackCode, Race, TrackConditionCode, RaceCategoryCode, RaceConditionCode
+from jrdb.models import (
+    RacetrackCode,
+    Race,
+    TrackConditionCode,
+    RaceCategoryCode,
+    RaceConditionCode,
+    ImpostClassCode,
+    GradeCode,
+    PenaltyCode,
+    RaceHorseTypeSymbol,
+    RaceHorseSexSymbol,
+    RaceInterleagueSymbol,
+    RaceLineCode,
+    ImprovementCode,
+    HorsePhysiqueCode,
+    HorseDemeanorCode,
+    Jockey, Trainer, WeatherCode, RunningStyleCode, PaceFlowCode)
+from jrdb.models.choices import PACE_CATEGORY
+from jrdb.templates.parse import parse_int_or, parse_float_or
 from jrdb.templates.template import Template
 
 
@@ -12,6 +31,7 @@ class SED(Template):
     The correct values can be found [here](http://www.jrdb.com/program/jrdb_code.txt)
     """
     name = 'JRDB成績データ（SED）'
+
     items = [
         # レースキー
         ['racetrack_code', '場コード', None, '2', '99', '1', None],
@@ -49,45 +69,50 @@ class SED(Template):
         ['fin_win_pop', '確定単勝人気順位', None, '2', '99', '181', None],
         # ＪＲＤＢデータ
         ['IDM', 'ＩＤＭ', None, '3', 'ZZ9', '183', None],
-        ['raw_score', '素点', None, '3', 'ZZ9', '186', None],
+        ['speed_index', '素点', None, '3', 'ZZ9', '186', None],
         ['track_speed_shift', '馬場差', None, '3', 'ZZ9', '189', None],
-        ['pace_ind', 'ペース', None, '3', 'ZZZ', '192', None],  # 単位/意味不明
-        ['late_start_ind', '出遅', None, '3', 'ZZZ', '195', None],
-        ['positioning', '位置取', None, '3', 'ZZZ', '198', None],  # 単位/意味不明
-        ['disad_ind', '不利', None, '3', 'ZZZ', '201', None],  # 単位不明
-        ['beg_3F_disad_ind', '前不利', None, '3', 'ZZZ', '204', '前３Ｆ内での不利'],
-        ['mid_3F_disad_ind', '中不利', None, '3', 'ZZZ', '207', '道中での不利'],
-        ['end_3F_disad_ind', '後不利', None, '3', 'ZZZ', '210', '後３Ｆ内での不利'],
-        ['race_ind', 'レース', None, '3', 'ZZZ', '213', None],  # 単位/意味不明
+        ['pace', 'ペース', None, '3', 'ZZZ', '192', None],
+        ['late_start', '出遅', None, '3', 'ZZZ', '195', None],
+        ['positioning', '位置取', None, '3', 'ZZZ', '198', None],
+        ['disadvt', '不利', None, '3', 'ZZZ', '201', None],
+        ['b3f_disadvt', '前不利', None, '3', 'ZZZ', '204', '前３Ｆ内での不利'],
+        ['mid_disadvt', '中不利', None, '3', 'ZZZ', '207', '道中での不利'],
+        ['f3f_disadvt', '後不利', None, '3', 'ZZZ', '210', '後３Ｆ内での不利'],
+        # 単位/意味不明
+        ['race_ind', 'レース', None, '3', 'ZZZ', '213', None],  # IGNORED
         ['race_line', 'コース取り', None, '1', '9', '216', '1:最内,2:内,3:中,4:外,5:大外'],
         ['improvement_code', '上昇度コード', None, '1', '9', '217', '1:AA, 2:A, 3:B, 4:C, 5:?'],
-        ['race_class_code', 'クラスコード', None, '2', '99', '218', None],
-        ['horse_body_code', '馬体コード', None, '1', '9', '220', None],
-        ['horse_cond_code', '気配コード', None, '1', '9', '221', None],
+        # mostly the same for all horses in 1 race, but maybe 1 or 2 horses have different classes
+        # what is this supposed to mean?
+        ['race_class_code', 'クラスコード', None, '2', '99', '218', None],  # IGNORED
+        ['horse_physique_code', '馬体コード', None, '1', '9', '220', None],
+        ['horse_demeanor_code', '気配コード', None, '1', '9', '221', None],
         ['race_pace', 'レースペース', None, '1', 'X', '222', 'H:ハイ, M:平均, S:スロー'],
         ['horse_pace', '馬ペース', None, '1', 'X', '223', '馬自身のペース(H:M:S)'],
-        ['beg_3F_time_ind', 'テン指数', None, '5', 'ZZ9.9', '224', '前３Ｆタイムを指数化したもの'],
-        ['end_3F_time_ind', '上がり指数', None, '5', 'ZZ9.9', '229', '後３Ｆタイムを指数化したもの'],
-        # ペース指数とは、各馬のスタートから残り３Ｆ地点までの時計を指数化したものです
-        ['pace_ind', 'ペース指数', None, '5', 'ZZ9.9', '234', '馬のペースを指数化したもの'],
-        ['race_pace_ind', 'レースＰ指数', None, '5', 'ZZ9.9', '239', 'レースのペースを指数化したもの'],
+        # テン指数はダッシュ力を意味する（元になる数値は前３Ｆタイム）
+        ['b3f_time_index', 'テン指数', None, '5', 'ZZ9.9', '224', '前３Ｆタイムを指数化したもの'],
+        # 勝負所からの最後の脚（元になる数値は後3Fタイム）
+        ['f3f_time_index', '上がり指数', None, '5', 'ZZ9.9', '229', '後３Ｆタイムを指数化したもの'],
+        # ペース指数は道中どれぐらいのペースで後３Ｆを走ったか（元になる数値は走破タイム-後3Fタイム）
+        ['horse_pace_index', 'ペース指数', None, '5', 'ZZ9.9', '234', '馬のペースを指数化したもの'],
+        ['race_pace_index', 'レースＰ指数', None, '5', 'ZZ9.9', '239', 'レースのペースを指数化したもの'],
         # for 1st place horses, the second place horse name/time
         # for 2nd > place horses, the first place horse name/time
-        ['fos_horse_name', '1(2)着馬名', None, '12', 'X', '244', '全角６文字'],
-        ['fos_horse_time_diff', '1(2)着タイム差', None, '3', '999', '256', '0.1秒単位'],
-        ['beg_3F_time', '前３Ｆタイム', None, '3', '999', '259', '0.1秒単位'],
-        ['end_3F_time', '後３Ｆタイム', None, '3', '999', '262', '0.1秒単位'],
-        ['comment', '備考', None, '24', 'X', '265', '全角１２文字（地方競馬場名等）'],
+        ['fos_horse_name', '1(2)着馬名', None, '12', 'X', '244', '全角６文字'],  # IGNORED
+        ['margin', '1(2)着タイム差', None, '3', '999', '256', '0.1秒単位'],
+        ['b3f_time', '前３Ｆタイム', None, '3', '999', '259', '0.1秒単位'],
+        ['f3f_time', '後３Ｆタイム', None, '3', '999', '262', '0.1秒単位'],
+        ['note', '備考', None, '24', 'X', '265', '全角１２文字（地方競馬場名等）'],  # IGNORED
         ['reserved_0', '予備', None, '2', 'X', '289', 'スペース'],
-        ['fin_show_odds_lower_limit', '確定複勝オッズ下', None, '6', 'ZZZ9.9', '291', '最終的な複勝オッズ（下限）'],
-        ['win_odds_10am', '10時単勝オッズ', None, '6', 'ZZZ9.9', '297', '10時頃の単勝オッズ'],
-        ['show_odds_10am', '10時複勝オッズ', None, '6', 'ZZZ9.9', '303', '10時頃の複勝オッズ'],
-        ['cor_1_pos', 'コーナー順位１', None, '2', '99', '309', None],
-        ['cor_2_pos', 'コーナー順位２', None, '2', '99', '311', None],
-        ['cor_3_pos', 'コーナー順位３', None, '2', '99', '313', None],
-        ['cor_4_pos', 'コーナー順位４', None, '2', '99', '315', None],
-        ['beg_3F_1p_time_diff', '前３Ｆ先頭差', None, '3', '99', '317', '前３Ｆ地点での先頭とのタイム差'],
-        ['end_3F_1P_time_diff', '後３Ｆ先頭差', None, '3', '99', '320', '後３Ｆ地点での先頭とのタイム差'],
+        ['fin_show_odds_lower_limit', '確定複勝オッズ下', None, '6', 'ZZZ9.9', '291', '最終的な複勝オッズ（下限）'],  # IGNORED
+        ['win_odds_10am', '10時単勝オッズ', None, '6', 'ZZZ9.9', '297', '10時頃の単勝オッズ'],  # IGNORED
+        ['show_odds_10am', '10時複勝オッズ', None, '6', 'ZZZ9.9', '303', '10時頃の複勝オッズ'],  # IGNORED
+        ['c1p', 'コーナー順位１', None, '2', '99', '309', None],
+        ['c2p', 'コーナー順位２', None, '2', '99', '311', None],
+        ['c3p', 'コーナー順位３', None, '2', '99', '313', None],
+        ['c4p', 'コーナー順位４', None, '2', '99', '315', None],
+        ['b3f_1p_margin', '前３Ｆ先頭差', None, '3', '99', '317', '前３Ｆ地点での先頭とのタイム差\n0.1秒単位'],
+        ['f3f_1p_margin', '後３Ｆ先頭差', None, '3', '99', '320', '後３Ｆ地点での先頭とのタイム差\n0.1秒単位'],
         ['jockey_code', '騎手コード', None, '5', '9', '323', '騎手マスタとリンク'],
         ['trainer_code', '調教師コード', None, '5', '9', '328', '調教師マスタとリンク'],
         ['horse_weight', '馬体重', None, '3', '999', '333', 'データ無:スペース'],
@@ -95,18 +120,20 @@ class SED(Template):
         ['weather_code', '天候コード', None, '1', '9', '339', 'コード表参照'],
         ['course_label', 'コース', None, '1', 'X', '340', '1:A,2:A1,3:A2,4:B,5:C,6:D'],
         ['running_style_code', 'レース脚質', None, '1', 'X', '341', '脚質コード参照'],
-        ['win_payoff_yen', '単勝', None, '7', 'ZZZZZZ9', '342', '単位（円）'],
-        ['show_payoff_yen', '複勝', None, '7', 'ZZZZZZ9', '349', '単位（円）'],
+        ['win_payoff_yen', '単勝', None, '7', 'ZZZZZZ9', '342', '単位（円）'],  # IGNORED
+        ['show_payoff_yen', '複勝', None, '7', 'ZZZZZZ9', '349', '単位（円）'],  # IGNORED
         ['purse', '本賞金', None, '5', 'ZZZZ9', '356', '単位（万円）'],
         ['p1_prize', '収得賞金', None, '5', 'ZZZZ9', '361', '単位（万円）'],
         ['race_pace_flow_code', 'レースペース流れ', None, '2', '99', '366', '→成績データの説明'],
         ['horse_pace_flow_code', '馬ペース流れ', None, '2', '99', '368', '→成績データの説明'],
-        ['cor_4_race_line', '４角コース取り', None, '1', '9', '370', '1:最内,2:内,3:中,4:外,5:大外'],
+        ['c4_race_line', '４角コース取り', None, '1', '9', '370', '1:最内,2:内,3:中,4:外,5:大外'],
         ['reserved_1', '予備', None, '4', 'X', '371', 'スペース'],
         ['newline', '改行', None, '2', 'X', '375', 'ＣＲ・ＬＦ']
     ]
 
     def clean(self):
+        pace_cat_map = {'H': PACE_CATEGORY.HIGH, 'M': PACE_CATEGORY.MEDIUM, 'S': PACE_CATEGORY.SLOW}
+
         # Race
         rdf = RacetrackCode.key2id(self.df.racetrack_code, name='racetrack_id').to_frame()
         rdf['yr'] = self.df.yr.astype(int)
@@ -127,14 +154,80 @@ class SED(Template):
         rdf['track_cond_id'] = TrackConditionCode.key2id(self.df.race_track_cond_code)
         rdf['category_id'] = RaceCategoryCode.key2id(self.df.race_category_code)
         rdf['cond_id'] = RaceConditionCode.key2id(self.df.race_cond_code)
+        rdf['horse_type_symbol_id'] = RaceHorseTypeSymbol.key2id(self.df.race_symbols.str[0])
+        rdf['horse_sex_symbol_id'] = RaceHorseSexSymbol.key2id(self.df.race_symbols.str[1])
+        rdf['interleague_symbol_id'] = RaceInterleagueSymbol.key2id(self.df.race_symbols.str[2])
+        rdf['impost_class_id'] = ImpostClassCode.key2id(self.df.race_impost_class_code)
+        rdf['grade_id'] = GradeCode.key2id(self.df.race_grade)
+        rdf['name'] = self.df.race_name.str.strip()
+        rdf['name_abbr'] = self.df.race_name_abbr.str.strip()
+        rdf['track_speed_shift'] = self.df.track_speed_shift.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        rdf['pace_cat'] = self.df.race_pace.map(pace_cat_map)
+        rdf['pace_index'] = self.df.race_pace_index.apply(parse_float_or, args=(np.nan,))
+        rdf['weather_id'] = WeatherCode.key2id(self.df.weather_code)
+
+        course_label_map = {1: Race.A, 2: Race.A1, 3: Race.A2, 4: Race.B, 5: Race.C, 6: Race.D}
+        rdf['course_label'] = self.df.course_label.astype(int).map(course_label_map)
+
+        rdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.race_pace_flow_code)
 
         # Contender
         cdf = pd.DataFrame(index=rdf.index)
         cdf['num'] = self.df.horse_num.astype(int)
+        cdf['order_of_finish'] = self.df.order_of_finish.astype(int)
+        cdf['penalty_id'] = PenaltyCode.key2id(self.df.penalty_code)
+        cdf['time'] = self.df.time.astype(int) * 0.1
+        cdf['mounted_weight'] = self.df.mounted_weight.astype(int) * 0.1
+        cdf['odds_win'] = self.df.fin_win_odds.astype(float)
+        cdf['popularity'] = self.df.fin_win_pop.astype(int)
+        cdf['IDM'] = self.df.IDM.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['speed_index'] = self.df.speed_index.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['pace'] = self.df.pace.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['positioning'] = self.df.positioning.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['disadvt'] = self.df.disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['b3f_disadvt'] = self.df.b3f_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['mid_disadvt'] = self.df.mid_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['f3f_disadvt'] = self.df.f3f_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['race_line_id'] = RaceLineCode.key2id(self.df.race_line)
+        cdf['improvement_id'] = ImprovementCode.key2id(self.df.improvement_code)
+        cdf['physique_id'] = HorsePhysiqueCode.key2id(self.df.horse_physique_code)
+        cdf['demeanor_id'] = HorseDemeanorCode.key2id(self.df.horse_demeanor_code)
+        cdf['pace_cat'] = self.df.horse_pace.map(pace_cat_map)
+        cdf['b3f_time_index'] = self.df.start_time_index.apply(parse_float_or, args=(np.nan,))
+        cdf['f3f_time_index'] = self.df.end_time_index.apply(parse_float_or, args=(np.nan,))
+        cdf['pace_index'] = self.df.horse_pace_index.apply(parse_float_or, args=(np.nan,))
+        cdf['margin'] = self.df.margin.apply(parse_float_or, args=(np.nan,)) * 0.1
+        cdf['b3f_time'] = self.df.b3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
+        cdf['f3f_time'] = self.df.f3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
+        cdf['c1p'] = self.df.c1p.astype(int).where(lambda v: v != 0).astype('Int64')
+        cdf['c2p'] = self.df.c2p.astype(int).where(lambda v: v != 0).astype('Int64')
+        cdf['c3p'] = self.df.c3p.astype(int).where(lambda v: v != 0).astype('Int64')
+        cdf['c4p'] = self.df.c4p.astype(int).where(lambda v: v != 0).astype('Int64')
+        cdf['b3f_1p_margin'] = self.df.b3f_1p_margin.apply(parse_float_or, args=(np.nan,)) * 0.1
+        cdf['f3f_1p_margin'] = self.df.f3f_1p_margin.apply(parse_float_or, args=(np.nan,)) * 0.1
+
+        jockeys = Jockey.objects.filter(code__in=self.df.jockey_code).values('code', 'id')
+        cdf['jockey_id'] = self.df.jockey_code.map({jockey.code: jockey.id for jockey in jockeys}).astype(int)
+
+        trainers = Trainer.objects.filter(code__in=self.df.trainer_code).values('code', 'id')
+        cdf['trainer_id'] = self.df.trainer_code.map({trainer.code: trainer.id for trainer in trainers}).astype(int)
+
+        cdf['weight'] = self.df.horse_weight.astype(int)
+        cdf['weight_diff'] = self.df.horse_weight_diff.str.replace(' ', '') \
+            .apply(parse_int_or, args=(np.nan,)).astype('Int64')
+
+        cdf['running_style_id'] = RunningStyleCode.key2id(self.df.running_style_code, allow_null=True)
+        cdf['purse'] = self.df.purse.astype(int)
+        cdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.horse_pace_flow_code)
+        cdf['c4_race_line_id'] = RaceLineCode.key2id(self.df.c4_race_line)
 
         # Horse
         hdf = pd.DataFrame(index=rdf.index)
         hdf['pedigree_reg_num'] = self.df.pedigree_reg_num
         hdf['name'] = self.df.horse_name.str.strip()
+
+        # TODO
+        # jockey_name
+        # trainer_name
 
         return pd.concat([rdf, cdf, hdf], axis='columns')

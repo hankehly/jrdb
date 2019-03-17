@@ -2,6 +2,7 @@ from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 
 from jrdb.models import BaseModel
+from jrdb.models.choices import PACE_CATEGORY
 
 
 class Race(BaseModel):
@@ -59,14 +60,15 @@ class Race(BaseModel):
     num = models.PositiveSmallIntegerField()
 
     # codes
-    category = models.ForeignKey('jrdb.RaceCategoryCode', on_delete=models.SET_NULL, null=True)
-    cond = models.ForeignKey('jrdb.RaceConditionCode', on_delete=models.SET_NULL, null=True)
-    horse_sex_symbol = models.ForeignKey('jrdb.RaceHorseSexSymbol', on_delete=models.SET_NULL, null=True)
-    horse_type_symbol = models.ForeignKey('jrdb.RaceHorseTypeSymbol', on_delete=models.SET_NULL, null=True)
-    interleague_symbol = models.ForeignKey('jrdb.RaceInterleagueSymbol', on_delete=models.SET_NULL, null=True)
-    impost_class = models.ForeignKey('jrdb.ImpostClassCode', on_delete=models.SET_NULL, null=True)
-    grade = models.ForeignKey('jrdb.GradeCode', on_delete=models.SET_NULL, null=True)
-    track_cond = models.ForeignKey('jrdb.TrackConditionCode', on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey('jrdb.RaceCategoryCode', on_delete=models.CASCADE, null=True)
+    cond = models.ForeignKey('jrdb.RaceConditionCode', on_delete=models.CASCADE, null=True)
+    horse_sex_symbol = models.ForeignKey('jrdb.RaceHorseSexSymbol', on_delete=models.CASCADE, null=True)
+    horse_type_symbol = models.ForeignKey('jrdb.RaceHorseTypeSymbol', on_delete=models.CASCADE, null=True)
+    interleague_symbol = models.ForeignKey('jrdb.RaceInterleagueSymbol', on_delete=models.CASCADE, null=True)
+    impost_class = models.ForeignKey('jrdb.ImpostClassCode', on_delete=models.CASCADE, null=True)
+    grade = models.ForeignKey('jrdb.GradeCode', on_delete=models.CASCADE, null=True)
+    track_cond = models.ForeignKey('jrdb.TrackConditionCode', on_delete=models.CASCADE, null=True)
+    weather = models.ForeignKey('jrdb.WeatherCode', on_delete=models.CASCADE, null=True)
 
     name = models.CharField(max_length=50, null=True)
     name_abbr = models.CharField(max_length=8, null=True)
@@ -150,6 +152,12 @@ class Race(BaseModel):
     issued_bt_duet = models.BooleanField(null=True)
     issued_bt_trio = models.BooleanField(null=True)
     issued_bt_trifecta = models.BooleanField(null=True)
+
+    track_speed_shift = models.SmallIntegerField(null=True)
+
+    pace_cat = models.CharField(max_length=255, choices=PACE_CATEGORY.CHOICES)
+    pace_index = models.FloatField(null=True, help_text='レースのペースを指数化したもの')
+    pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('racetrack', 'yr', 'round', 'day', 'num')

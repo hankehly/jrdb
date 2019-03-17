@@ -25,5 +25,12 @@ def parse_int_or(value: str, default=None) -> Optional[int]:
         return default
 
 
+def parse_float_or(value: str, default=None) -> Optional[float]:
+    try:
+        return float(value)
+    except ValueError:
+        return default
+
+
 def filter_na(obj: dict) -> dict:
     return {k: v for k, v in obj.items() if v not in [None, np.nan]}

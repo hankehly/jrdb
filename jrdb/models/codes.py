@@ -80,19 +80,7 @@ class HoofCode(SimpleCode):
         db_table = 'hoof_codes'
 
 
-class HorseBodyCode(SimpleCode):
-    """
-    馬体コード
-    パドックで見た馬体
-
-    http://www.jrdb.com/program/jrdb_code.txt
-    """
-
-    class Meta:
-        db_table = 'horse_body_codes'
-
-
-class HorseConditionCode(SimpleCode):
+class HorseDemeanorCode(SimpleCode):
     """
     気配コード
     パドックで見た馬気配
@@ -130,6 +118,18 @@ class HorseGearCodeCategory(SimpleCode):
 
     class Meta:
         db_table = 'horse_gear_code_categories'
+
+
+class HorsePhysiqueCode(SimpleCode):
+    """
+    馬体コード
+    パドックで見た馬体
+
+    http://www.jrdb.com/program/jrdb_code.txt
+    """
+
+    class Meta:
+        db_table = 'horse_body_codes'
 
 
 class HorseSymbol(SimpleCode):

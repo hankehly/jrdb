@@ -25,7 +25,7 @@
 | 好位差し | こういさし | Off the pace (good position) | ([1](http://www.kei-bank.com/dic/205)) |
 | 自在 | じざい | Versatile | ([1](http://www.kei-bank.com/style/jizai)) |
 | 逃げ | にげ | Front runner | |
-| 先行 | せんこう | Stalker | |
+| 先行 | せんこう | Stalker | 道中を2番手から、だいたい5番手ぐらいまでで走り、最後の直線で逃げ馬をかわしてゴールを目指す脚質です ([1](http://keibayo.net/ichi.html)) |
 | 差し | さし | Off the pace | |
 | 追込 | おいこみ | Off the pace (stretch runner) | |
 | リーディング | | leading | 成績の順位 ([1](https://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0_(%E7%AB%B6%E9%A6%AC))) |
@@ -39,7 +39,12 @@
 | コース | | course | Each racetrack has courses labeled A, B, C, etc.. ([1](http://www.jra.go.jp/facilities/race/nakayama/course/index.html#course_list)) |
 | キックバック | | kickback(?) | 馬の蹴って跳ね上がった泥 ([1](http://www.jrdb.com/kenkai/011114E.html)) |
 | 馬場差 | ばばさ | track speed shift (?) | 数字が小さいほど時計が早い馬場であることを示し、大きくなると時計が掛かる馬場を示す（1＝0.1秒で換算）([1](http://blog.livedoor.jp/keiba_check/archives/50560444.html))([2](http://www.haizara.com/dictionary/06-01.htm)) |
-| 上積み | うわずみ | | ([1](http://www.kei-bank.com/dic/56)) | 
+| 上積み | うわずみ | | ([1](http://www.kei-bank.com/dic/56)) |
+| IDM | | InDex Memory | IDM = 素点 + ペース + ハンデ(斤量補正) + 記憶要素 |
+| 素点 | そてん | | 素点 = (基準タイム ― 走破タイム) × 距離差 × 10 + 馬場差 + 基本値。スピード指数と思って良い |
+| 記憶要素 | | | 記憶要素 = 出遅 + 不利 + 位置取り + レース内容。記憶要素の単位は馬身。 |
+| 出遅(れ) | でおくれ | late (bad) start | ([1](https://specialweek.hateblo.jp/entry/2018/05/17/003000)) |
+| 道中 | どうちゅう | レースの途中の意味 | ([1](http://www.kappagi-k.net/dictionary_view_word.php?linkword=%E9%81%93%E4%B8%AD)) | 
  
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
@@ -63,12 +68,14 @@ In general, it is best not to abbreviate variable names for understandability; h
 | location | loc |
 | beginning | beg |
 | middle | mid |
-| indicator | ind |
-| disadvantage | disad |
+| indicator / index | ind |
+| disadvantage | disadvt |
 | final | fin |
 | condition | cond |
 | popularity | pop |
 | corner | cor |
+| beginning 3 furlong | b3f |
+| final 3 furlong | f3f |
 
 ## Dictionaries and word lists
 - [JRA-VAN DB Code List](http://cattle.x-winz.net/edb2_manual/12-3-99-CODE.html)
