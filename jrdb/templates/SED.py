@@ -226,4 +226,5 @@ class SED(Template):
         hdf['pedigree_reg_num'] = self.df.pedigree_reg_num
         hdf['name'] = self.df.horse_name.str.strip()
 
+        # TODO: Use DataFrame.merge|join to prefix columns with race_ | horse_ | contender_ before returning
         return pd.concat([rdf, cdf, hdf], axis='columns')
