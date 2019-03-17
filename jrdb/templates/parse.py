@@ -19,7 +19,10 @@ def parse_comma_separated_integer_list(value, n) -> List[int]:
 
 
 def parse_int_or(value: str, default=None) -> Optional[int]:
-    return int(value) if value.isdigit() else default
+    try:
+        return int(value)
+    except ValueError:
+        return default
 
 
 def filter_na(obj: dict) -> dict:
