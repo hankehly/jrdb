@@ -1,6 +1,3 @@
-import re
-from datetime import datetime
-
 from django.db import IntegrityError
 import numpy as np
 
