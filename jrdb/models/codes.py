@@ -130,17 +130,6 @@ class RaceConditionGroupCode(SimpleCode):
         db_table = 'race_condition_group_codes'
 
 
-class RacetrackCode(SimpleCode):
-    """
-    場コード
-
-    http://www.jrdb.com/program/jrdb_code.txt
-    """
-
-    class Meta:
-        db_table = 'racetrack_codes'
-
-
 class SpecialMentionCode(SimpleCode):
     """
     特記コード

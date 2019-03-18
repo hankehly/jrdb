@@ -21,7 +21,7 @@ class GRADE:
     CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class HORSE_DEMEANOR:
+class DEMEANOR:
     """
     気配コード
     パドックで見た馬気配
@@ -50,7 +50,7 @@ class HORSE_DEMEANOR:
     CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class HORSE_PHYSIQUE:
+class PHYSIQUE:
     """
     馬体コード
     パドックで見た馬体

@@ -6,11 +6,11 @@ from .codes import (
     PaceFlowCode,
     RaceConditionCode,
     RaceConditionGroupCode,
-    RacetrackCode,
     SpecialMentionCode,
 )
 from .contender import Contender
 from .horse import Horse
 from .jockey import Jockey
 from .race import Race
+from .racetrack import Racetrack
 from .trainer import Trainer

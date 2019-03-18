@@ -1,7 +1,7 @@
 from django.db import models
 
 from jrdb.models import BaseModel
-from jrdb.models.choices import PACE_CATEGORY, RACE_LINE
+from jrdb.models.choices import PACE_CATEGORY, RACE_LINE, PENALTY, IMPROVEMENT, PHYSIQUE, DEMEANOR, RUNNING_STYLE
 
 
 class Contender(BaseModel):
@@ -28,7 +28,7 @@ class Contender(BaseModel):
     trainer = models.ForeignKey('jrdb.Trainer', on_delete=models.CASCADE)
     num = models.PositiveSmallIntegerField()
     order_of_finish = models.PositiveSmallIntegerField()
-    penalty = models.ForeignKey('jrdb.PenaltyCode', on_delete=models.CASCADE)
+    penalty = models.CharField(max_length=255, choices=PENALTY.CHOICES)
     time = models.FloatField()
     mounted_weight = models.FloatField()
     odds_win = models.FloatField()
@@ -45,9 +45,9 @@ class Contender(BaseModel):
     f3f_disadvt = models.PositiveSmallIntegerField(null=True, help_text='後３Ｆ内での不利')
 
     race_line = models.CharField(max_length=255, choices=RACE_LINE.CHOICES, help_text='コース取り')
-    improvement = models.ForeignKey('jrdb.ImprovementCode', on_delete=models.CASCADE, help_text='上昇度コード')
-    physique = models.ForeignKey('jrdb.HorsePhysiqueCode', on_delete=models.CASCADE, help_text='馬体コード')
-    demeanor = models.ForeignKey('jrdb.HorseDemeanorCode', on_delete=models.CASCADE, help_text='気配コード')
+    improvement = models.CharField(max_length=255, choices=IMPROVEMENT.CHOICES, help_text='上昇度コード')
+    physique = models.CharField(max_length=255, choices=PHYSIQUE.CHOICES, help_text='馬体コード')
+    demeanor = models.CharField(max_length=255, choices=DEMEANOR.CHOICES, help_text='気配コード')
 
     pace_cat = models.CharField(max_length=255, choices=PACE_CATEGORY.CHOICES)
     b3f_time_index = models.FloatField(null=True)
@@ -68,7 +68,7 @@ class Contender(BaseModel):
     weight = models.PositiveSmallIntegerField(help_text='馬体重')
     weight_diff = models.PositiveSmallIntegerField(null=True, help_text='馬体重増減')
 
-    running_style = models.ForeignKey('jrdb.RunningStyleCode', null=True, on_delete=models.CASCADE)
+    running_style = models.CharField(max_length=255, choices=RUNNING_STYLE.CHOICES, on_delete=models.CASCADE)
     purse = models.PositiveSmallIntegerField()
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
     c4_race_line = models.CharField(max_length=255, choices=RACE_LINE.CHOICES, on_delete=models.CASCADE)

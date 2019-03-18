@@ -1,7 +1,7 @@
 from django.db import models
 
 from jrdb.models.base import BaseModel
-from jrdb.models.choices import HAIR_COLOR
+from jrdb.models.choices import HAIR_COLOR, HORSE_SYMBOL
 
 
 class Horse(BaseModel):
@@ -18,7 +18,7 @@ class Horse(BaseModel):
     name = models.CharField(max_length=36)
     sex = models.CharField(max_length=255, choices=SEX_CHOICES)
     hair_color_code = models.CharField(max_length=255, choices=HAIR_COLOR.CHOICES)
-    symbol = models.ForeignKey('jrdb.HorseSymbol', null=True, on_delete=models.SET_NULL)
+    symbol = models.CharField(max_length=255, choices=HORSE_SYMBOL.CHOICES, null=True)
     sire_name = models.CharField(max_length=36)
     dam_name = models.CharField(max_length=36)
     damsire_name = models.CharField(max_length=36)
@@ -27,7 +27,7 @@ class Horse(BaseModel):
     dam_birth_yr = models.PositiveIntegerField()
     damsire_birth_yr = models.PositiveIntegerField(null=True)
     owner_name = models.CharField(max_length=40)
-    owner_racetrack_code = models.ForeignKey('jrdb.RacetrackCode', null=True, on_delete=models.SET_NULL)
+    owner_racetrack = models.ForeignKey('jrdb.Racetrack', null=True, on_delete=models.SET_NULL)
     breeder_name = models.CharField(max_length=40)
     breeding_loc_name = models.CharField(max_length=8)
     is_retired = models.BooleanField()
