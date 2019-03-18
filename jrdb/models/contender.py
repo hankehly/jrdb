@@ -1,7 +1,7 @@
 from django.db import models
 
 from jrdb.models import BaseModel
-from jrdb.models.choices import PACE_CATEGORY
+from jrdb.models.choices import PACE_CATEGORY, RACE_LINE
 
 
 class Contender(BaseModel):
@@ -44,7 +44,7 @@ class Contender(BaseModel):
     mid_disadvt = models.PositiveSmallIntegerField(null=True, help_text='道中での不利')
     f3f_disadvt = models.PositiveSmallIntegerField(null=True, help_text='後３Ｆ内での不利')
 
-    race_line = models.ForeignKey('jrdb.RaceLineCode', on_delete=models.CASCADE, help_text='コース取り')
+    race_line = models.CharField(max_length=255, choices=RACE_LINE.CHOICES, help_text='コース取り')
     improvement = models.ForeignKey('jrdb.ImprovementCode', on_delete=models.CASCADE, help_text='上昇度コード')
     physique = models.ForeignKey('jrdb.HorsePhysiqueCode', on_delete=models.CASCADE, help_text='馬体コード')
     demeanor = models.ForeignKey('jrdb.HorseDemeanorCode', on_delete=models.CASCADE, help_text='気配コード')
@@ -71,4 +71,7 @@ class Contender(BaseModel):
     running_style = models.ForeignKey('jrdb.RunningStyleCode', null=True, on_delete=models.CASCADE)
     purse = models.PositiveSmallIntegerField()
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
-    c4_race_line = models.ForeignKey('jrdb.RaceLineCode', on_delete=models.CASCADE)
+    c4_race_line = models.CharField(max_length=255, choices=RACE_LINE.CHOICES, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'contenders'

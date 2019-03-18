@@ -44,7 +44,8 @@
 | 素点 | そてん | | 素点 = (基準タイム ― 走破タイム) × 距離差 × 10 + 馬場差 + 基本値。スピード指数と思って良い |
 | 記憶要素 | | | 記憶要素 = 出遅 + 不利 + 位置取り + レース内容。記憶要素の単位は馬身。 |
 | 出遅(れ) | でおくれ | late (bad) start | ([1](https://specialweek.hateblo.jp/entry/2018/05/17/003000)) |
-| 道中 | どうちゅう | レースの途中の意味 | ([1](http://www.kappagi-k.net/dictionary_view_word.php?linkword=%E9%81%93%E4%B8%AD)) | 
+| 道中 | どうちゅう | レースの途中の意味 | ([1](http://www.kappagi-k.net/dictionary_view_word.php?linkword=%E9%81%93%E4%B8%AD)) |
+| 抽せん馬 | ちゅうせんば | | ([1](http://www.jra.go.jp/kouza/yougo/w57.html)) |
  
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  

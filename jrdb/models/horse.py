@@ -1,6 +1,7 @@
 from django.db import models
 
 from jrdb.models.base import BaseModel
+from jrdb.models.choices import HAIR_COLOR
 
 
 class Horse(BaseModel):
@@ -16,7 +17,7 @@ class Horse(BaseModel):
     pedigree_reg_num = models.CharField(max_length=8, unique=True)
     name = models.CharField(max_length=36)
     sex = models.CharField(max_length=255, choices=SEX_CHOICES)
-    hair_color_code = models.ForeignKey('jrdb.HairColorCode', on_delete=models.CASCADE)
+    hair_color_code = models.CharField(max_length=255, choices=HAIR_COLOR.CHOICES)
     symbol = models.ForeignKey('jrdb.HorseSymbol', null=True, on_delete=models.SET_NULL)
     sire_name = models.CharField(max_length=36)
     dam_name = models.CharField(max_length=36)
