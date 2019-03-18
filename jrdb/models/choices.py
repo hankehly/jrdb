@@ -291,13 +291,14 @@ class RACE_HORSE_SEX_SYMBOL:
     FEMALE = 'FEMALE'
     MALE_CASTRATED = 'MALE_CASTRATED'
     FEMALE_CASTRATED = 'FEMALE_CASTRATED'
-    CHOICES = (
+    MAP = (
         ('0', NA, 'なし'),
         ('1', MALE, '牡馬限定'),
         ('2', FEMALE, '牝馬限定'),
         ('3', MALE_CASTRATED, '牡・せん馬限定'),
         ('4', FEMALE_CASTRATED, '牡・牝馬限定')
     )
+    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
 class RACE_HORSE_TYPE_SYMBOL:
@@ -307,21 +308,33 @@ class RACE_HORSE_TYPE_SYMBOL:
     １桁目　馬の種類による条件
         0　なし
         1　○混
+            （混合）性別は混合ということ
         2　○父
+            （まるちち）日本で生産された馬を父親に持つ馬。正式には父内国産馬という）
         3　○市○抽
-        4　九州産限定
+            （まるいち）セリ市で売買された抽選馬を除く馬。正式には市場取引馬という。
+            （まるちゅう）ＪＲＡがセリ市で購入して育成した馬で希望する馬主に抽選で売却された馬。
+        4　九州産限定 - 九州地方で生産された競走馬のこと
         5　○国際混
 
     http://www.jrdb.com/program/jrdb_code.txt
+    http://cattle.x-winz.net/edb2_manual/12-3-99-CODE.html#C2006
     """
-    CHOICES = (
-        (0, 'なし'),
-        (1, '○混'),
-        (2, '○父'),
-        (3, '○市○抽'),
-        (4, '九州産限定'),
-        (5, '○国際混')
+    NA = 'NA'
+    MIX = 'MIX'
+    D = '(D)'
+    KYU = 'KYU'
+    A_S = '(A)(S)'
+    INT = 'INT'
+    MAP = (
+        ('0', NA, 'なし'),
+        ('1', MIX, '○混'),
+        ('2', D, '○父'),
+        ('3', A_S, '○市○抽'),
+        ('4', KYU, '九州産限定'),
+        ('5', INT, '○国際混')
     )
+    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
 class RACE_INTERLEAGUE_SYMBOL:
@@ -335,13 +348,19 @@ class RACE_INTERLEAGUE_SYMBOL:
         3　○特指
         4　若手
     """
-    CHOICES = (
-        (0, 'なし'),
-        (1, '○指'),
-        (2, '□指'),
-        (3, '○特指'),
-        (4, '若手')
+    NA = 'NA'
+    DSN = 'DSN'
+    DES = 'DES'
+    SD = 'SD'
+    JUNIOR = 'JUNIOR'
+    MAP = (
+        ('0', NA, 'なし'),
+        ('1', DSN, '○指'),
+        ('2', DES, '□指'),
+        ('3', SD, '○特指'),
+        ('4', JUNIOR, '若手')
     )
+    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
 class REST_REASON:
@@ -370,14 +389,21 @@ class RUNNING_STYLE:
     脚質コード（競走馬が得意とする走り）
     過去の競走実績よりその馬の脚質を判断したコード。
     """
-    CHOICES = (
-        (1, '逃げ'),
-        (2, '先行'),
-        (3, '差し'),
-        (4, '追込'),
-        (5, '好位差し'),
-        (6, '自在')
+    FRONT_RUNNER = 'FRONT_RUNNER'
+    STALKER = 'STALKER'
+    OTP = 'OTP'  # Off the pace
+    OTP_STRETCH = 'OTP_STRETCH'
+    OTP_GOOD_POS = 'OTP_GOOD_POS'
+    VERSATILE = 'VERSATILE'
+    MAP = (
+        ('1', FRONT_RUNNER, '逃げ'),
+        ('2', STALKER, '先行'),
+        ('3', OTP, '差し'),
+        ('4', OTP_STRETCH, '追込'),
+        ('5', OTP_GOOD_POS, '好位差し'),
+        ('6', VERSATILE, '自在')
     )
+    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
 class TRACK_CONDITION:
@@ -387,20 +413,33 @@ class TRACK_CONDITION:
     http://www.jrdb.com/program/jrdb_code.txt
     https://horseicon.web.fc2.com/track_surface.htm
     """
-    CHOICES = (
-        ('10', '良'),
-        ('11', '速良'),
-        ('12', '遅良'),
-        ('20', '稍重'),
-        ('21', '速稍重'),
-        ('22', '遅稍重'),
-        ('30', '重'),
-        ('31', '速重'),
-        ('32', '遅重'),
-        ('40', '不良'),
-        ('41', '速不良'),
-        ('42', '遅不良')
+    FIRM = 'FIRM'
+    FIRM_FAST = 'FIRM_FAST'
+    FIRM_SLOW = 'FIRM_SLOW'
+    GOOD = 'GOOD'
+    GOOD_FAST = 'GOOD_FAST'
+    GOOD_SLOW = 'GOOD_SLOW'
+    YIELDING = 'YIELDING'
+    YIELDING_FAST = 'YIELDING_FAST'
+    YIELDING_SLOW = 'YIELDING_SLOW'
+    SOFT = 'SOFT'
+    SOFT_FAST = 'SOFT_FAST'
+    SOFT_SLOW = 'SOFT_SLOW'
+    MAP = (
+        ('10', FIRM, '良'),
+        ('11', FIRM_FAST, '速良'),
+        ('12', FIRM_SLOW, '遅良'),
+        ('20', GOOD, '稍重'),
+        ('21', GOOD_FAST, '速稍重'),
+        ('22', GOOD_SLOW, '遅稍重'),
+        ('30', YIELDING, '重'),
+        ('31', YIELDING_FAST, '速重'),
+        ('32', YIELDING_SLOW, '遅重'),
+        ('40', SOFT, '不良'),
+        ('41', SOFT_FAST, '速不良'),
+        ('42', SOFT_SLOW, '遅不良')
     )
+    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
 class TRAINING_COURSE_CATEGORY:
@@ -472,19 +511,20 @@ class HAIR_COLOR:
     BAY_ROAN = 'BAY_ROAN'
     BLUE_ROAN = 'BLUE_ROAN'
     WHITE = 'WHITE'
-    CHOICES = (
-        (CHESTNUT, '栗毛'),
-        (DARK_CHESTNUT, '栃栗'),
-        (BAY, '鹿毛'),
-        (DARK_BAY, '黒鹿'),
-        (BROWN, '青鹿'),
-        (BLACK, '青毛'),
-        (GRAY, '芦毛'),
-        (RED_ROAN, '栗粕'),
-        (BAY_ROAN, '鹿粕'),
-        (BLUE_ROAN, '青粕'),
-        (WHITE, '白毛')
+    MAP = (
+        ('01', CHESTNUT, '栗毛'),
+        ('02', DARK_CHESTNUT, '栃栗'),
+        ('03', BAY, '鹿毛'),
+        ('04', DARK_BAY, '黒鹿'),
+        ('05', BROWN, '青鹿'),
+        ('06', BLACK, '青毛'),
+        ('07', GRAY, '芦毛'),
+        ('08', RED_ROAN, '栗粕'),
+        ('09', BAY_ROAN, '鹿粕'),
+        ('10', BLUE_ROAN, '青粕'),
+        ('11', WHITE, '白毛')
     )
+    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
 class WEATHER:
@@ -505,11 +545,12 @@ class WEATHER:
     RAINY = 'RAINY'
     LIGHT_SNOW = 'LIGHT_SNOW'
     SNOW = 'SNOW'
-    CHOICES = (
-        (FINE, '晴'),
-        (CLOUDY, '曇'),
-        (DRIZZLE, '小雨'),
-        (RAINY, '雨'),
-        (LIGHT_SNOW, '小雪'),
-        (SNOW, '雪')
+    MAP = (
+        ('1', FINE, '晴'),
+        ('2', CLOUDY, '曇'),
+        ('3', DRIZZLE, '小雨'),
+        ('4', RAINY, '雨'),
+        ('5', LIGHT_SNOW, '小雪'),
+        ('6', SNOW, '雪')
     )
+    CHOICES = ((t[1], t[2]) for t in MAP)
