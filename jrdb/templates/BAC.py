@@ -95,13 +95,13 @@ class BAC(Template):
         course_label_map = {1: Race.A, 2: Race.A1, 3: Race.A2, 4: Race.B, 5: Race.C, 6: Race.D}
         df['course_label'] = self.df.course_label.astype(int).map(course_label_map)
 
-        df['category'] = self.df.race_category_code.map(RACE_CATEGORY.MAP)
+        df['category'] = self.df.race_category_code.map(RACE_CATEGORY.get_key_map())
         df['cond_id'] = RaceConditionCode.key2id(self.df.race_cond_code)
-        df['horse_type_symbol'] = self.df.race_symbols.str[0].map(RACE_HORSE_TYPE_SYMBOL.MAP)
-        df['horse_sex_symbol'] = self.df.race_symbols.str[1].map(RACE_HORSE_SEX_SYMBOL.MAP)
-        df['interleague_symbol'] = self.df.race_symbols.str[2].map(RACE_INTERLEAGUE_SYMBOL.MAP)
-        df['impost_class'] = self.df.impost_class_code.map(IMPOST_CLASS.MAP)
-        df['grade'] = self.df.grade_code.map(GRADE.MAP)
+        df['horse_type_symbol'] = self.df.race_symbols.str[0].map(RACE_HORSE_TYPE_SYMBOL.get_key_map())
+        df['horse_sex_symbol'] = self.df.race_symbols.str[1].map(RACE_HORSE_SEX_SYMBOL.get_key_map())
+        df['interleague_symbol'] = self.df.race_symbols.str[2].map(RACE_INTERLEAGUE_SYMBOL.get_key_map())
+        df['impost_class'] = self.df.impost_class_code.map(IMPOST_CLASS.get_key_map())
+        df['grade'] = self.df.grade_code.map(GRADE.get_key_map())
 
         df['name'] = self.df.race_name.str.strip()
         df['name_short'] = self.df.race_name_short.str.strip()
