@@ -74,8 +74,7 @@ class Race(BaseModel):
     cond = models.ForeignKey('jrdb.RaceConditionCode', on_delete=models.CASCADE, null=True)
     horse_sex_symbol = models.CharField(max_length=255, choices=RACE_HORSE_SEX_SYMBOL.CHOICES, null=True)
     horse_type_symbol = models.CharField(max_length=255, choices=RACE_HORSE_TYPE_SYMBOL.CHOICES, null=True)
-    interleague_symbol = models.CharField(max_length=255, choices=RACE_INTERLEAGUE_SYMBOL.CHOICES,
-                                          on_delete=models.CASCADE, null=True)
+    interleague_symbol = models.CharField(max_length=255, choices=RACE_INTERLEAGUE_SYMBOL.CHOICES, null=True)
     impost_class = models.CharField(max_length=255, choices=IMPOST_CLASS.CHOICES, null=True)
     grade = models.CharField(max_length=255, choices=GRADE.CHOICES, null=True)
     track_cond = models.CharField(max_length=255, choices=TRACK_CONDITION.CHOICES, null=True)

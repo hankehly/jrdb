@@ -222,7 +222,7 @@ class PENALTY:
 
 
 class PACE_CATEGORY:
-    HIGH = 'HIGH',
+    HIGH = 'HIGH'
     MEDIUM = 'MEDIUM'
     SLOW = 'SLOW'
     MAP = (
