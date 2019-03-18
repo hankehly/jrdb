@@ -1,6 +1,7 @@
 from django.db import IntegrityError
 import numpy as np
 
+from jrdb.models.choices import AREA, TRAINEE_CATEGORY
 from jrdb.models.jockey import Jockey
 from jrdb.templates.parse import filter_na, parse_comma_separated_integer_list, parse_int_or, parse_date
 from jrdb.templates.template import Template
@@ -52,11 +53,11 @@ class KZA(Template):
         df.name_kana = df.name_kana.str.strip()
         df.name_abbr = df.name_abbr.str.strip()
 
-        df.area = df.area.astype(int).map({1: Jockey.KANTOU, 2: Jockey.KANSAI, 3: Jockey.OTHER})
+        df.area = df.area.map(AREA.get_key_map())
         df.training_center_name = df.training_center_name.str.strip()
         df.birthday = df.birthday.apply(parse_date, args=('%Y%m%d',))
         df.lic_acquired_yr = df.lic_acquired_yr.astype(int)
-        df.trainee_cat = df.trainee_cat.astype(int).map({1: Jockey.REDUCE_1K, 2: Jockey.REDUCE_2K, 3: Jockey.REDUCE_3K})
+        df.trainee_cat = df.trainee_cat.map(TRAINEE_CATEGORY.get_key_map())
         df.trainer_code = df.trainer_code.str.strip()
         df.jrdb_comment = df.jrdb_comment.str.strip()
         df.jrdb_comment_date = df.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))

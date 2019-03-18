@@ -2,41 +2,20 @@ from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 
 from jrdb.models import BaseModel
+from jrdb.models.choices import AREA, TRAINEE_CATEGORY
 
 
 class Jockey(BaseModel):
-    KANTOU = 'KANTOU'
-    KANSAI = 'KANSAI'
-    OTHER = 'OTHER'
-    AREA_CHOICES = (
-        (KANSAI, '関東'),
-        (KANTOU, '関西'),
-        (OTHER, '他'),
-    )
-
-    # 1: (1K減) ☆
-    # 2: (2K減) △
-    # 3: (3K減) ▲
-    # http://www.jra.go.jp/kouza/yougo/w574.html
-    REDUCE_1K = 'REDUCE_1'
-    REDUCE_2K = 'REDUCE_2'
-    REDUCE_3K = 'REDUCE_3'
-    TRAINEE_CATEGORY_CHOICES = (
-        (REDUCE_1K, '1K減'),
-        (REDUCE_2K, '2K減'),
-        (REDUCE_3K, '3K減'),
-    )
-
     code = models.CharField(max_length=5, unique=True)
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=12)
     name_kana = models.CharField(max_length=30)
     name_abbr = models.CharField(max_length=6)
-    area = models.CharField(max_length=255, choices=AREA_CHOICES)
+    area = models.CharField(max_length=255, choices=AREA.CHOICES)
     training_center_name = models.CharField(max_length=4)
     birthday = models.DateField()
     lic_acquired_yr = models.PositiveIntegerField()
-    trainee_cat = models.CharField(max_length=255, choices=TRAINEE_CATEGORY_CHOICES)
+    trainee_cat = models.CharField(max_length=255, choices=TRAINEE_CATEGORY.CHOICES)
     # TODO: 所属厩舎 (trainer_code) can this be a key?
     trainer_code = models.CharField(max_length=5, unique=True)
     jrdb_comment = models.CharField(max_length=40)

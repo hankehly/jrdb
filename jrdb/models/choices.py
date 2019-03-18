@@ -1,4 +1,31 @@
-class GRADE:
+class ChoiceMixin:
+    MAP = ()
+
+    @property
+    def CHOICES(self):
+        return (
+            (t[1], t[2]) for t in self.MAP
+        )
+
+    @classmethod
+    def get_key_map(cls):
+        return {
+            t[0]: t[1] for t in cls.MAP
+        }
+
+
+class AREA(ChoiceMixin):
+    KANTOU = 'KANTOU'
+    KANSAI = 'KANSAI'
+    OTHER = 'OTHER'
+    MAP = (
+        ('1', KANTOU, '関西'),
+        ('2', KANSAI, '関東'),
+        ('3', OTHER, '他'),
+    )
+
+
+class GRADE(ChoiceMixin):
     """
     グレード
 
@@ -18,14 +45,9 @@ class GRADE:
         ('5', SPECIAL, '特別'),
         ('6', LISTED, 'Ｌ（リステッド競走）')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class DEMEANOR:
+class DEMEANOR(ChoiceMixin):
     """
     気配コード
     パドックで見た馬気配
@@ -51,14 +73,9 @@ class DEMEANOR:
         ('7', RESTLESS, 'チャカ'),
         ('8', EXCITED_AND_RESTLESS, 'イレチ（イレ込+チャカつき）')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class PHYSIQUE:
+class PHYSIQUE(ChoiceMixin):
     """
     馬体コード
     パドックで見た馬体
@@ -84,53 +101,44 @@ class PHYSIQUE:
         ('6', FRESH, '張り'),
         ('7', LOOSE, '緩い')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class HORSE_SYMBOL:
+class HORSE_SYMBOL(ChoiceMixin):
     """
     馬記号コード
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    CHOICES = (
-        ('01', '○抽'),
-        ('02', '□抽'),
-        ('03', '○父'),
-        ('04', '○市'),
-        ('05', '○地'),
-        ('06', '○外'),
-        ('07', '○父○抽'),
-        ('08', '○父○市'),
-        ('09', '○父○地'),
-        ('10', '○市○地'),
-        ('11', '○外○地'),
-        ('12', '○父○市○地'),
-        ('15', '○招'),
-        ('16', '○招○外'),
-        ('17', '○招○父'),
-        ('18', '○招○市'),
-        ('19', '○招○父○市'),
-        ('20', '○父○外'),
-        ('21', '□地'),
-        ('22', '○外□地'),
-        ('23', '○父□地'),
-        ('24', '○市□地'),
-        ('25', '○父○市□地'),
-        ('26', '□外'),
-        ('27', '○父□外')
+    MAP = (
+        ('01', '01', '○抽'),
+        ('02', '02', '□抽'),
+        ('03', '03', '○父'),
+        ('04', '04', '○市'),
+        ('05', '05', '○地'),
+        ('06', '06', '○外'),
+        ('07', '07', '○父○抽'),
+        ('08', '08', '○父○市'),
+        ('09', '09', '○父○地'),
+        ('10', '10', '○市○地'),
+        ('11', '11', '○外○地'),
+        ('12', '12', '○父○市○地'),
+        ('15', '15', '○招'),
+        ('16', '16', '○招○外'),
+        ('17', '17', '○招○父'),
+        ('18', '18', '○招○市'),
+        ('19', '19', '○招○父○市'),
+        ('20', '20', '○父○外'),
+        ('21', '21', '□地'),
+        ('22', '22', '○外□地'),
+        ('23', '23', '○父□地'),
+        ('24', '24', '○市□地'),
+        ('25', '25', '○父○市□地'),
+        ('26', '26', '□外'),
+        ('27', '27', '○父□外')
     )
 
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[0] for t in cls.CHOICES}
 
-
-class IMPOST_CLASS:
+class IMPOST_CLASS(ChoiceMixin):
     """
     重量
 
@@ -147,14 +155,9 @@ class IMPOST_CLASS:
         ('3', WEIGHT_FOR_AGE, '馬齢'),
         ('4', SPECIAL_WEIGHT_AGE_SEX, '定量')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class IMPROVEMENT:
+class IMPROVEMENT(ChoiceMixin):
     """
     上昇度
 
@@ -176,14 +179,9 @@ class IMPROVEMENT:
         ('4', C, 'C'),
         ('5', Q, '?')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class PADDOCK_OBSERVED_HOOF:
+class PADDOCK_OBSERVED_HOOF(ChoiceMixin):
     """
     蹄コード
 
@@ -196,35 +194,31 @@ class PADDOCK_OBSERVED_HOOF:
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    CHOICES = (
-        ('01', '大ベタ'),
-        ('02', '中ベタ'),
-        ('03', '小ベタ'),
-        ('04', '細ベタ'),
-        ('05', '大立'),
-        ('06', '中立'),
-        ('07', '小立'),
-        ('08', '細立'),
-        ('09', '大標準'),
-        ('10', '中標準'),
-        ('11', '小標準'),
-        ('12', '細標準'),
-        ('17', '大標起'),
-        ('18', '中標起'),
-        ('19', '小標起'),
-        ('20', '細標起'),
-        ('21', '大標ベ'),
-        ('22', '中標ベ'),
-        ('23', '小標ベ'),
-        ('24', '細標ベ')
+    MAP = (
+        ('01', '01', '大ベタ'),
+        ('02', '02', '中ベタ'),
+        ('03', '03', '小ベタ'),
+        ('04', '04', '細ベタ'),
+        ('05', '05', '大立'),
+        ('06', '06', '中立'),
+        ('07', '07', '小立'),
+        ('08', '08', '細立'),
+        ('09', '09', '大標準'),
+        ('10', '10', '中標準'),
+        ('11', '11', '小標準'),
+        ('12', '12', '細標準'),
+        ('17', '17', '大標起'),
+        ('18', '18', '中標起'),
+        ('19', '19', '小標起'),
+        ('20', '20', '細標起'),
+        ('21', '21', '大標ベ'),
+        ('22', '22', '中標ベ'),
+        ('23', '23', '小標ベ'),
+        ('24', '24', '細標ベ')
     )
 
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[0] for t in cls.CHOICES}
 
-
-class PENALTY:
+class PENALTY(ChoiceMixin):
     """
     異常区分
 
@@ -246,14 +240,9 @@ class PENALTY:
         ('5', DISQUALIFIED_AND_PLACED, '降着'),
         ('6', REMOUNT, '再騎乗')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class PACE_CATEGORY:
+class PACE_CATEGORY(ChoiceMixin):
     HIGH = 'HIGH'
     MEDIUM = 'MEDIUM'
     SLOW = 'SLOW'
@@ -262,14 +251,9 @@ class PACE_CATEGORY:
         ('M', MEDIUM, '平均'),
         ('S', SLOW, 'スロー')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class RACE_CATEGORY:
+class RACE_CATEGORY(ChoiceMixin):
     """
     競走種別をコード化
 
@@ -289,14 +273,9 @@ class RACE_CATEGORY:
         ('20', OBSTACLE, '障害'),
         ('99', OTHER, 'その他')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class RACE_LINE:
+class RACE_LINE(ChoiceMixin):
     """
     コース取り
 
@@ -314,14 +293,9 @@ class RACE_LINE:
         ('4', OUTER, '外'),
         ('5', OUTERMOST, '大外')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class RACE_HORSE_SEX_SYMBOL:
+class RACE_HORSE_SEX_SYMBOL(ChoiceMixin):
     """
     ２桁目　馬の性別による条件
         0　なし
@@ -342,14 +316,9 @@ class RACE_HORSE_SEX_SYMBOL:
         ('3', MALE_CASTRATED, '牡・せん馬限定'),
         ('4', FEMALE_CASTRATED, '牡・牝馬限定')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class RACE_HORSE_TYPE_SYMBOL:
+class RACE_HORSE_TYPE_SYMBOL(ChoiceMixin):
     """
     競走記号をコード化
 
@@ -382,14 +351,9 @@ class RACE_HORSE_TYPE_SYMBOL:
         ('4', KYU, '九州産限定'),
         ('5', INT, '○国際混')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class RACE_INTERLEAGUE_SYMBOL:
+class RACE_INTERLEAGUE_SYMBOL(ChoiceMixin):
     """
     競走記号をコード化
 
@@ -412,39 +376,30 @@ class RACE_INTERLEAGUE_SYMBOL:
         ('3', SD, '○特指'),
         ('4', JUNIOR, '若手')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class REST_REASON:
+class REST_REASON(ChoiceMixin):
     """
     休養理由分類コード
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    CHOICES = (
-        ('01', '放牧'),
-        ('02', '放牧(故障、骨折等)'),
-        ('03', '放牧(不安、ソエ等)'),
-        ('04', '放牧(病気)'),
-        ('05', '放牧(再審査)'),
-        ('06', '放牧(出走停止)'),
-        ('07', '放牧(手術）'),
-        ('11', '調整'),
-        ('12', '調整(故障、骨折等)'),
-        ('13', '調整(不安、ソエ等)'),
-        ('14', '調整(病気)')
+    MAP = (
+        ('01', '01', '放牧'),
+        ('02', '02', '放牧(故障、骨折等)'),
+        ('03', '03', '放牧(不安、ソエ等)'),
+        ('04', '04', '放牧(病気)'),
+        ('05', '05', '放牧(再審査)'),
+        ('06', '06', '放牧(出走停止)'),
+        ('07', '07', '放牧(手術）'),
+        ('11', '11', '調整'),
+        ('12', '12', '調整(故障、骨折等)'),
+        ('13', '13', '調整(不安、ソエ等)'),
+        ('14', '14', '調整(病気)')
     )
 
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[0] for t in cls.CHOICES}
 
-
-class RUNNING_STYLE:
+class RUNNING_STYLE(ChoiceMixin):
     """
     脚質コード（競走馬が得意とする走り）
     過去の競走実績よりその馬の脚質を判断したコード。
@@ -463,14 +418,9 @@ class RUNNING_STYLE:
         ('5', OTP_GOOD_POS, '好位差し'),
         ('6', VERSATILE, '自在')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class TRACK_CONDITION:
+class TRACK_CONDITION(ChoiceMixin):
     """
     馬場状態
 
@@ -503,14 +453,27 @@ class TRACK_CONDITION:
         ('41', SOFT_FAST, '速不良'),
         ('42', SOFT_SLOW, '遅不良')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class TRAINING_COURSE_CATEGORY:
+class TRAINEE_CATEGORY(ChoiceMixin):
+    """
+    1: (1K減) ☆
+    2: (2K減) △
+    3: (3K減) ▲
+
+    http://www.jra.go.jp/kouza/yougo/w574.html
+    """
+    REDUCE_1K = 'REDUCE_1K'
+    REDUCE_2K = 'REDUCE_2K'
+    REDUCE_3K = 'REDUCE_3K'
+    MAP = (
+        ('1', REDUCE_1K, '1K減'),
+        ('2', REDUCE_2K, '2K減'),
+        ('3', REDUCE_3K, '3K減'),
+)
+
+
+class TRAINING_COURSE_CATEGORY(ChoiceMixin):
     """
     調教コース種別
     調教コースは、トラックを周回する「コース調教」と、「坂路調教」に大別されます。
@@ -518,21 +481,17 @@ class TRAINING_COURSE_CATEGORY:
 
     http://www.jrdb.com/program/Cyb/cybsiyo_doc.txt
     """
-    CHOICES = (
-        ('1', '坂路調教'),
-        ('2', 'コース調教'),
-        ('3', '併用(坂路、コース併用)'),
-        ('4', '障害（障害練習）'),
-        ('5', '障害他（障害練習＋α）'),
-        ('0', '他（調教なし、不明）')
+    MAP = (
+        ('1', '1', '坂路調教'),
+        ('2', '2', 'コース調教'),
+        ('3', '3', '併用(坂路、コース併用)'),
+        ('4', '4', '障害（障害練習）'),
+        ('5', '5', '障害他（障害練習＋α）'),
+        ('0', '0', '他（調教なし、不明）')
     )
 
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[0] for t in cls.CHOICES}
 
-
-class TRAINING_STYLE:
+class TRAINING_STYLE(ChoiceMixin):
     """
     調教タイプ
     調教過程を分析し次のタイプに分類しています。
@@ -549,26 +508,22 @@ class TRAINING_STYLE:
 
     http://www.jrdb.com/program/Cyb/cybsiyo_doc.txt
     """
-    CHOICES = (
-        ('01', 'スパルタ'),
-        ('02', '標準多め'),
-        ('03', '乗込'),
-        ('04', '一杯平均'),
-        ('05', '標準'),
-        ('06', '馬ナリ平均'),
-        ('07', '急仕上げ'),
-        ('08', '標準少め'),
-        ('09', '軽目'),
-        ('10', '連闘'),
-        ('11', '調教なし')
+    MAP = (
+        ('01', '01', 'スパルタ'),
+        ('02', '02', '標準多め'),
+        ('03', '03', '乗込'),
+        ('04', '04', '一杯平均'),
+        ('05', '05', '標準'),
+        ('06', '06', '馬ナリ平均'),
+        ('07', '07', '急仕上げ'),
+        ('08', '08', '標準少め'),
+        ('09', '09', '軽目'),
+        ('10', '10', '連闘'),
+        ('11', '11', '調教なし')
     )
 
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[0] for t in cls.CHOICES}
 
-
-class HAIR_COLOR:
+class HAIR_COLOR(ChoiceMixin):
     """
     毛色コード
 
@@ -600,14 +555,9 @@ class HAIR_COLOR:
         ('10', BLUE_ROAN, '青粕'),
         ('11', WHITE, '白毛')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
 
 
-class WEATHER:
+class WEATHER(ChoiceMixin):
     """
     天候コード
     1 晴
@@ -633,8 +583,3 @@ class WEATHER:
         ('5', LIGHT_SNOW, '小雪'),
         ('6', SNOW, '雪')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
-
-    @classmethod
-    def get_key_map(cls):
-        return {t[0]: t[1] for t in cls.MAP}
