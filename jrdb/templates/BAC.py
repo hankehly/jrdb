@@ -1,16 +1,14 @@
 import pandas as pd
 from django.db import IntegrityError
 
-from jrdb.models import (
-    RacetrackCode,
-    Race,
-    RaceCategoryCode,
-    RaceConditionCode,
-    ImpostClassCode,
-    GradeCode,
-    RaceHorseTypeSymbol,
-    RaceInterleagueSymbol,
-    RaceHorseSexSymbol
+from jrdb.models import Race, RaceConditionCode, Racetrack
+from jrdb.models.choices import (
+    RACE_CATEGORY,
+    RACE_HORSE_TYPE_SYMBOL,
+    RACE_HORSE_SEX_SYMBOL,
+    RACE_INTERLEAGUE_SYMBOL,
+    IMPOST_CLASS,
+    GRADE
 )
 from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
@@ -72,7 +70,11 @@ class BAC(Template):
     ]
 
     def clean(self):
-        df = RacetrackCode.key2id(self.df.racetrack_code, name='racetrack_id').to_frame()
+        racetracks = Racetrack.objects.filter(code__in=self.df.racetrack_code).values('code', 'id')
+        s = self.df.racetrack_code.map({racetrack['code']: racetrack['id'] for racetrack in racetracks})
+        s.name = 'racetrack_id'
+
+        df = s.to_frame()
 
         df['yr'] = self.df.yr.astype(int)
         df['round'] = self.df['round'].astype(int)
@@ -93,13 +95,13 @@ class BAC(Template):
         course_label_map = {1: Race.A, 2: Race.A1, 3: Race.A2, 4: Race.B, 5: Race.C, 6: Race.D}
         df['course_label'] = self.df.course_label.astype(int).map(course_label_map)
 
-        df['category_id'] = RaceCategoryCode.key2id(self.df.race_category_code)
+        df['category'] = self.df.race_category_code.map(RACE_CATEGORY.MAP)
         df['cond_id'] = RaceConditionCode.key2id(self.df.race_cond_code)
-        df['horse_type_symbol_id'] = RaceHorseTypeSymbol.key2id(self.df.race_symbols.str[0])
-        df['horse_sex_symbol_id'] = RaceHorseSexSymbol.key2id(self.df.race_symbols.str[1])
-        df['interleague_symbol_id'] = RaceInterleagueSymbol.key2id(self.df.race_symbols.str[2])
-        df['impost_class_id'] = ImpostClassCode.key2id(self.df.impost_class_code)
-        df['grade_id'] = GradeCode.key2id(self.df.grade_code, allow_null=True)
+        df['horse_type_symbol'] = self.df.race_symbols.str[0].map(RACE_HORSE_TYPE_SYMBOL.MAP)
+        df['horse_sex_symbol'] = self.df.race_symbols.str[1].map(RACE_HORSE_SEX_SYMBOL.MAP)
+        df['interleague_symbol'] = self.df.race_symbols.str[2].map(RACE_INTERLEAGUE_SYMBOL.MAP)
+        df['impost_class'] = self.df.impost_class_code.map(IMPOST_CLASS.MAP)
+        df['grade'] = self.df.grade_code.map(GRADE.MAP)
 
         df['name'] = self.df.race_name.str.strip()
         df['name_short'] = self.df.race_name_short.str.strip()

@@ -1,4 +1,10 @@
-class GRADE:
+class SIMPLE_CHOICE:
+    CONFIG = ()
+    CHOICES = ((t[1], t[2]) for t in CONFIG)
+    MAP = {t[0]: t[1] for t in CONFIG}
+
+
+class GRADE(SIMPLE_CHOICE):
     """
     グレード
 
@@ -10,7 +16,7 @@ class GRADE:
     HIGH_STAKES = 'HIGH_STAKES'
     SPECIAL = 'SPECIAL'
     LISTED = 'LISTED'
-    MAP = (
+    CONFIG = (
         ('1', G1, 'Ｇ１'),
         ('2', G2, 'Ｇ２'),
         ('3', G3, 'Ｇ３'),
@@ -18,10 +24,9 @@ class GRADE:
         ('5', SPECIAL, '特別'),
         ('6', LISTED, 'Ｌ（リステッド競走）')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class DEMEANOR:
+class DEMEANOR(SIMPLE_CHOICE):
     """
     気配コード
     パドックで見た馬気配
@@ -37,7 +42,7 @@ class DEMEANOR:
     LACKING_SPIRIT = 'LACKING_SPIRIT'
     RESTLESS = 'RESTLESS'
     EXCITED_AND_RESTLESS = 'EXCITED_AND_RESTLESS'
-    MAP = (
+    CONFIG = (
         ('1', GOOD_CONDITION, '状態良'),
         ('2', NORMAL, '平凡'),
         ('3', UNSTABLE, '不安定'),
@@ -47,10 +52,9 @@ class DEMEANOR:
         ('7', RESTLESS, 'チャカ'),
         ('8', EXCITED_AND_RESTLESS, 'イレチ（イレ込+チャカつき）')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class PHYSIQUE:
+class PHYSIQUE(SIMPLE_CHOICE):
     """
     馬体コード
     パドックで見た馬体
@@ -67,7 +71,7 @@ class PHYSIQUE:
     THIN = 'THIN'
     FRESH = 'FRESH'
     LOOSE = 'LOOSE'
-    MAP = (
+    CONFIG = (
         ('1', FAT, '太い'),
         ('2', OVERWEIGHT, '余裕'),
         ('3', GOOD, '良い'),
@@ -76,10 +80,9 @@ class PHYSIQUE:
         ('6', FRESH, '張り'),
         ('7', LOOSE, '緩い')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class HORSE_SYMBOL:
+class HORSE_SYMBOL(SIMPLE_CHOICE):
     """
     馬記号コード
 
@@ -114,7 +117,7 @@ class HORSE_SYMBOL:
     )
 
 
-class IMPOST_CLASS:
+class IMPOST_CLASS(SIMPLE_CHOICE):
     """
     重量
 
@@ -125,16 +128,15 @@ class IMPOST_CLASS:
     SPECIAL_WEIGHT = 'SPECIAL_WEIGHT'
     WEIGHT_FOR_AGE = 'WEIGHT_FOR_AGE'
     SPECIAL_WEIGHT_AGE_SEX = 'SPECIAL_WEIGHT_AGE_SEX'
-    MAP = (
+    CONFIG = (
         ('1', HANDICAP, 'ハンデ'),
         ('2', SPECIAL_WEIGHT, '別定'),
         ('3', WEIGHT_FOR_AGE, '馬齢'),
         ('4', SPECIAL_WEIGHT_AGE_SEX, '定量')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class IMPROVEMENT:
+class IMPROVEMENT(SIMPLE_CHOICE):
     """
     上昇度
 
@@ -149,17 +151,16 @@ class IMPROVEMENT:
     B = 'B'
     C = 'C'
     Q = '?'
-    MAP = (
+    CONFIG = (
         ('1', AA, 'AA'),
         ('2', A, 'A'),
         ('3', B, 'B'),
         ('4', C, 'C'),
         ('5', Q, '?')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class PADDOCK_OBSERVED_HOOF:
+class PADDOCK_OBSERVED_HOOF(SIMPLE_CHOICE):
     """
     蹄コード
 
@@ -196,7 +197,7 @@ class PADDOCK_OBSERVED_HOOF:
     )
 
 
-class PENALTY:
+class PENALTY(SIMPLE_CHOICE):
     """
     異常区分
 
@@ -209,7 +210,7 @@ class PENALTY:
     DISQUALIFIED = 'DISQUALIFIED'
     DISQUALIFIED_AND_PLACED = 'DISQUALIFIED_AND_PLACED'
     REMOUNT = 'REMOUNT'
-    MAP = (
+    CONFIG = (
         ('0', NORMAL, '異常なし'),
         ('1', SCRATCHED, '取消'),
         ('2', EXCLUDED, '除外'),
@@ -218,22 +219,20 @@ class PENALTY:
         ('5', DISQUALIFIED_AND_PLACED, '降着'),
         ('6', REMOUNT, '再騎乗')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class PACE_CATEGORY:
+class PACE_CATEGORY(SIMPLE_CHOICE):
     HIGH = 'HIGH'
     MEDIUM = 'MEDIUM'
     SLOW = 'SLOW'
-    MAP = (
+    CONFIG = (
         ('H', HIGH, 'ハイ'),
         ('M', MEDIUM, '平均'),
         ('S', SLOW, 'スロー')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class RACE_CATEGORY:
+class RACE_CATEGORY(SIMPLE_CHOICE):
     """
     競走種別をコード化
 
@@ -245,7 +244,7 @@ class RACE_CATEGORY:
     FOUR_YR_OLD_AND_UP = 'FOUR_YR_OLD_AND_UP'
     OBSTACLE = 'OBSTACLE'
     OTHER = 'OTHER'
-    MAP = (
+    CONFIG = (
         ('11', TWO_YR_OLD, '2歳'),
         ('12', THREE_YR_OLD, '3歳'),
         ('13', THREE_YR_OLD_AND_UP, '3歳以上'),
@@ -253,10 +252,9 @@ class RACE_CATEGORY:
         ('20', OBSTACLE, '障害'),
         ('99', OTHER, 'その他')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class RACE_LINE:
+class RACE_LINE(SIMPLE_CHOICE):
     """
     コース取り
 
@@ -267,17 +265,16 @@ class RACE_LINE:
     MIDDLE = 'MIDDLE'
     OUTER = 'OUTER'
     OUTERMOST = 'OUTERMOST'
-    MAP = (
+    CONFIG = (
         ('1', INNERMOST, '最内'),
         ('2', INNER, '内'),
         ('3', MIDDLE, '中'),
         ('4', OUTER, '外'),
         ('5', OUTERMOST, '大外')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class RACE_HORSE_SEX_SYMBOL:
+class RACE_HORSE_SEX_SYMBOL(SIMPLE_CHOICE):
     """
     ２桁目　馬の性別による条件
         0　なし
@@ -291,17 +288,16 @@ class RACE_HORSE_SEX_SYMBOL:
     FEMALE = 'FEMALE'
     MALE_CASTRATED = 'MALE_CASTRATED'
     FEMALE_CASTRATED = 'FEMALE_CASTRATED'
-    MAP = (
+    CONFIG = (
         ('0', NA, 'なし'),
         ('1', MALE, '牡馬限定'),
         ('2', FEMALE, '牝馬限定'),
         ('3', MALE_CASTRATED, '牡・せん馬限定'),
         ('4', FEMALE_CASTRATED, '牡・牝馬限定')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class RACE_HORSE_TYPE_SYMBOL:
+class RACE_HORSE_TYPE_SYMBOL(SIMPLE_CHOICE):
     """
     競走記号をコード化
 
@@ -326,7 +322,7 @@ class RACE_HORSE_TYPE_SYMBOL:
     KYU = 'KYU'
     A_S = '(A)(S)'
     INT = 'INT'
-    MAP = (
+    CONFIG = (
         ('0', NA, 'なし'),
         ('1', MIX, '○混'),
         ('2', D, '○父'),
@@ -334,10 +330,9 @@ class RACE_HORSE_TYPE_SYMBOL:
         ('4', KYU, '九州産限定'),
         ('5', INT, '○国際混')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class RACE_INTERLEAGUE_SYMBOL:
+class RACE_INTERLEAGUE_SYMBOL(SIMPLE_CHOICE):
     """
     競走記号をコード化
 
@@ -353,17 +348,16 @@ class RACE_INTERLEAGUE_SYMBOL:
     DES = 'DES'
     SD = 'SD'
     JUNIOR = 'JUNIOR'
-    MAP = (
+    CONFIG = (
         ('0', NA, 'なし'),
         ('1', DSN, '○指'),
         ('2', DES, '□指'),
         ('3', SD, '○特指'),
         ('4', JUNIOR, '若手')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class REST_REASON:
+class REST_REASON(SIMPLE_CHOICE):
     """
     休養理由分類コード
 
@@ -384,7 +378,7 @@ class REST_REASON:
     )
 
 
-class RUNNING_STYLE:
+class RUNNING_STYLE(SIMPLE_CHOICE):
     """
     脚質コード（競走馬が得意とする走り）
     過去の競走実績よりその馬の脚質を判断したコード。
@@ -395,7 +389,7 @@ class RUNNING_STYLE:
     OTP_STRETCH = 'OTP_STRETCH'
     OTP_GOOD_POS = 'OTP_GOOD_POS'
     VERSATILE = 'VERSATILE'
-    MAP = (
+    CONFIG = (
         ('1', FRONT_RUNNER, '逃げ'),
         ('2', STALKER, '先行'),
         ('3', OTP, '差し'),
@@ -403,10 +397,9 @@ class RUNNING_STYLE:
         ('5', OTP_GOOD_POS, '好位差し'),
         ('6', VERSATILE, '自在')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class TRACK_CONDITION:
+class TRACK_CONDITION(SIMPLE_CHOICE):
     """
     馬場状態
 
@@ -425,7 +418,7 @@ class TRACK_CONDITION:
     SOFT = 'SOFT'
     SOFT_FAST = 'SOFT_FAST'
     SOFT_SLOW = 'SOFT_SLOW'
-    MAP = (
+    CONFIG = (
         ('10', FIRM, '良'),
         ('11', FIRM_FAST, '速良'),
         ('12', FIRM_SLOW, '遅良'),
@@ -439,10 +432,9 @@ class TRACK_CONDITION:
         ('41', SOFT_FAST, '速不良'),
         ('42', SOFT_SLOW, '遅不良')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class TRAINING_COURSE_CATEGORY:
+class TRAINING_COURSE_CATEGORY(SIMPLE_CHOICE):
     """
     調教コース種別
     調教コースは、トラックを周回する「コース調教」と、「坂路調教」に大別されます。
@@ -460,7 +452,7 @@ class TRAINING_COURSE_CATEGORY:
     )
 
 
-class TRAINING_STYLE:
+class TRAINING_STYLE(SIMPLE_CHOICE):
     """
     調教タイプ
     調教過程を分析し次のタイプに分類しています。
@@ -492,7 +484,7 @@ class TRAINING_STYLE:
     )
 
 
-class HAIR_COLOR:
+class HAIR_COLOR(SIMPLE_CHOICE):
     """
     毛色コード
 
@@ -511,7 +503,7 @@ class HAIR_COLOR:
     BAY_ROAN = 'BAY_ROAN'
     BLUE_ROAN = 'BLUE_ROAN'
     WHITE = 'WHITE'
-    MAP = (
+    CONFIG = (
         ('01', CHESTNUT, '栗毛'),
         ('02', DARK_CHESTNUT, '栃栗'),
         ('03', BAY, '鹿毛'),
@@ -524,10 +516,9 @@ class HAIR_COLOR:
         ('10', BLUE_ROAN, '青粕'),
         ('11', WHITE, '白毛')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
 
 
-class WEATHER:
+class WEATHER(SIMPLE_CHOICE):
     """
     天候コード
     1 晴
@@ -545,7 +536,7 @@ class WEATHER:
     RAINY = 'RAINY'
     LIGHT_SNOW = 'LIGHT_SNOW'
     SNOW = 'SNOW'
-    MAP = (
+    CONFIG = (
         ('1', FINE, '晴'),
         ('2', CLOUDY, '曇'),
         ('3', DRIZZLE, '小雨'),
@@ -553,4 +544,3 @@ class WEATHER:
         ('5', LIGHT_SNOW, '小雪'),
         ('6', SNOW, '雪')
     )
-    CHOICES = ((t[1], t[2]) for t in MAP)
