@@ -1,24 +1,10 @@
 import numpy as np
 import pandas as pd
 
-from jrdb.models import (
-    RacetrackCode,
-    Race,
-    TrackConditionCode,
-    RaceCategoryCode,
-    RaceConditionCode,
-    ImpostClassCode,
-    GradeCode,
-    PenaltyCode,
-    RaceHorseTypeSymbol,
-    RaceHorseSexSymbol,
-    RaceInterleagueSymbol,
-    RaceLineCode,
-    ImprovementCode,
-    HorsePhysiqueCode,
-    HorseDemeanorCode,
-    Jockey, Trainer, WeatherCode, RunningStyleCode, PaceFlowCode)
-from jrdb.models.choices import PACE_CATEGORY
+from jrdb.models import RaceConditionCode, Jockey, PaceFlowCode, Racetrack, Trainer
+from jrdb.models.choices import PACE_CATEGORY, SURFACE, DIRECTION, COURSE_INOUT, COURSE_LABEL, TRACK_CONDITION, \
+    RACE_CATEGORY, RACE_HORSE_TYPE_SYMBOL, RACE_HORSE_SEX_SYMBOL, RACE_INTERLEAGUE_SYMBOL, IMPOST_CLASS, GRADE, WEATHER, \
+    PENALTY, RACE_LINE, IMPROVEMENT, PHYSIQUE, DEMEANOR, RUNNING_STYLE
 from jrdb.templates.parse import parse_int_or, parse_float_or
 from jrdb.templates.template import Template
 
@@ -132,50 +118,42 @@ class SED(Template):
     ]
 
     def clean(self):
-        pace_cat_map = {'H': PACE_CATEGORY.HIGH, 'M': PACE_CATEGORY.MEDIUM, 'S': PACE_CATEGORY.SLOW}
-
         # Race
-        rdf = RacetrackCode.key2id(self.df.racetrack_code, name='racetrack_id').to_frame()
+        racetracks = Racetrack.objects.filter(code__in=self.df.racetrack_code).values('code', 'id')
+        s = self.df.racetrack_code.map({racetrack['code']: racetrack['id'] for racetrack in racetracks})
+        s.name = 'racetrack_id'
+
+        rdf = s.to_frame()
         rdf['yr'] = self.df.yr.astype(int)
         rdf['round'] = self.df['round'].astype(int)
         rdf['day'] = self.df.day.astype(int)
         rdf['num'] = self.df.num.astype(int)
         rdf['distance'] = self.df.race_distance.astype(int)
-
-        surface_map = {1: Race.TURF, 2: Race.DIRT, 3: Race.OBSTACLE}
-        rdf['surface'] = self.df.race_surface_code.astype(int).map(surface_map)
-
-        direction_map = {1: Race.RIGHT, 2: Race.LEFT, 3: Race.STRAIGHT, 4: Race.OTHER}
-        rdf['direction'] = self.df.race_direction.astype(int).map(direction_map)
-
-        course_inout_map = {1: Race.INSIDE, 2: Race.OUTSIDE, 3: Race.STRAIGHT_DIRT, 9: Race.OTHER}
-        rdf['course_inout'] = self.df.race_course_inout.astype(int).map(course_inout_map)
-
-        rdf['track_cond_id'] = TrackConditionCode.key2id(self.df.race_track_cond_code)
-        rdf['category_id'] = RaceCategoryCode.key2id(self.df.race_category_code)
+        rdf['surface'] = self.df.race_surface_code.map(SURFACE.get_key_map())
+        rdf['direction'] = self.df.race_direction.map(DIRECTION.get_key_map())
+        rdf['course_inout'] = self.df.race_course_inout.map(COURSE_INOUT.get_key_map())
+        rdf['track_cond'] = self.df.race_track_cond_code.map(TRACK_CONDITION.get_key_map())
+        rdf['category'] = self.df.race_category_code.map(RACE_CATEGORY.get_key_map())
         rdf['cond_id'] = RaceConditionCode.key2id(self.df.race_cond_code)
-        rdf['horse_type_symbol_id'] = RaceHorseTypeSymbol.key2id(self.df.race_symbols.str[0])
-        rdf['horse_sex_symbol_id'] = RaceHorseSexSymbol.key2id(self.df.race_symbols.str[1])
-        rdf['interleague_symbol_id'] = RaceInterleagueSymbol.key2id(self.df.race_symbols.str[2])
-        rdf['impost_class_id'] = ImpostClassCode.key2id(self.df.race_impost_class_code)
-        rdf['grade_id'] = GradeCode.key2id(self.df.race_grade)
+        rdf['horse_type_symbol'] = self.df.race_symbols.str[0].map(RACE_HORSE_TYPE_SYMBOL.get_key_map())
+        rdf['horse_sex_symbol'] = self.df.race_symbols.str[1].map(RACE_HORSE_SEX_SYMBOL.get_key_map())
+        rdf['interleague_symbol'] = self.df.race_symbols.str[2].map(RACE_INTERLEAGUE_SYMBOL.get_key_map())
+        rdf['impost_class'] = self.df.race_impost_class_code.map(IMPOST_CLASS.get_key_map())
+        rdf['grade'] = self.df.race_grade.map(GRADE.get_key_map())
         rdf['name'] = self.df.race_name.str.strip()
         rdf['name_abbr'] = self.df.race_name_abbr.str.strip()
         rdf['track_speed_shift'] = self.df.track_speed_shift.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        rdf['pace_cat'] = self.df.race_pace.map(pace_cat_map)
+        rdf['pace_cat'] = self.df.race_pace.map(PACE_CATEGORY.get_key_map())
         rdf['pace_index'] = self.df.race_pace_index.apply(parse_float_or, args=(np.nan,))
-        rdf['weather_id'] = WeatherCode.key2id(self.df.weather_code)
-
-        course_label_map = {1: Race.A, 2: Race.A1, 3: Race.A2, 4: Race.B, 5: Race.C, 6: Race.D}
-        rdf['course_label'] = self.df.course_label.astype(int).map(course_label_map)
-
+        rdf['weather'] = self.df.weather_code.map(WEATHER.get_key_map())
+        rdf['course_label'] = self.df.course_label.map(COURSE_LABEL.get_key_map())
         rdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.race_pace_flow_code)
 
         # Contender
         cdf = pd.DataFrame(index=rdf.index)
         cdf['num'] = self.df.horse_num.astype(int)
         cdf['order_of_finish'] = self.df.order_of_finish.astype(int)
-        cdf['penalty_id'] = PenaltyCode.key2id(self.df.penalty_code)
+        cdf['penalty'] = self.df.penalty_code.map(PENALTY.get_key_map())
         cdf['time'] = self.df.time.astype(int) * 0.1
         cdf['mounted_weight'] = self.df.mounted_weight.astype(int) * 0.1
         cdf['odds_win'] = self.df.fin_win_odds.astype(float)
@@ -188,11 +166,11 @@ class SED(Template):
         cdf['b3f_disadvt'] = self.df.b3f_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['mid_disadvt'] = self.df.mid_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['f3f_disadvt'] = self.df.f3f_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['race_line_id'] = RaceLineCode.key2id(self.df.race_line)
-        cdf['improvement_id'] = ImprovementCode.key2id(self.df.improvement_code)
-        cdf['physique_id'] = HorsePhysiqueCode.key2id(self.df.horse_physique_code)
-        cdf['demeanor_id'] = HorseDemeanorCode.key2id(self.df.horse_demeanor_code)
-        cdf['pace_cat'] = self.df.horse_pace.map(pace_cat_map)
+        cdf['race_line'] = self.df.race_line.map(RACE_LINE.get_key_map())
+        cdf['improvement'] = self.df.improvement_code.map(IMPROVEMENT.get_key_map())
+        cdf['physique'] = self.df.horse_physique_code.map(PHYSIQUE.get_key_map())
+        cdf['demeanor'] = self.df.horse_demeanor_code.map(DEMEANOR.get_key_map())
+        cdf['pace_cat'] = self.df.horse_pace.map(PACE_CATEGORY.get_key_map())
         cdf['b3f_time_index'] = self.df.start_time_index.apply(parse_float_or, args=(np.nan,))
         cdf['f3f_time_index'] = self.df.end_time_index.apply(parse_float_or, args=(np.nan,))
         cdf['pace_index'] = self.df.horse_pace_index.apply(parse_float_or, args=(np.nan,))
@@ -216,15 +194,18 @@ class SED(Template):
         cdf['weight_diff'] = self.df.horse_weight_diff.str.replace(' ', '') \
             .apply(parse_int_or, args=(np.nan,)).astype('Int64')
 
-        cdf['running_style_id'] = RunningStyleCode.key2id(self.df.running_style_code, allow_null=True)
+        cdf['running_style'] = self.df.running_style_code.map(RUNNING_STYLE.get_key_map())  # can be null
         cdf['purse'] = self.df.purse.astype(int)
         cdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.horse_pace_flow_code)
-        cdf['c4_race_line_id'] = RaceLineCode.key2id(self.df.c4_race_line)
+        cdf['c4_race_line_id'] = self.df.c4_race_line.map(RACE_LINE.get_key_map())
 
         # Horse
         hdf = pd.DataFrame(index=rdf.index)
         hdf['pedigree_reg_num'] = self.df.pedigree_reg_num
         hdf['name'] = self.df.horse_name.str.strip()
 
-        # TODO: Use DataFrame.merge|join to prefix columns with race_ | horse_ | contender_ before returning
+        rdf.rename(columns=lambda col: 'race_' + str(col), inplace=True)
+        cdf.rename(columns=lambda col: 'contender_' + str(col), inplace=True)
+        hdf.rename(columns=lambda col: 'horse_' + str(col), inplace=True)
+
         return pd.concat([rdf, cdf, hdf], axis='columns')
