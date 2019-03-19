@@ -63,7 +63,7 @@ class Race(BaseModel):
     p2_prize = models.PositiveSmallIntegerField(null=True)
 
     # track bias
-    track_bias_1C = models.CharField(
+    c1_track_bias = models.CharField(
         max_length=255,
         validators=[validate_comma_separated_integer_list],
         verbose_name='Corner 1 track bias',
@@ -71,7 +71,7 @@ class Race(BaseModel):
         null=True
     )
 
-    track_bias_2C = models.CharField(
+    c2_track_bias = models.CharField(
         max_length=255,
         validators=[validate_comma_separated_integer_list],
         verbose_name='Corner 2 track bias',
@@ -79,7 +79,7 @@ class Race(BaseModel):
         null=True
     )
 
-    track_bias_3C = models.CharField(
+    c3_track_bias = models.CharField(
         max_length=255,
         validators=[validate_comma_separated_integer_list],
         verbose_name='Corner 3 track bias',
@@ -87,7 +87,7 @@ class Race(BaseModel):
         null=True
     )
 
-    track_bias_4C = models.CharField(
+    c4_track_bias = models.CharField(
         max_length=255,
         validators=[validate_comma_separated_integer_list],
         verbose_name='Corner 4 track bias',
@@ -95,7 +95,7 @@ class Race(BaseModel):
         null=True
     )
 
-    track_bias_bs = models.CharField(
+    bs_track_bias = models.CharField(
         max_length=255,
         validators=[validate_comma_separated_integer_list],
         verbose_name='Backstretch track bias',
@@ -103,7 +103,7 @@ class Race(BaseModel):
         null=True
     )
 
-    track_bias_hs = models.CharField(
+    hs_track_bias = models.CharField(
         max_length=255,
         validators=[validate_comma_separated_integer_list],
         verbose_name='Homestretch track bias',
