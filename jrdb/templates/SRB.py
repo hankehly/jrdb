@@ -44,12 +44,12 @@ class SRB(Template):
         df['day'] = self.df.day.astype(int)
         df['num'] = self.df.num.astype(int)
 
-        df['c1_track_bias'] = self.df.track_bias_1C.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c2_track_bias'] = self.df.track_bias_2C.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c3_track_bias'] = self.df.track_bias_3C.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c4_track_bias'] = self.df.track_bias_4C.apply(parse_comma_separated_integer_list, args=(1,))
-        df['bs_track_bias'] = self.df.track_bias_backstretch.apply(parse_comma_separated_integer_list, args=(1,))
-        df['hs_track_bias'] = self.df.track_bias_homestretch.apply(parse_comma_separated_integer_list, args=(1,))
+        df['c1_track_bias'] = self.df.c1_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
+        df['c2_track_bias'] = self.df.c2_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
+        df['c3_track_bias'] = self.df.c3_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
+        df['c4_track_bias'] = self.df.c4_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
+        df['bs_track_bias'] = self.df.bs_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
+        df['hs_track_bias'] = self.df.hs_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
 
         df['comment'] = self.df.comment.str.strip()
 
