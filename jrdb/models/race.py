@@ -11,57 +11,15 @@ from jrdb.models.choices import (
     IMPOST_CLASS,
     GRADE,
     TRACK_CONDITION,
-    WEATHER
+    WEATHER,
+    SURFACE,
+    DIRECTION,
+    COURSE_INOUT,
+    COURSE_LABEL
 )
 
 
 class Race(BaseModel):
-    OTHER = 'OTHER'
-
-    TURF = 'TURF'
-    DIRT = 'DIRT'
-    OBSTACLE = 'OBSTACLE'
-    SURFACE_CHOICES = (
-        (TURF, '芝'),
-        (DIRT, 'ダート'),
-        (OBSTACLE, '障害'),
-    )
-
-    RIGHT = 'RIGHT'
-    LEFT = 'LEFT'
-    STRAIGHT = 'STRAIGHT'
-    DIRECTION_CHOICES = (
-        (RIGHT, '右'),
-        (LEFT, '左'),
-        (STRAIGHT, '直'),
-        (OTHER, '他'),
-    )
-
-    INSIDE = 'INSIDE'
-    OUTSIDE = 'OUTSIDE'
-    STRAIGHT_DIRT = 'STRAIGHT_DIRT'
-    COURSE_INOUT_CHOICES = (
-        (INSIDE, '通常(内)'),
-        (OUTSIDE, '外'),
-        (STRAIGHT_DIRT, '直ダ'),
-        (OTHER, '他'),
-    )
-
-    A = 'A'
-    A1 = 'A1'
-    A2 = 'A2'
-    B = 'B'
-    C = 'C'
-    D = 'D'
-    COURSE_LABEL_CHOICES = (
-        (A, 'A'),
-        (A1, 'A1'),
-        (A2, 'A2'),
-        (B, 'B'),
-        (C, 'C'),
-        (D, 'D'),
-    )
-
     # key related data
     racetrack = models.ForeignKey('jrdb.Racetrack', on_delete=models.CASCADE)
     yr = models.PositiveSmallIntegerField()
@@ -88,10 +46,10 @@ class Race(BaseModel):
     started_at = models.DateTimeField(null=True)
 
     distance = models.PositiveSmallIntegerField(null=True)
-    surface = models.CharField(max_length=255, choices=SURFACE_CHOICES, null=True)
-    direction = models.CharField(max_length=255, choices=DIRECTION_CHOICES, null=True)
-    course_inout = models.CharField(max_length=255, choices=COURSE_INOUT_CHOICES, null=True)
-    course_label = models.CharField(max_length=255, choices=COURSE_LABEL_CHOICES, null=True)
+    surface = models.CharField(max_length=255, choices=SURFACE.CHOICES, null=True)
+    direction = models.CharField(max_length=255, choices=DIRECTION.CHOICES, null=True)
+    course_inout = models.CharField(max_length=255, choices=COURSE_INOUT.CHOICES, null=True)
+    course_label = models.CharField(max_length=255, choices=COURSE_LABEL.CHOICES, null=True)
     comment = models.TextField(max_length=500)
     nth_occurrence = models.PositiveSmallIntegerField(null=True)
 

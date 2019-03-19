@@ -47,6 +47,36 @@ class GRADE(ChoiceMixin):
     )
 
 
+class COURSE_LABEL(ChoiceMixin):
+    A = 'A'
+    A1 = 'A1'
+    A2 = 'A2'
+    B = 'B'
+    C = 'C'
+    D = 'D'
+    MAP = (
+        ('1', A, 'A'),
+        ('2', A1, 'A1'),
+        ('3', A2, 'A2'),
+        ('4', B, 'B'),
+        ('5', C, 'C'),
+        ('6', D, 'D'),
+    )
+
+
+class COURSE_INOUT(ChoiceMixin):
+    INSIDE = 'INSIDE'
+    OUTSIDE = 'OUTSIDE'
+    STRAIGHT_DIRT = 'STRAIGHT_DIRT'
+    OTHER = 'OTHER'
+    MAP = (
+        ('1', INSIDE, '通常(内)'),
+        ('2', OUTSIDE, '外'),
+        ('3', STRAIGHT_DIRT, '直ダ'),
+        ('9', OTHER, '他'),
+    )
+
+
 class DEMEANOR(ChoiceMixin):
     """
     気配コード
@@ -72,6 +102,19 @@ class DEMEANOR(ChoiceMixin):
         ('6', LACKING_SPIRIT, '気不足'),
         ('7', RESTLESS, 'チャカ'),
         ('8', EXCITED_AND_RESTLESS, 'イレチ（イレ込+チャカつき）')
+    )
+
+
+class DIRECTION(ChoiceMixin):
+    RIGHT = 'RIGHT'
+    LEFT = 'LEFT'
+    STRAIGHT = 'STRAIGHT'
+    OTHER = 'OTHER'
+    MAP = (
+        ('1', RIGHT, '右'),
+        ('2', LEFT, '左'),
+        ('3', STRAIGHT, '直'),
+        ('4', OTHER, '他')
     )
 
 
@@ -420,6 +463,17 @@ class RUNNING_STYLE(ChoiceMixin):
     )
 
 
+class SURFACE(ChoiceMixin):
+    TURF = 'TURF'
+    DIRT = 'DIRT'
+    OBSTACLE = 'OBSTACLE'
+    MAP = (
+        ('1', TURF, '芝'),
+        ('2', DIRT, 'ダート'),
+        ('3', OBSTACLE, '障害'),
+    )
+
+
 class TRACK_CONDITION(ChoiceMixin):
     """
     馬場状態
@@ -470,7 +524,7 @@ class TRAINEE_CATEGORY(ChoiceMixin):
         ('1', REDUCE_1K, '1K減'),
         ('2', REDUCE_2K, '2K減'),
         ('3', REDUCE_3K, '3K減'),
-)
+    )
 
 
 class TRAINING_COURSE_CATEGORY(ChoiceMixin):
