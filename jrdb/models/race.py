@@ -28,15 +28,15 @@ class Race(BaseModel):
     num = models.PositiveSmallIntegerField()
 
     # codes
-    category = models.CharField(max_length=255, choices=RACE_CATEGORY.CHOICES, null=True)
+    category = models.CharField(max_length=255, choices=RACE_CATEGORY.CHOICES(), null=True)
     cond = models.ForeignKey('jrdb.RaceConditionCode', on_delete=models.CASCADE, null=True)
-    horse_sex_symbol = models.CharField(max_length=255, choices=RACE_HORSE_SEX_SYMBOL.CHOICES, null=True)
-    horse_type_symbol = models.CharField(max_length=255, choices=RACE_HORSE_TYPE_SYMBOL.CHOICES, null=True)
-    interleague_symbol = models.CharField(max_length=255, choices=RACE_INTERLEAGUE_SYMBOL.CHOICES, null=True)
-    impost_class = models.CharField(max_length=255, choices=IMPOST_CLASS.CHOICES, null=True)
-    grade = models.CharField(max_length=255, choices=GRADE.CHOICES, null=True)
-    track_cond = models.CharField(max_length=255, choices=TRACK_CONDITION.CHOICES, null=True)
-    weather = models.CharField(max_length=255, choices=WEATHER.CHOICES, null=True)
+    horse_sex_symbol = models.CharField(max_length=255, choices=RACE_HORSE_SEX_SYMBOL.CHOICES(), null=True)
+    horse_type_symbol = models.CharField(max_length=255, choices=RACE_HORSE_TYPE_SYMBOL.CHOICES(), null=True)
+    interleague_symbol = models.CharField(max_length=255, choices=RACE_INTERLEAGUE_SYMBOL.CHOICES(), null=True)
+    impost_class = models.CharField(max_length=255, choices=IMPOST_CLASS.CHOICES(), null=True)
+    grade = models.CharField(max_length=255, choices=GRADE.CHOICES(), null=True)
+    track_cond = models.CharField(max_length=255, choices=TRACK_CONDITION.CHOICES(), null=True)
+    weather = models.CharField(max_length=255, choices=WEATHER.CHOICES(), null=True)
 
     name = models.CharField(max_length=50, null=True)
     name_abbr = models.CharField(max_length=8, null=True)
@@ -46,10 +46,10 @@ class Race(BaseModel):
     started_at = models.DateTimeField(null=True)
 
     distance = models.PositiveSmallIntegerField(null=True)
-    surface = models.CharField(max_length=255, choices=SURFACE.CHOICES, null=True)
-    direction = models.CharField(max_length=255, choices=DIRECTION.CHOICES, null=True)
-    course_inout = models.CharField(max_length=255, choices=COURSE_INOUT.CHOICES, null=True)
-    course_label = models.CharField(max_length=255, choices=COURSE_LABEL.CHOICES, null=True)
+    surface = models.CharField(max_length=255, choices=SURFACE.CHOICES(), null=True)
+    direction = models.CharField(max_length=255, choices=DIRECTION.CHOICES(), null=True)
+    course_inout = models.CharField(max_length=255, choices=COURSE_INOUT.CHOICES(), null=True)
+    course_label = models.CharField(max_length=255, choices=COURSE_LABEL.CHOICES(), null=True)
     comment = models.TextField(max_length=500)
     nth_occurrence = models.PositiveSmallIntegerField(null=True)
 
@@ -123,7 +123,7 @@ class Race(BaseModel):
 
     track_speed_shift = models.SmallIntegerField(null=True)
 
-    pace_cat = models.CharField(max_length=255, choices=PACE_CATEGORY.CHOICES)
+    pace_cat = models.CharField(max_length=255, choices=PACE_CATEGORY.CHOICES())
     pace_index = models.FloatField(null=True, help_text='レースのペースを指数化したもの')
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
 

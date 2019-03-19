@@ -7,9 +7,9 @@ from jrdb.models.choices import HAIR_COLOR, HORSE_SYMBOL, SEX
 class Horse(BaseModel):
     pedigree_reg_num = models.CharField(max_length=8, unique=True)
     name = models.CharField(max_length=36)
-    sex = models.CharField(max_length=255, choices=SEX.CHOICES)
-    hair_color = models.CharField(max_length=255, choices=HAIR_COLOR.CHOICES)
-    symbol = models.CharField(max_length=255, choices=HORSE_SYMBOL.CHOICES, null=True)
+    sex = models.CharField(max_length=255, choices=SEX.CHOICES())
+    hair_color = models.CharField(max_length=255, choices=HAIR_COLOR.CHOICES())
+    symbol = models.CharField(max_length=255, choices=HORSE_SYMBOL.CHOICES(), null=True)
     sire_name = models.CharField(max_length=36)
     dam_name = models.CharField(max_length=36)
     damsire_name = models.CharField(max_length=36)

@@ -1,7 +1,7 @@
 class ChoiceMixin:
     MAP = ()
 
-    @property
+    @classmethod
     def CHOICES(self):
         return (
             (t[1], t[2]) for t in self.MAP

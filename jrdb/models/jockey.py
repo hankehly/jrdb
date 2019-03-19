@@ -11,11 +11,11 @@ class Jockey(BaseModel):
     name = models.CharField(max_length=12)
     name_kana = models.CharField(max_length=30)
     name_abbr = models.CharField(max_length=6)
-    area = models.CharField(max_length=255, choices=AREA.CHOICES)
+    area = models.CharField(max_length=255, choices=AREA.CHOICES())
     training_center_name = models.CharField(max_length=4)
     birthday = models.DateField()
     lic_acquired_yr = models.PositiveIntegerField()
-    trainee_cat = models.CharField(max_length=255, choices=TRAINEE_CATEGORY.CHOICES)
+    trainee_cat = models.CharField(max_length=255, choices=TRAINEE_CATEGORY.CHOICES())
     # TODO: 所属厩舎 (trainer_code) can this be a key?
     trainer_code = models.CharField(max_length=5, unique=True)
     jrdb_comment = models.CharField(max_length=40)
