@@ -8,7 +8,11 @@ from jrdb.models.choices import (
     RACE_HORSE_SEX_SYMBOL,
     RACE_INTERLEAGUE_SYMBOL,
     IMPOST_CLASS,
-    GRADE
+    GRADE,
+    SURFACE,
+    DIRECTION,
+    COURSE_INOUT,
+    COURSE_LABEL
 )
 from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
@@ -82,19 +86,10 @@ class BAC(Template):
         df['num'] = self.df.num.astype(int)
         df['started_at'] = self._started_at()
         df['distance'] = self.df.distance.astype(int)
-
-        surface_map = {1: Race.TURF, 2: Race.DIRT, 3: Race.OBSTACLE}
-        df['surface'] = self.df.surface.astype(int).map(surface_map)
-
-        direction_map = {1: Race.RIGHT, 2: Race.LEFT, 3: Race.STRAIGHT, 4: Race.OTHER}
-        df['direction'] = self.df.direction.astype(int).map(direction_map)
-
-        course_inout_map = {1: Race.INSIDE, 2: Race.OUTSIDE, 3: Race.STRAIGHT_DIRT, 9: Race.OTHER}
-        df['course_inout'] = self.df.course_inout.astype(int).map(course_inout_map)
-
-        course_label_map = {1: Race.A, 2: Race.A1, 3: Race.A2, 4: Race.B, 5: Race.C, 6: Race.D}
-        df['course_label'] = self.df.course_label.astype(int).map(course_label_map)
-
+        df['surface'] = self.df.surface.map(SURFACE.get_key_map())
+        df['direction'] = self.df.direction.map(DIRECTION.get_key_map())
+        df['course_inout'] = self.df.course_inout.map(COURSE_INOUT.get_key_map())
+        df['course_label'] = self.df.course_label.map(COURSE_LABEL.get_key_map())
         df['category'] = self.df.race_category_code.map(RACE_CATEGORY.get_key_map())
         df['cond_id'] = RaceConditionCode.key2id(self.df.race_cond_code)
         df['horse_type_symbol'] = self.df.race_symbols.str[0].map(RACE_HORSE_TYPE_SYMBOL.get_key_map())
@@ -121,17 +116,25 @@ class BAC(Template):
         df['p1_prize'] = self.df.p1_prize.astype(int)
         df['p2_prize'] = self.df.p2_prize.astype(int)
 
-        int2bool = {1: True, 0: False}
-        df['issued_bt_win'] = self.df.betting_ticket_sale_flag.str[0].astype(int).map(int2bool)
-        df['issued_bt_show'] = self.df.betting_ticket_sale_flag.str[1].astype(int).map(int2bool)
-        df['issued_bt_bracket_quinella'] = self.df.betting_ticket_sale_flag.str[2].astype(int).map(int2bool)
-        df['issued_bt_quinella'] = self.df.betting_ticket_sale_flag.str[3].astype(int).map(int2bool)
-        df['issued_bt_exacta'] = self.df.betting_ticket_sale_flag.str[4].astype(int).map(int2bool)
-        df['issued_bt_duet'] = self.df.betting_ticket_sale_flag.str[5].astype(int).map(int2bool)
-        df['issued_bt_trio'] = self.df.betting_ticket_sale_flag.str[6].astype(int).map(int2bool)
-        df['issued_bt_trifecta'] = self.df.betting_ticket_sale_flag.str[7].astype(int).map(int2bool)
+        betting_ticket_columns = {
+            0: 'issued_bt_win',
+            1: 'issued_bt_show',
+            2: 'issued_bt_bracket_quinella',
+            3: 'issued_bt_quinella',
+            4: 'issued_bt_exacta',
+            5: 'issued_bt_duet',
+            6: 'issued_bt_trio',
+            7: 'issued_bt_trifecta'
+        }
 
-        return df
+        betting_ticket_flags = df.betting_ticket_sale_flag.str.strip() \
+            .map(list) \
+            .apply(pd.Series) \
+            .astype(int) \
+            .applymap(bool) \
+            .rename(columns=betting_ticket_columns)
+
+        return df.join(betting_ticket_flags)
 
     def persist(self):
         df = self.clean()
