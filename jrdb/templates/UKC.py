@@ -56,9 +56,9 @@ class UKC(Template):
             .astype('Int64')
         df['owner_name'] = self.df.owner_name.str.strip()
 
-        racetracks = Racetrack.objects.filter(key__in=self.df.owner_racetrack_code)
-        racetrack_map = {racetrack.key: racetrack.id for racetrack in racetracks}
-        df['owner_racetrack_id'] = self.df.owner_racetrack_code.map(racetrack_map).astype(int)
+        racetracks = Racetrack.objects.filter(code__in=self.df.owner_racetrack_code)
+        racetrack_map = {racetrack.code: racetrack.id for racetrack in racetracks}
+        df['owner_racetrack_id'] = self.df.owner_racetrack_code.map(racetrack_map).astype('Int64')
 
         df['breeder_name'] = self.df.breeder_name.str.strip()
         df['breeding_loc_name'] = self.df.breeding_loc_name.str.strip()
