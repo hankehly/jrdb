@@ -2,9 +2,27 @@ import numpy as np
 import pandas as pd
 
 from jrdb.models import RaceConditionCode, Jockey, PaceFlowCode, Racetrack, Trainer
-from jrdb.models.choices import PACE_CATEGORY, SURFACE, DIRECTION, COURSE_INOUT, COURSE_LABEL, TRACK_CONDITION, \
-    RACE_CATEGORY, RACE_HORSE_TYPE_SYMBOL, RACE_HORSE_SEX_SYMBOL, RACE_INTERLEAGUE_SYMBOL, IMPOST_CLASS, GRADE, WEATHER, \
-    PENALTY, RACE_LINE, IMPROVEMENT, PHYSIQUE, DEMEANOR, RUNNING_STYLE
+from jrdb.models.choices import (
+    PACE_CATEGORY,
+    SURFACE,
+    DIRECTION,
+    COURSE_INOUT,
+    COURSE_LABEL,
+    TRACK_CONDITION,
+    RACE_CATEGORY,
+    RACE_HORSE_TYPE_SYMBOL,
+    RACE_HORSE_SEX_SYMBOL,
+    RACE_INTERLEAGUE_SYMBOL,
+    IMPOST_CLASS,
+    GRADE,
+    WEATHER,
+    PENALTY,
+    RACE_LINE,
+    IMPROVEMENT,
+    PHYSIQUE,
+    DEMEANOR,
+    RUNNING_STYLE
+)
 from jrdb.templates.parse import parse_int_or, parse_float_or
 from jrdb.templates.template import Template
 
