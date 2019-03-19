@@ -127,7 +127,7 @@ class BAC(Template):
             7: 'issued_bt_trifecta'
         }
 
-        betting_ticket_flags = df.betting_ticket_sale_flag.str.strip() \
+        betting_ticket_flags = self.df.betting_ticket_sale_flag.str.strip() \
             .map(list) \
             .apply(pd.Series) \
             .astype(int) \
