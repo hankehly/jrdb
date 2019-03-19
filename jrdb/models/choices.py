@@ -463,6 +463,17 @@ class RUNNING_STYLE(ChoiceMixin):
     )
 
 
+class SEX(ChoiceMixin):
+    MALE = 'MALE'
+    FEMALE = 'FEMALE'
+    CASTRATED = 'CASTRATED'
+    MAP = (
+        ('1', MALE, 'Male'),
+        ('2', FEMALE, 'Female'),
+        ('3', CASTRATED, 'Castrated')
+    )
+
+
 class SURFACE(ChoiceMixin):
     TURF = 'TURF'
     DIRT = 'DIRT'

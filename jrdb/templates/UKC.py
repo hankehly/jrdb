@@ -1,6 +1,7 @@
 from django.db import IntegrityError
 
-from jrdb.models import Horse, HairColorCode, HorseSymbol, RacetrackCode
+from jrdb.models import Horse, Racetrack
+from jrdb.models.choices import SEX, HAIR_COLOR, HORSE_SYMBOL
 from jrdb.templates.parse import parse_date, parse_int_or, filter_na
 from jrdb.templates.template import Template
 
@@ -38,36 +39,32 @@ class UKC(Template):
     ]
 
     def clean(self):
-        df = self.df.drop(columns=['data_saved_on', 'reserved', 'newline'])
+        df = self.df.pedigree_reg_num.to_frame()
 
-        df.name = df.name.str.strip()
-        df.sex = df.sex.astype(int).map({1: Horse.MALE, 2: Horse.FEMALE, 3: Horse.CASTRATED})
+        df['name'] = self.df.name.str.strip()
+        df['sex'] = self.df.sex.map(SEX.get_key_map())
+        df['hair_color'] = self.df.hair_color_code.map(HAIR_COLOR.get_key_map())
+        df['symbol'] = self.df.horse_symbol.map(HORSE_SYMBOL.get_key_map())
+        df['sire_name'] = self.df.sire_name.str.strip()
+        df['dam_name'] = self.df.dam_name.str.strip()
+        df['damsire_name'] = self.df.damsire_name.str.strip()
+        df['birthday'] = self.df.birthday.apply(parse_date, args=('%Y%m%d',))
+        df['sire_birth_yr'] = self.df.sire_birth_yr.astype(int)
+        df['dam_birth_yr'] = self.df.dam_birth_yr.astype(int)
+        df['damsire_birth_yr'] = self.df.damsire_birth_yr.str.strip() \
+            .apply(parse_int_or, args=(np.nan,)) \
+            .astype('Int64')
+        df['owner_name'] = self.df.owner_name.str.strip()
 
-        hair_color_codes = {code.key: code.id for code in HairColorCode.objects.filter(key__in=df.hair_color_code)}
-        df['hair_color_code_id'] = df.hair_color_code.map(hair_color_codes).astype(int)
-        df.drop(columns=['hair_color_code'], inplace=True)
+        racetracks = Racetrack.objects.filter(key__in=self.df.owner_racetrack_code)
+        racetrack_map = {racetrack.key: racetrack.id for racetrack in racetracks}
+        df['owner_racetrack_id'] = self.df.owner_racetrack_code.map(racetrack_map).astype(int)
 
-        horse_symbols = {symbol.key: symbol.id for symbol in HorseSymbol.objects.filter(key__in=df.horse_symbol)}
-        df['symbol_id'] = df.horse_symbol.map(horse_symbols).astype('Int64')
-        df.drop(columns=['horse_symbol'], inplace=True)
-
-        df.sire_name = df.sire_name.str.strip()
-        df.dam_name = df.dam_name.str.strip()
-        df.damsire_name = df.damsire_name.str.strip()
-        df.birthday = df.birthday.apply(parse_date, args=('%Y%m%d',))
-        df.sire_birth_yr = df.sire_birth_yr.astype(int)
-        df.dam_birth_yr = df.dam_birth_yr.astype(int)
-        # damsire_birth_yr is missing sometimes..
-        df.damsire_birth_yr = df.damsire_birth_yr.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        df.owner_name = df.owner_name.str.strip()
-
-        racetrack_codes = {code.key: code.id for code in RacetrackCode.objects.filter(key__in=df.owner_racetrack_code)}
-        df['owner_racetrack_code_id'] = df.owner_racetrack_code.map(racetrack_codes).astype('Int64')
-        df.drop(columns=['owner_racetrack_code'], inplace=True)
-
-        df.breeder_name = df.breeder_name.str.strip()
-        df.breeding_loc_name = df.breeding_loc_name.str.strip()
-        df.is_retired = df.is_retired.astype(int).astype(bool)
+        df['breeder_name'] = self.df.breeder_name.str.strip()
+        df['breeding_loc_name'] = self.df.breeding_loc_name.str.strip()
+        df['is_retired'] = self.df.is_retired.astype(int).astype(bool)
+        df['sire_genealogy_code'] = self.df.sire_genealogy_code.str.strip()
+        df['damsire_genealogy_code'] = self.df.damsire_genealogy_code.str.strip()
 
         return df
 

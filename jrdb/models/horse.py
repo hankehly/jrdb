@@ -1,23 +1,14 @@
 from django.db import models
 
 from jrdb.models.base import BaseModel
-from jrdb.models.choices import HAIR_COLOR, HORSE_SYMBOL
+from jrdb.models.choices import HAIR_COLOR, HORSE_SYMBOL, SEX
 
 
 class Horse(BaseModel):
-    MALE = 'MALE'
-    FEMALE = 'FEMALE'
-    CASTRATED = 'CASTRATED'
-    SEX_CHOICES = (
-        (MALE, 'Male'),
-        (FEMALE, 'Female'),
-        (CASTRATED, 'Castrated')
-    )
-
     pedigree_reg_num = models.CharField(max_length=8, unique=True)
     name = models.CharField(max_length=36)
-    sex = models.CharField(max_length=255, choices=SEX_CHOICES)
-    hair_color_code = models.CharField(max_length=255, choices=HAIR_COLOR.CHOICES)
+    sex = models.CharField(max_length=255, choices=SEX.CHOICES)
+    hair_color = models.CharField(max_length=255, choices=HAIR_COLOR.CHOICES)
     symbol = models.CharField(max_length=255, choices=HORSE_SYMBOL.CHOICES, null=True)
     sire_name = models.CharField(max_length=36)
     dam_name = models.CharField(max_length=36)
