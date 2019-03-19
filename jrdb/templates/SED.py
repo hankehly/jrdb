@@ -45,7 +45,7 @@ class SED(Template):
         ['race_num', 'Ｒ', None, '2', '99', '7', None],
         ['horse_num', '馬番', None, '2', '99', '9', None],
         ['pedigree_reg_num', '血統登録番号', None, '8', 'X', '11', None],
-        ['race_date', '年月日', None, '8', '9', '19', 'YYYYMMDD <-暫定版より順序'],  # ignored in favor of BAC
+        ['race_date', '年月日', None, '8', '9', '19', 'YYYYMMDD <-暫定版より順序'],  # IGNORED (use value from BAC)
         ['horse_name', '馬名', None, '36', 'X', '27', '全角１８文字 <-入れ替え'],
         # レース条件
         ['race_distance', '距離', None, '4', '9999', '63', None],
@@ -86,8 +86,7 @@ class SED(Template):
         ['race_ind', 'レース', None, '3', 'ZZZ', '213', None],  # IGNORED
         ['race_line', 'コース取り', None, '1', '9', '216', '1:最内,2:内,3:中,4:外,5:大外'],
         ['improvement_code', '上昇度コード', None, '1', '9', '217', '1:AA, 2:A, 3:B, 4:C, 5:?'],
-        # mostly the same for all horses in 1 race, but maybe 1 or 2 horses have different classes
-        # what is this supposed to mean?
+        # TODO: Why does race_class_code differ between horses in the same race?
         ['race_class_code', 'クラスコード', None, '2', '99', '218', None],  # IGNORED
         ['horse_physique_code', '馬体コード', None, '1', '9', '220', None],
         ['horse_demeanor_code', '気配コード', None, '1', '9', '221', None],
@@ -145,7 +144,7 @@ class SED(Template):
         rdf['yr'] = self.df.yr.astype(int)
         rdf['round'] = self.df['round'].astype(int)
         rdf['day'] = self.df.day.astype(int)
-        rdf['num'] = self.df.num.astype(int)
+        rdf['num'] = self.df.race_num.astype(int)
         rdf['distance'] = self.df.race_distance.astype(int)
         rdf['surface'] = self.df.race_surface_code.map(SURFACE.get_key_map())
         rdf['direction'] = self.df.race_direction.map(DIRECTION.get_key_map())
@@ -165,7 +164,7 @@ class SED(Template):
         rdf['pace_index'] = self.df.race_pace_index.apply(parse_float_or, args=(np.nan,))
         rdf['weather'] = self.df.weather_code.map(WEATHER.get_key_map())
         rdf['course_label'] = self.df.course_label.map(COURSE_LABEL.get_key_map())
-        rdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.race_pace_flow_code)
+        rdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.race_pace_flow_code, allow_null=True)
 
         # Contender
         cdf = pd.DataFrame(index=rdf.index)
@@ -189,8 +188,8 @@ class SED(Template):
         cdf['physique'] = self.df.horse_physique_code.map(PHYSIQUE.get_key_map())
         cdf['demeanor'] = self.df.horse_demeanor_code.map(DEMEANOR.get_key_map())
         cdf['pace_cat'] = self.df.horse_pace.map(PACE_CATEGORY.get_key_map())
-        cdf['b3f_time_index'] = self.df.start_time_index.apply(parse_float_or, args=(np.nan,))
-        cdf['f3f_time_index'] = self.df.end_time_index.apply(parse_float_or, args=(np.nan,))
+        cdf['b3f_time_index'] = self.df.b3f_time_index.apply(parse_float_or, args=(np.nan,))
+        cdf['f3f_time_index'] = self.df.f3f_time_index.apply(parse_float_or, args=(np.nan,))
         cdf['pace_index'] = self.df.horse_pace_index.apply(parse_float_or, args=(np.nan,))
         cdf['margin'] = self.df.margin.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['b3f_time'] = self.df.b3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
@@ -202,20 +201,18 @@ class SED(Template):
         cdf['b3f_1p_margin'] = self.df.b3f_1p_margin.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['f3f_1p_margin'] = self.df.f3f_1p_margin.apply(parse_float_or, args=(np.nan,)) * 0.1
 
-        jockeys = Jockey.objects.filter(code__in=self.df.jockey_code).values('code', 'id')
-        cdf['jockey_id'] = self.df.jockey_code.map({jockey.code: jockey.id for jockey in jockeys}).astype(int)
-
-        trainers = Trainer.objects.filter(code__in=self.df.trainer_code).values('code', 'id')
-        cdf['trainer_id'] = self.df.trainer_code.map({trainer.code: trainer.id for trainer in trainers}).astype(int)
+        cdf['jockey_code'] = self.df.jockey_code.str.strip()
+        cdf['trainer_code'] = self.df.trainer_code.str.strip()
 
         cdf['weight'] = self.df.horse_weight.astype(int)
         cdf['weight_diff'] = self.df.horse_weight_diff.str.replace(' ', '') \
-            .apply(parse_int_or, args=(np.nan,)).astype('Int64')
+            .apply(parse_int_or, args=(np.nan,)) \
+            .astype('Int64')
 
-        cdf['running_style'] = self.df.running_style_code.map(RUNNING_STYLE.get_key_map())  # can be null
+        cdf['running_style'] = self.df.running_style_code.map(RUNNING_STYLE.get_key_map())
         cdf['purse'] = self.df.purse.astype(int)
-        cdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.horse_pace_flow_code)
-        cdf['c4_race_line_id'] = self.df.c4_race_line.map(RACE_LINE.get_key_map())
+        cdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.horse_pace_flow_code, allow_null=True)
+        cdf['c4_race_line'] = self.df.c4_race_line.map(RACE_LINE.get_key_map())
 
         # Horse
         hdf = pd.DataFrame(index=rdf.index)
