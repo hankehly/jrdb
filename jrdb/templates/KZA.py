@@ -45,37 +45,41 @@ class KZA(Template):
     ]
 
     def clean(self):
-        retired_on = self.df.retired_on.apply(parse_date, args=('%Y%m%d',))
-        retired_on.name = 'retired_on'
+        t = self.df[~self.df.name.str.contains('削除')]
 
-        df = retired_on.to_frame()
-        df['name'] = self.df.name.str.strip()
-        df['name_kana'] = self.df.name_kana.str.strip()
-        df['name_abbr'] = self.df.name_abbr.str.strip()
+        code = t.code.str.strip()
+        code.name = 'code'
 
-        df['area'] = self.df.area.map(AREA.get_key_map())
-        df['training_center_name'] = self.df.training_center_name.str.strip()
-        df['birthday'] = self.df.birthday.apply(parse_date, args=('%Y%m%d',))
-        df['lic_acquired_yr'] = self.df.lic_acquired_yr.astype(int)
-        df['trainee_cat'] = self.df.trainee_cat.map(TRAINEE_CATEGORY.get_key_map())
-        df['trainer_code'] = self.df.trainer_code.str.strip()
-        df['jrdb_comment'] = self.df.jrdb_comment.str.strip()
-        df['jrdb_comment_date'] = self.df.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))
+        df = code.to_frame()
 
-        df['cur_yr_leading'] = self.df.cur_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        df['cur_yr_flat_r'] = self.df.cur_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['cur_yr_obst_r'] = self.df.cur_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['cur_yr_sp_wins'] = self.df.cur_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-        df['cur_yr_hs_wins'] = self.df.cur_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+        df['retired_on'] = t.retired_on.apply(parse_date, args=('%Y%m%d',))
+        df['name'] = t.name.str.strip()
+        df['name_kana'] = t.name_kana.str.strip()
+        df['name_abbr'] = t.name_abbr.str.strip()
 
-        df['prev_yr_leading'] = self.df.prev_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        df['prev_yr_flat_r'] = self.df.prev_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['prev_yr_obst_r'] = self.df.prev_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['prev_yr_sp_wins'] = self.df.prev_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-        df['prev_yr_hs_wins'] = self.df.prev_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+        df['area'] = t.area.map(AREA.get_key_map())
+        df['training_center_name'] = t.training_center_name.str.strip()
+        df['birthday'] = t.birthday.apply(parse_date, args=('%Y%m%d',))
+        df['lic_acquired_yr'] = t.lic_acquired_yr.astype(int)
+        df['trainee_cat'] = t.trainee_cat.map(TRAINEE_CATEGORY.get_key_map())
+        df['trainer_code'] = t.trainer_code.str.strip()
+        df['jrdb_comment'] = t.jrdb_comment.str.strip()
+        df['jrdb_comment_date'] = t.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))
 
-        df['sum_flat_r'] = self.df.sum_flat_r.apply(parse_comma_separated_integer_list, args=(5,))
-        df['sum_obst_r'] = self.df.sum_obst_r.apply(parse_comma_separated_integer_list, args=(5,))
+        df['cur_yr_leading'] = t.cur_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        df['cur_yr_flat_r'] = t.cur_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
+        df['cur_yr_obst_r'] = t.cur_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
+        df['cur_yr_sp_wins'] = t.cur_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+        df['cur_yr_hs_wins'] = t.cur_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+
+        df['prev_yr_leading'] = t.prev_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        df['prev_yr_flat_r'] = t.prev_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
+        df['prev_yr_obst_r'] = t.prev_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
+        df['prev_yr_sp_wins'] = t.prev_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+        df['prev_yr_hs_wins'] = t.prev_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+
+        df['sum_flat_r'] = t.sum_flat_r.apply(parse_comma_separated_integer_list, args=(5,))
+        df['sum_obst_r'] = t.sum_obst_r.apply(parse_comma_separated_integer_list, args=(5,))
 
         return df
 
