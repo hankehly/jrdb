@@ -75,3 +75,4 @@ class Contender(BaseModel):
 
     class Meta:
         db_table = 'contenders'
+        unique_together = ('race', 'horse', 'jockey', 'trainer')
