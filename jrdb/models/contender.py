@@ -73,6 +73,14 @@ class Contender(BaseModel):
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
     c4_race_line = models.CharField(max_length=255, choices=RACE_LINE.CHOICES())
 
+    # TODO: Consider splitting tables to prevent too many Contender columns
+    # special_mention_1 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
+    # special_mention_2 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
+    # special_mention_3 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
+    # special_mention_4 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
+    # special_mention_5 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
+    # special_mention_6 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
+
     class Meta:
         db_table = 'contenders'
         unique_together = ('race', 'horse', 'jockey', 'trainer')
