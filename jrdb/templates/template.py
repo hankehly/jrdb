@@ -52,7 +52,7 @@ class Template(ABC):
                 cols.append(row.key)
         return cols
 
-    def parse(self) -> pd.DataFrame:
+    def parse(self) -> 'Template':
         """
         Parse contents of self.filepath into DataFrame
 
@@ -70,7 +70,7 @@ class Template(ABC):
                 byterows.append(byterow)
         encoded_rows = np.char.decode(byterows, encoding='cp932')
         self.df = pd.DataFrame(encoded_rows, columns=self.colnames)
-        return self.df
+        return self
 
     def parse_item(self, line, spec) -> List:
         """
