@@ -26,20 +26,28 @@ class Command(BaseCommand):
         self.success_count = 0
 
     def add_arguments(self, parser):
-        template_choices = ['BAC', 'CSA', 'CZA', 'KSA', 'KZA', 'SED', 'SRB', 'UKC']
-        template_help = 'Template parser used during import. Options are ' + ', '.join(template_choices)
-        parser.add_argument('template', choices=template_choices, help=template_help)
-        parser.add_argument('pathname', help='A path (can be glob) pointing to the files to import.')
+        parser.add_argument('template', choices=['BAC', 'CSA', 'CZA', 'KSA', 'KZA', 'SED', 'SRB', 'UKC'],
+                            help='Template parser used during import.')
+        parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')
+        parser.add_argument('--threads', type=int, help='Threads to use during processing (default is 1)', default=1)
 
     def handle(self, *args, **options):
-        logger.info('START')
+        logger.info(f"START <template: {options['template']}, path: {options['path']}, threads: {options['threads']}>")
 
+        if options['threads'] > 1:
+            self._process_multi_thread(options)
+        else:
+            self._process_single_thread(options)
+
+        logger.info(f'FINISH <successful {self.success_count}, errors {self.error_count}>')
+
+    def _process_multi_thread(self, options: dict):
         module_path = '.'.join(['jrdb', 'templates', options['template']])
         parser_cls = import_string(module_path)
 
-        with ThreadPoolExecutor(max_workers=4) as executor:
+        with ThreadPoolExecutor(max_workers=options['threads']) as executor:
             futures = {
-                executor.submit(import_document, parser_cls(path)) for path in glob.iglob(options['pathname'])
+                executor.submit(import_document, parser_cls(path)) for path in glob.iglob(options['path'])
             }
 
             for future in as_completed(futures):
@@ -52,7 +60,19 @@ class Command(BaseCommand):
                     logger.info(f'import success <{path}>')
                     self._increment_success_count()
 
-        logger.info(f'FINISH <successful {self.success_count}, errors {self.error_count}')
+    def _process_single_thread(self, options: dict):
+        module_path = '.'.join(['jrdb', 'templates', options['template']])
+        parser_cls = import_string(module_path)
+
+        for path in glob.iglob(options['path']):
+            try:
+                import_document(parser_cls(path))
+            except ValueError as e:
+                logger.exception(e)
+                self._increment_error_count()
+            else:
+                logger.info(f'import success <{path}>')
+                self._increment_success_count()
 
     def _increment_error_count(self):
         self.error_count += 1
