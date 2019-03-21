@@ -230,30 +230,11 @@ class SED(Template):
         df = self.clean()
 
         for row in df.to_dict('records'):
-            race = self._save_race_from_row_dict(row)
-            horse = self._save_horse_from_row_dict(row)
+            self._save_race_from_row_dict(row)
+            self._save_horse_from_row_dict(row)
+            self._save_contender_from_row_dict(row)
 
-            prefix = 'contender_'
-            contender_dict = filter_na({
-                k[len(prefix):]: v for k, v in row.items() if k.startswith(prefix)
-            })
-
-            jockey, _ = Jockey.objects.get_or_create(code=contender_dict.pop('jockey_code'))
-            trainer, _ = Trainer.objects.get_or_create(code=contender_dict.pop('trainer_code'))
-
-            contender_dict['race_id'] = race.id
-            contender_dict['horse_id'] = horse.id
-            contender_dict['jockey_id'] = jockey.id
-            contender_dict['trainer_id'] = trainer.id
-
-            try:
-                Contender.objects.create(**contender_dict)
-            except IntegrityError:
-                keys = ['race_id', 'horse_id', 'jockey_id', 'trainer_id']
-                updates = {key: value for key, value in contender_dict.items() if key not in keys}
-                Contender.objects.filter(race=race, horse=horse, jockey=jockey, trainer=trainer).update(**updates)
-
-    def _save_race_from_row_dict(self, row: dict) -> Race:
+    def _save_race_from_row_dict(self, row: dict):
         prefix = 'race_'
 
         attrs = filter_na({
@@ -261,7 +242,7 @@ class SED(Template):
         })
 
         try:
-            return Race.objects.create(**attrs)
+            Race.objects.create(**attrs)
         except IntegrityError:
             key = {
                 'racetrack_id': attrs['racetrack_id'],
@@ -272,9 +253,8 @@ class SED(Template):
             }
 
             Race.objects.filter(**key).update(**attrs)
-            return Race.objects.get(**key)
 
-    def _save_horse_from_row_dict(self, row: dict) -> Horse:
+    def _save_horse_from_row_dict(self, row: dict):
         prefix = 'horse_'
 
         attrs = filter_na({
@@ -282,7 +262,38 @@ class SED(Template):
         })
 
         try:
-            return Horse.objects.create(**attrs)
+            Horse.objects.create(**attrs)
         except IntegrityError:
             Horse.objects.filter(pedigree_reg_num=attrs['pedigree_reg_num']).update(**attrs)
-            return Horse.objects.get(pedigree_reg_num=attrs['pedigree_reg_num'])
+
+    def _save_contender_from_row_dict(self, row: dict):
+        prefix = 'contender_'
+
+        attrs = filter_na({
+            k[len(prefix):]: v for k, v in row.items() if k.startswith(prefix)
+        })
+
+        race_key = {
+            'racetrack_id': row['race_racetrack_id'],
+            'yr': row['race_yr'],
+            'round': row['race_round'],
+            'day': row['race_day'],
+            'num': row['race_num']
+        }
+
+        race, _ = Race.objects.get_or_create(**race_key)
+        horse, _ = Horse.objects.get_or_create(pedigree_reg_num=row['horse_pedigree_reg_num'])
+        jockey, _ = Jockey.objects.get_or_create(code=attrs.pop('jockey_code'))
+        trainer, _ = Trainer.objects.get_or_create(code=attrs.pop('trainer_code'))
+
+        attrs['race_id'] = race.id
+        attrs['horse_id'] = horse.id
+        attrs['jockey_id'] = jockey.id
+        attrs['trainer_id'] = trainer.id
+
+        try:
+            Contender.objects.create(**attrs)
+        except IntegrityError:
+            keys = ['race_id', 'horse_id', 'jockey_id', 'trainer_id']
+            updates = {key: value for key, value in attrs.items() if key not in keys}
+            Contender.objects.filter(race=race, horse=horse, jockey=jockey, trainer=trainer).update(**updates)
