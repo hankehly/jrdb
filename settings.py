@@ -78,3 +78,47 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+            'format': '%(asctime)s %(levelname)-8s %(name)-15s %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S',
+        },
+    },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'filters': ['require_debug_true'],
+            'level': 'DEBUG',
+            'formatter': 'default',
+        },
+        'dlog': {
+            'class': 'logging.FileHandler',
+            'filters': ['require_debug_true'],
+            'level': 'DEBUG',
+            'formatter': 'default',
+            'filename': 'debug.log',
+        },
+        'ilog': {
+            'class': 'logging.FileHandler',
+            'level': 'INFO',
+            'formatter': 'default',
+            'filename': 'info.log',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'dlog', 'ilog'],
+            'level': 'DEBUG',
+            'propagate': False
+        }
+    }
+}
