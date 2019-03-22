@@ -1,0 +1,22 @@
+version: '3'
+services:
+    # start just the db in the background
+    # docker-compose up -d db
+    db:
+        image: postgres
+        ports:
+            - '5432:5432'
+        restart: always
+        env_file: .env
+    # docker-compose exec django /app/manage.py [import] -a
+    # docker-compose exec -w /app -v /path/to/local/file.csv:/app/file.csv django ./manage.py [command] ./file.csv
+    django:
+        build: .
+        command: python /app/manage.py runserver 8000
+        env_file: .env
+        volumes:
+            - .:/app
+        depends_on:
+            - db
+        ports:
+            - '8000:8000'

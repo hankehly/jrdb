@@ -1,9 +1,10 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SECRET_KEY = 'd4kx)0065a5)1att4)lfdh^opyn-9^^x7@04+^ly4fdfn6m*vd'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
+DEBUG = ENVIRONMENT == 'development'
 
 ALLOWED_HOSTS = []
 
@@ -47,9 +48,16 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'PORT': '5432'
+    },
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
 }
 
 AUTH_PASSWORD_VALIDATORS = [
