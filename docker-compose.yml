@@ -8,6 +8,7 @@ services:
             - '5432:5432'
         restart: always
         env_file: .env
+    # docker-compose build django
     # docker-compose exec django /app/manage.py [import] -a
     # docker-compose exec -w /app -v /path/to/local/file.csv:/app/file.csv django ./manage.py [command] ./file.csv
     django:
