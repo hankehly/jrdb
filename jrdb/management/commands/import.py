@@ -47,17 +47,18 @@ class Command(BaseCommand):
 
         with ThreadPoolExecutor(max_workers=options['threads']) as executor:
             futures = {
-                executor.submit(import_document, parser_cls(path)) for path in glob.iglob(options['path'])
+                executor.submit(import_document, parser_cls(path)): path for path in glob.iglob(options['path'])
             }
 
             for future in as_completed(futures):
+                path = futures[future]
                 try:
-                    path = future.result()
+                    logger.info(f'import <{path}>')
+                    future.result()
                 except ValueError as e:
                     logger.exception(e)
                     self._increment_error_count()
                 else:
-                    logger.info(f'import success <{path}>')
                     self._increment_success_count()
 
     def _process_single_thread(self, options: dict):
@@ -66,12 +67,12 @@ class Command(BaseCommand):
 
         for path in glob.iglob(options['path']):
             try:
+                logger.info(f'import <{path}>')
                 import_document(parser_cls(path))
             except ValueError as e:
                 logger.exception(e)
                 self._increment_error_count()
             else:
-                logger.info(f'import success <{path}>')
                 self._increment_success_count()
 
     def _increment_error_count(self):
