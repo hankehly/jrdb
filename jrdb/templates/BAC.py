@@ -82,7 +82,7 @@ class BAC(Template):
 
         df['yr'] = self.df.yr.astype(int)
         df['round'] = self.df['round'].astype(int)
-        df['day'] = self.df.day.astype(int)
+        df['day'] = self.df.day.str.strip()
         df['num'] = self.df.num.astype(int)
         df['started_at'] = self._started_at()
         df['distance'] = self.df.distance.astype(int)

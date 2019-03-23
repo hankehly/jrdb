@@ -41,7 +41,7 @@ class SRB(Template):
         df = s.to_frame()
         df['yr'] = self.df.yr.astype(int)
         df['round'] = self.df['round'].astype(int)
-        df['day'] = self.df.day.astype(int)
+        df['day'] = self.df.day.str.strip()
         df['num'] = self.df.num.astype(int)
 
         df['c1_track_bias'] = self.df.c1_track_bias.apply(parse_comma_separated_integer_list, args=(1,))

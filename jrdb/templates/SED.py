@@ -144,7 +144,7 @@ class SED(Template):
         rdf = s.to_frame()
         rdf['yr'] = self.df.yr.astype(int)
         rdf['round'] = self.df['round'].astype(int)
-        rdf['day'] = self.df.day.astype(int)
+        rdf['day'] = self.df.day.str.strip()
         rdf['num'] = self.df.race_num.astype(int)
         rdf['distance'] = self.df.race_distance.astype(int)
         rdf['surface'] = self.df.race_surface_code.map(SURFACE.get_key_map())

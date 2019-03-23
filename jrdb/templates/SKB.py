@@ -45,7 +45,7 @@ class SKB(Template):
         df = s.to_frame()
         df['yr'] = self.df.yr.astype(int)
         df['round'] = self.df['round'].astype(int)
-        df['day'] = self.df.day.astype(int)
+        df['day'] = self.df.day.str.strip()
         df['num'] = self.df.race_num.astype(int)
         df['special_mention_id'] = SpecialMentionCode.key2id(self.df.special_mention_code)
 
