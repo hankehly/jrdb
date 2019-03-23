@@ -24,7 +24,7 @@ class Race(BaseModel):
     racetrack = models.ForeignKey('jrdb.Racetrack', on_delete=models.CASCADE)
     yr = models.PositiveSmallIntegerField()
     round = models.PositiveSmallIntegerField()
-    day = models.PositiveSmallIntegerField()
+    day = models.CharField(max_length=1)
     num = models.PositiveSmallIntegerField()
 
     # codes
