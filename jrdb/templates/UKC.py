@@ -49,11 +49,19 @@ class UKC(Template):
         df['dam_name'] = self.df.dam_name.str.strip()
         df['damsire_name'] = self.df.damsire_name.str.strip()
         df['birthday'] = self.df.birthday.apply(parse_date, args=('%Y%m%d',))
-        df['sire_birth_yr'] = self.df.sire_birth_yr.astype(int)
-        df['dam_birth_yr'] = self.df.dam_birth_yr.astype(int)
+
+        df['sire_birth_yr'] = self.df.sire_birth_yr.str.strip() \
+            .apply(parse_int_or, args=(np.nan,)) \
+            .astype('Int64')
+
+        df['dam_birth_yr'] = self.df.dam_birth_yr.str.strip() \
+            .apply(parse_int_or, args=(np.nan,)) \
+            .astype('Int64')
+
         df['damsire_birth_yr'] = self.df.damsire_birth_yr.str.strip() \
             .apply(parse_int_or, args=(np.nan,)) \
             .astype('Int64')
+
         df['owner_name'] = self.df.owner_name.str.strip()
 
         racetracks = Racetrack.objects.filter(code__in=self.df.owner_racetrack_code)
