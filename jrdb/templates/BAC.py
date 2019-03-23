@@ -1,3 +1,6 @@
+import math
+
+import numpy as np
 import pandas as pd
 from django.db import IntegrityError
 
@@ -130,8 +133,8 @@ class BAC(Template):
         betting_ticket_flags = self.df.betting_ticket_sale_flag.str.strip() \
             .map(list) \
             .apply(pd.Series) \
-            .astype(int) \
-            .applymap(bool) \
+            .astype(float) \
+            .applymap(lambda flag: np.nan if math.isnan(flag) else bool(flag)) \
             .rename(columns=betting_ticket_columns)
 
         return df.join(betting_ticket_flags)
