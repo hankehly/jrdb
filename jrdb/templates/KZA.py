@@ -92,4 +92,8 @@ class KZA(Template):
             try:
                 Jockey.objects.create(**obj)
             except IntegrityError:
-                Jockey.objects.filter(code=obj['code']).update(**obj)
+                jockey = Jockey.objects.get(code=obj['code'])
+                if obj['jrdb_saved_on'] >= jockey.jrdb_saved_on:
+                    for name, value in obj.items():
+                        setattr(jockey, name, value)
+                    jockey.save()

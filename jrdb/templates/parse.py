@@ -5,9 +5,9 @@ from typing import Optional, List
 import numpy as np
 
 
-def parse_date(value, format) -> Optional[str]:
+def parse_date(value, format) -> Optional[datetime.date]:
     try:
-        return datetime.datetime.strptime(value, format).strftime('%Y-%m-%d')
+        return datetime.datetime.strptime(value, format).date()
     except ValueError:
         return None
 

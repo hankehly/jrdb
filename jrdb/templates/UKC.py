@@ -85,4 +85,8 @@ class UKC(Template):
             try:
                 Horse.objects.create(**obj)
             except IntegrityError:
-                Horse.objects.filter(pedigree_reg_num=obj['pedigree_reg_num']).update(**obj)
+                horse = Horse.objects.get(pedigree_reg_num=obj['pedigree_reg_num'])
+                if obj['jrdb_saved_on'] >= horse.jrdb_saved_on:
+                    for name, value in obj.items():
+                        setattr(horse, name, value)
+                    horse.save()
