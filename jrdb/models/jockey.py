@@ -7,6 +7,7 @@ from jrdb.models.choices import AREA, TRAINEE_CATEGORY
 
 class Jockey(BaseModel):
     code = models.CharField(max_length=5, unique=True)
+    trainer = models.ForeignKey('jrdb.Trainer', on_delete=models.CASCADE)
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=12, null=True)
     name_kana = models.CharField(max_length=30, null=True)
@@ -16,8 +17,6 @@ class Jockey(BaseModel):
     birthday = models.DateField(null=True)
     lic_acquired_yr = models.PositiveIntegerField(null=True)
     trainee_cat = models.CharField(max_length=255, choices=TRAINEE_CATEGORY.CHOICES(), null=True)
-    # TODO: 所属厩舎 (trainer_code) can this be a key?
-    trainer_code = models.CharField(max_length=5, unique=True, null=True)
     jrdb_comment = models.CharField(max_length=40, null=True)
     jrdb_comment_date = models.DateField(null=True)
     cur_yr_leading = models.PositiveIntegerField(null=True)

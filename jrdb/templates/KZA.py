@@ -2,7 +2,7 @@ from django.db import IntegrityError
 import numpy as np
 
 from jrdb.models.choices import AREA, TRAINEE_CATEGORY
-from jrdb.models.jockey import Jockey
+from jrdb.models import Jockey, Trainer
 from jrdb.templates.parse import filter_na, parse_comma_separated_integer_list, parse_int_or, parse_date
 from jrdb.templates.template import Template
 
@@ -89,6 +89,10 @@ class KZA(Template):
         df = self.clean()
         for row in df.to_dict('records'):
             obj = filter_na(row)
+
+            trainer, _ = Trainer.objects.get_or_create(code=obj.pop('trainer_code'))
+            obj['trainer_id'] = trainer.id
+
             try:
                 Jockey.objects.create(**obj)
             except IntegrityError:
