@@ -58,7 +58,7 @@ class CZA(Template):
         df['area'] = t.area.map(AREA.get_key_map())
         df['training_center_name'] = t.training_center_name.str.strip()
         df['birthday'] = t.birthday.apply(parse_date, args=('%Y%m%d',))
-        df['lic_acquired_yr'] = t.lic_acquired_yr.astype(int)
+        df['lic_acquired_yr'] = t.lic_acquired_yr.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         df['jrdb_comment'] = t.jrdb_comment.str.strip()
         df['jrdb_comment_date'] = t.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))
 
