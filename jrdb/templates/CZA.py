@@ -37,7 +37,7 @@ class CZA(Template):
         ['prev_yr_hs_wins', '昨年重賞勝数', None, '3', 'ZZ9', '191', None],
         ['sum_flat_r', '通算平地成績', None, '20', 'ZZZZ9*4', '194', '１－２－３－着外(5*4)'],
         ['sum_obst_r', '通算障害成績', None, '20', 'ZZZZ9*4', '214', '１－２－３－着外(5*4)'],
-        ['saved_on', 'データ年月日', None, '8', '9', '234', 'YYYYMMDD'],  # same date as filename
+        ['jrdb_saved_on', 'データ年月日', None, '8', '9', '234', 'YYYYMMDD'],  # same date as filename
         ['reserved', '予備', None, '29', 'X', '242', 'スペース'],
         ['newline', '改行', None, '2', 'X', '271', 'ＣＲ・ＬＦ']
     ]
@@ -76,6 +76,8 @@ class CZA(Template):
 
         df['sum_flat_r'] = t.sum_flat_r.apply(parse_comma_separated_integer_list, args=(5,))
         df['sum_obst_r'] = t.sum_obst_r.apply(parse_comma_separated_integer_list, args=(5,))
+
+        df['jrdb_saved_on'] = t.jrdb_saved_on.apply(parse_date, args=('%Y%m%d',))
 
         return df
 

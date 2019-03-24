@@ -39,7 +39,7 @@ class KZA(Template):
         ['prev_yr_hs_wins', '昨年重賞勝数', None, '3', 'ZZ9', '197', None],
         ['sum_flat_r', '通算平地成績', None, '20', 'ZZZZ9*4', '200', '１－２－３－着外(5*4)'],
         ['sum_obst_r', '通算障害成績', None, '20', 'ZZZZ9*4', '220', '１－２－３－着外(5*4)'],
-        ['saved_on', 'データ年月日', None, '8', 'X', '240', 'スペース'],
+        ['jrdb_saved_on', 'データ年月日', None, '8', 'X', '240', 'スペース'],
         ['reserved', '予備', None, '23', 'X', '248', 'スペース'],
         ['newline', '改行', None, '2', 'X', '271', 'ＣＲ・ＬＦ']
     ]
@@ -80,6 +80,8 @@ class KZA(Template):
 
         df['sum_flat_r'] = t.sum_flat_r.apply(parse_comma_separated_integer_list, args=(5,))
         df['sum_obst_r'] = t.sum_obst_r.apply(parse_comma_separated_integer_list, args=(5,))
+
+        df['jrdb_saved_on'] = self.df.jrdb_saved_on.apply(parse_date, args=('%Y%m%d',))
 
         return df
 

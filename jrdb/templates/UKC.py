@@ -31,7 +31,7 @@ class UKC(Template):
         ['breeder_name', '生産者名', None, '40', 'X', '220', '全角２０文字'],
         ['breeding_loc_name', '産地名', None, '8', 'X', '260', '全角４文字'],
         ['is_retired', '登録抹消フラグ', None, '1', '9', '268', '0:現役,1:抹消'],
-        ['data_saved_on', 'データ年月日', None, '8', '9', '269', 'YYYYMMDD'],  # same as filename date
+        ['jrdb_saved_on', 'データ年月日', None, '8', '9', '269', 'YYYYMMDD'],  # same as filename date
         ['sire_genealogy_code', '父系統コード', None, '4', '9', '277', None],
         ['damsire_genealogy_code', '母父系統コード', None, '4', '9', '281', None],
         ['reserved', '予備', None, '6', 'X', '285', 'スペース'],
@@ -73,6 +73,8 @@ class UKC(Template):
         df['is_retired'] = self.df.is_retired.astype(int).astype(bool)
         df['sire_genealogy_code'] = self.df.sire_genealogy_code.str.strip()
         df['damsire_genealogy_code'] = self.df.damsire_genealogy_code.str.strip()
+
+        df['jrdb_saved_on'] = self.df.jrdb_saved_on.apply(parse_date, args=('%Y%m%d',))
 
         return df
 
