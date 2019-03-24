@@ -69,7 +69,7 @@ class Contender(BaseModel):
     weight_diff = models.PositiveSmallIntegerField(null=True, help_text='馬体重増減')
 
     running_style = models.CharField(max_length=255, choices=RUNNING_STYLE.CHOICES())
-    purse = models.PositiveSmallIntegerField()
+    purse = models.FloatField()
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
     c4_race_line = models.CharField(max_length=255, choices=RACE_LINE.CHOICES())
 

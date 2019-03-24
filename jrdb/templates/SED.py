@@ -211,7 +211,7 @@ class SED(Template):
             .astype('Int64')
 
         cdf['running_style'] = self.df.running_style_code.map(RUNNING_STYLE.get_key_map())
-        cdf['purse'] = self.df.purse.astype(int)
+        cdf['purse'] = self.df.purse.astype(float)
         cdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.horse_pace_flow_code, allow_null=True)
         cdf['c4_race_line'] = self.df.c4_race_line.map(RACE_LINE.get_key_map())
 
