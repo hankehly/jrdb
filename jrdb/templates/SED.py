@@ -174,7 +174,7 @@ class SED(Template):
         cdf['penalty'] = self.df.penalty_code.map(PENALTY.get_key_map())
         cdf['time'] = self.df.time.astype(int) * 0.1
         cdf['mounted_weight'] = self.df.mounted_weight.astype(int) * 0.1
-        cdf['odds_win'] = self.df.fin_win_odds.astype(float)
+        cdf['odds_win'] = self.df.fin_win_odds.apply(parse_float_or, args=(np.nan,))
         cdf['popularity'] = self.df.fin_win_pop.astype(int)
         cdf['IDM'] = self.df.IDM.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['speed_index'] = self.df.speed_index.apply(parse_int_or, args=(np.nan,)).astype('Int64')
