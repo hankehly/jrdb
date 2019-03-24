@@ -26,17 +26,17 @@ class Trainer(BaseModel):
     jrdb_comment = models.CharField(max_length=40, null=True)
     jrdb_comment_date = models.DateField(null=True)
     cur_yr_leading = models.PositiveIntegerField(null=True)
-    cur_yr_flat_r = models.CharField(max_length=12, validators=[validate_comma_separated_integer_list], null=True)
-    cur_yr_obst_r = models.CharField(max_length=12, validators=[validate_comma_separated_integer_list], null=True)
+    cur_yr_flat_r = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list], null=True)
+    cur_yr_obst_r = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list], null=True)
     cur_yr_sp_wins = models.PositiveIntegerField(null=True)
     cur_yr_hs_wins = models.PositiveIntegerField(null=True)
     prev_yr_leading = models.PositiveIntegerField(null=True)
-    prev_yr_flat_r = models.CharField(max_length=12, validators=[validate_comma_separated_integer_list], null=True)
-    prev_yr_obst_r = models.CharField(max_length=12, validators=[validate_comma_separated_integer_list], null=True)
+    prev_yr_flat_r = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list], null=True)
+    prev_yr_obst_r = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list], null=True)
     prev_yr_sp_wins = models.PositiveIntegerField(null=True)
     prev_yr_hs_wins = models.PositiveIntegerField(null=True)
-    sum_flat_r = models.CharField(max_length=20, validators=[validate_comma_separated_integer_list], null=True)
-    sum_obst_r = models.CharField(max_length=20, validators=[validate_comma_separated_integer_list], null=True)
+    sum_flat_r = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list], null=True)
+    sum_obst_r = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list], null=True)
 
     class Meta:
         db_table = 'trainers'
