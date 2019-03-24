@@ -24,7 +24,7 @@ class Horse(BaseModel):
     is_retired = models.BooleanField(null=True)
     sire_genealogy_code = models.CharField(max_length=4, null=True)
     damsire_genealogy_code = models.CharField(max_length=4, null=True)
-    jrdb_saved_on = models.DateField()
+    jrdb_saved_on = models.DateField(null=True)
 
     class Meta:
         db_table = 'horses'

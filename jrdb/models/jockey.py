@@ -32,7 +32,7 @@ class Jockey(BaseModel):
     prev_yr_hs_wins = models.PositiveIntegerField(null=True)
     sum_flat_r = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list], null=True)
     sum_obst_r = models.CharField(max_length=255, validators=[validate_comma_separated_integer_list], null=True)
-    jrdb_saved_on = models.DateField()
+    jrdb_saved_on = models.DateField(null=True)
 
     class Meta:
         db_table = 'jockeys'

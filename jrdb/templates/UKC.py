@@ -86,7 +86,7 @@ class UKC(Template):
                 Horse.objects.create(**obj)
             except IntegrityError:
                 horse = Horse.objects.get(pedigree_reg_num=obj['pedigree_reg_num'])
-                if obj['jrdb_saved_on'] >= horse.jrdb_saved_on:
+                if horse.jrdb_saved_on is None or obj['jrdb_saved_on'] >= horse.jrdb_saved_on:
                     for name, value in obj.items():
                         setattr(horse, name, value)
                     horse.save()

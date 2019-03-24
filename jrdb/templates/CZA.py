@@ -89,7 +89,7 @@ class CZA(Template):
                 Trainer.objects.create(**obj)
             except IntegrityError:
                 trainer = Trainer.objects.get(code=obj['code'])
-                if obj['jrdb_saved_on'] >= trainer.jrdb_saved_on:
+                if trainer.jrdb_saved_on is None or obj['jrdb_saved_on'] >= trainer.jrdb_saved_on:
                     for name, value in obj.items():
                         setattr(trainer, name, value)
                     trainer.save()
