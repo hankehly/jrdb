@@ -32,7 +32,8 @@ class Command(BaseCommand):
         parser.add_argument('--threads', type=int, help='Threads to use during processing (default is 1)', default=1)
 
     def handle(self, *args, **options):
-        logger.info(f"START <template: {options['template']}, path: {options['path']}, threads: {options['threads']}>")
+        options_str = ', '.join([f'{name}: {value}' for name, value in options.items()])
+        logger.info(f"START <{options_str}>")
 
         if options['threads'] > 1:
             self._process_multi_thread(options)
