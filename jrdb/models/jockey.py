@@ -7,7 +7,7 @@ from jrdb.models.choices import AREA, TRAINEE_CATEGORY
 
 class Jockey(BaseModel):
     code = models.CharField(max_length=5, unique=True)
-    trainer = models.ForeignKey('jrdb.Trainer', on_delete=models.CASCADE)
+    trainer = models.ForeignKey('jrdb.Trainer', on_delete=models.SET_NULL, null=True)
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=12, null=True)
     name_kana = models.CharField(max_length=30, null=True)
