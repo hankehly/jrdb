@@ -19,8 +19,8 @@ class AREA(ChoiceMixin):
     KANSAI = 'KANSAI'
     OTHER = 'OTHER'
     MAP = (
-        ('1', KANTOU, '関西'),
-        ('2', KANSAI, '関東'),
+        ('1', KANTOU, '関東'),
+        ('2', KANSAI, '関西'),
         ('3', OTHER, '他'),
     )
 
@@ -178,6 +178,24 @@ class HORSE_SYMBOL(ChoiceMixin):
         ('25', '25', '○父○市□地'),
         ('26', '26', '□外'),
         ('27', '27', '○父□外')
+    )
+
+
+class HOST_CATEGORY(ChoiceMixin):
+    """
+    開催区分
+
+    1:関東
+    2:関西
+    3:ローカル
+    """
+    KANTOU = 'KANTOU'
+    KANSAI = 'KANSAI'
+    LOCAL = 'LOCAL'
+    MAP = (
+        ('1', KANTOU, '関東'),
+        ('2', KANSAI, '関西'),
+        ('3', LOCAL, 'ローカル'),
     )
 
 

@@ -195,10 +195,10 @@ class SED(Template):
         cdf['margin'] = self.df.margin.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['b3f_time'] = self.df.b3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['f3f_time'] = self.df.f3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
-        cdf['c1p'] = self.df.c1p.str.strip().where(lambda x: x != '').astype(float).where(lambda x: x != 0).astype('Int64')
-        cdf['c2p'] = self.df.c2p.str.strip().where(lambda x: x != '').astype(float).where(lambda x: x != 0).astype('Int64')
-        cdf['c3p'] = self.df.c3p.str.strip().where(lambda x: x != '').astype(float).where(lambda x: x != 0).astype('Int64')
-        cdf['c4p'] = self.df.c4p.str.strip().where(lambda x: x != '').astype(float).where(lambda x: x != 0).astype('Int64')
+        cdf['c1p'] = self.df.c1p.apply(parse_float_or, args=(np.nan,)).where(lambda x: x != 0).astype('Int64')
+        cdf['c2p'] = self.df.c2p.apply(parse_float_or, args=(np.nan,)).where(lambda x: x != 0).astype('Int64')
+        cdf['c3p'] = self.df.c3p.apply(parse_float_or, args=(np.nan,)).where(lambda x: x != 0).astype('Int64')
+        cdf['c4p'] = self.df.c4p.apply(parse_float_or, args=(np.nan,)).where(lambda x: x != 0).astype('Int64')
         cdf['b3f_1p_margin'] = self.df.b3f_1p_margin.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['f3f_1p_margin'] = self.df.f3f_1p_margin.apply(parse_float_or, args=(np.nan,)) * 0.1
 

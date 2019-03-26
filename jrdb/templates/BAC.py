@@ -15,9 +15,9 @@ from jrdb.models.choices import (
     SURFACE,
     DIRECTION,
     COURSE_INOUT,
-    COURSE_LABEL
-)
-from jrdb.templates.parse import filter_na
+    COURSE_LABEL,
+    HOST_CATEGORY)
+from jrdb.templates.parse import filter_na, parse_int_or
 from jrdb.templates.template import Template
 
 
@@ -50,7 +50,7 @@ class BAC(Template):
         ['nth_occurrence', '回数', None, '8', 'X', '87', '第ZZ9回（全角半角混在）'],
         ['contender_count', '頭数', None, '2', '99', '95', None],
         ['course_label', 'コース', None, '1', 'X', '97', '1:A, 2:A1, 3:A2, 4:B, 5:C, 6:D'],
-        ['', '開催区分', None, '1', 'X', '98', '1:関東, 2:関西, 3:ローカル'],
+        ['host_category', '開催区分', None, '1', 'X', '98', '1:関東, 2:関西, 3:ローカル'],
         ['race_name_abbr', 'レース名短縮', None, '8', 'X', '99', '全角４文字'],
         ['race_name_short', 'レース名９文字', None, '18', 'X', '107', '全角９文字'],
         ['data_category', 'データ区分', None, '1', 'X', '125', '1:特別登録, 2:想定確定, 3:前日'],
@@ -71,7 +71,7 @@ class BAC(Template):
         # 8バイト目 ３連単
         # 9-16バイト目　予備
         ['betting_ticket_sale_flag', '馬券発売フラグ', None, '16', '9', '161', '1:発売, 0:発売無し'],
-        ['win5_flag', 'WIN5フラグ', None, '1', 'Z', '177', '1～5'],
+        ['win5', 'WIN5フラグ', None, '1', 'Z', '177', '1～5'],
         ['reserved', '予備', None, '5', 'X', '178', 'スペース'],
         ['newline', '改行', None, '2', 'X', '183', 'ＣＲ・ＬＦ']
     ]
@@ -93,6 +93,7 @@ class BAC(Template):
         df['direction'] = self.df.direction.map(DIRECTION.get_key_map())
         df['course_inout'] = self.df.course_inout.map(COURSE_INOUT.get_key_map())
         df['course_label'] = self.df.course_label.map(COURSE_LABEL.get_key_map())
+        df['host_category'] = self.df.host_category.map(HOST_CATEGORY.get_key_map())
         df['category'] = self.df.race_category_code.map(RACE_CATEGORY.get_key_map())
         df['cond_id'] = RaceConditionCode.key2id(self.df.race_cond_code)
         df['horse_type_symbol'] = self.df.race_symbols.str[0].map(RACE_HORSE_TYPE_SYMBOL.get_key_map())
@@ -111,6 +112,8 @@ class BAC(Template):
             .astype(float) \
             .astype('Int64')
 
+        df['contender_count'] = self.df.contender_count.astype(int)
+
         df['p1_purse'] = self.df.p1_purse.astype(int)
         df['p2_purse'] = self.df.p2_purse.astype(int)
         df['p3_purse'] = self.df.p3_purse.astype(int)
@@ -118,6 +121,8 @@ class BAC(Template):
         df['p5_purse'] = self.df.p5_purse.astype(int)
         df['p1_prize'] = self.df.p1_prize.astype(int)
         df['p2_prize'] = self.df.p2_prize.astype(int)
+
+        df['win5'] = self.df.win5.apply(parse_int_or, args=(np.nan,)).astype('Int64')
 
         betting_ticket_columns = {
             0: 'issued_bt_win',

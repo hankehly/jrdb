@@ -15,7 +15,8 @@ from jrdb.models.choices import (
     SURFACE,
     DIRECTION,
     COURSE_INOUT,
-    COURSE_LABEL
+    COURSE_LABEL,
+    HOST_CATEGORY
 )
 
 
@@ -50,8 +51,11 @@ class Race(BaseModel):
     direction = models.CharField(max_length=255, choices=DIRECTION.CHOICES(), null=True)
     course_inout = models.CharField(max_length=255, choices=COURSE_INOUT.CHOICES(), null=True)
     course_label = models.CharField(max_length=255, choices=COURSE_LABEL.CHOICES(), null=True)
+    host_category = models.CharField(max_length=255, choices=HOST_CATEGORY.CHOICES(), null=True)
     comment = models.TextField(max_length=500)
     nth_occurrence = models.PositiveSmallIntegerField(null=True)
+    contender_count = models.PositiveSmallIntegerField(null=True)
+    win5 = models.PositiveSmallIntegerField(null=True)
 
     # earnings
     # TODO: This overlaps with data in SED (how should it be organized?)
