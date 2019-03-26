@@ -172,7 +172,7 @@ class SED(Template):
         cdf['num'] = self.df.horse_num.astype(int)
         cdf['order_of_finish'] = self.df.order_of_finish.astype(int)
         cdf['penalty'] = self.df.penalty_code.map(PENALTY.get_key_map())
-        cdf['time'] = self.df.time.astype(int) * 0.1
+        cdf['time'] = self.df.time.str.strip().where(lambda x: x != '').astype(float) * 0.1
         cdf['mounted_weight'] = self.df.mounted_weight.astype(int) * 0.1
         cdf['odds_win'] = self.df.fin_win_odds.apply(parse_float_or, args=(np.nan,))
         cdf['popularity'] = self.df.fin_win_pop.astype(int)
@@ -195,10 +195,10 @@ class SED(Template):
         cdf['margin'] = self.df.margin.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['b3f_time'] = self.df.b3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['f3f_time'] = self.df.f3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
-        cdf['c1p'] = self.df.c1p.astype(int).where(lambda v: v != 0).astype('Int64')
-        cdf['c2p'] = self.df.c2p.astype(int).where(lambda v: v != 0).astype('Int64')
-        cdf['c3p'] = self.df.c3p.astype(int).where(lambda v: v != 0).astype('Int64')
-        cdf['c4p'] = self.df.c4p.astype(int).where(lambda v: v != 0).astype('Int64')
+        cdf['c1p'] = self.df.c1p.str.strip().where(lambda x: x != '').astype(float).where(lambda x: x != 0).astype('Int64')
+        cdf['c2p'] = self.df.c2p.str.strip().where(lambda x: x != '').astype(float).where(lambda x: x != 0).astype('Int64')
+        cdf['c3p'] = self.df.c3p.str.strip().where(lambda x: x != '').astype(float).where(lambda x: x != 0).astype('Int64')
+        cdf['c4p'] = self.df.c4p.str.strip().where(lambda x: x != '').astype(float).where(lambda x: x != 0).astype('Int64')
         cdf['b3f_1p_margin'] = self.df.b3f_1p_margin.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['f3f_1p_margin'] = self.df.f3f_1p_margin.apply(parse_float_or, args=(np.nan,)) * 0.1
 
@@ -211,9 +211,12 @@ class SED(Template):
             .astype('Int64')
 
         cdf['running_style'] = self.df.running_style_code.map(RUNNING_STYLE.get_key_map())
-        cdf['purse'] = self.df.purse.astype(float)
         cdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.horse_pace_flow_code, allow_null=True)
         cdf['c4_race_line'] = self.df.c4_race_line.map(RACE_LINE.get_key_map())
+
+        # disqualified contenders have blank purse;
+        # but blank is equivalent to 0 in this case
+        cdf['purse'] = self.df.purse.str.strip().where(lambda x: x != '', 0).astype(float)
 
         # Horse
         hdf = pd.DataFrame(index=rdf.index)

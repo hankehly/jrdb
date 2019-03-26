@@ -29,7 +29,7 @@ class Contender(BaseModel):
     num = models.PositiveSmallIntegerField()
     order_of_finish = models.PositiveSmallIntegerField()
     penalty = models.CharField(max_length=255, choices=PENALTY.CHOICES())
-    time = models.FloatField()
+    time = models.FloatField(null=True)
     mounted_weight = models.FloatField()
     odds_win = models.FloatField(null=True)
     popularity = models.PositiveSmallIntegerField()

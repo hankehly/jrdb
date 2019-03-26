@@ -54,6 +54,7 @@ class Race(BaseModel):
     nth_occurrence = models.PositiveSmallIntegerField(null=True)
 
     # earnings
+    # TODO: This overlaps with data in SED (how should it be organized?)
     p1_purse = models.PositiveSmallIntegerField(null=True)
     p2_purse = models.PositiveSmallIntegerField(null=True)
     p3_purse = models.PositiveSmallIntegerField(null=True)
@@ -128,4 +129,5 @@ class Race(BaseModel):
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
 
     class Meta:
+        db_table = 'races'
         unique_together = ('racetrack', 'yr', 'round', 'day', 'num')
