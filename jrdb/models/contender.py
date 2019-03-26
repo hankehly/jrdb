@@ -66,7 +66,7 @@ class Contender(BaseModel):
     f3f_1p_margin = models.FloatField(null=True, help_text='後３Ｆ地点での先頭とのタイム差（0.1秒単位）')
 
     weight = models.PositiveSmallIntegerField(help_text='馬体重')
-    weight_diff = models.PositiveSmallIntegerField(null=True, help_text='馬体重増減')
+    weight_diff = models.SmallIntegerField(null=True, help_text='馬体重増減')
 
     running_style = models.CharField(max_length=255, choices=RUNNING_STYLE.CHOICES())
     purse = models.FloatField()
