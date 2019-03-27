@@ -84,12 +84,10 @@ class CZA(Template):
     def persist(self):
         df = self.clean()
         for row in df.to_dict('records'):
-            obj = filter_na(row)
-            try:
-                Trainer.objects.create(**obj)
-            except IntegrityError:
-                trainer = Trainer.objects.get(code=obj['code'])
-                if trainer.jrdb_saved_on is None or obj['jrdb_saved_on'] >= trainer.jrdb_saved_on:
-                    for name, value in obj.items():
+            record = filter_na(row)
+            trainer, created = Trainer.objects.get_or_create(code=record.pop('code'), defaults=record)
+            if not created:
+                if trainer.jrdb_saved_on is None or record['jrdb_saved_on'] >= trainer.jrdb_saved_on:
+                    for name, value in record.items():
                         setattr(trainer, name, value)
                     trainer.save()

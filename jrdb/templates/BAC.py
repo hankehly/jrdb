@@ -147,17 +147,17 @@ class BAC(Template):
     def persist(self):
         df = self.clean()
         for row in df.to_dict('records'):
-            obj = filter_na(row)
-            try:
-                Race.objects.create(**obj)
-            except IntegrityError:
-                Race.objects.filter(
-                    racetrack_id=obj['racetrack_id'],
-                    yr=obj['yr'],
-                    round=obj['round'],
-                    day=obj['day'],
-                    num=obj['num']
-                ).update(**obj)
+            race = filter_na(row)
+
+            unique_key = {
+                'racetrack_id': race.pop('racetrack_id'),
+                'yr': race.pop('yr'),
+                'round': race.pop('round'),
+                'day': race.pop('day'),
+                'num': race.pop('num')
+            }
+
+            Race.objects.update_or_create(**unique_key, defaults=race)
 
     def _started_at(self) -> pd.Series:
         started_at = self.df.start_date + self.df.start_time

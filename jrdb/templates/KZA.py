@@ -88,16 +88,14 @@ class KZA(Template):
     def persist(self):
         df = self.clean()
         for row in df.to_dict('records'):
-            obj = filter_na(row)
+            record = filter_na(row)
 
-            trainer, _ = Trainer.objects.get_or_create(code=obj.pop('trainer_code'))
-            obj['trainer_id'] = trainer.id
+            trainer, _ = Trainer.objects.get_or_create(code=record.pop('trainer_code'))
+            record['trainer_id'] = trainer.id
 
-            try:
-                Jockey.objects.create(**obj)
-            except IntegrityError:
-                jockey = Jockey.objects.get(code=obj['code'])
-                if jockey.jrdb_saved_on is None or obj['jrdb_saved_on'] >= jockey.jrdb_saved_on:
-                    for name, value in obj.items():
+            jockey, created = Jockey.objects.get_or_create(code=record.pop('code'), defaults=record)
+            if not created:
+                if jockey.jrdb_saved_on is None or record['jrdb_saved_on'] >= jockey.jrdb_saved_on:
+                    for name, value in record.items():
                         setattr(jockey, name, value)
                     jockey.save()
