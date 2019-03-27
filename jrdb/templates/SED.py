@@ -289,14 +289,5 @@ class SED(Template):
         jockey, _ = Jockey.objects.get_or_create(code=attrs.pop('jockey_code'))
         trainer, _ = Trainer.objects.get_or_create(code=attrs.pop('trainer_code'))
 
-        attrs['race_id'] = race.id
-        attrs['horse_id'] = horse.id
-        attrs['jockey_id'] = jockey.id
-        attrs['trainer_id'] = trainer.id
-
-        try:
-            Contender.objects.create(**attrs)
-        except IntegrityError:
-            keys = ['race_id', 'horse_id', 'jockey_id', 'trainer_id']
-            updates = {key: value for key, value in attrs.items() if key not in keys}
-            Contender.objects.filter(race=race, horse=horse, jockey=jockey, trainer=trainer).update(**updates)
+        unique_key = {'race_id': race.id, 'horse_id': horse.id, 'jockey_id': jockey.id, 'trainer_id': trainer.id}
+        Contender.objects.update_or_create(**unique_key, defaults=attrs)
