@@ -1,3 +1,4 @@
+import logging
 import math
 
 import numpy as np
@@ -19,6 +20,8 @@ from jrdb.models.choices import (
     HOST_CATEGORY)
 from jrdb.templates.parse import filter_na, parse_int_or
 from jrdb.templates.template import Template
+
+logger = logging.getLogger(__name__)
 
 
 class BAC(Template):
@@ -157,7 +160,10 @@ class BAC(Template):
                 'num': race.pop('num')
             }
 
-            Race.objects.update_or_create(**unique_key, defaults=race)
+            try:
+                Race.objects.update_or_create(**unique_key, defaults=race)
+            except IntegrityError as e:
+                logger.exception(e)
 
     def _started_at(self) -> pd.Series:
         started_at = self.df.start_date + self.df.start_time

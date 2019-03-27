@@ -1,3 +1,5 @@
+import logging
+
 from django.db import IntegrityError
 
 from jrdb.models import Horse, Racetrack
@@ -6,6 +8,8 @@ from jrdb.templates.parse import parse_date, parse_int_or, filter_na
 from jrdb.templates.template import Template
 
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 
 class UKC(Template):
@@ -81,12 +85,13 @@ class UKC(Template):
     def persist(self):
         df = self.clean()
         for row in df.to_dict('records'):
-            obj = filter_na(row)
+            record = filter_na(row)
             try:
-                Horse.objects.create(**obj)
-            except IntegrityError:
-                horse = Horse.objects.get(pedigree_reg_num=obj['pedigree_reg_num'])
-                if horse.jrdb_saved_on is None or obj['jrdb_saved_on'] >= horse.jrdb_saved_on:
-                    for name, value in obj.items():
-                        setattr(horse, name, value)
-                    horse.save()
+                horse, created = Horse.objects.get_or_create(code=record.pop('code'), defaults=record)
+                if not created:
+                    if horse.jrdb_saved_on is None or record['jrdb_saved_on'] >= horse.jrdb_saved_on:
+                        for name, value in record.items():
+                            setattr(horse, name, value)
+                        horse.save()
+            except IntegrityError as e:
+                logger.exception(e)

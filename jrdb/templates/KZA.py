@@ -1,3 +1,5 @@
+import logging
+
 from django.db import IntegrityError
 import numpy as np
 
@@ -5,6 +7,8 @@ from jrdb.models.choices import AREA, TRAINEE_CATEGORY
 from jrdb.models import Jockey, Trainer
 from jrdb.templates.parse import filter_na, parse_comma_separated_integer_list, parse_int_or, parse_date
 from jrdb.templates.template import Template
+
+logger = logging.getLogger(__name__)
 
 
 class KZA(Template):
@@ -90,12 +94,15 @@ class KZA(Template):
         for row in df.to_dict('records'):
             record = filter_na(row)
 
-            trainer, _ = Trainer.objects.get_or_create(code=record.pop('trainer_code'))
-            record['trainer_id'] = trainer.id
+            try:
+                trainer, _ = Trainer.objects.get_or_create(code=record.pop('trainer_code'))
+                record['trainer_id'] = trainer.id
 
-            jockey, created = Jockey.objects.get_or_create(code=record.pop('code'), defaults=record)
-            if not created:
-                if jockey.jrdb_saved_on is None or record['jrdb_saved_on'] >= jockey.jrdb_saved_on:
-                    for name, value in record.items():
-                        setattr(jockey, name, value)
-                    jockey.save()
+                jockey, created = Jockey.objects.get_or_create(code=record.pop('code'), defaults=record)
+                if not created:
+                    if jockey.jrdb_saved_on is None or record['jrdb_saved_on'] >= jockey.jrdb_saved_on:
+                        for name, value in record.items():
+                            setattr(jockey, name, value)
+                        jockey.save()
+            except IntegrityError as e:
+                logger.exception(e)

@@ -1,3 +1,5 @@
+import logging
+
 import numpy as np
 import pandas as pd
 from django.db import IntegrityError
@@ -26,6 +28,8 @@ from jrdb.models.choices import (
 )
 from jrdb.templates.parse import parse_int_or, parse_float_or, filter_na
 from jrdb.templates.template import Template
+
+logger = logging.getLogger(__name__)
 
 
 class SED(Template):
@@ -252,7 +256,10 @@ class SED(Template):
             'num': attrs.pop('num'),
         }
 
-        Race.objects.update_or_create(**unique_key, defaults=attrs)
+        try:
+            Race.objects.update_or_create(**unique_key, defaults=attrs)
+        except IntegrityError as e:
+            logger.exception(e)
 
     def _save_horse_from_row_dict(self, row: dict):
         prefix = 'horse_'
@@ -261,7 +268,10 @@ class SED(Template):
             k[len(prefix):]: v for k, v in row.items() if k.startswith(prefix)
         })
 
-        Horse.objects.update_or_create(pedigree_reg_num=attrs.pop('pedigree_reg_num'), defaults=attrs)
+        try:
+            Horse.objects.update_or_create(pedigree_reg_num=attrs.pop('pedigree_reg_num'), defaults=attrs)
+        except IntegrityError as e:
+            logger.exception(e)
 
     def _save_contender_from_row_dict(self, row: dict):
         prefix = 'contender_'
@@ -282,6 +292,9 @@ class SED(Template):
         horse, _ = Horse.objects.get_or_create(pedigree_reg_num=row['horse_pedigree_reg_num'])
         jockey, _ = Jockey.objects.get_or_create(code=attrs.pop('jockey_code'))
         trainer, _ = Trainer.objects.get_or_create(code=attrs.pop('trainer_code'))
-
         unique_key = {'race_id': race.id, 'horse_id': horse.id, 'jockey_id': jockey.id, 'trainer_id': trainer.id}
-        Contender.objects.update_or_create(**unique_key, defaults=attrs)
+
+        try:
+            Contender.objects.update_or_create(**unique_key, defaults=attrs)
+        except IntegrityError as e:
+            logger.exception(e)

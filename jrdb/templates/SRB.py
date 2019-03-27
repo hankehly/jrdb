@@ -1,8 +1,12 @@
+import logging
+
 from django.db import IntegrityError
 
 from jrdb.models import Racetrack, Race
 from jrdb.templates.parse import parse_comma_separated_integer_list, filter_na
 from jrdb.templates.template import Template
+
+logger = logging.getLogger(__name__)
 
 
 class SRB(Template):
@@ -59,13 +63,16 @@ class SRB(Template):
         df = self.clean()
         for row in df.to_dict('records'):
             obj = filter_na(row)
+
+            unique_key = {
+                'racetrack_id': obj.pop('racetrack_id'),
+                'yr': obj.pop('yr'),
+                'round': obj.pop('round'),
+                'day': obj.pop('day'),
+                'num': obj.pop('num')
+            }
+
             try:
-                Race.objects.create(**obj)
-            except IntegrityError:
-                Race.objects.filter(
-                    racetrack_id=obj['racetrack_id'],
-                    yr=obj['yr'],
-                    round=obj['round'],
-                    day=obj['day'],
-                    num=obj['num']
-                ).update(**obj)
+                Race.objects.update_or_create(**unique_key, defaults=obj)
+            except IntegrityError as e:
+                logger.exception(e)

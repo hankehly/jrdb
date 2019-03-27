@@ -1,3 +1,5 @@
+import logging
+
 from django.db import IntegrityError
 import numpy as np
 
@@ -5,6 +7,8 @@ from jrdb.models.choices import AREA
 from jrdb.models.trainer import Trainer
 from jrdb.templates.parse import parse_date, parse_int_or, parse_comma_separated_integer_list, filter_na
 from jrdb.templates.template import Template
+
+logger = logging.getLogger(__name__)
 
 
 class CZA(Template):
@@ -85,9 +89,12 @@ class CZA(Template):
         df = self.clean()
         for row in df.to_dict('records'):
             record = filter_na(row)
-            trainer, created = Trainer.objects.get_or_create(code=record.pop('code'), defaults=record)
-            if not created:
-                if trainer.jrdb_saved_on is None or record['jrdb_saved_on'] >= trainer.jrdb_saved_on:
-                    for name, value in record.items():
-                        setattr(trainer, name, value)
-                    trainer.save()
+            try:
+                trainer, created = Trainer.objects.get_or_create(code=record.pop('code'), defaults=record)
+                if not created:
+                    if trainer.jrdb_saved_on is None or record['jrdb_saved_on'] >= trainer.jrdb_saved_on:
+                        for name, value in record.items():
+                            setattr(trainer, name, value)
+                        trainer.save()
+            except IntegrityError as e:
+                logger.exception(e)
