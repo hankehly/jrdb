@@ -87,7 +87,7 @@ class UKC(Template):
         for row in df.to_dict('records'):
             record = filter_na(row)
             try:
-                horse, created = Horse.objects.get_or_create(code=record.pop('code'), defaults=record)
+                horse, created = Horse.objects.get_or_create(pedigree_reg_num=record.pop('pedigree_reg_num'), defaults=record)
                 if not created:
                     if horse.jrdb_saved_on is None or record['jrdb_saved_on'] >= horse.jrdb_saved_on:
                         for name, value in record.items():
