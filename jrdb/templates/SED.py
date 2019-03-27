@@ -172,7 +172,7 @@ class SED(Template):
         cdf['num'] = self.df.horse_num.astype(int)
         cdf['order_of_finish'] = self.df.order_of_finish.astype(int)
         cdf['penalty'] = self.df.penalty_code.map(PENALTY.get_key_map())
-        cdf['time'] = self.df.time.str.strip().where(lambda x: x != '').astype(float) * 0.1
+        cdf['time'] = self.df.time.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['mounted_weight'] = self.df.mounted_weight.astype(int) * 0.1
         cdf['odds_win'] = self.df.fin_win_odds.apply(parse_float_or, args=(np.nan,))
         cdf['popularity'] = self.df.fin_win_pop.astype(int)
@@ -244,18 +244,15 @@ class SED(Template):
             key[len(prefix):]: val for key, val in row.items() if key.startswith(prefix)
         })
 
-        try:
-            Race.objects.create(**attrs)
-        except IntegrityError:
-            key = {
-                'racetrack_id': attrs['racetrack_id'],
-                'yr': attrs['yr'],
-                'round': attrs['round'],
-                'day': attrs['day'],
-                'num': attrs['num']
-            }
+        unique_key = {
+            'racetrack_id': attrs.pop('racetrack_id'),
+            'yr': attrs.pop('yr'),
+            'round': attrs.pop('round'),
+            'day': attrs.pop('day'),
+            'num': attrs.pop('num'),
+        }
 
-            Race.objects.filter(**key).update(**attrs)
+        Race.objects.update_or_create(**unique_key, defaults=attrs)
 
     def _save_horse_from_row_dict(self, row: dict):
         prefix = 'horse_'
@@ -264,10 +261,7 @@ class SED(Template):
             k[len(prefix):]: v for k, v in row.items() if k.startswith(prefix)
         })
 
-        try:
-            Horse.objects.create(**attrs)
-        except IntegrityError:
-            Horse.objects.filter(pedigree_reg_num=attrs['pedigree_reg_num']).update(**attrs)
+        Horse.objects.update_or_create(pedigree_reg_num=attrs.pop('pedigree_reg_num'), defaults=attrs)
 
     def _save_contender_from_row_dict(self, row: dict):
         prefix = 'contender_'

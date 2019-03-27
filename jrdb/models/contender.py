@@ -34,8 +34,8 @@ class Contender(BaseModel):
     odds_win = models.FloatField(null=True)
     popularity = models.PositiveSmallIntegerField()
 
-    IDM = models.SmallIntegerField()
-    speed_index = models.SmallIntegerField(help_text='素点')
+    IDM = models.SmallIntegerField(null=True)
+    speed_index = models.SmallIntegerField(null=True, help_text='素点')
     pace = models.SmallIntegerField(null=True)
     positioning = models.PositiveSmallIntegerField(null=True, help_text='位置取')
     late_start = models.PositiveSmallIntegerField(null=True, help_text='出遅')
@@ -53,9 +53,9 @@ class Contender(BaseModel):
     b3f_time_index = models.FloatField(null=True)
     f3f_time_index = models.FloatField(null=True)
     pace_index = models.FloatField(null=True, help_text='馬のペースを指数化したもの')
-    margin = models.FloatField(help_text='1(2)着タイム差')
-    b3f_time = models.FloatField(help_text='前３Ｆタイム')
-    f3f_time = models.FloatField(help_text='後３Ｆタイム')
+    margin = models.FloatField(null=True, help_text='1(2)着タイム差')
+    b3f_time = models.FloatField(null=True, help_text='前３Ｆタイム')
+    f3f_time = models.FloatField(null=True, help_text='後３Ｆタイム')
 
     c1p = models.PositiveSmallIntegerField(null=True, help_text='コーナー順位1')
     c2p = models.PositiveSmallIntegerField(null=True, help_text='コーナー順位2')
