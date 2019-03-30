@@ -54,8 +54,11 @@ class Race(BaseModel):
     host_category = models.CharField(max_length=255, choices=HOST_CATEGORY.CHOICES(), null=True)
     comment = models.TextField(max_length=500)
     nth_occurrence = models.PositiveSmallIntegerField(null=True)
-    contender_count = models.PositiveSmallIntegerField(null=True)
     win5 = models.PositiveSmallIntegerField(null=True)
+
+    # contender_count is accurate about 99.995% of the time
+    # counting associated Contender records is more accurate
+    contender_count = models.PositiveSmallIntegerField(null=True)
 
     # earnings
     # TODO: This overlaps with data in SED (how should it be organized?)
