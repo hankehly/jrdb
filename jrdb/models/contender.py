@@ -37,7 +37,7 @@ class Contender(BaseModel):
     IDM = models.SmallIntegerField(null=True)
     speed_index = models.SmallIntegerField(null=True, help_text='素点')
     pace = models.SmallIntegerField(null=True)
-    positioning = models.PositiveSmallIntegerField(null=True, help_text='位置取')
+    positioning = models.SmallIntegerField(null=True, help_text='位置取')
     late_start = models.PositiveSmallIntegerField(null=True, help_text='出遅')
     disadvt = models.PositiveSmallIntegerField(null=True, help_text='不利')
     b3f_disadvt = models.PositiveSmallIntegerField(null=True, help_text='前３Ｆ内での不利')
