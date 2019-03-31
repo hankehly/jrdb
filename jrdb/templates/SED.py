@@ -185,6 +185,7 @@ class SED(Template):
         cdf['pace'] = self.df.pace.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['positioning'] = self.df.positioning.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['disadvt'] = self.df.disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['late_start'] = self.df.late_start.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['b3f_disadvt'] = self.df.b3f_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['mid_disadvt'] = self.df.mid_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['f3f_disadvt'] = self.df.f3f_disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
