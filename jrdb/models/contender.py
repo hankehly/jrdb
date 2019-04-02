@@ -1,32 +1,18 @@
 from django.db import models
 
 from jrdb.models import BaseModel
-from jrdb.models.choices import PACE_CATEGORY, RACE_LINE, PENALTY, IMPROVEMENT, PHYSIQUE, DEMEANOR, RUNNING_STYLE
+from jrdb.models.choices import PACE_CATEGORY, RACE_LINE, PENALTY, IMPROVEMENT, PHYSIQUE, DEMEANOR, RUNNING_STYLE, \
+    TRAINER_HORSE_EVALUATION
 
 
 class Contender(BaseModel):
-    """
-    IDM = speed_index + pace + ハンデ(斤量補正) + memory factors
-
-    pace - ペース
-    テン（前半３ハロン）・上がり（後半３ハロン）と、それを除いた道中のペースを加味
-
-    TODO: positioning 位置取 の意味/単位を明記 (1, 2, 3, na, ..)
-
-    memory factors (mf) 記憶要素
-    馬身単位 (1 = 1馬身 ... IDMに1点を加点)
-
-    late_start - 出遅
-    例）ゲートを出ない・出が悪い
-
-    disadvantage - 不利
-    例）直線で前が詰まり他馬に1馬身遅れたなど
-    """
     race = models.ForeignKey('jrdb.Race', on_delete=models.CASCADE)
     horse = models.ForeignKey('jrdb.Horse', on_delete=models.CASCADE)
     jockey = models.ForeignKey('jrdb.Jockey', on_delete=models.CASCADE)
     trainer = models.ForeignKey('jrdb.Trainer', on_delete=models.CASCADE)
     num = models.PositiveSmallIntegerField()
+
+    # SEDから取得（成績系）
     order_of_finish = models.PositiveSmallIntegerField()
     penalty = models.CharField(max_length=255, choices=PENALTY.CHOICES())
     time = models.FloatField(null=True)
@@ -73,13 +59,23 @@ class Contender(BaseModel):
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
     c4_race_line = models.CharField(max_length=255, choices=RACE_LINE.CHOICES())
 
-    # TODO: Consider splitting tables to prevent too many Contender columns
-    # special_mention_1 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
-    # special_mention_2 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
-    # special_mention_3 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
-    # special_mention_4 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
-    # special_mention_5 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
-    # special_mention_6 = models.ForeignKey('jrdb.SpecialMentionCode', on_delete=models.SET_NULL, null=True)
+    # KYIから取得（前日系）
+    jockey_index = models.FloatField(help_text='基準オッズと騎手の連対率の関係を基に算出された指数値')
+    info_index = models.FloatField(help_text='基準オッズ、厩舎指数、調教指数等様々な情報を基に算出された指数値')
+    total_index = models.FloatField(help_text='ＩＤＭ、騎手指数、情報指数を合計した値')
+    rotation = models.PositiveSmallIntegerField(null=True, help_text='間に金曜日が入っている数で決定、連闘は０、初出走はnull')
+    prior_IDM = models.SmallIntegerField(null=True)
+    prior_running_style = models.CharField(max_length=255, choices=RUNNING_STYLE.CHOICES())
+    distance_suitability = models.PositiveSmallIntegerField(help_text='距離適性')
+    prior_improvement = models.CharField(max_length=255, choices=IMPROVEMENT.CHOICES(), help_text='上昇度コード')
+    odds_win_base = models.FloatField(help_text='基準オッズ')
+    popularity_win_base = models.PositiveSmallIntegerField(help_text='基準人気順位')
+    odds_show_base = models.FloatField(help_text='基準複勝オッズ')
+    popularity_show_base = models.PositiveSmallIntegerField(help_text='基準複勝人気順位')
+    popularity_index = models.PositiveSmallIntegerField(null=True, help_text='その馬の人気を指数化した値')
+    trainer_index = models.FloatField(help_text='調教指数')
+    stable_index = models.FloatField(help_text='厩舎指数')
+    trainer_horse_evaluation = models.CharField(max_length=255, choices=TRAINER_HORSE_EVALUATION.CHOICES(), help_text='調教から見た馬の調子をわかりやすく５段階評価したもの')
 
     class Meta:
         db_table = 'contenders'

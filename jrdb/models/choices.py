@@ -606,6 +606,30 @@ class TRAINING_STYLE(ChoiceMixin):
     )
 
 
+class TRAINER_HORSE_EVALUATION(ChoiceMixin):
+    """
+    調教矢印コード
+    調教から見た馬の調子をわかりやすく５段階評価したもの。
+    1 デキ抜群
+    2 上昇
+    3 平行線
+    4 やや下降気味
+    5 デキ落ち
+    """
+    OUTSTANDING = 'OUTSTANDING'
+    IMPROVING = 'IMPROVING'
+    NO_CHANGE = 'NO_CHANGE'
+    DOWNWARD_TREND = 'DOWNWARD_TREND'
+    POOR = 'POOR'
+    MAP = (
+        ('1', OUTSTANDING, 'デキ抜群'),
+        ('2', IMPROVING, '上昇'),
+        ('3', NO_CHANGE, '平行線'),
+        ('4', DOWNWARD_TREND, 'やや下降気味'),
+        ('5', POOR, 'デキ落ち')
+    )
+
+
 class HAIR_COLOR(ChoiceMixin):
     """
     毛色コード

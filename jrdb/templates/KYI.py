@@ -4,32 +4,34 @@ from jrdb.templates.template import Template
 class KYI(Template):
     """
     http://www.jrdb.com/program/Kyi/kyi_doc.txt
+    http://www.jrdb.com/program/Kyi/ky_siyo_doc.txt
     """
     name = 'JRDB競走馬データ（KYI）'
     items = [
+        # レースキー
         ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['year', '年', None, '2', '99', '3', None],
+        ['yr', '年', None, '2', '99', '3', None],
         ['round', '回', None, '1', '9', '5', None],
         ['day', '日', None, '1', 'F', '6', '16進数(数字 or 小文字アルファベット)'],
-        ['race_number', 'Ｒ', None, '2', '99', '7', None],
-        ['horse_number', '馬番', None, '2', '99', '9', None],
-        ['pedigree_registration_number', '血統登録番号', None, '8', 'X', '11', None],
+        ['race_num', 'Ｒ', None, '2', '99', '7', None],
+        ['horse_num', '馬番', None, '2', '99', '9', None],
+        ['pedigree_reg_num', '血統登録番号', None, '8', 'X', '11', None],
         ['horse_name', '馬名', None, '36', 'X', '19', '全角１８文字'],
         ['IDM', 'ＩＤＭ', None, '5', 'ZZ9.9', '55', None],
-        ['', '騎手指数', None, '5', 'ZZ9.9', '60', None],
-        ['', '情報指数', None, '5', 'ZZ9.9', '65', None],
+        ['jockey_index', '騎手指数', None, '5', 'ZZ9.9', '60', None],
+        ['info_index', '情報指数', None, '5', 'ZZ9.9', '65', None],
         ['reserved_1', '予備１', None, '5', 'ZZ9.9', '70', '将来拡張用'],
         ['reserved_2', '予備２', None, '5', 'ZZ9.9', '75', '将来拡張用'],
         ['reserved_3', '予備３', None, '5', 'ZZ9.9', '80', '将来拡張用'],
-        ['', '総合指数', None, '5', 'ZZ9.9', '85', None],
+        ['total_index', '総合指数', None, '5', 'ZZ9.9', '85', None],
         ['running_style', '脚質', None, '1', '9', '90', None],
-        ['', '距離適性', None, '1', '9', '91', None],
+        ['distance_suitability', '距離適性', None, '1', '9', '91', None],
         ['improvement', '上昇度', None, '1', '9', '92', None],
-        ['', 'ローテーション', None, '3', 'ZZ9', '93', '間に金曜日が入っている数で決定'],
-        ['', '基準オッズ', None, '5', 'ZZ9.9', '96', None],
-        ['', '基準人気順位', None, '2', 'Z9', '101', None],
-        ['', '基準複勝オッズ', None, '5', 'ZZ9.9', '103', None],
-        ['', '基準複勝人気順位', None, '2', 'Z9', '108', None],
+        ['rotation', 'ローテーション', None, '3', 'ZZ9', '93', '間に金曜日が入っている数で決定、連闘は０、初出走はスペースとなる'],
+        ['odds_win_base', '基準オッズ', None, '5', 'ZZ9.9', '96', None],
+        ['popularity_win_base', '基準人気順位', None, '2', 'Z9', '101', None],
+        ['odds_show_win', '基準複勝オッズ', None, '5', 'ZZ9.9', '103', None],
+        ['popularity_show_base', '基準複勝人気順位', None, '2', 'Z9', '108', None],
         ['', '特定情報◎', None, '3', 'ZZ9', '110', '情報・専門紙の印数（特定）'],
         ['', '特定情報○', None, '3', 'ZZ9', '113', None],
         ['', '特定情報▲', None, '3', 'ZZ9', '116', None],
@@ -41,9 +43,9 @@ class KYI(Template):
         ['', '総合情報△', None, '3', 'ZZ9', '134', None],
         ['', '総合情報×', None, '3', 'ZZ9', '137', None],
         ['popularity_index', '人気指数', None, '5', 'ZZZZ9', '140', '第２版で変更'],
-        ['', '調教指数', None, '5', 'ZZ9.9', '145', None],
-        ['', '厩舎指数', None, '5', 'ZZ9.9', '150', None],
-        ['', '調教矢印コード', None, '1', '9', '155', None],
+        ['trainer_index', '調教指数', None, '5', 'ZZ9.9', '145', None],
+        ['stable_index', '厩舎指数', None, '5', 'ZZ9.9', '150', None],
+        ['trainer_horse_evaluation', '調教矢印コード', None, '1', '9', '155', None],
         ['', '厩舎評価コード', None, '1', '9', '156', None],
         ['', '騎手期待連対率', None, '4', 'Z9.9', '157', None],
         ['', '激走指数', None, '3', 'ZZ9', '161', None],
@@ -57,6 +59,7 @@ class KYI(Template):
         ['trainee_cat', '見習い区分', None, '1', '9', '187', '1:☆(1K減),2:△(2K減),3:▲(3K減)'],
         ['trainer_name', '調教師名', None, '12', 'X', '188', '全角６文字'],
         ['', '調教師所属', None, '4', 'X', '200', '全角２文字'],
+        # 他データリンク用キー
         ['', '前走１競走成績キー', None, '16', '9', '204', None],
         ['', '前走２競走成績キー', None, '16', '9', '220', None],
         ['', '前走３競走成績キー', None, '16', '9', '236', None],
@@ -69,6 +72,7 @@ class KYI(Template):
         ['', '前走５レースキー', None, '8', '9', '316', None],
         ['post_position', '枠番', None, '1', '9', '324', None],
         ['reserved', '予備', None, '2', 'X', '325', 'スペース'],
+        # 印コード
         ['', '総合印', None, '1', '9', '327', '印コード'],
         ['', 'ＩＤＭ印', None, '1', '9', '328', '印コード'],
         ['', '情報印', None, '1', '9', '329', '印コード'],
@@ -81,9 +85,11 @@ class KYI(Template):
         ['jockey_code', '騎手コード', None, '5', '9', '336', '騎手マスタとリンク'],
         ['trainer_code', '調教師コード', None, '5', '9', '341', '調教師マスタとリンク'],
         ['reserved', '予備', None, '1', 'X', '346', 'スペース'],
+        # 賞金情報
         ['', '獲得賞金', None, '6', 'ZZZZZ9', '347', '単位万円(含む付加賞)'],
         ['p1_prize', '収得賞金', None, '5', 'ZZZZ9', '353', '単位万円'],
         ['', '条件クラス', None, '1', '9', '358', '条件グループコード参照'],
+        # 展開予想データ
         ['b3f_time_index', 'テン指数', None, '5', 'ZZZ.9', '359', '予想テン指数'],
         ['horse_pace_index', 'ペース指数', None, '5', 'ZZZ.9', '364', '予想ペース指数'],
         ['f3f_time_index', '上がり指数', None, '5', 'ZZZ.9', '369', '予想上がり指数'],
@@ -124,6 +130,7 @@ class KYI(Template):
         ['', '馬特記１', None, '3', '9', '511', '特記コード参照'],
         ['', '馬特記２', None, '3', '9', '514', '特記コード参照'],
         ['', '馬特記３', None, '3', '9', '517', '特記コード参照'],
+        # 展開参考データ
         ['', '馬スタート指数', None, '4', 'Z9.9', '520', None],
         ['', '馬出遅率', None, '4', 'Z9.9', '524', None],
         ['', '参考前走', None, '2', '99', '528', '参考となる前走（２走分格納）'],
