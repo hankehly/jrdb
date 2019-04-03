@@ -47,6 +47,7 @@
 | 道中 | どうちゅう | レースの途中の意味 | ([1](http://www.kappagi-k.net/dictionary_view_word.php?linkword=%E9%81%93%E4%B8%AD)) |
 | 抽せん馬 | ちゅうせんば | | ([1](http://www.jra.go.jp/kouza/yougo/w57.html)) |
 | ローカル開催 | | | ([1](https://www.bt-navi.net/terms/rocalkaisai/)) |
+| ブリンカー | | | 馬の視野を制限するための馬具 ([1](https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AA%E3%83%B3%E3%82%AB%E3%83%BC))([2](https://www.nabioo.com/entry/2017/0609/brinker)) |
  
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
