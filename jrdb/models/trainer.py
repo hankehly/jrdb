@@ -2,24 +2,16 @@ from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 
 from jrdb.models.base import BaseModel
+from models import choices
 
 
 class Trainer(BaseModel):
-    KANTOU = 'KANTOU'
-    KANSAI = 'KANSAI'
-    OTHER = 'OTHER'
-    AREA_CHOICES = (
-        (KANSAI, '関東'),
-        (KANTOU, '関西'),
-        (OTHER, '他'),
-    )
-
     code = models.CharField(max_length=5, unique=True)
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=12, null=True)
     name_kana = models.CharField(max_length=30, null=True)
     name_abbr = models.CharField(max_length=6, null=True)
-    area = models.CharField(max_length=255, choices=AREA_CHOICES, null=True)
+    area = models.CharField(max_length=255, choices=choices.AREA.CHOICES(), null=True)
     training_center_name = models.CharField(max_length=4, null=True)
     birthday = models.DateField(null=True)
     lic_acquired_yr = models.PositiveIntegerField(null=True)
