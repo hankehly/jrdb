@@ -25,6 +25,23 @@ class AREA(ChoiceMixin):
     )
 
 
+class BLINKER_USAGE(ChoiceMixin):
+    """
+    1 初装着
+    2 再装着 => using again after having removed
+    3 ブリンカ => using and not first time
+    """
+    FIRST_TIME_USE = 'FIRST_TIME_USE'
+    RETRY = 'RETRY'
+    USING = 'USING'
+    MAP = (
+        ('1', FIRST_TIME_USE, '初装着'),
+        ('2', RETRY, '再装着'),
+        ('3', USING, 'ブリンカ')
+    )
+
+
+
 class GRADE(ChoiceMixin):
     """
     グレード
@@ -492,6 +509,30 @@ class SEX(ChoiceMixin):
     )
 
 
+class STABLE_HORSE_EVALUATION(ChoiceMixin):
+    """
+    厩舎評価コード
+
+    厩舎サイドの期待度をわかりやすく４段階評価したもの。
+    1 超強気
+    2 強気
+    3 現状維持
+    4 弱気
+
+    http://www.jrdb.com/program/jrdb_code.txt
+    """
+    SUPER_CONFIDENT = 'SUPER_CONFIDENT'
+    CONFIDENT = 'CONFIDENT'
+    NO_CHANGE = 'NO_CHANGE'
+    NOT_CONFIDENT = 'NOT_CONFIDENT'
+    MAP = (
+        ('1', SUPER_CONFIDENT, '超強気'),
+        ('2', CONFIDENT, '強気'),
+        ('3', NO_CHANGE, '現状維持'),
+        ('3', NOT_CONFIDENT, '弱気'),
+    )
+
+
 class SURFACE(ChoiceMixin):
     TURF = 'TURF'
     DIRT = 'DIRT'
@@ -689,4 +730,23 @@ class WEATHER(ChoiceMixin):
         ('4', RAINY, '雨'),
         ('5', LIGHT_SNOW, '小雪'),
         ('6', SNOW, '雪')
+    )
+
+
+class YIELDING_TRACK_APTITUDE(ChoiceMixin):
+    """
+    重適性コード
+
+    過去の成績、蹄の形状等よりその馬の重馬場への適性を３段階評価したもの。
+    1 ◎ 得意
+    2 ○ 普通
+    3 △ 苦手
+    """
+    STRONG = 'STRONG'
+    NORMAL = 'NORMAL'
+    WEAK = 'WEAK'
+    MAP = (
+        ('1', STRONG, '得意'),
+        ('2', NORMAL, '普通'),
+        ('3', WEAK, '苦手'),
     )
