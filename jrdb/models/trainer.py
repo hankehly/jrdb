@@ -1,8 +1,7 @@
 from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 
-from jrdb.models.base import BaseModel
-from models import choices
+from jrdb.models import BaseModel, choices
 
 
 class Trainer(BaseModel):

@@ -1,7 +1,6 @@
 from django.db import models
 
-from jrdb.models import BaseModel
-from models import choices
+from jrdb.models import BaseModel, choices
 
 
 class Contender(BaseModel):

@@ -35,6 +35,7 @@
 | | | racing line | ([1](https://www.weblio.jp/content/%E3%82%B3%E3%83%BC%E3%82%B9%E5%8F%96%E3%82%8A))([2](https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1373948028)) |
 | ４角 | よんかく | 4th corner | ([1](http://www.geocities.jp/anato_senka2/dic.html)) |
 | 本賞金 | ほんしょうきん | purse | The prize money awarded to horses that places 1~5 ([1](http://www.jra.go.jp/kouza/yougo/w540.html))([2](https://en.wikipedia.org/wiki/Purse_distribution)) |
+| 獲得賞金 | かくとくしょうきん | | Same as 本賞金 |
 | 収得賞金 | しゅうとくしょうきん | first place prize | 算入賞金とも ([1](http://www.jra.go.jp/kouza/yougo/w541.html)) | 
 | コース | | course | Each racetrack has courses labeled A, B, C, etc.. ([1](http://www.jra.go.jp/facilities/race/nakayama/course/index.html#course_list)) |
 | キックバック | | kickback(?) | 馬の蹴って跳ね上がった泥 ([1](http://www.jrdb.com/kenkai/011114E.html)) |
@@ -48,6 +49,7 @@
 | 抽せん馬 | ちゅうせんば | | ([1](http://www.jra.go.jp/kouza/yougo/w57.html)) |
 | ローカル開催 | | | ([1](https://www.bt-navi.net/terms/rocalkaisai/)) |
 | ブリンカー | | | 馬の視野を制限するための馬具 ([1](https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AA%E3%83%B3%E3%82%AB%E3%83%BC))([2](https://www.nabioo.com/entry/2017/0609/brinker)) |
+| 万券 | まんけん | | ([1](https://www.bt-navi.net/terms/manken/)) |
  
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
