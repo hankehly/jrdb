@@ -2,7 +2,7 @@ import logging
 
 import numpy as np
 import pandas as pd
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 
 from jrdb.models import RaceConditionCode, Jockey, PaceFlowCode, Racetrack, Trainer, Race, Contender, Horse
 from jrdb.models.choices import (
@@ -234,6 +234,7 @@ class SED(Template):
 
         return pd.concat([rdf, cdf, hdf], axis='columns')
 
+    @transaction.atomic
     def persist(self):
         df = self.clean()
 

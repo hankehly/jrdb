@@ -1,6 +1,6 @@
 import logging
 
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 
 from jrdb.models import Racetrack, Race
 from jrdb.templates.parse import parse_comma_separated_integer_list, filter_na
@@ -59,6 +59,7 @@ class SRB(Template):
 
         return df
 
+    @transaction.atomic
     def persist(self):
         df = self.clean()
         for row in df.to_dict('records'):

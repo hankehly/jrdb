@@ -3,7 +3,7 @@ import math
 
 import numpy as np
 import pandas as pd
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 
 from jrdb.models import Race, RaceConditionCode, Racetrack
 from jrdb.models.choices import (
@@ -147,6 +147,7 @@ class BAC(Template):
 
         return df.join(betting_ticket_flags)
 
+    @transaction.atomic
     def persist(self):
         df = self.clean()
         for row in df.to_dict('records'):

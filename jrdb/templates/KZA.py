@@ -1,6 +1,6 @@
 import logging
 
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 import numpy as np
 
 from jrdb.models.choices import AREA, TRAINEE_CATEGORY
@@ -89,6 +89,7 @@ class KZA(Template):
 
         return df
 
+    @transaction.atomic
     def persist(self):
         df = self.clean()
         for row in df.to_dict('records'):
