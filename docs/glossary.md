@@ -50,6 +50,7 @@
 | ローカル開催 | | | ([1](https://www.bt-navi.net/terms/rocalkaisai/)) |
 | ブリンカー | | | 馬の視野を制限するための馬具 ([1](https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AA%E3%83%B3%E3%82%AB%E3%83%BC))([2](https://www.nabioo.com/entry/2017/0609/brinker)) |
 | 万券 | まんけん | | ([1](https://www.bt-navi.net/terms/manken/)) |
+| 連闘 | れんとう | | ([1](http://www.jra.go.jp/kouza/yougo/w312.html)) |
  
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
@@ -81,6 +82,9 @@ In general, it is best not to abbreviate variable names for understandability; h
 | corner | cor |
 | beginning 3 furlong | b3f |
 | final 3 furlong | f3f |
+| preliminary | prel |
+| distance | dist |
+| symbol | sym |
 
 ## Dictionaries and word lists
 - [JRA-VAN DB Code List](http://cattle.x-winz.net/edb2_manual/12-3-99-CODE.html)

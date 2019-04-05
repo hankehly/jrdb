@@ -427,7 +427,7 @@ class RACE_CATEGORY(ChoiceMixin):
     )
 
 
-class RACE_DEVELOPMENT_SYMBOL:
+class RACE_DEVELOPMENT_SYMBOL(ChoiceMixin):
     """
     展開記号コード
 
@@ -555,7 +555,7 @@ class RACE_INTERLEAGUE_SYMBOL(ChoiceMixin):
     )
 
 
-class RANK_LOWERED:
+class RANK_LOWERED(ChoiceMixin):
     """
     1 降級
     2 ２段階降級
@@ -783,6 +783,39 @@ class TRAINER_HORSE_EVALUATION(ChoiceMixin):
         ('3', NO_CHANGE, '平行線'),
         ('4', DOWNWARD_TREND, 'やや下降気味'),
         ('5', POOR, 'デキ落ち')
+    )
+
+
+class TRANSPORT_CATEGORY(ChoiceMixin):
+    """
+    輸送区分
+    滞在、遠征などの輸送過程を表します。直前輸送（直輸）を通常／遠征に分けました。
+    1 滞在 ローカル競馬場で、競馬場に入厩している馬を表します。
+    2 通常 栗東→京都、美浦→中山等や、札幌→函館を通常としています。
+    3 遠征 栗東→中山、栗東→小倉等の長距離輸送を遠征としています。
+    4 連闘 下記【滞在】の説明参照
+    0 不明
+
+    輸送区分は、レース週の最終追い切り（通常は、水or木）の場所で判断しています。
+
+    【滞在】の定義
+    　ローカル競馬場（札幌、函館、福島、新潟、小倉）開催において
+    　レース週の最終追い切りを、当該競馬場で行っている場合、【滞在】としています。
+    　連闘馬の場合、おそらく滞在と思われますが、"連闘"と分類しています。
+    　滞在馬で分析する場合、"滞在" あるいは"連闘"と指定すると実際的です。
+
+    http://www.jrdb.com/program/Kyi/ky_siyo_doc.txt
+    """
+    STAY = 'STAY'
+    NORMAL = 'NORMAL'
+    VISIT = 'VISIT'
+    UNKNOWN = 'UNKNOWN'
+
+    MAP = (
+        ('1', STAY, '滞在'),
+        ('2', NORMAL, '通常'),
+        ('3', VISIT, '遠征'),
+        ('0', UNKNOWN, '不明'),
     )
 
 
