@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 def import_document(parser: Template) -> str:
     parser.parse().persist()
-    return parser.filepath
+    return parser.path
 
 
 class Command(BaseCommand):

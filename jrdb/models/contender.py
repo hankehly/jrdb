@@ -16,6 +16,9 @@ class Contender(BaseModel):
     time = models.FloatField(null=True, verbose_name='タイム')
     mounted_weight = models.FloatField(verbose_name='斤量')
     odds_win = models.FloatField(null=True, verbose_name='確定単勝オッズ')
+    odds_show = models.FloatField(null=True, verbose_name='確定複勝オッズ下')
+    odds_win_10AM = models.FloatField(null=True, verbose_name='10時単勝オッズ')
+    odds_show_10AM = models.FloatField(null=True, verbose_name='10時複勝オッズ')
     pop = models.PositiveSmallIntegerField(verbose_name='確定単勝人気順位')
 
     IDM = models.SmallIntegerField(null=True, verbose_name='ＩＤＭ')
@@ -68,7 +71,7 @@ class Contender(BaseModel):
     flat_out_run_idx = models.SmallIntegerField(verbose_name='激走指数')
     rotation = models.PositiveSmallIntegerField(null=True, verbose_name='ローテーション',
                                                 help_text='間に金曜日が入っている数で決定、連闘は０、初出走はNULL')
-    prel_IDM = models.SmallIntegerField(null=True, verbose_name='前日ＩＤＭ')
+    prel_IDM = models.FloatField(null=True, verbose_name='前日ＩＤＭ')
     prel_run_style = models.CharField(max_length=255, choices=choices.RUNNING_STYLE.CHOICES(), verbose_name='前日脚質')
     dist_apt = models.PositiveSmallIntegerField(verbose_name='距離適性')
     prel_improvement = models.CharField(max_length=255, choices=choices.IMPROVEMENT.CHOICES(), verbose_name='前日上昇度コード')
@@ -95,8 +98,14 @@ class Contender(BaseModel):
     paddock_observed_hoof = models.CharField(max_length=255, choices=choices.PADDOCK_OBSERVED_HOOF.CHOICES(),
                                              verbose_name='蹄コード')
     yield_track_apt = models.CharField(max_length=255, choices=choices.YIELDING_TRACK_APTITUDE.CHOICES(),
-                                          verbose_name='重適正コード')
-    blinker = models.CharField(max_length=255, choices=choices.BLINKER_USAGE.CHOICES(), verbose_name='ブリンカー')
+                                       verbose_name='重適正コード')
+    blinker = models.CharField(max_length=255, choices=choices.BLINKER.CHOICES(), verbose_name='ブリンカー')
+    post_position = models.PositiveSmallIntegerField(verbose_name='枠番')
+    prel_b3f_time_idx = models.FloatField(null=True, verbose_name='予想テン指数')
+    prel_pace_idx = models.FloatField(null=True, verbose_name='予想ペース指数')
+    prel_f3f_time_idx = models.FloatField(null=True, verbose_name='予想上がり指数')
+    prel_position_idx = models.FloatField(null=True, verbose_name='予想位置指数')
+    prel_pace_cat = models.CharField(max_length=255, choices=choices.PACE_CATEGORY.CHOICES(), verbose_name='馬ペース')
 
     class Meta:
         db_table = 'contenders'

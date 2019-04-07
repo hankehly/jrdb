@@ -1,3 +1,4 @@
+import dataclasses
 import logging
 from abc import ABC
 from pprint import pprint
@@ -5,16 +6,39 @@ from typing import List
 
 import numpy as np
 import pandas as pd
+from django.apps import apps
+
+from jrdb.templates.parse import parse_int_or
 
 logger = logging.getLogger(__name__)
+
+
+@dataclasses.dataclass
+class Item:
+    symbol: str
+    label: str
+    width: int
+    start: int
+
+    repeat: int = 0
+    notes: str = ''
+    ignore: bool = False
+
+    def get_model(self):
+        model, _ = self.symbol.rsplit('.', maxsplit=1)
+        return apps.get_model(model)
+
+    @property
+    def key(self):
+        return self.symbol.split('.').pop()
 
 
 class Template(ABC):
     name = ''
     items = []
 
-    def __init__(self, filepath):
-        self.filepath = filepath
+    def __init__(self, path):
+        self.path = path
         self._df = None
 
     @property
@@ -29,85 +53,94 @@ class Template(ABC):
 
     @property
     def spec(self) -> pd.DataFrame:
-        df = pd.DataFrame(self.items, columns=['key', 'label', 'OCC', 'width', 'type', 'startpos', 'notes'])
-        df.OCC = df.OCC.fillna(1).astype(int)
-        df.width = df.width.astype(int)
-        df.startpos = df.startpos.astype(int) - 1
-        df.notes = df.notes.fillna('')
+        s = pd.Series(self.items).apply(dataclasses.asdict).tolist()
+        df = pd.DataFrame(s)
+
+        df['key'] = pd.Series(self.items).apply(lambda item: item.key)
         df.name = self.name
+
         return df
 
     @property
     def colnames(self) -> List[str]:
         """
         Provide a list of str column names that match self.df column count.
-        By default, OCC > 1 items have an index appended to the key name (ie. key_0, key_1, etc..)
         """
         cols = []
         for row in self.spec.itertuples():
-            if row.OCC > 1:
-                for i in range(1, row.OCC + 1):
-                    cols.append(f'{row.key}_{i}')
-            else:
-                cols.append(row.key)
+            cols.append(row.key)
         return cols
 
     def parse(self) -> 'Template':
         """
-        Parse contents of self.filepath into DataFrame
+        Parse contents of self.path into DataFrame
 
         Using the slightly slower np.char.decode(byterows, encoding='cp932') rather than decoding
         each cell individually to make parsing less of a hassle for subclasses
         """
-        self._validate()
-        with open(self.filepath, 'rb') as f:
-            byterows = []
+        with open(self.path, 'rb') as f:
+            rows = []
             lines = filter(None, f.read().splitlines())
             for line in lines:
-                byterow = []
-                for spec in self.spec.itertuples():
-                    byterow.extend(self.parse_item(line, spec))
-                byterows.append(byterow)
-        encoded_rows = np.char.decode(byterows, encoding='cp932')
-        self.df = pd.DataFrame(encoded_rows, columns=self.colnames)
+                row = []
+                for item in self.spec.itertuples():
+                    parsed = self.parse_item(line, item)
+                    encoded = np.char.decode(parsed, encoding='cp932')
+                    if len(encoded) == 1:
+                        row.append(encoded[0])
+                    else:
+                        row.append(encoded)
+                rows.append(row)
+        self.df = pd.DataFrame(rows, columns=self.colnames)
         return self
 
-    def parse_item(self, line, spec) -> List:
-        """
-        Given a byte string (line) and a spec item (spec)
-        return an array of on or more byte strings where each item matches a specific column
-
-        Unless the item OCC is greater than 1, the return value will be a single-item list
-        """
+    def parse_item(self, line: bytes, item: Item) -> List[bytes]:
         row = []
-        if spec.OCC > 1:
-            for j in range(spec.OCC):
-                start = spec.startpos + (spec.width * j)
-                stop = start + spec.width
+        if item.repeat > 0:
+            for i in range(item.repeat):
+                start = item.start + (item.width * i)
+                stop = start + item.width
                 cell = line[start:stop]
                 row.append(cell)
         else:
-            start = spec.startpos
-            stop = spec.startpos + spec.width
-            cell = line[start:stop]
+            stop = item.start + item.width
+            cell = line[item.start:stop]
             row.append(cell)
         return row
 
     def clean(self) -> pd.DataFrame:
-        return self.df
+        df = pd.DataFrame(index=self.df.index)
+
+        for name in self.df:
+            i = self.spec.loc[self.spec.key == name].first_valid_index()
+            item = self.spec.iloc[i]
+            if item.ignore:
+                continue
+
+            path, attr = item.symbol.rsplit('.', maxsplit=1)
+            field = apps.get_model(path)._meta.get_field(attr)
+            internal_type = field.get_internal_type()
+            handler = 'clean_' + name
+            sr = self.df[name]
+
+            if hasattr(self, handler):
+                df[name] = getattr(self, handler)()
+            elif internal_type == 'ForeignKey':
+                remote_records = field.remote_field.model.objects.filter(**{f'code__in': sr}).values()
+                df[name] = sr.map({o['code']: o['id'] for o in remote_records})
+                df[name].name = name + '_id'
+            elif internal_type == 'PositiveSmallIntegerField':
+                if field.null:
+                    df[name] = sr.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+                else:
+                    df[name] = sr.astype(int)
+            elif internal_type in ['CharField', 'TextField']:
+                df[name] = sr.str.strip()
+
+        return df
 
     def persist(self) -> None:
         raise NotImplementedError
-
-    @classmethod
-    def _validate(cls, raise_on_invalid=True) -> bool:
-        invalid_idx = [str(i) for i, item in enumerate(cls.items) if len(item) != 7]
-        if invalid_idx:
-            idx_list = ', '.join(invalid_idx)
-            if raise_on_invalid:
-                raise ValueError(f'Check following indices: {idx_list}')
-            return False
-        return True
 
 
 def parse_template(path):
@@ -115,7 +148,7 @@ def parse_template(path):
     Helper function for developer to extract template rows from data doc files
     and print them as lists
 
-    Exported rows may contain missing information (OCC field, notes)
+    Exported rows may contain missing information (repeat field, notes)
     and incorrectly parsed notes strings
 
     Usage:
@@ -131,17 +164,17 @@ def parse_template(path):
             if fields and len(fields) > 1:
                 nonnull_fields.append(fields)
 
-        startpos = None
+        start = None
         for i, line in enumerate(nonnull_fields):
             if line[0] == '項目名':
-                startpos = i + 1
+                start = i + 1
                 break
 
         endpos = None
-        for i, line in enumerate(nonnull_fields[startpos:], startpos):
+        for i, line in enumerate(nonnull_fields[start:], start):
             if '**' in line[0]:
                 endpos = i
                 break
 
-        template_fields = [field for field in nonnull_fields[startpos:endpos] if len(field) > 3]
+        template_fields = [field for field in nonnull_fields[start:endpos] if len(field) > 3]
         pprint(template_fields)

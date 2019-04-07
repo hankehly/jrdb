@@ -25,7 +25,25 @@ class AREA(ChoiceMixin):
     )
 
 
-class BLINKER_USAGE(ChoiceMixin):
+class APTITUDE_CODE(ChoiceMixin):
+    """
+    適性を３段階評価したもの。
+
+    1 ◎ 得意
+    2 ○ 普通
+    3 △ 苦手
+    """
+    STRONG = 'STRONG'
+    NORMAL = 'NORMAL'
+    WEAK = 'WEAK'
+    MAP = (
+        ('1', STRONG, '得意'),
+        ('2', NORMAL, '普通'),
+        ('3', WEAK, '苦手'),
+    )
+
+
+class BLINKER(ChoiceMixin):
     """
     1 初装着
     2 再装着 => using again after having removed
@@ -881,7 +899,7 @@ class WEATHER(ChoiceMixin):
     )
 
 
-class YIELDING_TRACK_APTITUDE(ChoiceMixin):
+class YIELDING_TRACK_APTITUDE(APTITUDE_CODE):
     """
     重適性コード
 
@@ -890,11 +908,4 @@ class YIELDING_TRACK_APTITUDE(ChoiceMixin):
     2 ○ 普通
     3 △ 苦手
     """
-    STRONG = 'STRONG'
-    NORMAL = 'NORMAL'
-    WEAK = 'WEAK'
-    MAP = (
-        ('1', STRONG, '得意'),
-        ('2', NORMAL, '普通'),
-        ('3', WEAK, '苦手'),
-    )
+    pass

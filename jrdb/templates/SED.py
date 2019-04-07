@@ -78,7 +78,7 @@ class SED(Template):
         ['fin_win_pop', '確定単勝人気順位', None, '2', '99', '181', None],
         # ＪＲＤＢデータ
         ['IDM', 'ＩＤＭ', None, '3', 'ZZ9', '183', None],
-        ['speed_index', '素点', None, '3', 'ZZ9', '186', None],
+        ['speed_idx', '素点', None, '3', 'ZZ9', '186', None],
         ['track_speed_shift', '馬場差', None, '3', 'ZZ9', '189', None],
         ['pace', 'ペース', None, '3', 'ZZZ', '192', None],
         ['late_start', '出遅', None, '3', 'ZZZ', '195', None],
@@ -98,12 +98,12 @@ class SED(Template):
         ['race_pace', 'レースペース', None, '1', 'X', '222', 'H:ハイ, M:平均, S:スロー'],
         ['horse_pace', '馬ペース', None, '1', 'X', '223', '馬自身のペース(H:M:S)'],
         # テン指数はダッシュ力を意味する（元になる数値は前３Ｆタイム）
-        ['b3f_time_index', 'テン指数', None, '5', 'ZZ9.9', '224', '前３Ｆタイムを指数化したもの'],
+        ['b3f_time_idx', 'テン指数', None, '5', 'ZZ9.9', '224', '前３Ｆタイムを指数化したもの'],
         # 勝負所からの最後の脚（元になる数値は後3Fタイム）
-        ['f3f_time_index', '上がり指数', None, '5', 'ZZ9.9', '229', '後３Ｆタイムを指数化したもの'],
+        ['f3f_time_idx', '上がり指数', None, '5', 'ZZ9.9', '229', '後３Ｆタイムを指数化したもの'],
         # ペース指数は道中どれぐらいのペースで後３Ｆを走ったか（元になる数値は走破タイム-後3Fタイム）
-        ['horse_pace_index', 'ペース指数', None, '5', 'ZZ9.9', '234', '馬のペースを指数化したもの'],
-        ['race_pace_index', 'レースＰ指数', None, '5', 'ZZ9.9', '239', 'レースのペースを指数化したもの'],
+        ['horse_pace_idx', 'ペース指数', None, '5', 'ZZ9.9', '234', '馬のペースを指数化したもの'],
+        ['race_pace_idx', 'レースＰ指数', None, '5', 'ZZ9.9', '239', 'レースのペースを指数化したもの'],
         # for 1st place horses, the second place horse name/time
         # for 2nd > place horses, the first place horse name/time
         ['fos_horse_name', '1(2)着馬名', None, '12', 'X', '244', '全角６文字'],  # IGNORED
@@ -112,9 +112,9 @@ class SED(Template):
         ['f3f_time', '後３Ｆタイム', None, '3', '999', '262', '0.1秒単位'],
         ['note', '備考', None, '24', 'X', '265', '全角１２文字（地方競馬場名等）'],  # IGNORED
         ['reserved_0', '予備', None, '2', 'X', '289', 'スペース'],
-        ['fin_show_odds_lower_limit', '確定複勝オッズ下', None, '6', 'ZZZ9.9', '291', '最終的な複勝オッズ（下限）'],  # IGNORED
-        ['win_odds_10am', '10時単勝オッズ', None, '6', 'ZZZ9.9', '297', '10時頃の単勝オッズ'],  # IGNORED
-        ['show_odds_10am', '10時複勝オッズ', None, '6', 'ZZZ9.9', '303', '10時頃の複勝オッズ'],  # IGNORED
+        ['fin_show_odds', '確定複勝オッズ下', None, '6', 'ZZZ9.9', '291', '最終的な複勝オッズ（下限）'],
+        ['odds_win_10AM', '10時単勝オッズ', None, '6', 'ZZZ9.9', '297', '10時頃の単勝オッズ'],
+        ['odds_show_10AM', '10時複勝オッズ', None, '6', 'ZZZ9.9', '303', '10時頃の複勝オッズ'],
         ['c1p', 'コーナー順位１', None, '2', '99', '309', None],
         ['c2p', 'コーナー順位２', None, '2', '99', '311', None],
         ['c3p', 'コーナー順位３', None, '2', '99', '313', None],
@@ -131,7 +131,7 @@ class SED(Template):
         ['win_payoff_yen', '単勝', None, '7', 'ZZZZZZ9', '342', '単位（円）'],  # IGNORED
         ['show_payoff_yen', '複勝', None, '7', 'ZZZZZZ9', '349', '単位（円）'],  # IGNORED
         ['purse', '本賞金', None, '5', 'ZZZZ9', '356', '単位（万円）'],
-        ['p1_prize', '収得賞金', None, '5', 'ZZZZ9', '361', '単位（万円）'],
+        ['p1_prize', '収得賞金', None, '5', 'ZZZZ9', '361', '単位（万円）'],  # IGNORED
         ['race_pace_flow_code', 'レースペース流れ', None, '2', '99', '366', '→成績データの説明'],
         ['horse_pace_flow_code', '馬ペース流れ', None, '2', '99', '368', '→成績データの説明'],
         ['c4_race_line', '４角コース取り', None, '1', '9', '370', '1:最内,2:内,3:中,4:外,5:大外'],
@@ -166,7 +166,7 @@ class SED(Template):
         rdf['name_abbr'] = self.df.race_name_abbr.str.strip()
         rdf['track_speed_shift'] = self.df.track_speed_shift.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         rdf['pace_cat'] = self.df.race_pace.map(PACE_CATEGORY.get_key_map())
-        rdf['pace_index'] = self.df.race_pace_index.apply(parse_float_or, args=(np.nan,))
+        rdf['pace_idx'] = self.df.race_pace_idx.apply(parse_float_or, args=(np.nan,))
         rdf['weather'] = self.df.weather_code.map(WEATHER.get_key_map())
         rdf['course_label'] = self.df.course_label.map(COURSE_LABEL.get_key_map())
         rdf['pace_flow_id'] = PaceFlowCode.key2id(self.df.race_pace_flow_code, allow_null=True)
@@ -181,7 +181,7 @@ class SED(Template):
         cdf['odds_win'] = self.df.fin_win_odds.apply(parse_float_or, args=(np.nan,))
         cdf['popularity'] = self.df.fin_win_pop.astype(int)
         cdf['IDM'] = self.df.IDM.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['speed_index'] = self.df.speed_index.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+        cdf['speed_idx'] = self.df.speed_idx.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['pace'] = self.df.pace.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['positioning'] = self.df.positioning.apply(parse_int_or, args=(np.nan,)).astype('Int64')
         cdf['disadvt'] = self.df.disadvt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
@@ -194,12 +194,15 @@ class SED(Template):
         cdf['physique'] = self.df.horse_physique_code.map(PHYSIQUE.get_key_map())
         cdf['demeanor'] = self.df.horse_demeanor_code.map(DEMEANOR.get_key_map())
         cdf['pace_cat'] = self.df.horse_pace.map(PACE_CATEGORY.get_key_map())
-        cdf['b3f_time_index'] = self.df.b3f_time_index.apply(parse_float_or, args=(np.nan,))
-        cdf['f3f_time_index'] = self.df.f3f_time_index.apply(parse_float_or, args=(np.nan,))
-        cdf['pace_index'] = self.df.horse_pace_index.apply(parse_float_or, args=(np.nan,))
+        cdf['b3f_time_idx'] = self.df.b3f_time_idx.apply(parse_float_or, args=(np.nan,))
+        cdf['f3f_time_idx'] = self.df.f3f_time_idx.apply(parse_float_or, args=(np.nan,))
+        cdf['pace_idx'] = self.df.horse_pace_idx.apply(parse_float_or, args=(np.nan,))
         cdf['margin'] = self.df.margin.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['b3f_time'] = self.df.b3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
         cdf['f3f_time'] = self.df.f3f_time.apply(parse_float_or, args=(np.nan,)) * 0.1
+        cdf['odds_show'] = self.df.odds_show.apply(parse_float_or, args=(np.nan,))
+        cdf['odds_win_10AM'] = self.df.odds_win_10AM.apply(parse_float_or, args=(np.nan,))
+        cdf['odds_show_10AM'] = self.df.odds_show_10AM.apply(parse_float_or, args=(np.nan,))
         cdf['c1p'] = self.df.c1p.apply(parse_float_or, args=(np.nan,)).where(lambda x: x != 0).astype('Int64')
         cdf['c2p'] = self.df.c2p.apply(parse_float_or, args=(np.nan,)).where(lambda x: x != 0).astype('Int64')
         cdf['c3p'] = self.df.c3p.apply(parse_float_or, args=(np.nan,)).where(lambda x: x != 0).astype('Int64')

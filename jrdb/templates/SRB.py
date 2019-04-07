@@ -2,9 +2,9 @@ import logging
 
 from django.db import IntegrityError, transaction
 
-from jrdb.models import Racetrack, Race
+from jrdb.models import Race
 from jrdb.templates.parse import parse_comma_separated_integer_list, filter_na
-from jrdb.templates.template import Template
+from jrdb.templates.template import Template, Item
 
 logger = logging.getLogger(__name__)
 
@@ -15,49 +15,48 @@ class SRB(Template):
     """
     name = 'JRDB成績レースデータ（SRB）'
     items = [
-        ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['yr', '年', None, '2', '99', '3', None],
-        ['round', '回', None, '1', '9', '5', None],
-        ['day', '日', None, '1', 'F', '6', None],
-        ['num', 'Ｒ', None, '2', '99', '7', None],
-        ['furlong_time', 'ハロンタイム', '18', '3', '999', '9', '3*18=54BYTE 先頭馬の１ハロン毎のタイム 0.1秒単位　※１'],  # IGNORED
-        ['cor_1_pos', '１コーナー', None, '64', 'X', '63', None],  # IGNORED
-        ['cor_2_pos', '２コーナー', None, '64', 'X', '127', None],  # IGNORED
-        ['cor_3_pos', '３コーナー', None, '64', 'X', '191', None],  # IGNORED
-        ['cor_4_pos', '４コーナー', None, '64', 'X', '255', None],  # IGNORED
-        ['pace_up_pos', 'ペースアップ位置', None, '2', '9', '319', '残りハロン数'],  # IGNORED
-        ['c1_track_bias', 'トラックバイアス（１角）', None, '3', 'X', '321', '（内、中、外）'],
-        ['c2_track_bias', 'トラックバイアス（２角）', None, '3', 'X', '324', '（内、中、外）'],
-        ['bs_track_bias', 'トラックバイアス（向正）', None, '3', 'X', '327', '（内、中、外）'],
-        ['c3_track_bias', 'トラックバイアス（３角）', None, '3', 'X', '330', '（内、中、外）'],
-        ['c4_track_bias', 'トラックバイアス（４角）', None, '5', 'X', '333', '（最内、内、中、外、大外）'],
-        ['hs_track_bias', 'トラックバイアス（直線）', None, '5', 'X', '338', '（最内、内、中、外、大外）'],
-        ['comment', 'レースコメント', None, '500', 'X', '343', None],
-        ['reserved', '予備', None, '8', 'X', '843', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '851', 'ＣＲ・ＬＦ'],
+        Item('jrdb.Race.racetrack', '場コード', 2, 0),
+        Item('jrdb.Race.yr', '年', 2, 2),
+        Item('jrdb.Race.round', '回', 1, 4),
+        Item('jrdb.Race.day', '日', 1, 5),
+        Item('jrdb.Race.num', 'Ｒ', 2, 6),
+
+        Item('furlong_time', 'ハロンタイム', 3, 8, repeat=18, notes='3*18=54BYTE 先頭馬の１ハロン毎のタイム 0.1秒単位　※１', ignore=True),
+        Item('c1pos', '１コーナー', 64, 62, ignore=True),
+        Item('c2pos', '２コーナー', 64, 126, ignore=True),
+        Item('c3pos', '３コーナー', 64, 190, ignore=True),
+        Item('c4pos', '４コーナー', 64, 254, ignore=True),
+        Item('pace_up_pos', 'ペースアップ位置', 2, 318, notes='残りハロン数', ignore=True),
+
+        Item('jrdb.Race.c1_track_bias', 'トラックバイアス（１角）', 3, 320, notes='（内、中、外）'),
+        Item('jrdb.Race.c2_track_bias', 'トラックバイアス（２角）', 3, 323, notes='（内、中、外）'),
+        Item('jrdb.Race.bs_track_bias', 'トラックバイアス（向正）', 3, 326, notes='（内、中、外）'),
+        Item('jrdb.Race.c3_track_bias', 'トラックバイアス（３角）', 3, 329, notes='（内、中、外）'),
+        Item('jrdb.Race.c4_track_bias', 'トラックバイアス（４角）', 5, 332, notes='（最内、内、中、外、大外）'),
+        Item('jrdb.Race.hs_track_bias', 'トラックバイアス（直線）', 5, 337, notes='（最内、内、中、外、大外）'),
+        Item('jrdb.Race.comment', 'レースコメント', 500, 342),
+
+        Item('reserved', '予備', 8, 842, notes='スペース', ignore=True),
+        Item('newline', '改行', 2, 850, notes='ＣＲ・ＬＦ', ignore=True),
     ]
 
-    def clean(self):
-        racetracks = Racetrack.objects.filter(code__in=self.df.racetrack_code).values('code', 'id')
-        s = self.df.racetrack_code.map({racetrack['code']: racetrack['id'] for racetrack in racetracks})
-        s.name = 'racetrack_id'
+    def clean_c1_track_bias(self):
+        return self.df.c1_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
 
-        df = s.to_frame()
-        df['yr'] = self.df.yr.astype(int)
-        df['round'] = self.df['round'].astype(int)
-        df['day'] = self.df.day.str.strip()
-        df['num'] = self.df.num.astype(int)
+    def clean_c2_track_bias(self):
+        return self.df.c2_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
 
-        df['c1_track_bias'] = self.df.c1_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c2_track_bias'] = self.df.c2_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c3_track_bias'] = self.df.c3_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c4_track_bias'] = self.df.c4_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['bs_track_bias'] = self.df.bs_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['hs_track_bias'] = self.df.hs_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
+    def clean_c3_track_bias(self):
+        return self.df.c3_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
 
-        df['comment'] = self.df.comment.str.strip()
+    def clean_c4_track_bias(self):
+        return self.df.c4_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
 
-        return df
+    def clean_bs_track_bias(self):
+        return self.df.bs_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
+
+    def clean_hs_track_bias(self):
+        return self.df.hs_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
 
     @transaction.atomic
     def persist(self):

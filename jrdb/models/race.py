@@ -132,7 +132,7 @@ class Race(BaseModel):
     track_speed_shift = models.SmallIntegerField(null=True)
 
     pace_cat = models.CharField(max_length=255, choices=PACE_CATEGORY.CHOICES())
-    pace_index = models.FloatField(null=True, help_text='レースのペースを指数化したもの')
+    pace_idx = models.FloatField(null=True, help_text='レースのペースを指数化したもの')
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
 
     class Meta:
