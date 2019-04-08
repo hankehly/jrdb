@@ -5,21 +5,9 @@ import numpy as np
 import pandas as pd
 from django.db import IntegrityError, transaction
 
-from jrdb.models import Race, RaceConditionCode, Racetrack
-from jrdb.models.choices import (
-    RACE_CATEGORY,
-    RACE_HORSE_TYPE_SYMBOL,
-    RACE_HORSE_SEX_SYMBOL,
-    RACE_INTERLEAGUE_SYMBOL,
-    IMPOST_CLASS,
-    GRADE,
-    SURFACE,
-    DIRECTION,
-    COURSE_INOUT,
-    COURSE_LABEL,
-    HOST_CATEGORY)
-from jrdb.templates.parse import filter_na, parse_int_or
-from jrdb.templates.template import Template
+from jrdb.models import Race, choices
+from jrdb.templates.parse import filter_na
+from jrdb.templates.template import Template, Item
 
 logger = logging.getLogger(__name__)
 
@@ -32,102 +20,96 @@ class BAC(Template):
     """
     name = 'JRDB番組データ（BAC）'
     items = [
-        ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['yr', '年', None, '2', '99', '3', None],
-        ['round', '回', None, '1', '9', '5', None],
-        ['day', '日', None, '1', 'F', '6', None],
-        ['num', 'Ｒ', None, '2', '99', '7', None],
-        ['start_date', '年月日', None, '8', '9', '9', 'YYYYMMDD'],
-        ['start_time', '発走時間', None, '4', 'X', '17', 'HHMM'],
-        ['distance', '距離', None, '4', '9999', '21', None],
-        ['surface', '芝ダ障害コード', None, '1', '9', '25', '1:芝, 2:ダート, 3:障害'],
-        ['direction', '右左', None, '1', '9', '26', '1:右, 2:左, 3:直, 9:他'],
-        ['course_inout', '内外', None, '1', '9', '27',
-         '1:通常(内), 2:外, 3,直ダ, 9:他\n※障害のトラックは、以下の２通りとなります。\n"393":障害直線ダート\n"391":障害直線芝'],
-        ['race_category_code', '種別', None, '2', '99', '28', '４歳以上等、→JRDBデータコード表'],
-        ['race_cond_code', '条件', None, '2', 'XX', '30', '900万下等、 →JRDBデータコード表'],
-        ['race_symbols', '記号', None, '3', '999', '32', '○混等、 →JRDBデータコード表'],
-        ['impost_class_code', '重量', None, '1', '9', '35', 'ハンデ等、 →JRDBデータコード表'],
-        ['grade_code', 'グレード', None, '1', '9', '36', 'Ｇ１等 →JRDBデータコード表'],
-        ['race_name', 'レース名', None, '50', 'X', '37', 'レース名の通称（全角２５文字）'],
-        ['nth_occurrence', '回数', None, '8', 'X', '87', '第ZZ9回（全角半角混在）'],
-        ['contender_count', '頭数', None, '2', '99', '95', None],
-        ['course_label', 'コース', None, '1', 'X', '97', '1:A, 2:A1, 3:A2, 4:B, 5:C, 6:D'],
-        ['host_category', '開催区分', None, '1', 'X', '98', '1:関東, 2:関西, 3:ローカル'],
-        ['race_name_abbr', 'レース名短縮', None, '8', 'X', '99', '全角４文字'],
-        ['race_name_short', 'レース名９文字', None, '18', 'X', '107', '全角９文字'],
-        ['data_category', 'データ区分', None, '1', 'X', '125', '1:特別登録, 2:想定確定, 3:前日'],
-        ['p1_purse', '１着賞金', None, '5', 'ZZZZ9', '126', '単位（万円）'],
-        ['p2_purse', '２着賞金', None, '5', 'ZZZZ9', '131', '単位（万円）'],
-        ['p3_purse', '３着賞金', None, '5', 'ZZZZ9', '136', '単位（万円）'],
-        ['p4_purse', '４着賞金', None, '5', 'ZZZZ9', '141', '単位（万円）'],
-        ['p5_purse', '５着賞金', None, '5', 'ZZZZ9', '146', '単位（万円）'],
-        ['p1_prize', '１着算入賞金', None, '5', 'ZZZZ9', '151', '単位（万円）'],
-        ['p2_prize', '２着算入賞金', None, '5', 'ZZZZ9', '156', '単位（万円）'],
-        # 1バイト目 単勝
-        # 2バイト目 複勝
-        # 3バイト目 枠連
-        # 4バイト目 馬連
-        # 5バイト目 馬単
-        # 6バイト目 ワイド
-        # 7バイト目 ３連複
-        # 8バイト目 ３連単
-        # 9-16バイト目　予備
-        ['betting_ticket_sale_flag', '馬券発売フラグ', None, '16', '9', '161', '1:発売, 0:発売無し'],
-        ['win5', 'WIN5フラグ', None, '1', 'Z', '177', '1～5'],
-        ['reserved', '予備', None, '5', 'X', '178', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '183', 'ＣＲ・ＬＦ']
+        Item('jrdb.Race.racetrack.code', '場コード', 2, 0),
+        Item('jrdb.Race.yr', '年', 2, 2),
+        Item('jrdb.Race.round', '回', 1, 4),
+        Item('jrdb.Race.day', '日', 1, 5),
+        Item('jrdb.Race.num', 'Ｒ', 2, 6),
+
+        Item('start_date', '年月日', 8, 8, notes='YYYYMMDD'),
+        Item('start_time', '発走時間', 4, 16, notes='HHMM', use=False),
+
+        Item('jrdb.Race.distance', '距離', 4, 20),
+
+        Item('jrdb.Race.surface', '芝ダ障害コード', 1, 24, notes='1:芝, 2:ダート, 3:障害',
+             options=choices.SURFACE.options()),
+
+        Item('jrdb.Race.direction', '右左', 1, 25, notes='1:右, 2:左, 3:直, 9:他', options=choices.DIRECTION.options()),
+
+        Item('jrdb.Race.course_inout', '内外', 1, 26,
+             notes='1:通常(内), 2:外, 3,直ダ, 9:他\n※障害のトラックは、以下の２通りとなります。\n"393":障害直線ダート\n"391":障害直線芝',
+             options=choices.COURSE_INOUT.options()),
+
+        Item('jrdb.Race.category', '種別', 2, 27, notes='４歳以上等、→JRDBデータコード表',
+             options=choices.RACE_CATEGORY.options()),
+
+        Item('jrdb.Race.cond.value', '条件', 2, 29, notes='900万下等、 →JRDBデータコード表'),
+        Item('symbols', '記号', 2, 31, notes='○混等、 →JRDBデータコード表'),
+        Item('jrdb.Race.impost_class', '重量', 1, 34, notes='ハンデ等、 →JRDBデータコード表',
+             options=choices.IMPOST_CLASS.options()),
+
+        Item('jrdb.Race.grade', 'グレード', 1, 35, notes='Ｇ１等 →JRDBデータコード表', options=choices.GRADE.options()),
+        Item('jrdb.Race.name', 'レース名', 50, 36, notes='レース名の通称（全角２５文字）'),
+        Item('jrdb.Race.nth_occurrence', '回数', 8, 86, notes='第ZZ9回（全角半角混在）'),
+        Item('jrdb.Race.contender_count', '頭数', 2, 94),
+
+        Item('jrdb.Race.course_label', 'コース', 1, 96, notes='1:A, 2:A1, 3:A2, 4:B, 5:C, 6:D',
+             options=choices.COURSE_LABEL.options()),
+
+        Item('jrdb.Race.host_category', '開催区分', 1, 97, notes='1:関東, 2:関西, 3:ローカル',
+             options=choices.HOST_CATEGORY.options()),
+
+        Item('jrdb.Race.name_abbr', 'レース名短縮', 8, 98, notes='全角４文字'),
+        Item('jrdb.Race.name_short', 'レース名９文字', 18, 106, notes='全角９文字'),
+        Item('data_category', 'データ区分', 1, 124, notes='1:特別登録, 2:想定確定, 3:前日', use=False),
+        Item('jrdb.Race.p1_purse', '１着賞金', 5, 125, notes='単位（万円）'),
+        Item('jrdb.Race.p2_purse', '２着賞金', 5, 130, notes='単位（万円）'),
+        Item('jrdb.Race.p3_purse', '３着賞金', 5, 135, notes='単位（万円）'),
+        Item('jrdb.Race.p4_purse', '４着賞金', 5, 140, notes='単位（万円）'),
+        Item('jrdb.Race.p5_purse', '５着賞金', 5, 145, notes='単位（万円）'),
+        Item('jrdb.Race.p1_prize', '１着算入賞金', 5, 150, notes='単位（万円）'),
+        Item('jrdb.Race.p2_prize', '２着算入賞金', 5, 155, notes='単位（万円）'),
+
+        Item('betting_ticket_sale_flag', '馬券発売フラグ', 16, 160, notes='1:発売, 0:発売無し'),
+        Item('jrdb.Race.win5', 'WIN5フラグ', 1, 176, notes='1～5'),
+
+        Item('reserved', '予備', 5, 177, notes='スペース', use=False),
+        Item('newline', '改行', 2, 182, notes='ＣＲ・ＬＦ', use=False),
     ]
 
-    def clean(self):
-        racetracks = Racetrack.objects.filter(code__in=self.df.racetrack_code).values('code', 'id')
-        s = self.df.racetrack_code.map({racetrack['code']: racetrack['id'] for racetrack in racetracks})
-        s.name = 'racetrack_id'
+    def clean_start_date(self) -> pd.Series:
+        started_at = self.df.start_date + self.df.start_time
+        return pd.to_datetime(started_at, format='%Y%m%d%H%M').dt.tz_localize('Asia/Tokyo').rename('started_at')
 
-        df = s.to_frame()
+    def clean_symbols(self):
+        df = pd.DataFrame(index=self.df.index)
 
-        df['yr'] = self.df.yr.astype(int)
-        df['round'] = self.df['round'].astype(int)
-        df['day'] = self.df.day.str.strip()
-        df['num'] = self.df.num.astype(int)
-        df['started_at'] = self._started_at()
-        df['distance'] = self.df.distance.astype(int)
-        df['surface'] = self.df.surface.map(SURFACE.get_key_map())
-        df['direction'] = self.df.direction.map(DIRECTION.get_key_map())
-        df['course_inout'] = self.df.course_inout.map(COURSE_INOUT.get_key_map())
-        df['course_label'] = self.df.course_label.map(COURSE_LABEL.get_key_map())
-        df['host_category'] = self.df.host_category.map(HOST_CATEGORY.get_key_map())
-        df['category'] = self.df.race_category_code.map(RACE_CATEGORY.get_key_map())
-        df['cond_id'] = RaceConditionCode.key2id(self.df.race_cond_code)
-        df['horse_type_symbol'] = self.df.race_symbols.str[0].map(RACE_HORSE_TYPE_SYMBOL.get_key_map())
-        df['horse_sex_symbol'] = self.df.race_symbols.str[1].map(RACE_HORSE_SEX_SYMBOL.get_key_map())
-        df['interleague_symbol'] = self.df.race_symbols.str[2].map(RACE_INTERLEAGUE_SYMBOL.get_key_map())
-        df['impost_class'] = self.df.impost_class_code.map(IMPOST_CLASS.get_key_map())
-        df['grade'] = self.df.grade_code.map(GRADE.get_key_map())
+        df['horse_type_symbol'] = self.df.symbols.str[0].map(choices.RACE_HORSE_TYPE_SYMBOL.options())
+        df['horse_sex_symbol'] = self.df.symbols.str[1].map(choices.RACE_HORSE_SEX_SYMBOL.options())
+        df['interleague_symbol'] = self.df.symbols.str[2].map(choices.RACE_INTERLEAGUE_SYMBOL.options())
 
-        df['name'] = self.df.race_name.str.strip()
-        df['name_short'] = self.df.race_name_short.str.strip()
-        df['name_abbr'] = self.df.race_name_abbr.str.strip()
+        return df
 
+    def clean_nth_occurrence(self):
         # casting to float prior to Int64 is necessary
         # to convert strings to numbers
-        df['nth_occurrence'] = self.df.nth_occurrence.str.extract(r'([0-9]+)', expand=False) \
+        return self.df.nth_occurrence.str.extract(r'([0-9]+)', expand=False) \
             .astype(float) \
             .astype('Int64')
 
-        df['contender_count'] = self.df.contender_count.astype(int)
-
-        df['p1_purse'] = self.df.p1_purse.astype(int)
-        df['p2_purse'] = self.df.p2_purse.astype(int)
-        df['p3_purse'] = self.df.p3_purse.astype(int)
-        df['p4_purse'] = self.df.p4_purse.astype(int)
-        df['p5_purse'] = self.df.p5_purse.astype(int)
-        df['p1_prize'] = self.df.p1_prize.astype(int)
-        df['p2_prize'] = self.df.p2_prize.astype(int)
-
-        df['win5'] = self.df.win5.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-
-        betting_ticket_columns = {
+    def clean_betting_ticket_sale_flag(self):
+        """
+        1バイト目 単勝
+        2バイト目 複勝
+        3バイト目 枠連
+        4バイト目 馬連
+        5バイト目 馬単
+        6バイト目 ワイド
+        7バイト目 ３連複
+        8バイト目 ３連単
+        9-16バイト目　予備
+        """
+        column_map = {
             0: 'issued_bt_win',
             1: 'issued_bt_show',
             2: 'issued_bt_bracket_quinella',
@@ -138,14 +120,12 @@ class BAC(Template):
             7: 'issued_bt_trifecta'
         }
 
-        betting_ticket_flags = self.df.betting_ticket_sale_flag.str.strip() \
+        return self.df.betting_ticket_sale_flag.str.strip() \
             .map(list) \
             .apply(pd.Series) \
             .astype(float) \
             .applymap(lambda flag: np.nan if math.isnan(flag) else bool(flag)) \
-            .rename(columns=betting_ticket_columns)
-
-        return df.join(betting_ticket_flags)
+            .rename(columns=column_map)
 
     @transaction.atomic
     def persist(self):
@@ -165,7 +145,3 @@ class BAC(Template):
                 Race.objects.update_or_create(**unique_key, defaults=race)
             except IntegrityError as e:
                 logger.exception(e)
-
-    def _started_at(self) -> pd.Series:
-        started_at = self.df.start_date + self.df.start_time
-        return pd.to_datetime(started_at, format='%Y%m%d%H%M').dt.tz_localize('Asia/Tokyo').rename('started_at')

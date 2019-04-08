@@ -9,6 +9,13 @@ class ChoiceMixin:
 
     @classmethod
     def get_key_map(cls):
+        """
+        Deprecated. Use options instead.
+        """
+        return cls.options()
+
+    @classmethod
+    def options(cls) -> dict:
         return {
             t[0]: t[1] for t in cls.MAP
         }

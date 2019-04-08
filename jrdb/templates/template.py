@@ -22,15 +22,27 @@ class Item:
 
     repeat: int = 0
     notes: str = ''
-    ignore: bool = False
-
-    def get_model(self):
-        model, _ = self.symbol.rsplit('.', maxsplit=1)
-        return apps.get_model(model)
+    use: bool = True
+    options: dict = None
 
     @property
     def key(self):
         return self.symbol.split('.').pop()
+
+    def get_model(self):
+        model = '.'.join(self.symbol.split('.')[:2])
+        return apps.get_model(model)
+
+    def get_field(self):
+        comps = self.symbol.split('.')[2:]
+        return self.get_model()._meta.get_field(comps[0])
+
+    def get_foreign_column_name(self):
+        if self.get_field().get_internal_type() == 'ForeignKey':
+            comps = self.symbol.split('.')
+            if len(comps) == 4:
+                return comps[3]
+        return None
 
 
 class Template(ABC):
@@ -52,23 +64,13 @@ class Template(ABC):
         self._df = value
 
     @property
-    def spec(self) -> pd.DataFrame:
-        s = pd.Series(self.items).apply(dataclasses.asdict).tolist()
-        df = pd.DataFrame(s)
-
-        df['key'] = pd.Series(self.items).apply(lambda item: item.key)
-        df.name = self.name
-
-        return df
-
-    @property
     def colnames(self) -> List[str]:
         """
         Provide a list of str column names that match self.df column count.
         """
         cols = []
-        for row in self.spec.itertuples():
-            cols.append(row.key)
+        for item in self.items:
+            cols.append(item.key)
         return cols
 
     def parse(self) -> 'Template':
@@ -83,7 +85,7 @@ class Template(ABC):
             lines = filter(None, f.read().splitlines())
             for line in lines:
                 row = []
-                for item in self.spec.itertuples():
+                for item in self.items:
                     parsed = self.parse_item(line, item)
                     encoded = np.char.decode(parsed, encoding='cp932')
                     if len(encoded) == 1:
@@ -112,30 +114,39 @@ class Template(ABC):
         df = pd.DataFrame(index=self.df.index)
 
         for name in self.df:
-            i = self.spec.loc[self.spec.key == name].first_valid_index()
-            item = self.spec.iloc[i]
-            if item.ignore:
+            item = [i for i in self.items if i.key == name][0]
+            if not item.use:
                 continue
 
-            path, attr = item.symbol.rsplit('.', maxsplit=1)
-            field = apps.get_model(path)._meta.get_field(attr)
-            internal_type = field.get_internal_type()
             handler = 'clean_' + name
-            sr = self.df[name]
-
             if hasattr(self, handler):
-                df[name] = getattr(self, handler)()
-            elif internal_type == 'ForeignKey':
-                remote_records = field.remote_field.model.objects.filter(**{f'code__in': sr}).values()
-                df[name] = sr.map({o['code']: o['id'] for o in remote_records})
-                df[name].name = name + '_id'
-            elif internal_type == 'PositiveSmallIntegerField':
-                if field.null:
-                    df[name] = sr.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-                else:
-                    df[name] = sr.astype(int)
-            elif internal_type in ['CharField', 'TextField']:
-                df[name] = sr.str.strip()
+                df = df.join(getattr(self, handler)())
+            else:
+                field = item.get_field()
+                internal_type = field.get_internal_type()
+                sr = self.df[name]
+
+                if internal_type == 'ForeignKey':
+                    if hasattr(field.remote_field.model, 'key2id'):
+                        df[field.column] = field.remote_field.model.key2id(sr)
+                    else:
+                        column = item.get_foreign_column_name()
+                        remote_records = field.remote_field.model.objects \
+                            .filter(**{f'{column}__in': sr}) \
+                            .values(column, 'id')
+                        df[field.column] = sr.map({o[column]: o['id'] for o in remote_records})
+                    df[field.column].name = field.column
+                elif internal_type == 'PositiveSmallIntegerField':
+                    if field.null:
+                        df[name] = sr.apply(parse_int_or, args=(np.nan,)).astype('Int64')
+                    else:
+                        df[name] = sr.astype(int)
+                elif internal_type in ['CharField', 'TextField']:
+                    strip = sr.str.strip()
+                    if field.choices:
+                        df[name] = strip.map(item.options)
+                    else:
+                        df[name] = strip
 
         return df
 

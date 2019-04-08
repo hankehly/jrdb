@@ -21,12 +21,12 @@ class SRB(Template):
         Item('jrdb.Race.day', '日', 1, 5),
         Item('jrdb.Race.num', 'Ｒ', 2, 6),
 
-        Item('furlong_time', 'ハロンタイム', 3, 8, repeat=18, notes='3*18=54BYTE 先頭馬の１ハロン毎のタイム 0.1秒単位　※１', ignore=True),
-        Item('c1pos', '１コーナー', 64, 62, ignore=True),
-        Item('c2pos', '２コーナー', 64, 126, ignore=True),
-        Item('c3pos', '３コーナー', 64, 190, ignore=True),
-        Item('c4pos', '４コーナー', 64, 254, ignore=True),
-        Item('pace_up_pos', 'ペースアップ位置', 2, 318, notes='残りハロン数', ignore=True),
+        Item('furlong_time', 'ハロンタイム', 3, 8, repeat=18, notes='3*18=54BYTE 先頭馬の１ハロン毎のタイム 0.1秒単位　※１', use=False),
+        Item('c1pos', '１コーナー', 64, 62, use=False),
+        Item('c2pos', '２コーナー', 64, 126, use=False),
+        Item('c3pos', '３コーナー', 64, 190, use=False),
+        Item('c4pos', '４コーナー', 64, 254, use=False),
+        Item('pace_up_pos', 'ペースアップ位置', 2, 318, notes='残りハロン数', use=False),
 
         Item('jrdb.Race.c1_track_bias', 'トラックバイアス（１角）', 3, 320, notes='（内、中、外）'),
         Item('jrdb.Race.c2_track_bias', 'トラックバイアス（２角）', 3, 323, notes='（内、中、外）'),
@@ -36,8 +36,8 @@ class SRB(Template):
         Item('jrdb.Race.hs_track_bias', 'トラックバイアス（直線）', 5, 337, notes='（最内、内、中、外、大外）'),
         Item('jrdb.Race.comment', 'レースコメント', 500, 342),
 
-        Item('reserved', '予備', 8, 842, notes='スペース', ignore=True),
-        Item('newline', '改行', 2, 850, notes='ＣＲ・ＬＦ', ignore=True),
+        Item('reserved', '予備', 8, 842, notes='スペース', use=False),
+        Item('newline', '改行', 2, 850, notes='ＣＲ・ＬＦ', use=False),
     ]
 
     def clean_c1_track_bias(self):
