@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from django.apps import apps
 
-from jrdb.templates.parse import parse_int_or
+from jrdb.templates.parse import parse_int_or, parse_date
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +24,7 @@ class Item:
     notes: str = ''
     use: bool = True
     options: dict = None
+    date_fmt: str = ''
 
     @property
     def key(self):
@@ -43,6 +44,10 @@ class Item:
             if len(comps) == 4:
                 return comps[3]
         return None
+
+
+# class DateItem(Item):
+#     format: str
 
 
 class Template(ABC):
@@ -147,6 +152,8 @@ class Template(ABC):
                         df[name] = strip.map(item.options)
                     else:
                         df[name] = strip
+                elif internal_type == 'DateField':
+                    df[name] = sr.apply(parse_date, args=(item.date_fmt,))
 
         return df
 

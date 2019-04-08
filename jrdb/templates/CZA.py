@@ -1,12 +1,11 @@
 import logging
 
+import pandas as pd
 from django.db import IntegrityError, transaction
-import numpy as np
 
-from jrdb.models.choices import AREA
-from jrdb.models.trainer import Trainer
-from jrdb.templates.parse import parse_date, parse_int_or, parse_comma_separated_integer_list, filter_na
-from jrdb.templates.template import Template
+from jrdb.models import choices, Trainer
+from jrdb.templates.parse import filter_na, parse_comma_separated_integer_list
+from jrdb.templates.template import Template, Item
 
 logger = logging.getLogger(__name__)
 
@@ -17,73 +16,56 @@ class CZA(Template):
     """
     name = '全調教師'
     items = [
-        ['code', '調教師コード', None, '5', '99999', '1', None],
-        ['is_retired', '登録抹消フラグ', None, '1', '9', '6', '1:抹消,0:現役'],
-        ['retired_on', '登録抹消年月日', None, '8', '9', '7', 'YYYYMMDD'],
-        ['name', '調教師名', None, '12', 'X', '15', '全角６文字'],
-        ['name_kana', '調教師カナ', None, '30', 'X', '27', '全角１５文字'],
-        ['name_abbr', '調教師名略称', None, '6', 'X', '57', '全角３文字'],
-        ['area', '所属コード', None, '1', '9', '63', '1:関東,2:関西,3:他'],
-        ['training_center_name', '所属地域名', None, '4', 'X', '64', '全角２文字、地方の場合'],
-        ['birthday', '生年月日', None, '8', '9', '68', 'YYYYMMDD'],
-        ['lic_acquired_yr', '初免許年', None, '4', '9', '76', 'YYYY'],
-        ['jrdb_comment', '調教師コメント', None, '40', 'X', '80', 'ＪＲＤＢスタッフの厩舎見解'],
-        ['jrdb_comment_date', 'コメント入力年月日', None, '8', 'X', '120', '調教師コメントを入力した年月日'],
-        ['cur_yr_leading', '本年リーディング', None, '3', 'ZZ9', '128', None],
-        ['cur_yr_flat_r', '本年平地成績', None, '12', 'ZZ9*4', '131', '１－２－３－着外(3*4)'],
-        ['cur_yr_obst_r', '本年障害成績', None, '12', 'ZZ9*4', '143', '１－２－３－着外(3*4)'],
-        ['cur_yr_sp_wins', '本年特別勝数', None, '3', 'ZZ9', '155', None],
-        ['cur_yr_hs_wins', '本年重賞勝数', None, '3', 'ZZ9', '158', None],
-        ['prev_yr_leading', '昨年リーディング', None, '3', 'ZZ9', '161', None],
-        ['prev_yr_flat_r', '昨年平地成績', None, '12', 'ZZ9*4', '164', '１－２－３－着外(3*4)'],
-        ['prev_yr_obst_r', '昨年障害成績', None, '12', 'ZZ9*4', '176', '１－２－３－着外(3*4)'],
-        ['prev_yr_sp_wins', '昨年特別勝数', None, '3', 'ZZ9', '188', None],
-        ['prev_yr_hs_wins', '昨年重賞勝数', None, '3', 'ZZ9', '191', None],
-        ['sum_flat_r', '通算平地成績', None, '20', 'ZZZZ9*4', '194', '１－２－３－着外(5*4)'],
-        ['sum_obst_r', '通算障害成績', None, '20', 'ZZZZ9*4', '214', '１－２－３－着外(5*4)'],
-        ['jrdb_saved_on', 'データ年月日', None, '8', '9', '234', 'YYYYMMDD'],  # same date as filename
-        ['reserved', '予備', None, '29', 'X', '242', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '271', 'ＣＲ・ＬＦ']
+        Item('jrdb.Trainer.code', '調教師コード', 5, 0),
+        Item('is_retired', '登録抹消フラグ', 1, 5, notes='1:抹消,0:現役', use=False),
+        Item('jrdb.Trainer.retired_on', '登録抹消年月日', 8, 6, notes='YYYYMMDD', date_fmt='%Y%m%d'),
+        Item('jrdb.Trainer.name', '調教師名', 12, 14, notes='全角６文字'),
+        Item('jrdb.Trainer.name_kana', '調教師カナ', 30, 26, notes='全角１５文字'),
+        Item('jrdb.Trainer.name_abbr', '調教師名略称', 6, 56, notes='全角３文字'),
+        Item('jrdb.Trainer.area', '所属コード', 1, 62, notes='1:関東,2:関西,3:他', options=choices.AREA.options()),
+        Item('jrdb.Trainer.training_center_name', '所属地域名', 4, 63, notes='全角２文字、地方の場合'),
+        Item('jrdb.Trainer.birthday', '生年月日', 8, 67, notes='YYYYMMDD', date_fmt='%Y%m%d'),
+        Item('jrdb.Trainer.lic_acquired_yr', '初免許年', 4, 75, notes='YYYY'),
+        Item('jrdb.Trainer.jrdb_comment', '調教師コメント', 40, 79, notes='ＪＲＤＢスタッフの厩舎見解'),
+        Item('jrdb.Trainer.jrdb_comment_date', 'コメント入力年月日', 8, 119, notes='調教師コメントを入力した年月日', date_fmt='%Y%m%d'),
+        Item('jrdb.Trainer.cur_yr_leading', '本年リーディング', 3, 127),
+        Item('jrdb.Trainer.cur_yr_flat_r', '本年平地成績', 12, 130, notes='１－２－３－着外(3*4)'),
+        Item('jrdb.Trainer.cur_yr_obst_r', '本年障害成績', 12, 142, notes='１－２－３－着外(3*4)'),
+        Item('jrdb.Trainer.cur_yr_sp_wins', '本年特別勝数', 3, 154),
+        Item('jrdb.Trainer.cur_yr_hs_wins', '本年重賞勝数', 3, 157),
+        Item('jrdb.Trainer.prev_yr_leading', '昨年リーディング', 3, 160),
+        Item('jrdb.Trainer.prev_yr_flat_r', '昨年平地成績', 12, 163, notes='１－２－３－着外(3*4)'),
+        Item('jrdb.Trainer.prev_yr_obst_r', '昨年障害成績', 12, 175, notes='１－２－３－着外(3*4)'),
+        Item('jrdb.Trainer.prev_yr_sp_wins', '昨年特別勝数', 3, 187),
+        Item('jrdb.Trainer.prev_yr_hs_wins', '昨年重賞勝数', 3, 190),
+        Item('jrdb.Trainer.sum_flat_r', '通算平地成績', 20, 193, notes='１－２－３－着外(5*4)'),
+        Item('jrdb.Trainer.sum_obst_r', '通算障害成績', 20, 213, notes='１－２－３－着外(5*4)'),
+        Item('jrdb.Trainer.jrdb_saved_on', 'データ年月日', 8, 233, notes='YYYYMMDD', date_fmt='%Y%m%d'),
+        Item('reserved', '予備', 29, 241, notes='スペース', use=False),
+        Item('newline', '改行', 2, 270, notes='ＣＲ・ＬＦ', use=False),
     ]
 
-    def clean(self):
-        t = self.df[~self.df.name.str.contains('削除')]
+    def clean(self) -> pd.DataFrame:
+        self.df = self.df[~self.df.name.str.contains('削除')]
+        return super().clean()
 
-        code = t.code.str.strip()
-        code.name = 'code'
+    def clean_cur_yr_flat_r(self):
+        return self.df.cur_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
 
-        df = code.to_frame()
+    def clean_cur_yr_obst_r(self):
+        return self.df.cur_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
 
-        df['retired_on'] = t.retired_on.apply(parse_date, args=('%Y%m%d',))
-        df['name'] = t.name.str.strip()
-        df['name_kana'] = t.name_kana.str.strip()
-        df['name_abbr'] = t.name_abbr.str.strip()
+    def clean_prev_yr_flat_r(self):
+        return self.df.prev_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
 
-        df['area'] = t.area.map(AREA.get_key_map())
-        df['training_center_name'] = t.training_center_name.str.strip()
-        df['birthday'] = t.birthday.apply(parse_date, args=('%Y%m%d',))
-        df['lic_acquired_yr'] = t.lic_acquired_yr.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        df['jrdb_comment'] = t.jrdb_comment.str.strip()
-        df['jrdb_comment_date'] = t.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))
+    def clean_prev_yr_obst_r(self):
+        return self.df.prev_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
 
-        df['cur_yr_leading'] = t.cur_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        df['cur_yr_flat_r'] = t.cur_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['cur_yr_obst_r'] = t.cur_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['cur_yr_sp_wins'] = t.cur_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-        df['cur_yr_hs_wins'] = t.cur_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
+    def clean_sum_flat_r(self):
+        return self.df.sum_flat_r.apply(parse_comma_separated_integer_list, args=(5,))
 
-        df['prev_yr_leading'] = t.prev_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        df['prev_yr_flat_r'] = t.prev_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['prev_yr_obst_r'] = t.prev_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['prev_yr_sp_wins'] = t.prev_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-        df['prev_yr_hs_wins'] = t.prev_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-
-        df['sum_flat_r'] = t.sum_flat_r.apply(parse_comma_separated_integer_list, args=(5,))
-        df['sum_obst_r'] = t.sum_obst_r.apply(parse_comma_separated_integer_list, args=(5,))
-
-        df['jrdb_saved_on'] = t.jrdb_saved_on.apply(parse_date, args=('%Y%m%d',))
-
-        return df
+    def clean_sum_obst_r(self):
+        return self.df.sum_obst_r.apply(parse_comma_separated_integer_list, args=(5,))
 
     @transaction.atomic
     def persist(self):
