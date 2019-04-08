@@ -120,14 +120,14 @@ class Race(BaseModel):
     )
 
     # betting ticket sales
-    issued_bt_win = models.BooleanField(null=True)
-    issued_bt_show = models.BooleanField(null=True)
-    issued_bt_bracket_quinella = models.BooleanField(null=True)
-    issued_bt_quinella = models.BooleanField(null=True)
-    issued_bt_exacta = models.BooleanField(null=True)
-    issued_bt_duet = models.BooleanField(null=True)
-    issued_bt_trio = models.BooleanField(null=True)
-    issued_bt_trifecta = models.BooleanField(null=True)
+    sold_win = models.BooleanField(null=True)
+    sold_show = models.BooleanField(null=True)
+    sold_bracket_quinella = models.BooleanField(null=True)
+    sold_quinella = models.BooleanField(null=True)
+    sold_exacta = models.BooleanField(null=True)
+    sold_duet = models.BooleanField(null=True)
+    sold_trio = models.BooleanField(null=True)
+    sold_trifecta = models.BooleanField(null=True)
 
     track_speed_shift = models.SmallIntegerField(null=True)
 

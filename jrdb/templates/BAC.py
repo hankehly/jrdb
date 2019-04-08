@@ -25,40 +25,22 @@ class BAC(Template):
         Item('jrdb.Race.round', '回', 1, 4),
         Item('jrdb.Race.day', '日', 1, 5),
         Item('jrdb.Race.num', 'Ｒ', 2, 6),
-
         Item('start_date', '年月日', 8, 8, notes='YYYYMMDD'),
         Item('start_time', '発走時間', 4, 16, notes='HHMM', use=False),
-
         Item('jrdb.Race.distance', '距離', 4, 20),
-
-        Item('jrdb.Race.surface', '芝ダ障害コード', 1, 24, notes='1:芝, 2:ダート, 3:障害',
-             options=choices.SURFACE.options()),
-
+        Item('jrdb.Race.surface', '芝ダ障害コード', 1, 24, notes='1:芝, 2:ダート, 3:障害', options=choices.SURFACE.options()),
         Item('jrdb.Race.direction', '右左', 1, 25, notes='1:右, 2:左, 3:直, 9:他', options=choices.DIRECTION.options()),
-
-        Item('jrdb.Race.course_inout', '内外', 1, 26,
-             notes='1:通常(内), 2:外, 3,直ダ, 9:他\n※障害のトラックは、以下の２通りとなります。\n"393":障害直線ダート\n"391":障害直線芝',
-             options=choices.COURSE_INOUT.options()),
-
-        Item('jrdb.Race.category', '種別', 2, 27, notes='４歳以上等、→JRDBデータコード表',
-             options=choices.RACE_CATEGORY.options()),
-
+        Item('jrdb.Race.course_inout', '内外', 1, 26, options=choices.COURSE_INOUT.options(), notes='1:通常(内), 2:外, 3,直ダ, 9:他\n※障害のトラックは、以下の２通りとなります。\n"393":障害直線ダート\n"391":障害直線芝'),
+        Item('jrdb.Race.category', '種別', 2, 27, notes='４歳以上等、→JRDBデータコード表', options=choices.RACE_CATEGORY.options()),
         Item('jrdb.Race.cond.value', '条件', 2, 29, notes='900万下等、 →JRDBデータコード表'),
         Item('symbols', '記号', 2, 31, notes='○混等、 →JRDBデータコード表'),
-        Item('jrdb.Race.impost_class', '重量', 1, 34, notes='ハンデ等、 →JRDBデータコード表',
-             options=choices.IMPOST_CLASS.options()),
-
+        Item('jrdb.Race.impost_class', '重量', 1, 34, notes='ハンデ等、 →JRDBデータコード表', options=choices.IMPOST_CLASS.options()),
         Item('jrdb.Race.grade', 'グレード', 1, 35, notes='Ｇ１等 →JRDBデータコード表', options=choices.GRADE.options()),
         Item('jrdb.Race.name', 'レース名', 50, 36, notes='レース名の通称（全角２５文字）'),
         Item('jrdb.Race.nth_occurrence', '回数', 8, 86, notes='第ZZ9回（全角半角混在）'),
         Item('jrdb.Race.contender_count', '頭数', 2, 94),
-
-        Item('jrdb.Race.course_label', 'コース', 1, 96, notes='1:A, 2:A1, 3:A2, 4:B, 5:C, 6:D',
-             options=choices.COURSE_LABEL.options()),
-
-        Item('jrdb.Race.host_category', '開催区分', 1, 97, notes='1:関東, 2:関西, 3:ローカル',
-             options=choices.HOST_CATEGORY.options()),
-
+        Item('jrdb.Race.course_label', 'コース', 1, 96, notes='1:A, 2:A1, 3:A2, 4:B, 5:C, 6:D', options=choices.COURSE_LABEL.options()),
+        Item('jrdb.Race.host_category', '開催区分', 1, 97, notes='1:関東, 2:関西, 3:ローカル', options=choices.HOST_CATEGORY.options()),
         Item('jrdb.Race.name_abbr', 'レース名短縮', 8, 98, notes='全角４文字'),
         Item('jrdb.Race.name_short', 'レース名９文字', 18, 106, notes='全角９文字'),
         Item('data_category', 'データ区分', 1, 124, notes='1:特別登録, 2:想定確定, 3:前日', use=False),
@@ -69,10 +51,8 @@ class BAC(Template):
         Item('jrdb.Race.p5_purse', '５着賞金', 5, 145, notes='単位（万円）'),
         Item('jrdb.Race.p1_prize', '１着算入賞金', 5, 150, notes='単位（万円）'),
         Item('jrdb.Race.p2_prize', '２着算入賞金', 5, 155, notes='単位（万円）'),
-
         Item('betting_ticket_sale_flag', '馬券発売フラグ', 16, 160, notes='1:発売, 0:発売無し'),
         Item('jrdb.Race.win5', 'WIN5フラグ', 1, 176, notes='1～5'),
-
         Item('reserved', '予備', 5, 177, notes='スペース', use=False),
         Item('newline', '改行', 2, 182, notes='ＣＲ・ＬＦ', use=False),
     ]
@@ -110,14 +90,14 @@ class BAC(Template):
         9-16バイト目　予備
         """
         column_map = {
-            0: 'issued_bt_win',
-            1: 'issued_bt_show',
-            2: 'issued_bt_bracket_quinella',
-            3: 'issued_bt_quinella',
-            4: 'issued_bt_exacta',
-            5: 'issued_bt_duet',
-            6: 'issued_bt_trio',
-            7: 'issued_bt_trifecta'
+            0: 'sold_win',
+            1: 'sold_show',
+            2: 'sold_bracket_quinella',
+            3: 'sold_quinella',
+            4: 'sold_exacta',
+            5: 'sold_duet',
+            6: 'sold_trio',
+            7: 'sold_trifecta'
         }
 
         return self.df.betting_ticket_sale_flag.str.strip() \
