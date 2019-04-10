@@ -83,12 +83,7 @@ class Template(ABC):
 
         for name in self.df:
             item = [i for i in self.items if i.symbol == name][0]
-
-            handler = 'clean_' + name
-            if hasattr(self, handler):
-                df = df.join(getattr(self, handler)())
-
-            item.clean(self.df[name])
+            df[name] = item.clean(self.df[name])
 
         return df
 
