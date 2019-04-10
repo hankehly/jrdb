@@ -13,43 +13,6 @@ from jrdb.templates.parse import parse_int_or, parse_date
 logger = logging.getLogger(__name__)
 
 
-@dataclasses.dataclass
-class Item:
-    symbol: str
-    label: str
-    width: int
-    start: int
-
-    repeat: int = 0
-    notes: str = ''
-    use: bool = True
-    options: dict = None
-    date_fmt: str = ''
-
-    @property
-    def key(self):
-        return self.symbol.split('.').pop()
-
-    def get_model(self):
-        model = '.'.join(self.symbol.split('.')[:2])
-        return apps.get_model(model)
-
-    def get_field(self):
-        comps = self.symbol.split('.')[2:]
-        return self.get_model()._meta.get_field(comps[0])
-
-    def get_foreign_column_name(self):
-        if self.get_field().get_internal_type() == 'ForeignKey':
-            comps = self.symbol.split('.')
-            if len(comps) == 4:
-                return comps[3]
-        return None
-
-
-# class DateItem(Item):
-#     format: str
-
-
 class Template(ABC):
     name = ''
     items = []
@@ -75,7 +38,7 @@ class Template(ABC):
         """
         cols = []
         for item in self.items:
-            cols.append(item.key)
+            cols.append(item.symbol)
         return cols
 
     def parse(self) -> 'Template':
@@ -119,41 +82,13 @@ class Template(ABC):
         df = pd.DataFrame(index=self.df.index)
 
         for name in self.df:
-            item = [i for i in self.items if i.key == name][0]
-            if not item.use:
-                continue
+            item = [i for i in self.items if i.symbol == name][0]
 
             handler = 'clean_' + name
             if hasattr(self, handler):
                 df = df.join(getattr(self, handler)())
-            else:
-                field = item.get_field()
-                internal_type = field.get_internal_type()
-                sr = self.df[name]
 
-                if internal_type == 'ForeignKey':
-                    if hasattr(field.remote_field.model, 'key2id'):
-                        df[field.column] = field.remote_field.model.key2id(sr)
-                    else:
-                        column = item.get_foreign_column_name()
-                        remote_records = field.remote_field.model.objects \
-                            .filter(**{f'{column}__in': sr}) \
-                            .values(column, 'id')
-                        df[field.column] = sr.map({o[column]: o['id'] for o in remote_records})
-                    df[field.column].name = field.column
-                elif internal_type == 'PositiveSmallIntegerField':
-                    if field.null:
-                        df[name] = sr.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-                    else:
-                        df[name] = sr.astype(int)
-                elif internal_type in ['CharField', 'TextField']:
-                    strip = sr.str.strip()
-                    if field.choices:
-                        df[name] = strip.map(item.options)
-                    else:
-                        df[name] = strip
-                elif internal_type == 'DateField':
-                    df[name] = sr.apply(parse_date, args=(item.date_fmt,))
+            item.clean(self.df[name])
 
         return df
 

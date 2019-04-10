@@ -21,23 +21,23 @@ class SRB(Template):
         Item('jrdb.Race.day', '日', 1, 5),
         Item('jrdb.Race.num', 'Ｒ', 2, 6),
 
-        Item('furlong_time', 'ハロンタイム', 3, 8, repeat=18, notes='3*18=54BYTE 先頭馬の１ハロン毎のタイム 0.1秒単位　※１', use=False),
-        Item('c1pos', '１コーナー', 64, 62, use=False),
-        Item('c2pos', '２コーナー', 64, 126, use=False),
-        Item('c3pos', '３コーナー', 64, 190, use=False),
-        Item('c4pos', '４コーナー', 64, 254, use=False),
-        Item('pace_up_pos', 'ペースアップ位置', 2, 318, notes='残りハロン数', use=False),
+        # Item('furlong_time', 'ハロンタイム', 3, 8, repeat=18, drop=True),
+        # Item('c1pos', '１コーナー', 64, 62, drop=True),
+        # Item('c2pos', '２コーナー', 64, 126, drop=True),
+        # Item('c3pos', '３コーナー', 64, 190, drop=True),
+        # Item('c4pos', '４コーナー', 64, 254, drop=True),
+        # Item('pace_up_pos', 'ペースアップ位置', 2, 318, drop=True),
 
-        Item('jrdb.Race.c1_track_bias', 'トラックバイアス（１角）', 3, 320, notes='（内、中、外）'),
-        Item('jrdb.Race.c2_track_bias', 'トラックバイアス（２角）', 3, 323, notes='（内、中、外）'),
-        Item('jrdb.Race.bs_track_bias', 'トラックバイアス（向正）', 3, 326, notes='（内、中、外）'),
-        Item('jrdb.Race.c3_track_bias', 'トラックバイアス（３角）', 3, 329, notes='（内、中、外）'),
-        Item('jrdb.Race.c4_track_bias', 'トラックバイアス（４角）', 5, 332, notes='（最内、内、中、外、大外）'),
-        Item('jrdb.Race.hs_track_bias', 'トラックバイアス（直線）', 5, 337, notes='（最内、内、中、外、大外）'),
+        Item('jrdb.Race.c1_track_bias', 'トラックバイアス（１角）', 3, 320),
+        Item('jrdb.Race.c2_track_bias', 'トラックバイアス（２角）', 3, 323),
+        Item('jrdb.Race.bs_track_bias', 'トラックバイアス（向正）', 3, 326),
+        Item('jrdb.Race.c3_track_bias', 'トラックバイアス（３角）', 3, 329),
+        Item('jrdb.Race.c4_track_bias', 'トラックバイアス（４角）', 5, 332),
+        Item('jrdb.Race.hs_track_bias', 'トラックバイアス（直線）', 5, 337),
         Item('jrdb.Race.comment', 'レースコメント', 500, 342),
 
-        Item('reserved', '予備', 8, 842, notes='スペース', use=False),
-        Item('newline', '改行', 2, 850, notes='ＣＲ・ＬＦ', use=False),
+        # Item('reserved', '予備', 8, 842, notes='スペース', drop=True),
+        # Item('newline', '改行', 2, 850, notes='ＣＲ・ＬＦ', drop=True),
     ]
 
     def clean_c1_track_bias(self):

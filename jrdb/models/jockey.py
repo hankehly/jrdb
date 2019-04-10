@@ -1,8 +1,7 @@
 from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 
-from jrdb.models import BaseModel
-from jrdb.models.choices import AREA, TRAINEE_CATEGORY
+from jrdb.models import BaseModel, choices
 
 
 class Jockey(BaseModel):
@@ -12,11 +11,11 @@ class Jockey(BaseModel):
     name = models.CharField(max_length=12, null=True)
     name_kana = models.CharField(max_length=30, null=True)
     name_abbr = models.CharField(max_length=6, null=True)
-    area = models.CharField(max_length=255, choices=AREA.CHOICES(), null=True)
+    area = models.CharField(max_length=255, choices=choices.AREA.CHOICES(), null=True)
     training_center_name = models.CharField(max_length=4, null=True)
     birthday = models.DateField(null=True)
     lic_acquired_yr = models.PositiveIntegerField(null=True)
-    trainee_cat = models.CharField(max_length=255, choices=TRAINEE_CATEGORY.CHOICES(), null=True)
+    trainee_cat = models.CharField(max_length=255, choices=choices.TRAINEE_CATEGORY.CHOICES(), null=True)
     jrdb_comment = models.CharField(max_length=40, null=True)
     jrdb_comment_date = models.DateField(null=True)
     cur_yr_leading = models.PositiveIntegerField(null=True)
