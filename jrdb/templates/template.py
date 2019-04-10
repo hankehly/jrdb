@@ -6,7 +6,7 @@ from typing import List, Any
 import numpy as np
 import pandas as pd
 
-from jrdb.templates.item import IntegerListItem, ModelItem, InvokeItem
+from jrdb.templates.item import ArrayItem
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +64,7 @@ class Template(ABC):
 
     def parse_item(self, line: bytes, item: Any) -> List[bytes]:
         row = []
-        if isinstance(item, IntegerListItem):
+        if isinstance(item, ArrayItem):
             for i in range(item.n):
                 start = item.start + (item.width * i)
                 stop = start + item.width

@@ -1,18 +1,20 @@
+import re
 from abc import ABC
 from dataclasses import dataclass
-from typing import Optional, Union, Any, Callable, Tuple, Dict
+from typing import Optional, Union, Any, Callable, Tuple, Dict, List
 
 import numpy as np
 import pandas as pd
 from django.apps import apps
 
 MODEL_ITEM_FIELD_MAP: Dict[str, Tuple[str]] = {
-    'IntegerItem': ('PositiveSmallIntegerField', 'SmallIntegerField'),
+    'IntegerItem': ('PositiveSmallIntegerField', 'SmallIntegerField', 'PositiveIntegerField'),
     'StringItem': ('CharField', 'TextField'),
     'DateItem': ('DateField',),
     'ForeignKeyItem': ('ForeignKey',),
     'DateTimeItem': ('DateTimeField',),
-    'ChoiceItem': ('CharField',)
+    'ChoiceItem': ('CharField',),
+    'ArrayItem': ('ArrayField',)
 }
 
 
@@ -74,14 +76,21 @@ class IntegerItem(ModelItem):
 
 
 @dataclass(eq=False, frozen=True)
-class IntegerListItem(ModelItem):
+class ArrayItem(ModelItem):
     """
     It would be nicer to figure this out dynamically by the width
+
+    TODO: Handle non-integer types
     """
     n: int
 
+    def _parse_comma_separated_integer_list(self, value) -> List[int]:
+        regexp = r'.{' + str(self.n) + r'}'
+        matches = map(str.strip, re.findall(regexp, value))
+        return [int(match) if match.isdigit() else 0 for match in matches]
+
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        pass
+        return s.apply(self._parse_comma_separated_integer_list)
 
     def _validate(self) -> None:
         super()._validate()
@@ -90,10 +99,10 @@ class IntegerListItem(ModelItem):
 
 @dataclass(eq=False, frozen=True)
 class ForeignKeyItem(ModelItem):
-    input_symbol: str
+    related_symbol: str
 
     def get_remote_field(self):
-        model, field = self.input_symbol.rsplit('.', maxsplit=1)
+        model, field = self.related_symbol.rsplit('.', maxsplit=1)
         return apps.get_model(model)._meta.get_field(field)
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
@@ -113,7 +122,7 @@ class ForeignKeyItem(ModelItem):
 
     def _validate(self) -> None:
         super()._validate()
-        assert len(self.input_symbol.split('.')) == 3
+        assert len(self.related_symbol.split('.')) == 3
 
 
 @dataclass(eq=False, frozen=True)
