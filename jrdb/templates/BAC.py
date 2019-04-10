@@ -8,30 +8,28 @@ from django.db import IntegrityError, transaction
 from jrdb.models import Race, choices
 from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
-from templates.item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem
+from jrdb.templates.item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem
 
 logger = logging.getLogger(__name__)
 
 
-def symbols(s):
-    df = s.copy().to_frame().drop(s.name)
-
-    df['horse_type_symbol'] = s.str[0].map(choices.RACE_HORSE_TYPE_SYMBOL.options())
-    df['horse_sex_symbol'] = s.str[1].map(choices.RACE_HORSE_SEX_SYMBOL.options())
-    df['interleague_symbol'] = s.str[2].map(choices.RACE_INTERLEAGUE_SYMBOL.options())
-
-    return df
+def symbols(s: pd.Series):
+    s1 = s.str[0].map(choices.RACE_HORSE_TYPE_SYMBOL.options()).rename('horse_type_symbol')
+    s2 = s.str[1].map(choices.RACE_HORSE_SEX_SYMBOL.options()).rename('horse_sex_symbol')
+    s3 = s.str[2].map(choices.RACE_INTERLEAGUE_SYMBOL.options()).rename('interleague_symbol')
+    return pd.concat([s1, s2, s3], axis='columns')
 
 
-def nth_occurrence(s):
+def nth_occurrence(s: pd.Series):
     # casting to float prior to Int64 is necessary
     # to convert strings to numbers
     return s.str.extract(r'([0-9]+)', expand=False) \
         .astype(float) \
-        .astype('Int64')
+        .astype('Int64') \
+        .rename('nth_occurrence')
 
 
-def betting_ticket_sale_flag(s):
+def betting_ticket_sale_flag(s: pd.Series):
     column_map = {
         0: 'sold_win',  # 単勝
         1: 'sold_show',  # 複勝

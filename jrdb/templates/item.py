@@ -1,15 +1,18 @@
 from abc import ABC
 from dataclasses import dataclass
-from typing import Optional, Union, Any, Callable
+from typing import Optional, Union, Any, Callable, Tuple, Dict
 
 import numpy as np
 import pandas as pd
 from django.apps import apps
 
-ITEM_FIELD_MAP = {
-    'IntegerItem': ['PositiveSmallIntegerField', 'SmallIntegerField'],
-    'StringItem': ['CharField', 'TextField'],
-    'DateItem': ['DateField']
+MODEL_ITEM_FIELD_MAP: Dict[str, Tuple[str]] = {
+    'IntegerItem': ('PositiveSmallIntegerField', 'SmallIntegerField'),
+    'StringItem': ('CharField', 'TextField'),
+    'DateItem': ('DateField',),
+    'ForeignKeyItem': ('ForeignKey',),
+    'DateTimeItem': ('DateTimeField',),
+    'ChoiceItem': ('CharField',)
 }
 
 
@@ -53,7 +56,7 @@ class ModelItem(Item, ABC):
     def _validate(self) -> None:
         super()._validate()
         assert len(self.symbol.split('.')) == 3
-        assert self.get_field().get_internal_type() in ITEM_FIELD_MAP.get(self.__class__.__name__)
+        assert self.get_field().get_internal_type() in MODEL_ITEM_FIELD_MAP.get(self.__class__.__name__)
 
 
 @dataclass(eq=False, frozen=True)
@@ -89,9 +92,9 @@ class IntegerListItem(ModelItem):
 class ForeignKeyItem(ModelItem):
     input_symbol: str
 
-    def get_remote_field_name(self):
-        _, field = self.input_symbol.rsplit('.', maxsplit=1)
-        return self.get_model()._meta.get_field(field)
+    def get_remote_field(self):
+        model, field = self.input_symbol.rsplit('.', maxsplit=1)
+        return apps.get_model(model)._meta.get_field(field)
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         field = self.get_field()
@@ -99,7 +102,7 @@ class ForeignKeyItem(ModelItem):
         if hasattr(field.remote_field.model, 'key2id'):
             return field.remote_field.model.key2id(s).rename(field.column)
 
-        remote_field_name = self.get_remote_field_name()
+        remote_field_name = self.get_remote_field().name
 
         remote_records = field.remote_field.model.objects \
             .filter(**{f'{remote_field_name}__in': s}) \
@@ -148,3 +151,6 @@ class ChoiceItem(ModelItem):
 @dataclass(eq=False, frozen=True)
 class InvokeItem(Item):
     handler: Callable
+
+    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        return self.handler(s)

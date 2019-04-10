@@ -1,14 +1,12 @@
-import dataclasses
 import logging
 from abc import ABC
 from pprint import pprint
-from typing import List
+from typing import List, Any
 
 import numpy as np
 import pandas as pd
-from django.apps import apps
 
-from jrdb.templates.parse import parse_int_or, parse_date
+from jrdb.templates.item import IntegerListItem, ModelItem, InvokeItem
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +36,7 @@ class Template(ABC):
         """
         cols = []
         for item in self.items:
-            cols.append(item.symbol)
+            cols.append(item.key)
         return cols
 
     def parse(self) -> 'Template':
@@ -64,10 +62,10 @@ class Template(ABC):
         self.df = pd.DataFrame(rows, columns=self.colnames)
         return self
 
-    def parse_item(self, line: bytes, item: Item) -> List[bytes]:
+    def parse_item(self, line: bytes, item: Any) -> List[bytes]:
         row = []
-        if item.repeat > 0:
-            for i in range(item.repeat):
+        if isinstance(item, IntegerListItem):
+            for i in range(item.n):
                 start = item.start + (item.width * i)
                 stop = start + item.width
                 cell = line[start:stop]
@@ -79,13 +77,11 @@ class Template(ABC):
         return row
 
     def clean(self) -> pd.DataFrame:
-        df = pd.DataFrame(index=self.df.index)
-
+        arr = []
         for name in self.df:
-            item = [i for i in self.items if i.symbol == name][0]
-            df[name] = item.clean(self.df[name])
-
-        return df
+            item = next(item for item in self.items if item.key == name)
+            arr.append(item.clean(self.df[name]))
+        return pd.concat(arr, axis='columns')
 
     def persist(self) -> None:
         raise NotImplementedError
