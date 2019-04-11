@@ -78,24 +78,18 @@ class IntegerItem(ModelItem):
 @dataclass(eq=False, frozen=True)
 class ArrayItem(ModelItem):
     """
-    It would be nicer to figure this out dynamically by the width
-
+    TODO: Find size based on width (assuming target is greatest possible denominator)
     TODO: Handle non-integer types
     """
-    # base_type: int
+    # base_type: Any
     size: int
 
     @property
     def element_width(self) -> int:
         return int(self.width / self.size)
 
-    def _parse_integer_list(self, value) -> List[int]:
-        regexp = r'.{' + str(self.size) + r'}'
-        matches = map(str.strip, re.findall(regexp, value))
-        return [int(match) if match.isdigit() else 0 for match in matches]
-
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        return s.apply(self._parse_integer_list)
+        return s.apply(lambda a: [int(el) if el.isdigit() else 0 for el in map(str.strip, a)])
 
     def _validate(self) -> None:
         super()._validate()
@@ -136,7 +130,7 @@ class DateItem(ModelItem):
     format: str = '%Y%m%d'
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        return pd.to_datetime(s, format=self.format).dt.date
+        return pd.to_datetime(s, format=self.format, errors='coerce').dt.date
 
 
 @dataclass(eq=False, frozen=True)

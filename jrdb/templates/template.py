@@ -21,23 +21,15 @@ class Template(ABC):
 
     @property
     def df(self) -> pd.DataFrame:
-        if not isinstance(self._df, pd.DataFrame):
+        if self._df is None:
             raise ValueError(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.parse.')
         return self._df
 
     @df.setter
-    def df(self, value: pd.DataFrame):
+    def df(self, value):
+        if not isinstance(value, pd.DataFrame):
+            raise ValueError(f'df must be type DataFrame, got {type(value)}')
         self._df = value
-
-    @property
-    def colnames(self) -> List[str]:
-        """
-        Provide a list of str column names that match self.df column count.
-        """
-        cols = []
-        for item in self.items:
-            cols.append(item.key)
-        return cols
 
     def parse(self) -> 'Template':
         """
@@ -59,7 +51,7 @@ class Template(ABC):
                     else:
                         row.append(encoded)
                 rows.append(row)
-        self.df = pd.DataFrame(rows, columns=self.colnames)
+        self.df = pd.DataFrame(rows, columns=[item.key for item in self.items])
         return self
 
     def parse_item(self, line: bytes, item: Any) -> List[bytes]:

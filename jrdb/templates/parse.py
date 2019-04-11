@@ -3,6 +3,7 @@ import re
 from typing import Optional, List
 
 import numpy as np
+import pandas as pd
 
 
 def parse_date(value, format) -> Optional[datetime.date]:
@@ -33,4 +34,4 @@ def parse_float_or(value: str, default=None) -> Optional[float]:
 
 
 def filter_na(obj: dict) -> dict:
-    return {k: v for k, v in obj.items() if v not in [None, np.nan]}
+    return {k: v for k, v in obj.items() if v not in [None, np.nan, pd.NaT]}
