@@ -82,19 +82,25 @@ class ArrayItem(ModelItem):
 
     TODO: Handle non-integer types
     """
-    n: int
+    # base_type: int
+    size: int
 
-    def _parse_comma_separated_integer_list(self, value) -> List[int]:
-        regexp = r'.{' + str(self.n) + r'}'
+    @property
+    def element_width(self) -> int:
+        return int(self.width / self.size)
+
+    def _parse_integer_list(self, value) -> List[int]:
+        regexp = r'.{' + str(self.size) + r'}'
         matches = map(str.strip, re.findall(regexp, value))
         return [int(match) if match.isdigit() else 0 for match in matches]
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        return s.apply(self._parse_comma_separated_integer_list)
+        return s.apply(self._parse_integer_list)
 
     def _validate(self) -> None:
         super()._validate()
-        assert self.n > 0
+        assert self.size >= 0, f'size must be greater than or equal to zero <size: {self.size}>'
+        assert self.width % self.size == 0, f'width must be divisible by size <width: {self.width}, size: {self.size}>'
 
 
 @dataclass(eq=False, frozen=True)

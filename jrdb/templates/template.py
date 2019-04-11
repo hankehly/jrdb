@@ -22,11 +22,11 @@ class Template(ABC):
     @property
     def df(self) -> pd.DataFrame:
         if isinstance(self._df, pd.DataFrame):
-            return self._df.copy()
+            return self._df
         raise ValueError(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.parse.')
 
     @df.setter
-    def df(self, value):
+    def df(self, value: pd.DataFrame):
         self._df = value
 
     @property
@@ -65,9 +65,9 @@ class Template(ABC):
     def parse_item(self, line: bytes, item: Any) -> List[bytes]:
         row = []
         if isinstance(item, ArrayItem):
-            for i in range(item.n):
-                start = item.start + (item.width * i)
-                stop = start + item.width
+            for i in range(item.size):
+                start = item.start + (item.element_width * i)
+                stop = start + item.element_width
                 cell = line[start:stop]
                 row.append(cell)
         else:
