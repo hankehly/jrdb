@@ -18,7 +18,7 @@ class CZA(Template):
     name = '全調教師'
     items = [
         StringItem('調教師コード', 5, 0, 'jrdb.Trainer.code'),
-        # Item('is_retired', '登録抹消フラグ', 1, 5),
+        # 'is_retired', '登録抹消フラグ', width=1, start=5
         DateItem('登録抹消年月日', 8, 6, 'jrdb.Trainer.retired_on'),
         StringItem('調教師名', 12, 14, 'jrdb.Trainer.name'),
         StringItem('調教師カナ', 30, 26, 'jrdb.Trainer.name_kana'),

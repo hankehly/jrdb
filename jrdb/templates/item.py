@@ -101,6 +101,10 @@ class ArrayItem(ModelItem):
 class ForeignKeyItem(ModelItem):
     related_symbol: str
 
+    @property
+    def key(self) -> str:
+        return self.get_field().name + '_' + self.get_remote_field().name
+
     def get_remote_field(self):
         model, field = self.related_symbol.rsplit('.', maxsplit=1)
         return apps.get_model(model)._meta.get_field(field)
