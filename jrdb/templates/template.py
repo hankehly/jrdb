@@ -21,9 +21,9 @@ class Template(ABC):
 
     @property
     def df(self) -> pd.DataFrame:
-        if isinstance(self._df, pd.DataFrame):
-            return self._df
-        raise ValueError(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.parse.')
+        if not isinstance(self._df, pd.DataFrame):
+            raise ValueError(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.parse.')
+        return self._df
 
     @df.setter
     def df(self, value: pd.DataFrame):
