@@ -3,12 +3,10 @@ import math
 
 import numpy as np
 import pandas as pd
-from django.db import IntegrityError, transaction
 
-from jrdb.models import Race, choices
-from jrdb.templates.parse import filter_na
-from jrdb.templates.template import Template
-from jrdb.templates.item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem
+from ..models import choices
+from .item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem
+from .template import Template, RacePersistMixin
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +47,7 @@ def betting_ticket_sale_flag(s: pd.Series):
         .rename(columns=column_map)
 
 
-class BAC(Template):
+class BAC(Template, RacePersistMixin):
     """
     レース番組情報
 
@@ -90,22 +88,3 @@ class BAC(Template):
         InvokeItem('馬券発売フラグ', 16, 160, betting_ticket_sale_flag),
         IntegerItem('WIN5フラグ', 1, 176, 'jrdb.Race.win5'),
     ]
-
-    @transaction.atomic
-    def persist(self):
-        df = self.clean()
-        for row in df.to_dict('records'):
-            race = filter_na(row)
-
-            unique_key = {
-                'racetrack_id': race.pop('racetrack_id'),
-                'yr': race.pop('yr'),
-                'round': race.pop('round'),
-                'day': race.pop('day'),
-                'num': race.pop('num')
-            }
-
-            try:
-                Race.objects.update_or_create(**unique_key, defaults=race)
-            except IntegrityError as e:
-                logger.exception(e)

@@ -1,12 +1,14 @@
 import logging
 from abc import ABC
-from pprint import pprint
 from typing import List, Any
 
 import numpy as np
 import pandas as pd
+from django.db import transaction, IntegrityError
 
-from jrdb.templates.item import ArrayItem
+from ..models import Race
+from .item import ArrayItem
+from .parse import filter_na
 
 logger = logging.getLogger(__name__)
 
@@ -77,3 +79,22 @@ class Template(ABC):
 
     def persist(self) -> None:
         raise NotImplementedError
+
+
+class RacePersistMixin:
+
+    @transaction.atomic
+    def persist(self):
+        for row in self.clean().to_dict('records'):
+            race = filter_na(row)
+            lookup = {
+                'racetrack_id': race.pop('racetrack_id'),
+                'yr':           race.pop('yr'),
+                'round':        race.pop('round'),
+                'day':          race.pop('day'),
+                'num':          race.pop('num')
+            }
+            try:
+                Race.objects.update_or_create(**lookup, defaults=race)
+            except IntegrityError as e:
+                logger.exception(e)

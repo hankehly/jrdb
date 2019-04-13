@@ -1,12 +1,14 @@
 import logging
 
-from jrdb.templates.item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from jrdb.templates.OZ import OZ
+from django.template import Template
+
+from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
+from .template import RacePersistMixin
 
 logger = logging.getLogger(__name__)
 
 
-class OU(OZ):
+class OU(Template, RacePersistMixin):
     """
     http://www.jrdb.com/program/Ou/Oudata_doc.txt
     """

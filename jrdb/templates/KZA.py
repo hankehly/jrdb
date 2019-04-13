@@ -58,6 +58,7 @@ class KZA(Template):
                 # trainer_code is changed to trainer_id during ForeignKeyItem.clean
                 # and trainer_id is nan because there is no trainer
                 # we want to create the related records during persist
+                # only way to prevent this problem right now is to create Trainer records beforehand
                 if record.get('trainer_code'):
                     trainer, _ = Trainer.objects.get_or_create(code=record.pop('trainer_code'))
                     record['trainer_id'] = trainer.id

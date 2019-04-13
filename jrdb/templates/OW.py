@@ -1,8 +1,8 @@
 from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from .OZ import OZ
+from .template import RacePersistMixin, Template
 
 
-class OW(OZ):
+class OW(Template, RacePersistMixin):
     """
     http://www.jrdb.com/program/Oz/Owdata_doc.txt
     """

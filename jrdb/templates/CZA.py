@@ -3,10 +3,10 @@ import logging
 import pandas as pd
 from django.db import IntegrityError, transaction
 
-from jrdb.models import choices, Trainer
-from jrdb.templates.parse import filter_na
-from jrdb.templates.template import Template
-from jrdb.templates.item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
+from ..models import choices, Trainer
+from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
+from .parse import filter_na
+from .template import Template
 
 logger = logging.getLogger(__name__)
 

@@ -1,5 +1,4 @@
 from django.contrib.postgres.fields import ArrayField
-from django.core.validators import validate_comma_separated_integer_list
 from django.db import models
 
 from jrdb.models import BaseModel, choices
@@ -56,53 +55,12 @@ class Race(BaseModel):
     p2_prize = models.PositiveSmallIntegerField(null=True)
 
     # track bias
-    c1_track_bias = models.CharField(
-        max_length=255,
-        validators=[validate_comma_separated_integer_list],
-        verbose_name='Corner 1 track bias',
-        help_text='（内、中、外）',
-        null=True
-    )
-
-    c2_track_bias = models.CharField(
-        max_length=255,
-        validators=[validate_comma_separated_integer_list],
-        verbose_name='Corner 2 track bias',
-        help_text='（内、中、外）',
-        null=True
-    )
-
-    c3_track_bias = models.CharField(
-        max_length=255,
-        validators=[validate_comma_separated_integer_list],
-        verbose_name='Corner 3 track bias',
-        help_text='（内、中、外）',
-        null=True
-    )
-
-    c4_track_bias = models.CharField(
-        max_length=255,
-        validators=[validate_comma_separated_integer_list],
-        verbose_name='Corner 4 track bias',
-        help_text='（最内、内、中、外、大外）',
-        null=True
-    )
-
-    bs_track_bias = models.CharField(
-        max_length=255,
-        validators=[validate_comma_separated_integer_list],
-        verbose_name='Backstretch track bias',
-        help_text='（内、中、外）',
-        null=True
-    )
-
-    hs_track_bias = models.CharField(
-        max_length=255,
-        validators=[validate_comma_separated_integer_list],
-        verbose_name='Homestretch track bias',
-        help_text='（最内、内、中、外、大外）',
-        null=True
-    )
+    c1_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True)
+    c2_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True)
+    bs_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True, verbose_name='Backstretch track bias')
+    c3_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True)
+    c4_track_bias = ArrayField(models.SmallIntegerField(), size=5, null=True)
+    hs_track_bias = ArrayField(models.SmallIntegerField(), size=5, null=True, verbose_name='Homestretch track bias')
 
     # betting ticket sales
     sold_win = models.BooleanField(null=True)
