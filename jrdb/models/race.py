@@ -123,6 +123,10 @@ class Race(BaseModel):
     odds_trio = ArrayField(models.FloatField(null=True), size=816, null=True)
     odds_exacta = ArrayField(models.FloatField(null=True), size=306, null=True)
     odds_trifecta = ArrayField(models.FloatField(null=True), size=4896, null=True)
+    odds_duet = ArrayField(models.FloatField(null=True), size=153, null=True)
+    odds_win = ArrayField(models.FloatField(null=True), size=18, null=True)
+    odds_show = ArrayField(models.FloatField(null=True), size=18, null=True)
+    odds_quinella = ArrayField(models.FloatField(null=True), size=153, null=True)
 
     class Meta:
         db_table = 'races'

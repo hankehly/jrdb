@@ -27,4 +27,24 @@ class Migration(migrations.Migration):
             name='odds_trifecta',
             field=django.contrib.postgres.fields.ArrayField(base_field=models.FloatField(null=True), null=True, size=4896),
         ),
+        migrations.AddField(
+            model_name='race',
+            name='odds_duet',
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.FloatField(null=True), null=True, size=153),
+        ),
+        migrations.AddField(
+            model_name='race',
+            name='odds_win',
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.FloatField(null=True), null=True, size=18),
+        ),
+        migrations.AddField(
+            model_name='race',
+            name='odds_show',
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.FloatField(null=True), null=True, size=18),
+        ),
+        migrations.AddField(
+            model_name='race',
+            name='odds_quinella',
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.FloatField(null=True), null=True, size=153),
+        ),
     ]

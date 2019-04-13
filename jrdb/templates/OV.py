@@ -1,16 +1,12 @@
 import logging
 
-from django.db import IntegrityError, transaction
-
-from jrdb.models import Race
 from jrdb.templates.item import ArrayItem, IntegerItem, StringItem, ForeignKeyItem
-from jrdb.templates.parse import filter_na
-from jrdb.templates.template import Template
+from .OZ import OZ
 
 logger = logging.getLogger(__name__)
 
 
-class OV(Template):
+class OV(OZ):
     """
     http://www.jrdb.com/program/Ov/ovdata_doc.txt
     """
@@ -24,22 +20,3 @@ class OV(Template):
         IntegerItem('登録頭数', 2, 8, 'jrdb.Race.contender_count'),
         ArrayItem('３連単オッズ', 7 * 4896, 10, 'jrdb.Race.odds_trifecta', 4896)
     ]
-
-    @transaction.atomic
-    def persist(self):
-        df = self.clean()
-        for row in df.to_dict('records'):
-            race = filter_na(row)
-
-            unique_key = {
-                'racetrack_id': race.pop('racetrack_id'),
-                'yr': race.pop('yr'),
-                'round': race.pop('round'),
-                'day': race.pop('day'),
-                'num': race.pop('num')
-            }
-
-            try:
-                Race.objects.update_or_create(**unique_key, defaults=race)
-            except IntegrityError as e:
-                logger.exception(e)
