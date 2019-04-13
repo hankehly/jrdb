@@ -22,4 +22,9 @@ class Migration(migrations.Migration):
             name='odds_exacta',
             field=django.contrib.postgres.fields.ArrayField(base_field=models.FloatField(null=True), null=True, size=306),
         ),
+        migrations.AddField(
+            model_name='race',
+            name='odds_trifecta',
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.FloatField(null=True), null=True, size=4896),
+        ),
     ]

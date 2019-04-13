@@ -26,8 +26,9 @@ class Command(BaseCommand):
         self.success_count = 0
 
     def add_arguments(self, parser):
-        parser.add_argument('template', choices=['BAC', 'CSA', 'CZA', 'KSA', 'KZA', 'OT', 'OU', 'SED', 'SRB', 'UKC'],
-                            help='Template parser used during import.')
+        template_choices = ['BAC', 'CSA', 'CZA', 'KSA', 'KZA', 'OT', 'OU', 'OV', 'SED', 'SRB', 'UKC']
+        parser.add_argument('template', choices=template_choices, help='Template parser used during import.')
+
         parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')
         parser.add_argument('--threads', type=int, help='Threads to use during processing (default is 1)', default=1)
 

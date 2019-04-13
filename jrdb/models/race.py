@@ -122,6 +122,7 @@ class Race(BaseModel):
 
     odds_trio = ArrayField(models.FloatField(null=True), size=816, null=True)
     odds_exacta = ArrayField(models.FloatField(null=True), size=306, null=True)
+    odds_trifecta = ArrayField(models.FloatField(null=True), size=4896, null=True)
 
     class Meta:
         db_table = 'races'
