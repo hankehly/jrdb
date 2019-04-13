@@ -121,6 +121,7 @@ class Race(BaseModel):
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
 
     odds_trio = ArrayField(models.FloatField(null=True), size=816, null=True)
+    odds_exacta = ArrayField(models.FloatField(null=True), size=306, null=True)
 
     class Meta:
         db_table = 'races'
