@@ -1,4 +1,13 @@
+import logging
+
+from django.db import transaction, IntegrityError
+
+from jrdb.templates.item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
+from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
+from jrdb.models import Race
+
+logger = logging.getLogger(__name__)
 
 
 class OT(Template):
@@ -7,13 +16,30 @@ class OT(Template):
     """
     name = '３連複基準オッズデータ（OT）'
     items = [
-        ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['year', '年', None, '2', '99', '3', None],
-        ['round', '回', None, '1', '9', '5', None],
-        ['day', '日', None, '1', 'F', '6', '16進数(数字 or 小文字アルファベット)'],
-        ['race', 'Ｒ', None, '2', '99', '7', None],
-        ['contender_count', '登録頭数', None, '2', 'Z9', '9', None],
-        ['trio_odds', '３連複オッズ', '816', '6', 'ZZZ9.9', '11', '01-02-03 ～ 最後16-17-18\n6*816=4896BYTE\n取消時は 9999.9'],
-        ['reserved', '予備', None, '23', 'X', '248', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '851', 'ＣＲ・ＬＦ'],
+        ForeignKeyItem('場コード', 2, 0, 'jrdb.Race.racetrack', 'jrdb.Racetrack.code'),
+        IntegerItem('年', 2, 2, 'jrdb.Race.yr'),
+        IntegerItem('回', 1, 4, 'jrdb.Race.round'),
+        StringItem('日', 1, 5, 'jrdb.Race.day'),
+        IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
+        IntegerItem('登録頭数', 2, 8, 'jrdb.Race.contender_count'),
+        ArrayItem('３連複オッズ', 6 * 816, 10, 'jrdb.Race.odds_trio', 816),
     ]
+
+    @transaction.atomic
+    def persist(self):
+        df = self.clean()
+        for row in df.to_dict('records'):
+            race = filter_na(row)
+
+            unique_key = {
+                'racetrack_id': race.pop('racetrack_id'),
+                'yr': race.pop('yr'),
+                'round': race.pop('round'),
+                'day': race.pop('day'),
+                'num': race.pop('num')
+            }
+
+            try:
+                Race.objects.update_or_create(**unique_key, defaults=race)
+            except IntegrityError as e:
+                logger.exception(e)

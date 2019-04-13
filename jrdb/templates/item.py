@@ -1,14 +1,13 @@
-import re
 from abc import ABC
 from dataclasses import dataclass
-from typing import Optional, Union, Any, Callable, Tuple, Dict, List
+from typing import Optional, Union, Any, Callable, Tuple, Dict
 
-import numpy as np
 import pandas as pd
 from django.apps import apps
 
 MODEL_ITEM_FIELD_MAP: Dict[str, Tuple[str]] = {
     'IntegerItem': ('PositiveSmallIntegerField', 'SmallIntegerField', 'PositiveIntegerField'),
+    'FloatItem': ('FloatField',),
     'StringItem': ('CharField', 'TextField'),
     'DateItem': ('DateField',),
     'ForeignKeyItem': ('ForeignKey',),
@@ -16,6 +15,20 @@ MODEL_ITEM_FIELD_MAP: Dict[str, Tuple[str]] = {
     'ChoiceItem': ('CharField',),
     'ArrayItem': ('ArrayField',)
 }
+
+
+def parse_int_or(value: str, default: Optional[Any] = None) -> Optional[int]:
+    try:
+        return int(value)
+    except ValueError:
+        return default
+
+
+def parse_float_or(value: str, default: Optional[Any] = None) -> Optional[float]:
+    try:
+        return float(value)
+    except ValueError:
+        return default
 
 
 @dataclass(eq=False, frozen=True)
@@ -57,39 +70,56 @@ class ModelItem(Item, ABC):
 
     def _validate(self) -> None:
         super()._validate()
-        assert len(self.symbol.split('.')) == 3
-        assert self.get_field().get_internal_type() in MODEL_ITEM_FIELD_MAP.get(self.__class__.__name__)
+        assert len(self.symbol.split('.')) == 3, f'invalid symbol <{self.symbol}>'
+        assert self.get_field().get_internal_type() in MODEL_ITEM_FIELD_MAP.get(self.__class__.__name__), \
+            f"field <name: {self.get_field().name}, type: {self.get_field().get_internal_type()}> " + \
+            f"not found in MODEL_ITEM_FIELD_MAP['{self.__class__.__name__}']"
 
 
 @dataclass(eq=False, frozen=True)
 class IntegerItem(ModelItem):
-
-    @classmethod
-    def _parse_int_or(cls, value: str, default=None) -> Optional[int]:
-        try:
-            return int(value)
-        except ValueError:
-            return default
+    default: Optional[int] = None
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        return s.apply(self._parse_int_or, args=(np.nan,)).astype('Int64')
+        if self.get_field().null:
+            return s.apply(parse_int_or, args=(self.default,)).astype('Int64')
+
+        return s.astype(int)
+
+
+@dataclass(eq=False, frozen=True)
+class FloatItem(ModelItem):
+    default: Optional[float] = None
+
+    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        if self.get_field().null:
+            return s.apply(parse_float_or, args=(self.default,)).astype(float)
+
+        return s.astype(float)
 
 
 @dataclass(eq=False, frozen=True)
 class ArrayItem(ModelItem):
-    """
-    TODO: Find size based on width (assuming target is greatest possible denominator)
-    TODO: Handle non-integer types
-    """
-    # base_type: Any
     size: int
 
     @property
     def element_width(self) -> int:
         return int(self.width / self.size)
 
+    @property
+    def base_field(self):
+        return self.get_field().base_field
+
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        return s.apply(lambda a: [int(el) if el.isdigit() else 0 for el in map(str.strip, a)])
+        # TODO: Make clean logic from other items reusable in ArrayItem.clean
+        base_field_type = self.base_field.get_internal_type()
+
+        if base_field_type in MODEL_ITEM_FIELD_MAP['IntegerItem']:
+            return s.apply(lambda a: [int(el) if el.isdigit() else 0 for el in map(str.strip, a)])
+        elif base_field_type in MODEL_ITEM_FIELD_MAP['FloatItem']:
+            return s.apply(lambda a: pd.Series(a).apply(parse_float_or).tolist())
+
+        return s
 
     def _validate(self) -> None:
         super()._validate()
@@ -126,7 +156,7 @@ class ForeignKeyItem(ModelItem):
 
     def _validate(self) -> None:
         super()._validate()
-        assert len(self.related_symbol.split('.')) == 3
+        assert len(self.related_symbol.split('.')) == 3, f'invalid related symbol <{self.related_symbol}>'
 
 
 @dataclass(eq=False, frozen=True)
