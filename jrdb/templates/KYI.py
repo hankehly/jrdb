@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
 
-from jrdb.templates.template import Template
-from jrdb.models import choices, Racetrack, Race, Contender, Horse, Jockey, Trainer
-from jrdb.templates.parse import parse_int_or, parse_float_or
+from ..models import choices, Racetrack, Contender, Horse, Jockey, Trainer
+from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem
+from .parse import parse_int_or, parse_float_or
+from .template import Template
 
 
 class KYI(Template):
@@ -14,163 +15,157 @@ class KYI(Template):
     name = 'JRDB競走馬データ（KYI）'
     items = [
         # レースキー
-        [Race.racetrack, '場コード', None, '2', '99', '1', None],
-        [Race.yr, '年', None, '2', '99', '3', None],
-        [Race.round, '回', None, '1', '9', '5', None],
-        [Race.day, '日', None, '1', 'F', '6', '16進数(数字 or 小文字アルファベット)'],
-        [Race.num, 'Ｒ', None, '2', '99', '7', None],
-        [Contender.num, '馬番', None, '2', '99', '9', None],
-        [Horse.pedigree_reg_num, '血統登録番号', None, '8', 'X', '11', None],
-        [Horse.name, '馬名', None, '36', 'X', '19', '全角１８文字'],
+        ForeignKeyItem('場コード', 2, 0, 'jrdb.Race.racetrack', 'jrdb.Racetrack.code'),
+        IntegerItem('年', 2, 2, 'jrdb.Race.yr'),
+        IntegerItem('回', 1, 4, 'jrdb.Race.round'),
+        StringItem('日', 1, 5, 'jrdb.Race.day'),
+        IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
+        IntegerItem('馬番', 2, 8, 'jrdb.Contender.num'),
+        IntegerItem('血統登録番号', 8, 10, 'jrdb.Horse.pedigree_reg_num'),
+        IntegerItem('馬名', 36, 18, 'jrdb.Horse.name'),
 
-        [Contender.prel_IDM, 'ＩＤＭ', None, '5', 'ZZ9.9', '55', None],
-        [Contender.prel_jockey_idx, '騎手指数', None, '5', 'ZZ9.9', '60', None],
-        [Contender.prel_info_idx, '情報指数', None, '5', 'ZZ9.9', '65', None],
-        ['', '予備１', None, '5', 'ZZ9.9', '70', '将来拡張用'],
-        ['', '予備２', None, '5', 'ZZ9.9', '75', '将来拡張用'],
-        ['', '予備３', None, '5', 'ZZ9.9', '80', '将来拡張用'],
-        [Contender.prel_total_idx, '総合指数', None, '5', 'ZZ9.9', '85', None],
+        FloatItem('ＩＤＭ', 5, 54, 'jrdb.Contender.prel_IDM'),
+        FloatItem('騎手指数', 5, 59, 'jrdb.Contender.prel_jockey_idx'),
+        FloatItem('情報指数', 5, 64, 'jrdb.Contender.prel_info_idx'),
+        FloatItem('総合指数', 5, 84, 'jrdb.Contender.prel_total_idx'),
 
-        [Contender.prel_run_style, '脚質', None, '1', '9', '90', None],
-        [Contender.dist_apt, '距離適性', None, '1', '9', '91', None],
-        [Contender.prel_improvement, '上昇度', None, '1', '9', '92', None],
-        [Contender.rotation, 'ローテーション', None, '3', 'ZZ9', '93', '間に金曜日が入っている数で決定、連闘は０、初出走はスペースとなる'],
+        ChoiceItem('脚質', 1, 89, 'jrdb.Contender.prel_run_style', options=choices.RUNNING_STYLE.options()),
+        IntegerItem('距離適性', 1, 90, 'jrdb.Contender.dist_apt'),
+        ChoiceItem('上昇度', 1, 91, 'jrdb.Contender.prel_improvement', options=choices.IMPROVEMENT.options()),
+        IntegerItem('ローテーション', 3, 92, 'jrdb.Contender.rotation'),
 
-        [Contender.odds_win_base, '基準オッズ', None, '5', 'ZZ9.9', '96', None],
-        [Contender.pop_win_base, '基準人気順位', None, '2', 'Z9', '101', None],
-        [Contender.odds_show, '基準複勝オッズ', None, '5', 'ZZ9.9', '103', None],
-        [Contender.pop_show_base, '基準複勝人気順位', None, '2', 'Z9', '108', None],
-        [Contender.sym_sp_c_dbl, '特定情報◎', None, '3', 'ZZ9', '110', '情報・専門紙の印数（特定）'],
-        [Contender.sym_sp_c, '特定情報○', None, '3', 'ZZ9', '113', None],
-        [Contender.sym_sp_t_dark, '特定情報▲', None, '3', 'ZZ9', '116', None],
-        [Contender.sym_sp_t, '特定情報△', None, '3', 'ZZ9', '119', None],
-        [Contender.sym_sp_x, '特定情報×', None, '3', 'ZZ9', '122', None],
-        [Contender.sym_total_c_dbl, '総合情報◎', None, '3', 'ZZ9', '125', '情報・専門紙の印数（総合）'],
-        [Contender.sym_total_c, '総合情報○', None, '3', 'ZZ9', '128', None],
-        [Contender.sym_total_t_dark, '総合情報▲', None, '3', 'ZZ9', '131', None],
-        [Contender.sym_total_t, '総合情報△', None, '3', 'ZZ9', '134', None],
-        [Contender.sym_total_x, '総合情報×', None, '3', 'ZZ9', '137', None],
-        [Contender.prel_pop_idx, '人気指数', None, '5', 'ZZZZ9', '140', '第２版で変更'],
-        [Contender.prel_trainer_idx, '調教指数', None, '5', 'ZZ9.9', '145', None],
-        [Contender.prel_stable_idx, '厩舎指数', None, '5', 'ZZ9.9', '150', None],
+        FloatItem('基準オッズ', 5, 95, 'jrdb.Contender.odds_win_base'),
+        IntegerItem('基準人気順位', 2, 100, 'jrdb.Contender.pop_win_base'),
+        FloatItem('基準複勝オッズ', 5, 102, 'jrdb.Contender.odds_show'),
+        IntegerItem('基準複勝人気順位', 2, 107, 'jrdb.Contender.pop_show_base'),
+        IntegerItem('特定情報◎', 3, 109, 'jrdb.Contender.sym_sp_c_dbl'),
+        IntegerItem('特定情報○', 3, 112, 'jrdb.Contender.sym_sp_c'),
+        IntegerItem('特定情報▲', 3, 115, 'jrdb.Contender.sym_sp_t_dark'),
+        IntegerItem('特定情報△', 3, 118, 'jrdb.Contender.sym_sp_t'),
+        IntegerItem('特定情報×', 3, 121, 'jrdb.Contender.sym_sp_x'),
+        IntegerItem('総合情報◎', 3, 124, 'jrdb.Contender.sym_total_c_dbl'),
+        IntegerItem('総合情報○', 3, 127, 'jrdb.Contender.sym_total_c'),
+        IntegerItem('総合情報▲', 3, 130, 'jrdb.Contender.sym_total_t_dark'),
+        IntegerItem('総合情報△', 3, 133, 'jrdb.Contender.sym_total_t'),
+        IntegerItem('総合情報×', 3, 136, 'jrdb.Contender.sym_total_x'),
+        IntegerItem('人気指数', 5, 139, 'jrdb.Contender.prel_pop_idx'),
+        FloatItem('調教指数', 5, 144, 'jrdb.Contender.prel_trainer_idx'),
+        FloatItem('厩舎指数', 5, 149, 'jrdb.Contender.prel_stable_idx'),
         # ===以下第３版にて追加===
-        [Contender.trainer_outlook, '調教矢印コード', None, '1', '9', '155', None],
-        [Contender.stable_outlook, '厩舎評価コード', None, '1', '9', '156', None],
+        IntegerItem('調教矢印コード', 1, 154, 'jrdb.Contender.trainer_outlook'),
+        IntegerItem('厩舎評価コード', 1, 155, 'jrdb.Contender.stable_outlook'),
         # 騎手Ａが単勝基準オッズＢの馬に乗った場合の過去の成績を集計し、算出された連対率を騎手期待連対率としています。
-        [Contender.jockey_exp_1o2_place_rate, '騎手期待連対率', None, '4', 'Z9.9', '157', None],
+        FloatItem('騎手期待連対率', 4, 156, 'jrdb.Contender.jockey_exp_1o2_place_rate'),
         # ＪＲＤＢでの穴馬分析は激走指数
-        [Contender.flat_out_run_idx, '激走指数', None, '3', 'ZZ9', '161', None],
-        [Contender.paddock_observed_hoof, '蹄コード', None, '2', '99', '164', None],
-        [Contender.yield_track_apt, '重適性コード', None, '1', '9', '166', None],
-        ['race_class', 'クラスコード', None, '2', '99', '167', None],  # why is each horse different? IGNORED
-        ['', '予備', None, '2', 'X', '169', 'スペース'],
+        IntegerItem('激走指数', 3, 160, 'jrdb.Contender.flat_out_run_idx'),
+        ChoiceItem('蹄コード', 2, 163, 'jrdb.Contender.paddock_observed_hoof',
+                   options=choices.PADDOCK_OBSERVED_HOOF.options()),
+        IntegerItem('重適性コード', 1, 165, 'jrdb.Contender.yield_track_apt'),
+        # TODO: why is each horse different? IGNORE
+        # IntegerItem('jrdb.race_class', 'クラスコード', '2', '99', '167'),
         # ===以下第４版にて追加===
-        [Contender.blinker, 'ブリンカー', None, '1', 'X', '171', '1:初装着,2:再装着,3:ブリンカ'],
-        [Jockey.name, '騎手名', None, '12', 'X', '172', '全角６文字'],
-        [Contender.mounted_weight, '負担重量', None, '3', '999', '184', '0.1Kg単位'],
-        [Jockey.trainee_cat, '見習い区分', None, '1', '9', '187', '1:☆(1K減),2:△(2K減),3:▲(3K減)'],
-        [Trainer.name, '調教師名', None, '12', 'X', '188', '全角６文字'],
-        [Trainer.area, '調教師所属', None, '4', 'X', '200', '全角２文字'],
+        ChoiceItem('ブリンカー', 1, 170, 'jrdb.Contender.blinker', options=choices.BLINKER.options()),
+        StringItem('騎手名', 12, 171, 'jrdb.Jockey.name'),
+        FloatItem('負担重量', 3, 183, 'jrdb.Contender.mounted_weight'),
+        ChoiceItem('見習い区分', 1, 186, 'jrdb.Jockey.trainee_cat', options=choices.TRAINEE_CATEGORY.options()),
+        StringItem('調教師名', 12, 187, 'jrdb.Trainer.name'),
+        ChoiceItem('調教師所属', 4, 199, 'jrdb.Trainer.area', options=choices.AREA.options()),
         # 他データリンク用キー
-        ['', '前走１競走成績キー', None, '16', '9', '204', None],  # IGNORED
-        ['', '前走２競走成績キー', None, '16', '9', '220', None],  # IGNORED
-        ['', '前走３競走成績キー', None, '16', '9', '236', None],  # IGNORED
-        ['', '前走４競走成績キー', None, '16', '9', '252', None],  # IGNORED
-        ['', '前走５競走成績キー', None, '16', '9', '268', None],  # IGNORED
-        ['', '前走１レースキー', None, '8', '9', '284', None],  # IGNORED
-        ['', '前走２レースキー', None, '8', '9', '292', None],  # IGNORED
-        ['', '前走３レースキー', None, '8', '9', '300', None],  # IGNORED
-        ['', '前走４レースキー', None, '8', '9', '308', None],  # IGNORED
-        ['', '前走５レースキー', None, '8', '9', '316', None],  # IGNORED
-        [Contender.post_position, '枠番', None, '1', '9', '324', None],
-        ['', '予備', None, '2', 'X', '325', 'スペース'],
+        # '前走１競走成績キー', '16', '204'  # IGNORE
+        # '前走２競走成績キー', '16', '220'  # IGNORE
+        # '前走３競走成績キー', '16', '236'  # IGNORE
+        # '前走４競走成績キー', '16', '252'  # IGNORE
+        # '前走５競走成績キー', '16', '268'  # IGNORE
+        # '前走１レースキー', '8', '284'  # IGNORE
+        # '前走２レースキー', '8', '292'  # IGNORE
+        # '前走３レースキー', '8', '300'  # IGNORE
+        # '前走４レースキー', '8', '308'  # IGNORE
+        # '前走５レースキー', '8', '316'  # IGNORE
+        IntegerItem('枠番', 1, 323, 'jrdb.Contender.post_position'),
         # ===以下第５版にて追加===
         # 印コード
-        # [Contender.sym_overall, '総合印', None, '1', '9', '327', '印コード'],
-        # [Contender.sym_IDM, 'ＩＤＭ印', None, '1', '9', '328', '印コード'],
-        # [Contender.sym_info, '情報印', None, '1', '9', '329', '印コード'],
-        # [Contender.sym_jockey, '騎手印', None, '1', '9', '330', '印コード'],
-        # [Contender.sym_stable, '厩舎印', None, '1', '9', '331', '印コード'],
-        # [Contender.sym_trainer, '調教印', None, '1', '9', '332', '印コード'],
-        # [Contender.is_flat_out_runner, '激走印', None, '1', '9', '333', '1:激走馬'],
+        # IntegerItem(jrdb.Contender.sym_overall, '総合印', '1', '327', '印コード'),
+        # IntegerItem(jrdb.Contender.sym_IDM, 'ＩＤＭ印', '1', '328', '印コード'),
+        # IntegerItem(jrdb.Contender.sym_info, '情報印', '1', '329', '印コード'),
+        # IntegerItem(jrdb.Contender.sym_jockey, '騎手印', '1', '330', '印コード'),
+        # IntegerItem(jrdb.Contender.sym_stable, '厩舎印', '1', '331', '印コード'),
+        # IntegerItem(jrdb.Contender.sym_trainer, '調教印', '1', '332', '印コード'),
+        # IntegerItem(jrdb.Contender.is_flat_out_runner, '激走印', '1', '333', '1:激走馬'),
         #
-        # [Contender.turf_apt, '芝適性コード', None, '1', 'X', '334', '1:◎, 2:○, 3:△'],
-        # [Contender.dirt_apt, 'ダ適性コード', None, '1', 'X', '335', '1:◎, 2:○, 3:△'],
-        [Jockey.code, '騎手コード', None, '5', '9', '336', '騎手マスタとリンク'],
-        [Trainer.code, '調教師コード', None, '5', '9', '341', '調教師マスタとリンク'],
-        ['', '予備', None, '1', 'X', '346', 'スペース'],
+        # IntegerItem(jrdb.Contender.turf_apt, '芝適性コード', '1', '334', '1:◎, 2:○, 3:△'),
+        # IntegerItem(jrdb.Contender.dirt_apt, 'ダ適性コード', '1', '335', '1:◎, 2:○, 3:△'),
+        ForeignKeyItem('騎手コード', 5, 335, 'jrdb.Contender.jockey', 'jrdb.Jockey.code'),
+        ForeignKeyItem('調教師コード', 5, 340, 'jrdb.Contender.trainer', 'jrdb.Trainer.code'),
         # ===以下第６版にて追加===
         # 賞金情報
-        ['', '獲得賞金', None, '6', 'ZZZZZ9', '347', '単位万円(含む付加賞)'],
-        ['p1_prize', '収得賞金', None, '5', 'ZZZZ9', '353', '単位万円'],  # IGNORED
-        ['race_condition_group_code', '条件クラス', None, '1', '9', '358', '条件グループコード参照\n収得賞金から出走できるクラス'],  # IGNORED
+        # IntegerItem('jrdb.', '獲得賞金', '6', 'ZZZZZ9', '347', '単位万円(含む付加賞)'),
+        # IntegerItem('jrdb.p1_prize', '収得賞金', '5', '353', '単位万円'),  # IGNORE
+        # IntegerItem('jrdb.race_condition_group_code', '条件クラス', '1', '358', '条件グループコード参照\n収得賞金から出走できるクラス'),  # IGNORE
 
         # 展開予想データ
-        [Contender.prel_b3f_time_idx, 'テン指数', None, '5', 'ZZZ.9', '359', '予想テン指数'],
-        [Contender.prel_pace_idx, 'ペース指数', None, '5', 'ZZZ.9', '364', '予想ペース指数'],
-        [Contender.prel_f3f_time_idx, '上がり指数', None, '5', 'ZZZ.9', '369', '予想上がり指数'],
-        [Contender.prel_position_idx, '位置指数', None, '5', 'ZZZ.9', '374', '予想位置指数'],
-        [Contender.prel_pace_cat, 'ペース予想', None, '1', 'X', '379', 'H,M,S'],
-        ['mid_race_position', '道中順位', None, '2', 'Z9', '380', None],
-        ['mid_race_margin', '道中差', None, '2', 'Z9', '382', '半馬身(約0.1秒)単位'],
-        ['mid_race_in_out', '道中内外', None, '1', '9', '384', '2:内 ～ 4:外'],
-        ['f3f_position', '後３Ｆ順位', None, '2', 'Z9', '385', None],
-        ['f3f_margin', '後３Ｆ差', None, '2', 'Z9', '387', '半馬身(約0.1秒)単位'],
-        ['f3f_in_out', '後３Ｆ内外', None, '1', '9', '389', '2:内 ～ 5:大外'],
-        ['goal_position', 'ゴール順位', None, '2', 'Z9', '390', None],
-        ['goal_margin', 'ゴール差', None, '2', 'Z9', '392', '半馬身(約0.1秒)単位'],
-        ['goal_in_out', 'ゴール内外', None, '1', '9', '394', '1:最内 ～ 5:大外'],
-        ['race_development_symbol', '展開記号', None, '1', 'X', '395', '展開記号コード参照'],
+        FloatItem('テン指数', 5, 358, 'jrdb.Contender.prel_b3f_time_idx'),
+        FloatItem('ペース指数', 5, 363, 'jrdb.Contender.prel_pace_idx'),
+        FloatItem('上がり指数', 5, 368, 'jrdb.Contender.prel_f3f_time_idx'),
+        FloatItem('位置指数', 5, 373, 'jrdb.Contender.prel_position_idx'),
+        ChoiceItem('ペース予想', 1, 378, 'jrdb.Contender.prel_pace_cat', choices.PACE_CATEGORY.options()),
+        IntegerItem('jrdb.mid_race_position', '道中順位', '2', '380'),
+        IntegerItem('jrdb.mid_race_margin', '道中差', '2', '382', '半馬身(約0.1秒)単位'),
+        IntegerItem('jrdb.mid_race_in_out', '道中内外', '1', '384', '2:内 ～ 4:外'),
+        IntegerItem('jrdb.f3f_position', '後３Ｆ順位', '2', '385'),
+        IntegerItem('jrdb.f3f_margin', '後３Ｆ差', '2', '387', '半馬身(約0.1秒)単位'),
+        IntegerItem('jrdb.f3f_in_out', '後３Ｆ内外', '1', '389', '2:内 ～ 5:大外'),
+        IntegerItem('jrdb.goal_position', 'ゴール順位', '2', '390'),
+        IntegerItem('jrdb.goal_margin', 'ゴール差', '2', '392', '半馬身(約0.1秒)単位'),
+        IntegerItem('jrdb.goal_in_out', 'ゴール内外', '1', '394', '1:最内 ～ 5:大外'),
+        IntegerItem('jrdb.race_development_symbol', '展開記号', '1', '395', '展開記号コード参照'),
         # ===以下第６a版にて追加===
-        ['dist_apt_2', '距離適性２', None, '1', '9', '396', None],  # 意味不明
-        ['weight_pp_decision', '枠確定馬体重', None, '3', '999', '397', 'データ無:スペース'],
-        ['weight_diff_pp_decision', '枠確定馬体重増減', None, '3', 'XZ9', '400', '符号+数字２桁,データ無:スペース'],
+        IntegerItem('jrdb.dist_apt_2', '距離適性２', '1', '396'),  # 意味),
+        IntegerItem('jrdb.weight_pp_decision', '枠確定馬体重', '3', '397', 'データ無:スペース'),
+        IntegerItem('jrdb.weight_diff_pp_decision', '枠確定馬体重増減', '3', 'XZ9', '400', '符号+数字２桁,データ無:スペース'),
         # ===以下第７版にて追加===
-        ['is_cancelled', '取消フラグ', None, '1', '9', '403', '1:取消'],
-        [Horse.sex, '性別コード', None, '1', '9', '404', '1:牡,2:牝,3,セン'],
-        [Horse.owner_name, '馬主名', None, '40', 'X', '405', '全角２０文字'],
-        [Horse.owner_racetrack, '馬主会コード', None, '2', '99', '445', '参考データ。'],
-        [Horse.symbol, '馬記号コード', None, '2', '99', '447', 'コード表参照'],
-        ['flat_out_run_position', '激走順位', None, '2', 'Z9', '449', 'レース出走馬中での順位'],
-        ['LS_idx_position', 'LS指数順位', None, '2', 'Z9', '451', None],
-        ['b3f_idx_position', 'テン指数順位', None, '2', 'Z9', '453', None],
-        ['pace_idx_position', 'ペース指数順位', None, '2', 'Z9', '455', None],
-        ['f3f_idx_position', '上がり指数順位', None, '2', 'Z9', '457', None],
-        ['positioning_idx_position', '位置指数順位', None, '2', 'Z9', '459', None],
+        IntegerItem('jrdb.is_cancelled', '取消フラグ', '1', '403', '1:取消'),
+        IntegerItem(jrdb.Horse.sex, '性別コード', '1', '404', '1:牡,2:牝,3,セン'),
+        IntegerItem(jrdb.Horse.owner_name, '馬主名', '40', '405', '全角２０文字'),
+        IntegerItem(jrdb.Horse.owner_racetrack, '馬主会コード', '2', '99', '445', '参考データ。'),
+        IntegerItem(jrdb.Horse.symbol, '馬記号コード', '2', '99', '447', 'コード表参照'),
+        IntegerItem('jrdb.flat_out_run_position', '激走順位', '2', '449', 'レース出走馬中での順位'),
+        IntegerItem('jrdb.LS_idx_position', 'LS指数順位', '2', '451'),
+        IntegerItem('jrdb.b3f_idx_position', 'テン指数順位', '2', '453'),
+        IntegerItem('jrdb.pace_idx_position', 'ペース指数順位', '2', '455'),
+        IntegerItem('jrdb.f3f_idx_position', '上がり指数順位', '2', '457'),
+        IntegerItem('jrdb.positioning_idx_position', '位置指数順位', '2', '459'),
         # ===以下第８版にて追加===
-        ['jockey_exp_win_rate', '騎手期待単勝率', None, '4', 'Z9.9', '461', None],
-        ['jockey_exp_show_rate', '騎手期待３着内率', None, '4', 'Z9.9', '465', None],
-        ['transport_category', '輸送区分', None, '1', 'X', '469', None],
+        IntegerItem('jrdb.jockey_exp_win_rate', '騎手期待単勝率', '4', '461'),
+        IntegerItem('jrdb.jockey_exp_show_rate', '騎手期待３着内率', '4', '465'),
+        IntegerItem('jrdb.transport_category', '輸送区分', '1', '469'),
         # ===以下第９版にて追加===
-        ['', '走法', None, '8', '9', '470', 'コード表参照'],  # IGNORED (走法データの採取は休止)
-        ['figure', '体型', None, '24', 'X', '478', 'コード表参照'],
-        ['figure_overall_1', '体型総合１', None, '3', '9', '502', '特記コード参照'],  # sp_mention_code
-        ['figure_overall_2', '体型総合２', None, '3', '9', '505', '特記コード参照'],
-        ['figure_overall_3', '体型総合３', None, '3', '9', '508', '特記コード参照'],
-        ['horse_sp_mention_1', '馬特記１', None, '3', '9', '511', '特記コード参照'],
-        ['horse_sp_mention_2', '馬特記２', None, '3', '9', '514', '特記コード参照'],
-        ['horse_sp_mention_3', '馬特記３', None, '3', '9', '517', '特記コード参照'],
+        IntegerItem('jrdb.', '走法', '8', '470', 'コード表参照'),  # IGNORED (走法データの採取は休),
+        IntegerItem('jrdb.figure', '体型', '24', '478', 'コード表参照'),
+        IntegerItem('jrdb.figure_overall_1', '体型総合１', '3', '502', '特記コード参照'),  # sp_mention_co),
+        IntegerItem('jrdb.figure_overall_2', '体型総合２', '3', '505', '特記コード参照'),
+        IntegerItem('jrdb.figure_overall_3', '体型総合３', '3', '508', '特記コード参照'),
+        IntegerItem('jrdb.horse_sp_mention_1', '馬特記１', '3', '511', '特記コード参照'),
+        IntegerItem('jrdb.horse_sp_mention_2', '馬特記２', '3', '514', '特記コード参照'),
+        IntegerItem('jrdb.horse_sp_mention_3', '馬特記３', '3', '517', '特記コード参照'),
         # 展開参考データ
-        ['horse_start_idx', '馬スタート指数', None, '4', 'Z9.9', '520', None],
-        ['late_start_rate', '馬出遅率', None, '4', 'Z9.9', '524', None],
-        ['', '参考前走', None, '2', '99', '528', '参考となる前走（２走分格納）'],  # 1, 2, 3など（意味不明）
-        ['', '参考前走騎手コード', None, '5', 'X', '530', '参考となる前走の騎手'],  # 同上
-        ['big_bet_idx', '万券指数', None, '3', 'ZZ9', '535', None],
-        ['big_bet_symbol', '万券印', None, '1', '9', '538', None],
+        IntegerItem('jrdb.horse_start_idx', '馬スタート指数', '4', '520'),
+        IntegerItem('jrdb.late_start_rate', '馬出遅率', '4', '524'),
+        IntegerItem('jrdb.', '参考前走', '2', '99', '528', '参考となる前走（２走分格納）'),  # 1, 2, 3など（意味不),
+        IntegerItem('jrdb.', '参考前走騎手コード', '5', '530', '参考となる前走の騎手'),  # ),
+        IntegerItem('jrdb.big_bet_idx', '万券指数', '3', '535'),
+        IntegerItem('jrdb.big_bet_symbol', '万券印', '1', '538'),
         # ===以下第10版にて追加===
-        ['rank_lowered', '降級フラグ', None, '1', '9', '539', '1:降級, 2:２段階降級, 0:通常'],
-        ['flat_out_run_type', '激走タイプ', None, '2', 'XX', '540', '激走馬のタイプ分け。説明参照'],
-        ['rest_reason_code', '休養理由分類コード', None, '2', '99', '542', 'コード表参照'],
+        IntegerItem('jrdb.rank_lowered', '降級フラグ', '1', '539', '1:降級, 2:２段階降級, 0:通常'),
+        IntegerItem('jrdb.flat_out_run_type', '激走タイプ', '2', 'XX', '540', '激走馬のタイプ分け。説明参照'),
+        IntegerItem('jrdb.rest_reason_code', '休養理由分類コード', '2', '99', '542', 'コード表参照'),
         # ===以下第11版にて追加===
-        ['flags', 'フラグ', None, '16', 'X', '544', '初芝初ダ初障などのフラグ'],
-        ['nth_race_since_training_start', '入厩何走目', None, '2', 'Z9', '560', '例）2:入厩後２走目'],
-        ['training_start_date', '入厩年月日', None, '8', '9', '562', 'YYYYMMDD'],
-        ['nth_day_since_training_start', '入厩何日前', None, '3', 'ZZ9', '570', 'レース日から遡っての入厩の日数'],
-        ['pasture_name', '放牧先', None, '50', 'X', '573', '放牧先/近走放牧先'],
-        ['pasture_rank', '放牧先ランク', None, '1', 'X', '623', 'A-E'],
-        ['stable_rank', '厩舎ランク', None, '1', '9', '624', '高い1-9低い 内容説明参照'],
-        ['', '予備', None, '398', 'X', '625', 'スペース'],
-        ['', '改行', None, '2', 'X', '1023', 'ＣＲ・ＬＦ']
+        IntegerItem('jrdb.flags', 'フラグ', '16', '544', '初芝初ダ初障などのフラグ'),
+        IntegerItem('jrdb.nth_race_since_training_start', '入厩何走目', '2', '560', '例）2:入厩後２走目'),
+        IntegerItem('jrdb.training_start_date', '入厩年月日', '8', '562', 'YYYYMMDD'),
+        IntegerItem('jrdb.nth_day_since_training_start', '入厩何日前', '3', '570', 'レース日から遡っての入厩の日数'),
+        IntegerItem('jrdb.pasture_name', '放牧先', '50', '573', '放牧先/近走放牧先'),
+        IntegerItem('jrdb.pasture_rank', '放牧先ランク', '1', '623', 'A-E'),
+        IntegerItem('jrdb.stable_rank', '厩舎ランク', '1', '624', '高い1-9低い 内容説明参照'),
     ]
 
     def clean(self) -> pd.DataFrame:
