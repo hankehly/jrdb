@@ -13,7 +13,8 @@ MODEL_ITEM_FIELD_MAP: Dict[str, Tuple[str]] = {
     'ForeignKeyItem': ('ForeignKey',),
     'DateTimeItem': ('DateTimeField',),
     'ChoiceItem': ('CharField',),
-    'ArrayItem': ('ArrayField',)
+    'ArrayItem': ('ArrayField',),
+    'BooleanItem': ('BooleanField', 'NullBooleanField')
 }
 
 
@@ -152,6 +153,7 @@ class ForeignKeyItem(ModelItem):
             .values(remote_field_name, 'id')
 
         return s.map({record[remote_field_name]: record['id'] for record in remote_records}) \
+            .astype('Int64') \
             .rename(field.column)
 
     def _validate(self) -> None:
@@ -189,6 +191,15 @@ class ChoiceItem(ModelItem):
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         return s.str.strip().map(self.options)
+
+
+@dataclass(eq=False, frozen=True)
+class BooleanItem(ModelItem):
+    value_true: str = '1'
+    value_false: str = '0'
+
+    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        return s.map({self.value_true: True, self.value_false: False})
 
 
 @dataclass(eq=False, frozen=True)
