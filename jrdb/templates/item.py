@@ -199,7 +199,7 @@ class BooleanItem(ModelItem):
     value_false: str = '0'
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        return s.map({self.value_true: True, self.value_false: False})
+        return s.str.strip().map({self.value_true: True, self.value_false: False})
 
 
 @dataclass(eq=False, frozen=True)
