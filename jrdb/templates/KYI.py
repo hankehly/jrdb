@@ -1,10 +1,71 @@
-import numpy as np
 import pandas as pd
 
-from ..models import choices, Racetrack, Contender, Horse, Jockey, Trainer
-from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem
-from .parse import parse_int_or, parse_float_or
+from ..models import choices
+from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem, InvokeItem
 from .template import Template
+
+
+def figure(se: pd.Series):
+    colmap = {
+        0: '',  # [体型] 馬体の全体的な形状 (FIGURE_OVERALL)
+        1: '',  # [背中] 長さ
+        2: '',  # [胴]  長さ
+        3: '',  # [尻]  大きさ (FIGURE_SIZE)
+        4: '',  # [トモ] 角度
+        5: '',  # [腹袋] 大きさ
+        6: '',  # [頭]  大きさ
+        7: '',  # [首]  長さ (FIGURE_LENGTH)
+        8: '',  # [胸]  大きさ
+        9: '',  # [肩]  角度 (FIGURE_ANGLE)
+        10: '',  # [前長] 長さ
+        11: '',  # [後長] 長さ
+        12: '',  # [前幅] 前脚の歩幅 (FIGURE_STRIDE)
+        13: '',  # [後幅] 後脚の歩幅
+        14: '',  # [前繋] 長さ
+        15: '',  # [後繋] 長さ
+        16: '',  # [尾]  つけ根の上げ方 1:上げる,2:下げる
+        17: '',  # [振]  尾の振り方 1:激しい,2:少し,3:あまり振らない
+    }
+    pass
+
+
+def flags(se: pd.Series):
+    """
+    フラグ
+    ・バイト位置と内容
+     1 芝ダ障害フラグ
+       0:変化なし
+       1:トラック替り(芝ダ替り)
+       2:初トラック(初芝,初ダ,初障)
+     2 距離フラグ
+       0: 経験有り
+       1: 最長距離
+     3 クラスフラグ
+       0: 変化なし
+       1: 昇級初戦
+       2: 降級
+       3: 格上挑戦
+     4 転厩フラグ
+       0:変化なし
+       1～3:転厩何戦目（３戦目まで）
+     5   去勢フラグ
+       0:変化なし
+       1～3:去勢何戦目（３戦目まで）
+     6  乗替フラグ
+       0: 変化なし
+       1: 乗替 (初)
+       9: 乗替 (再)
+     7  以降はスペース詰め
+    """
+    colmap = {
+        0: '',  # 芝ダ障害フラグ
+        1: '',  # 距離フラグ
+        2: '',  # クラスフラグ
+        3: '',  # 転厩フラグ
+        4: '',  # 去勢フラグ
+        5: '',  # 乗替フラグ
+    }
+    pass
 
 
 class KYI(Template):
@@ -83,16 +144,16 @@ class KYI(Template):
         IntegerItem('枠番', 1, 323, 'jrdb.Contender.post_position'),
         # ===以下第５版にて追加===
         # 印コード
-        # IntegerItem(jrdb.Contender.sym_overall, '総合印', 1, '327', '印コード'),
-        # IntegerItem(jrdb.Contender.sym_IDM, 'ＩＤＭ印', 1, '328', '印コード'),
-        # IntegerItem(jrdb.Contender.sym_info, '情報印', 1, '329', '印コード'),
-        # IntegerItem(jrdb.Contender.sym_jockey, '騎手印', 1, '330', '印コード'),
-        # IntegerItem(jrdb.Contender.sym_stable, '厩舎印', 1, '331', '印コード'),
-        # IntegerItem(jrdb.Contender.sym_trainer, '調教印', 1, '332', '印コード'),
-        # IntegerItem(jrdb.Contender.is_flat_out_runner, '激走印', 1, '333', '1:激走馬'),
-        #
-        # IntegerItem(jrdb.Contender.turf_apt, '芝適性コード', 1, '334', '1:◎, 2:○, 3:△'),
-        # IntegerItem(jrdb.Contender.dirt_apt, 'ダ適性コード', 1, '335', '1:◎, 2:○, 3:△'),
+        IntegerItem('総合印', 1, 326, 'jrdb.Contender.sym_overall'),
+        IntegerItem('ＩＤＭ印', 1, 327, 'jrdb.Contender.sym_IDM'),
+        IntegerItem('情報印', 1, 328, 'jrdb.Contender.sym_info'),
+        IntegerItem('騎手印', 1, 329, 'jrdb.Contender.sym_jockey'),
+        IntegerItem('厩舎印', 1, 330, 'jrdb.Contender.sym_stable'),
+        IntegerItem('調教印', 1, 331, 'jrdb.Contender.sym_trainer'),
+        BooleanItem('激走印', 1, 332, 'jrdb.Contender.is_flat_out_runner'),
+
+        ChoiceItem('芝適性コード', 1, 333, 'jrdb.Contender.turf_apt', choices.APTITUDE_CODE.options()),
+        ChoiceItem('ダ適性コード', 1, 334, 'jrdb.Contender.dirt_apt', choices.APTITUDE_CODE.options()),
         ForeignKeyItem('騎手コード', 5, 335, 'jrdb.Contender.jockey', 'jrdb.Jockey.code'),
         ForeignKeyItem('調教師コード', 5, 340, 'jrdb.Contender.trainer', 'jrdb.Trainer.code'),
         # ===以下第６版にて追加===
@@ -108,13 +169,13 @@ class KYI(Template):
         FloatItem('位置指数', 5, 373, 'jrdb.Contender.prel_position_idx'),
         ChoiceItem('ペース予想', 1, 378, 'jrdb.Contender.prel_pace_cat', choices.PACE_CATEGORY.options()),
         IntegerItem('道中順位', 2, 379, 'jrdb.Contender.mid_race_position'),
-        FloatItem('道中差', 2, 381, 'jrdb.Contender.mid_race_margin'),  # TODO: * 0.1
+        FloatItem('道中差', 2, 381, 'jrdb.Contender.mid_race_margin', scale=0.1),
         ChoiceItem('道中内外', 1, 383, 'jrdb.Contender.mid_race_line', choices.RACE_LINE.options()),
         IntegerItem('後３Ｆ順位', 2, 384, 'jrdb.Contender.f3f_position'),
-        FloatItem('後３Ｆ差', 2, 386, 'jrdb.Contender.f3f_margin'),  # TODO * 0.1
+        FloatItem('後３Ｆ差', 2, 386, 'jrdb.Contender.f3f_margin', scale=0.1),
         ChoiceItem('後３Ｆ内外', 1, 388, 'jrdb.Contender.f3f_race_line', choices.RACE_LINE.options()),
         IntegerItem('ゴール順位', 2, 389, 'jrdb.Contender.goal_position'),
-        FloatItem('ゴール差', 2, 391, 'jrdb.Contender.goal_margin'),  # TODO * 0.1
+        FloatItem('ゴール差', 2, 391, 'jrdb.Contender.goal_margin', scale=0.1),
         ChoiceItem('ゴール内外', 1, 393, 'jrdb.Contender.goal_race_line', choices.RACE_LINE.options()),
         ChoiceItem('展開記号', 1, 394, 'jrdb.Contender.race_development_symbol', choices.RACE_DEVELOPMENT_SYMBOL.options()),
 
@@ -140,122 +201,30 @@ class KYI(Template):
         ChoiceItem('輸送区分', 1, 468, 'jrdb.Contender.transport_category', choices.TRANSPORT_CATEGORY.options()),
         # ===以下第９版にて追加===
         # StringItem('jrdb.', '走法', 8, 469, 'コード表参照'),  # IGNORED (走法データの採取は休),
-        StringItem('体型', 24, 477, 'jrdb.Contender.figure'),  # TODO
-        StringItem('体型総合１', 3, 501, 'jrdb.Contender.figure_overall_1'),  # special_mention_code
-        StringItem('体型総合２', 3, 504, 'jrdb.Contender.figure_overall_2'),
-        StringItem('体型総合３', 3, 507, 'jrdb.Contender.figure_overall_3'),
-        StringItem('馬特記１', 3, 510, 'jrdb.Contender.horse_sp_mention_1'),
-        StringItem('馬特記２', 3, 513, 'jrdb.Contender.horse_sp_mention_2'),
-        StringItem('馬特記３', 3, 516, 'jrdb.Contender.horse_sp_mention_3'),
+        InvokeItem('体型', 24, 477, figure),  # TODO
+        ForeignKeyItem('体型総合１', 3, 501, 'jrdb.Contender.figure_overall_1', 'jrdb.SpecialMentionCode.key'),
+        ForeignKeyItem('体型総合２', 3, 504, 'jrdb.Contender.figure_overall_2', 'jrdb.SpecialMentionCode.key'),
+        ForeignKeyItem('体型総合３', 3, 507, 'jrdb.Contender.figure_overall_3', 'jrdb.SpecialMentionCode.key'),
+        ForeignKeyItem('馬特記１', 3, 510, 'jrdb.Contender.horse_sp_mention_1', 'jrdb.SpecialMentionCode.key'),
+        ForeignKeyItem('馬特記２', 3, 513, 'jrdb.Contender.horse_sp_mention_2', 'jrdb.SpecialMentionCode.key'),
+        ForeignKeyItem('馬特記３', 3, 516, 'jrdb.Contender.horse_sp_mention_3', 'jrdb.SpecialMentionCode.key'),
         # 展開参考データ
-        StringItem('馬スタート指数', 4, 519, 'jrdb.Contender.horse_start_idx'),
-        StringItem('馬出遅率', 4, 523, 'jrdb.Contender.late_start_rate'),
+        FloatItem('馬スタート指数', 4, 519, 'jrdb.Contender.horse_start_idx'),
+        FloatItem('馬出遅率', 4, 523, 'jrdb.Contender.late_start_rate'),
         # StringItem('jrdb.', '参考前走', 2, '99', '528', '参考となる前走（２走分格納）'),  # 1, 2, 3など（意味不),
         # StringItem('jrdb.', '参考前走騎手コード', 5, '530', '参考となる前走の騎手'),  # ),
-        StringItem('万券指数', 3, 534, 'jrdb.Contender.big_bet_idx'),
-        StringItem('万券印', 1, 537, 'jrdb.Contender.big_bet_symbol'),
+        IntegerItem('万券指数', 3, 534, 'jrdb.Contender.big_bet_idx'),
+        IntegerItem('万券印', 1, 537, 'jrdb.Contender.sym_big_bet'),
         # ===以下第10版にて追加===
-        StringItem('降級フラグ', 1, 538, 'jrdb.Contender.rank_lowered'),
-        StringItem('激走タイプ', 2, 539, 'jrdb.Contender.flat_out_run_type'),
-        StringItem('休養理由分類コード', 2, 541, 'jrdb.Contender.rest_reason_code'),
+        ChoiceItem('降級フラグ', 1, 538, 'jrdb.Contender.rank_lowered', choices.RANK_LOWERED.options()),
+        ChoiceItem('激走タイプ', 2, 539, 'jrdb.Contender.flat_out_run_type', choices.FLAT_OUT_RUN_TYPE.options()),
+        ChoiceItem('休養理由分類コード', 2, 541, 'jrdb.Contender.rest_reason', choices.REST_REASON.options()),
         # ===以下第11版にて追加===
-        # StringItem('jrdb.Contender.flags', 'フラグ', '16', '544', '初芝初ダ初障などのフラグ'),  # TODO
-        StringItem('入厩何走目', 2, 559, 'jrdb.Contender.nth_race_since_training_start'),
-        StringItem('入厩年月日', 8, 561, 'jrdb.Contender.training_start_date'),
-        StringItem('入厩何日前', 3, 569, 'jrdb.Contender.nth_day_since_training_start'),
+        InvokeItem('フラグ', 16, 543, flags),
+        IntegerItem('入厩何走目', 2, 559, 'jrdb.Contender.nth_race_since_training_start'),
+        DateItem('入厩年月日', 8, 561, 'jrdb.Contender.training_start_date'),
+        IntegerItem('入厩何日前', 3, 569, 'jrdb.Contender.nth_day_since_training_start'),
         StringItem('放牧先', 50, 572, 'jrdb.Contender.pasture_name'),
-        StringItem('放牧先ランク', 1, 622, 'jrdb.Contender.pasture_rank'),
-        StringItem('厩舎ランク', 1, 623, 'jrdb.Contender.stable_rank'),
+        ChoiceItem('放牧先ランク', 1, 622, 'jrdb.Contender.pasture_rank', choices.PASTURE_RANK.options()),
+        ChoiceItem('厩舎ランク', 1, 623, 'jrdb.Contender.stable_rank', choices.STABLE_RANK.options()),
     ]
-
-    def clean(self) -> pd.DataFrame:
-        for column in self.df:
-            pass
-
-        # Race._meta.get_field('yr').get_internal_type()
-        # 'PositiveSmallIntegerField'
-
-        racetracks = Racetrack.objects.filter(code__in=self.df.racetrack_code).values('code', 'id')
-        s = self.df.racetrack_code.map({racetrack['code']: racetrack['id'] for racetrack in racetracks})
-        s.name = 'racetrack_id'
-
-        rdf = s.to_frame()
-        rdf['yr'] = self.df.yr.astype(int)
-        rdf['round'] = self.df['round'].astype(int)
-        rdf['day'] = self.df.day.str.strip()
-        rdf['num'] = self.df.race_num.astype(int)
-
-        cdf = pd.DataFrame(index=rdf.index)
-        cdf['num'] = self.df.horse_num.astype(int)
-        cdf['prel_jockey_idx'] = self.df.jockey_idx.apply(parse_float_or, args=(np.nan,))
-        cdf['prel_info_idx'] = self.df.prel_info_idx.apply(parse_float_or, args=(np.nan,))
-        cdf['prel_total_idx'] = self.df.prel_total_idx.apply(parse_float_or, args=(np.nan,))
-        cdf['prel_pop_idx'] = self.df.prel_pop_idx.astype(int)
-        cdf['prel_trainer_idx'] = self.df.prel_trainer_idx.apply(parse_float_or, args=(np.nan,))
-        cdf['prel_stable_idx'] = self.df.prel_stable_idx.apply(parse_float_or, args=(np.nan,))
-        cdf['flat_out_run_idx'] = self.df.flat_out_run_idx.astype(int)
-        cdf['rotation'] = self.df.rotation.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['prel_IDM'] = self.df.prel_IDM.apply(parse_float_or, args=(np.nan,))
-        cdf['prel_run_style'] = self.df.prel_run_style.map(choices.RUNNING_STYLE.get_key_map())
-        cdf['dist_apt'] = self.df.dist_apt.astype(int)
-        cdf['prel_improvement'] = self.df.prel_improvement.map(choices.IMPROVEMENT.get_key_map())
-        cdf['odds_win_base'] = self.df.odds_win_base.apply(parse_float_or, args=(np.nan,))
-        cdf['pop_win_base'] = self.df.pop_win_base.astype(int)
-        cdf['odds_show_base'] = self.df.odds_show_base.apply(parse_float_or, args=(np.nan,))
-        cdf['pop_show_base'] = self.df.pop_show_base.astype(int)
-        cdf['sym_sp_c_dbl'] = self.df.sym_sp_c_dbl.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_sp_c'] = self.df.sym_sp_c.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_sp_t_dark'] = self.df.sym_sp_t_dark.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_sp_t'] = self.df.sym_sp_t.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_sp_x'] = self.df.sym_sp_x.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_total_c_dbl'] = self.df.sym_total_c_dbl.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_total_c'] = self.df.sym_total_c.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_total_t_dark'] = self.df.sym_total_t_dark.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_total_t'] = self.df.sym_total_t.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_total_x'] = self.df.sym_total_x.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['trainer_outlook'] = self.df.trainer_outlook.astype(int)
-        cdf['stable_outlook'] = self.df.stable_outlook.astype(int)
-        cdf['jockey_exp_1o2_place_rate'] = self.df.jockey_exp_1o2_place_rate.astype(float)
-        cdf['paddock_observed_hoof'] = self.df.paddock_observed_hoof.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['yield_track_apt'] = self.df.yield_track_apt.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['blinker'] = self.df.blinker.map(choices.BLINKER.get_key_map())
-        cdf['mounted_weight'] = self.df.mounted_weight.astype(int) * 0.1
-        cdf['post_position'] = self.df.post_position.astype(int)
-        cdf['sym_overall'] = self.df.sym_overall.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_IDM'] = self.df.sym_IDM.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_info'] = self.df.sym_info.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_jockey'] = self.df.sym_jockey.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_stable'] = self.df.sym_stable.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['sym_trainer'] = self.df.sym_trainer.apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        cdf['is_flat_out_runner'] = self.df.is_flat_out_runner.str.strip().astype(bool)
-        cdf['turf_apt'] = self.df.turf_apt.map(choices.APTITUDE_CODE.get_key_map())
-        cdf['dirt_apt'] = self.df.dirt_apt.map(choices.APTITUDE_CODE.get_key_map())
-        cdf['prel_b3f_time_idx'] = self.df.prel_b3f_time_idx.apply(parse_float_or, args=(np.nan,))
-        cdf['prel_pace_idx'] = self.df.prel_pace_idx.apply(parse_float_or, args=(np.nan,))
-        cdf['prel_f3f_time_idx'] = self.df.prel_f3f_time_idx.apply(parse_float_or, args=(np.nan,))
-        cdf['prel_pace_cat'] = self.df.prel_pace_cat.map(choices.PACE_CATEGORY.get_key_map())
-
-        # Horse
-        hdf = pd.DataFrame(index=rdf.index)
-        hdf['pedigree_reg_num'] = self.df.pedigree_reg_num
-        hdf['name'] = self.df.horse_name.str.strip()
-
-        # Trainer
-        tdf = pd.DataFrame(index=rdf.index)
-        tdf['trainee_cat'] = self.df.trainee_cat.map(choices.TRAINEE_CATEGORY.get_key_map())
-        tdf['name'] = self.df.trainer_name.str.strip()
-        tdf['area'] = self.df.trainer_area.map(choices.AREA.get_key_map())
-        tdf['code'] = self.df.trainer_code.str.strip()
-
-        # Jockey
-        jdf = pd.DataFrame(index=rdf.index)
-        jdf['name'] = self.df.jockey_name.str.strip()
-        jdf['code'] = self.df.jockey_code.str.strip()
-
-        rdf.rename(columns=lambda col: 'race_' + str(col), inplace=True)
-        cdf.rename(columns=lambda col: 'contender_' + str(col), inplace=True)
-        hdf.rename(columns=lambda col: 'horse_' + str(col), inplace=True)
-        tdf.rename(columns=lambda col: 'trainer_' + str(col), inplace=True)
-        jdf.rename(columns=lambda col: 'jockey_' + str(col), inplace=True)
-
-        return pd.concat([rdf, cdf, hdf, tdf, jdf], axis='columns')

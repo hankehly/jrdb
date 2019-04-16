@@ -28,7 +28,7 @@ def nth_occurrence(s: pd.Series):
 
 
 def betting_ticket_sale_flag(s: pd.Series):
-    column_map = {
+    colmap = {
         0: 'sold_win',  # 単勝
         1: 'sold_show',  # 複勝
         2: 'sold_bracket_quinella',  # 枠連
@@ -44,7 +44,7 @@ def betting_ticket_sale_flag(s: pd.Series):
         .apply(pd.Series) \
         .astype(float) \
         .applymap(lambda flag: np.nan if math.isnan(flag) else bool(flag)) \
-        .rename(columns=column_map)
+        .rename(columns=colmap)
 
 
 class BAC(Template, RacePersistMixin):

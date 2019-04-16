@@ -46,12 +46,12 @@ class Template(ABC):
             for line in lines:
                 row = []
                 for item in self.items:
-                    parsed = self.parse_item(line, item)
-                    encoded = np.char.decode(parsed, encoding='cp932')
-                    if len(encoded) == 1:
-                        row.append(encoded[0])
+                    bytes_lst = self.parse_item(line, item)
+                    str_lst = np.char.decode(bytes_lst, encoding='cp932')
+                    if len(str_lst) == 1:
+                        row.append(str_lst[0])
                     else:
-                        row.append(encoded)
+                        row.append(str_lst)
                 rows.append(row)
         self.df = pd.DataFrame(rows, columns=[item.key for item in self.items])
         return self

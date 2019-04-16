@@ -91,12 +91,10 @@ class IntegerItem(ModelItem):
 @dataclass(eq=False, frozen=True)
 class FloatItem(ModelItem):
     default: Optional[float] = None
+    scale: float = 1.
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        if self.get_field().null:
-            return s.apply(parse_float_or, args=(self.default,)).astype(float)
-
-        return s.astype(float)
+        return s.apply(parse_float_or, args=(self.default,)).apply(lambda n: n * self.scale).astype(float)
 
 
 @dataclass(eq=False, frozen=True)
