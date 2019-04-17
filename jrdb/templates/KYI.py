@@ -1,71 +1,6 @@
-import pandas as pd
-
 from ..models import choices
-from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem, InvokeItem
+from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
 from .template import Template
-
-
-def figure(se: pd.Series):
-    colmap = {
-        0: '',  # [体型] 馬体の全体的な形状 (FIGURE_OVERALL)
-        1: '',  # [背中] 長さ
-        2: '',  # [胴]  長さ
-        3: '',  # [尻]  大きさ (FIGURE_SIZE)
-        4: '',  # [トモ] 角度
-        5: '',  # [腹袋] 大きさ
-        6: '',  # [頭]  大きさ
-        7: '',  # [首]  長さ (FIGURE_LENGTH)
-        8: '',  # [胸]  大きさ
-        9: '',  # [肩]  角度 (FIGURE_ANGLE)
-        10: '',  # [前長] 長さ
-        11: '',  # [後長] 長さ
-        12: '',  # [前幅] 前脚の歩幅 (FIGURE_STRIDE)
-        13: '',  # [後幅] 後脚の歩幅
-        14: '',  # [前繋] 長さ
-        15: '',  # [後繋] 長さ
-        16: '',  # [尾]  つけ根の上げ方 1:上げる,2:下げる
-        17: '',  # [振]  尾の振り方 1:激しい,2:少し,3:あまり振らない
-    }
-    pass
-
-
-def flags(se: pd.Series):
-    """
-    フラグ
-    ・バイト位置と内容
-     1 芝ダ障害フラグ
-       0:変化なし
-       1:トラック替り(芝ダ替り)
-       2:初トラック(初芝,初ダ,初障)
-     2 距離フラグ
-       0: 経験有り
-       1: 最長距離
-     3 クラスフラグ
-       0: 変化なし
-       1: 昇級初戦
-       2: 降級
-       3: 格上挑戦
-     4 転厩フラグ
-       0:変化なし
-       1～3:転厩何戦目（３戦目まで）
-     5   去勢フラグ
-       0:変化なし
-       1～3:去勢何戦目（３戦目まで）
-     6  乗替フラグ
-       0: 変化なし
-       1: 乗替 (初)
-       9: 乗替 (再)
-     7  以降はスペース詰め
-    """
-    colmap = {
-        0: '',  # 芝ダ障害フラグ
-        1: '',  # 距離フラグ
-        2: '',  # クラスフラグ
-        3: '',  # 転厩フラグ
-        4: '',  # 去勢フラグ
-        5: '',  # 乗替フラグ
-    }
-    pass
 
 
 class KYI(Template):
@@ -201,7 +136,24 @@ class KYI(Template):
         ChoiceItem('輸送区分', 1, 468, 'jrdb.Contender.transport_category', choices.TRANSPORT_CATEGORY.options()),
         # ===以下第９版にて追加===
         # StringItem('jrdb.', '走法', 8, 469, 'コード表参照'),  # IGNORED (走法データの採取は休),
-        InvokeItem('体型', 24, 477, figure),  # TODO
+        ChoiceItem('体型', 1, 477, 'jrdb.Contender.prel_figure_overall', choices.FIGURE_OVERALL.options()),
+        ChoiceItem('背中', 1, 478, 'jrdb.Contender.prel_figure_back', choices.FIGURE_LENGTH.options()),
+        # ChoiceItem('胴', 1, 479, 'jrdb.Contender.prel_figure_*', choices.FIGURE_LENGTH.options())
+        ChoiceItem('尻', 1, 480, 'jrdb.Contender.prel_figure_rump', choices.FIGURE_SIZE.options()),
+        # ChoiceItem('トモ', 1, 481, 'jrdb.Contender.prel_figure_*', choices.FIGURE_ANGLE.options()),
+        ChoiceItem('腹袋', 1, 482, 'jrdb.Contender.prel_figure_belly', choices.FIGURE_SIZE.options()),
+        ChoiceItem('頭', 1, 483, 'jrdb.Contender.prel_figure_head', choices.FIGURE_SIZE.options()),
+        ChoiceItem('首', 1, 484, 'jrdb.Contender.prel_figure_neck', choices.FIGURE_LENGTH.options()),
+        ChoiceItem('胸', 1, 485, 'jrdb.Contender.prel_figure_breast', choices.FIGURE_SIZE.options()),
+        ChoiceItem('肩', 1, 486, 'jrdb.Contender.prel_figure_shoulder', choices.FIGURE_ANGLE.options()),
+        # ChoiceItem('前長', 1, 487, 'jrdb.Contender.prel_figure_*', choices.FIGURE_LENGTH.options()),
+        # ChoiceItem('後長', 1, 488, 'jrdb.Contender.prel_figure_*', choices.FIGURE_LENGTH.options()),
+        # ChoiceItem('前幅', 1, 489, 'jrdb.Contender.prel_figure_*', choices.FIGURE_STRIDE.options()),
+        # ChoiceItem('後幅', 1, 490, 'jrdb.Contender.prel_figure_*', choices.FIGURE_STRIDE.options()),
+        # ChoiceItem('前繋', 1, 491, 'jrdb.Contender.prel_figure_*', choices.FIGURE_LENGTH.options()),
+        # ChoiceItem('後繋', 1, 492, 'jrdb.Contender.prel_figure_*', choices.FIGURE_LENGTH.options()),
+        # ChoiceItem('尾', 1, 493, 'jrdb.Contender.prel_figure_*', choices.FIGURE_.options()), # つけ根の上げ方 1:上げる,2:下げる
+        # ChoiceItem('振', 1, 494, 'jrdb.Contender.prel_figure_*', choices.FIGURE_.options()),  # 尾の振り方 1:激しい,2:少し,3:あまり振らない
         ForeignKeyItem('体型総合１', 3, 501, 'jrdb.Contender.figure_overall_1', 'jrdb.SpecialMentionCode.key'),
         ForeignKeyItem('体型総合２', 3, 504, 'jrdb.Contender.figure_overall_2', 'jrdb.SpecialMentionCode.key'),
         ForeignKeyItem('体型総合３', 3, 507, 'jrdb.Contender.figure_overall_3', 'jrdb.SpecialMentionCode.key'),
@@ -220,7 +172,12 @@ class KYI(Template):
         ChoiceItem('激走タイプ', 2, 539, 'jrdb.Contender.flat_out_run_type', choices.FLAT_OUT_RUN_TYPE.options()),
         ChoiceItem('休養理由分類コード', 2, 541, 'jrdb.Contender.rest_reason', choices.REST_REASON.options()),
         # ===以下第11版にて追加===
-        InvokeItem('フラグ', 16, 543, flags),
+        ChoiceItem('芝ダ障害フラグ', 1, 543, 'jrdb.Contender.prior_context_surface', choices.PRIOR_CONTEXT_SURFACE.options()),
+        BooleanItem('距離フラグ', 1, 544, 'jrdb.Contender.is_longest_race_dist_yet'),
+        ChoiceItem('クラスフラグ', 1, 545, 'jrdb.Contender.prior_context_race_class', choices.PRIOR_CONTEXT_RACE_CLASS.options()),
+        IntegerItem('転厩フラグ', 1, 546, 'jrdb.Contender.nth_race_since_stable_change'),
+        IntegerItem('去勢フラグ', 1, 547, 'jrdb.Contender.nth_race_since_castration'),
+        # ChoiceItem('乗替フラグ', 1, 548, 'jrdb.Contender.???'), # jockey change?
         IntegerItem('入厩何走目', 2, 559, 'jrdb.Contender.nth_race_since_training_start'),
         DateItem('入厩年月日', 8, 561, 'jrdb.Contender.training_start_date'),
         IntegerItem('入厩何日前', 3, 569, 'jrdb.Contender.nth_day_since_training_start'),

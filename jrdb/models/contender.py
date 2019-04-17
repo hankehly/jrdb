@@ -137,7 +137,9 @@ class Contender(BaseModel):
     jockey_exp_show_rate = models.FloatField('騎手期待３着内率', null=True)
     transport_category = models.CharField('輸送区分', max_length=255, null=True, choices=choices.TRANSPORT_CATEGORY.CHOICES())
 
-    # figure = JSONField('体型', default=dict())
+    prel_figure_overall = models.CharField('体型', max_length=255, null=True, choices=choices.FIGURE_OVERALL.CHOICES(), help_text='馬体の全体的な形状')
+    prel_figure_back = models.CharField('背中', max_length=255, null=True, choices=choices.FIGURE_LENGTH.CHOICES())
+
     figure_overall_1 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合１', null=True)
     figure_overall_2 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合２', null=True)
     figure_overall_3 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合３', null=True)
@@ -154,6 +156,12 @@ class Contender(BaseModel):
     rank_lowered = models.CharField('降級フラグ', max_length=255, null=True, choices=choices.RANK_LOWERED.CHOICES())
     flat_out_run_type = models.CharField('激走タイプ', max_length=255, null=True, choices=choices.FLAT_OUT_RUN_TYPE.CHOICES())
     rest_reason = models.CharField('休養理由分類コード', max_length=255, null=True, choices=choices.REST_REASON.CHOICES())
+    prior_context_surface = models.CharField('芝ダ障害フラグ', max_length=255, null=True, choices=choices.PRIOR_CONTEXT_SURFACE.CHOICES())
+    is_longest_race_dist_yet = models.BooleanField('距離フラグ', null=True)
+    prior_context_race_class = models.CharField('クラスフラグ', max_length=255, null=True, choices=choices.PRIOR_CONTEXT_RACE_CLASS.CHOICES())
+    nth_race_since_stable_change = models.PositiveSmallIntegerField('転厩フラグ', null=True)
+    nth_race_since_castration = models.PositiveSmallIntegerField('去勢フラグ', null=True)
+    # ??? = ('乗替フラグ', max_length=255, null=True, choices=choices.???.CHOICES())
     nth_race_since_training_start = models.PositiveSmallIntegerField('入厩何走目', null=True)
     training_start_date = models.DateField('入厩年月日', null=True)
     nth_day_since_training_start = models.PositiveSmallIntegerField('入厩何日前', null=True)

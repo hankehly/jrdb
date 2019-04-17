@@ -354,6 +354,19 @@ class PHYSIQUE(ChoiceMixin):
     )
 
 
+class PRIOR_CONTEXT_RACE_CLASS(ChoiceMixin):
+    NO_CHANGE = 'NO_CHANGE'
+    POST_PROMOTION_FIRST = 'POST_PROMOTION_FIRST'
+    RANK_LOWERED = 'RANK_LOWERED'
+    ATTEMPT_RISE_RANK = 'ATTEMPT_RISE_RANK'
+
+
+class PRIOR_CONTEXT_SURFACE(ChoiceMixin):
+    NO_CHANGE = 'NO_CHANGE'
+    CHANGE = 'CHANGE'
+    FIRST = 'FIRST'
+
+
 class HORSE_SYMBOL(ChoiceMixin):
     """
     馬記号コード
