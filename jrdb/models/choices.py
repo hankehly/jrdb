@@ -195,7 +195,7 @@ class FIGURE_SIZE(ChoiceMixin):
     )
 
 
-class FIGURE_ANGLE(ChoiceMixin):
+class FIGURE_ANGLE(FIGURE_SIZE):
     """
     角度
 
@@ -205,14 +205,7 @@ class FIGURE_ANGLE(ChoiceMixin):
 
     (same values as FIGURE_SIZE)
     """
-    LARGE = 'LARGE'
-    NORMAL = 'NORMAL'
-    SMALL = 'SMALL'
-    MAP = (
-        ('1', LARGE, '大きい'),
-        ('2', NORMAL, '普通'),
-        ('3', SMALL, '小さい'),
-    )
+    pass
 
 
 class FIGURE_STRIDE(ChoiceMixin):
@@ -809,6 +802,19 @@ class SURFACE(ChoiceMixin):
         ('2', DIRT, 'ダート'),
         ('3', OBSTACLE, '障害'),
     )
+
+
+class TAIL_SWING_INTENSITY(ChoiceMixin):
+    """
+    尾の振り方
+
+    1:激しい
+    2:少し
+    3:あまり振らない
+    """
+    HIGH = 'HIGH'
+    LOW = 'LOW'
+    BARELY = 'BARELY'
 
 
 class TRACK_CONDITION(ChoiceMixin):

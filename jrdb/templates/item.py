@@ -140,17 +140,13 @@ class ForeignKeyItem(ModelItem):
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         field = self.get_field()
+        remote_field = self.get_remote_field()
 
-        if hasattr(field.remote_field.model, 'key2id'):
-            return field.remote_field.model.key2id(s).rename(field.column)
+        remote_records = remote_field.model.objects \
+            .filter(**{f'{remote_field.name}__in': s}) \
+            .values(remote_field.name, 'id')
 
-        remote_field_name = self.get_remote_field().name
-
-        remote_records = field.remote_field.model.objects \
-            .filter(**{f'{remote_field_name}__in': s}) \
-            .values(remote_field_name, 'id')
-
-        return s.map({record[remote_field_name]: record['id'] for record in remote_records}) \
+        return s.map({record[remote_field.name]: record['id'] for record in remote_records}) \
             .astype('Int64') \
             .rename(field.column)
 
