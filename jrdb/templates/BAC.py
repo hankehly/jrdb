@@ -11,32 +11,35 @@ from .template import Template, RacePersistMixin
 logger = logging.getLogger(__name__)
 
 
+# TODO: Move inline
 def symbols(s: pd.Series):
-    s1 = s.str[0].map(choices.RACE_HORSE_TYPE_SYMBOL.options()).rename('horse_type_symbol')
-    s2 = s.str[1].map(choices.RACE_HORSE_SEX_SYMBOL.options()).rename('horse_sex_symbol')
-    s3 = s.str[2].map(choices.RACE_INTERLEAGUE_SYMBOL.options()).rename('interleague_symbol')
+    s1 = s.str[0].map(choices.RACE_HORSE_TYPE_SYMBOL.options()).rename('race_horse_type_symbol')
+    s2 = s.str[1].map(choices.RACE_HORSE_SEX_SYMBOL.options()).rename('race_horse_sex_symbol')
+    s3 = s.str[2].map(choices.RACE_INTERLEAGUE_SYMBOL.options()).rename('race_interleague_symbol')
     return pd.concat([s1, s2, s3], axis='columns')
 
 
+# TODO: Move inline
 def nth_occurrence(s: pd.Series):
     # casting to float prior to Int64 is necessary
     # to convert strings to numbers
     return s.str.extract(r'([0-9]+)', expand=False) \
         .astype(float) \
         .astype('Int64') \
-        .rename('nth_occurrence')
+        .rename('race_nth_occurrence')
 
 
+# TODO: Move inline
 def betting_ticket_sale_flag(s: pd.Series):
     colmap = {
-        0: 'sold_win',  # 単勝
-        1: 'sold_show',  # 複勝
-        2: 'sold_bracket_quinella',  # 枠連
-        3: 'sold_quinella',  # 馬連
-        4: 'sold_exacta',  # 馬単
-        5: 'sold_duet',  # ワイド
-        6: 'sold_trio',  # ３連複
-        7: 'sold_trifecta'  # ３連単
+        0: 'race_sold_win',  # 単勝
+        1: 'race_sold_show',  # 複勝
+        2: 'race_sold_bracket_quinella',  # 枠連
+        3: 'race_sold_quinella',  # 馬連
+        4: 'race_sold_exacta',  # 馬単
+        5: 'race_sold_duet',  # ワイド
+        6: 'race_sold_trio',  # ３連複
+        7: 'race_sold_trifecta'  # ３連単
     }
 
     return s.str.strip() \

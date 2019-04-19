@@ -59,7 +59,7 @@ class ModelItem(Item, ABC):
 
     @property
     def key(self) -> str:
-        return self.symbol.split('.').pop()
+        return self.symbol.split('.', maxsplit=1).pop().lower().replace('.', '_')
 
     def get_model(self) -> Any:
         model, _ = self.symbol.rsplit('.', maxsplit=1)
@@ -132,23 +132,27 @@ class ForeignKeyItem(ModelItem):
 
     @property
     def key(self) -> str:
-        return self.get_field().name + '_' + self.get_remote_field().name
+        key = super(ForeignKeyItem, self).key
+        return '_'.join([key, self.get_remote_field().name])
 
     def get_remote_field(self):
         model, field = self.related_symbol.rsplit('.', maxsplit=1)
         return apps.get_model(model)._meta.get_field(field)
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        field = self.get_field()
         remote_field = self.get_remote_field()
 
         remote_records = remote_field.model.objects \
             .filter(**{f'{remote_field.name}__in': s}) \
             .values(remote_field.name, 'id')
 
+        model_name = self.get_model()._meta.model_name
+        field_name = self.get_field().column
+        index_name = '_'.join((model_name, field_name))
+
         return s.map({record[remote_field.name]: record['id'] for record in remote_records}) \
             .astype('Int64') \
-            .rename(field.column)
+            .rename(index_name)
 
     def _validate(self) -> None:
         super()._validate()

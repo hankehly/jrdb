@@ -83,9 +83,13 @@ class Template(ABC):
 
 class RacePersistMixin:
 
+    # TODO: Use model._meta to automate lookup and persistence
     @transaction.atomic
     def persist(self):
-        for row in self.clean().to_dict('records'):
+        prefix = 'race_'
+        df = self.clean().rename(columns=lambda c: c[len(prefix):] if str(c).startswith(prefix) else c)
+
+        for row in df.to_dict('records'):
             race = filter_na(row)
             lookup = {
                 'racetrack_id': race.pop('racetrack_id'),
