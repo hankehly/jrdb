@@ -37,6 +37,18 @@ def filter_na(obj: dict) -> dict:
     return {k: v for k, v in obj.items() if v not in [None, np.nan, pd.NaT]}
 
 
+def select_columns_with_prefix(df: pd.DataFrame, prefix: str, rename: bool = False) -> pd.DataFrame:
+    assert isinstance(prefix, str)
+
+    df = df[[column for column in df.columns if column.startswith(prefix)]]
+
+    if rename:
+        df = df.rename(columns=lambda column: column[len(prefix):] if column.startswith(prefix) else column)
+
+    df.prefix = prefix
+    return df
+
+
 def parse_template(path):
     """
     Helper function for developer to extract template rows from data doc files

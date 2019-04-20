@@ -1,5 +1,8 @@
+import pandas as pd
+
 from ..models import choices
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
+from .parse import select_columns_with_prefix
 from .template import Template
 
 
@@ -187,3 +190,18 @@ class KYI(Template):
         ChoiceItem('放牧先ランク', 1, 622, 'jrdb.Contender.pasture_rank', choices.PASTURE_RANK.options()),
         ChoiceItem('厩舎ランク', 1, 623, 'jrdb.Contender.stable_rank', choices.STABLE_RANK.options()),
     ]
+
+    def clean(self) -> pd.DataFrame:
+        # TODO: refactor select_columns_with_prefix with pipe() or something more integrated
+        rdf = select_columns_with_prefix(self.df, 'race_')
+        hdf = select_columns_with_prefix(self.df, 'horse_')
+        cdf = select_columns_with_prefix(self.df, 'contender_')
+
+        arr = []
+        for df in [cdf, hdf, rdf]:
+            for column in df:
+                item = next(item for item in self.items if item.key == column)
+                series = df[column]
+                result = item.clean(series)
+                arr.append(result)
+        return pd.concat(arr, axis='columns')

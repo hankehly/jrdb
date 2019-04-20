@@ -82,10 +82,7 @@ class IntegerItem(ModelItem):
     default: Optional[int] = None
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
-        if self.get_field().null:
-            return s.apply(parse_int_or, args=(self.default,)).astype('Int64')
-
-        return s.astype(int)
+        return s.apply(parse_int_or, args=(self.default,)).astype('Int64')
 
 
 @dataclass(eq=False, frozen=True)
