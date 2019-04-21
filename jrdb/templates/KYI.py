@@ -2,7 +2,7 @@ import pandas as pd
 
 from ..models import choices
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
-from .parse import select_columns_with_prefix
+from .parse import select_column_startswith
 from .template import Template
 
 
@@ -192,16 +192,14 @@ class KYI(Template):
     ]
 
     def clean(self) -> pd.DataFrame:
-        # TODO: refactor select_columns_with_prefix with pipe() or something more integrated
-        rdf = select_columns_with_prefix(self.df, 'race_')
-        hdf = select_columns_with_prefix(self.df, 'horse_')
-        cdf = select_columns_with_prefix(self.df, 'contender_')
+        rdf = self.df.pipe(select_column_startswith, 'race_')
+        hdf = self.df.pipe(select_column_startswith, 'horse_')
+        cdf = self.df.pipe(select_column_startswith, 'contender_')
 
-        arr = []
-        for df in [cdf, hdf, rdf]:
-            for column in df:
-                item = next(item for item in self.items if item.key == column)
-                series = df[column]
-                result = item.clean(series)
-                arr.append(result)
-        return pd.concat(arr, axis='columns')
+        frames = []
+        for df in [rdf, hdf, cdf]:
+            for col in df:
+                item = next(item for item in self.items if item.key == col)
+                cleaned = item.clean(df[col])
+                frames.append(cleaned)
+        return pd.concat(frames, axis='columns')

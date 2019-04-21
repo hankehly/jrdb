@@ -37,13 +37,14 @@ def filter_na(obj: dict) -> dict:
     return {k: v for k, v in obj.items() if v not in [None, np.nan, pd.NaT]}
 
 
-def select_columns_with_prefix(df: pd.DataFrame, prefix: str, rename: bool = False) -> pd.DataFrame:
-    assert isinstance(prefix, str)
+def select_column_startswith(df: pd.DataFrame, prefix: str, rename: bool = False) -> pd.DataFrame:
+    df = df.copy()
 
-    df = df[[column for column in df.columns if column.startswith(prefix)]]
+    cols = [col for col in df.columns if col.startswith(prefix)]
+    df = df[cols]
 
     if rename:
-        df = df.rename(columns=lambda column: column[len(prefix):] if column.startswith(prefix) else column)
+        df = df.rename(columns=lambda col: col[len(prefix):] if col.startswith(prefix) else col)
 
     df.prefix = prefix
     return df
