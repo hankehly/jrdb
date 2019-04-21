@@ -77,13 +77,10 @@ class Template(ABC):
             objs.append(item.clean(self.df[col]))
         return pd.concat(objs, axis='columns')
 
-    def persist(self) -> None:
-        raise NotImplementedError
 
-
+# TODO: Use model._meta to automate lookup and persistence
 class RacePersistMixin:
 
-    # TODO: Use model._meta to automate lookup and persistence
     @transaction.atomic
     def persist(self):
         df = self.clean().pipe(select_columns_startwith, 'race__', rename=True)
