@@ -1,8 +1,5 @@
-import pandas as pd
-
 from ..models import choices
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
-from .parse import select_column_startswith
 from .template import Template
 
 
@@ -190,16 +187,3 @@ class KYI(Template):
         ChoiceItem('放牧先ランク', 1, 622, 'jrdb.Contender.pasture_rank', choices.PASTURE_RANK.options()),
         ChoiceItem('厩舎ランク', 1, 623, 'jrdb.Contender.stable_rank', choices.STABLE_RANK.options()),
     ]
-
-    def clean(self) -> pd.DataFrame:
-        rdf = self.df.pipe(select_column_startswith, 'race_')
-        hdf = self.df.pipe(select_column_startswith, 'horse_')
-        cdf = self.df.pipe(select_column_startswith, 'contender_')
-
-        frames = []
-        for df in [rdf, hdf, cdf]:
-            for col in df:
-                item = next(item for item in self.items if item.key == col)
-                cleaned = item.clean(df[col])
-                frames.append(cleaned)
-        return pd.concat(frames, axis='columns')

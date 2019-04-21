@@ -8,7 +8,7 @@ from django.db import transaction, IntegrityError
 
 from ..models import Race
 from .item import ArrayItem
-from .parse import filter_na
+from .parse import filter_na, select_columns_startwith
 
 logger = logging.getLogger(__name__)
 
@@ -71,11 +71,11 @@ class Template(ABC):
         return row
 
     def clean(self) -> pd.DataFrame:
-        arr = []
-        for name in self.df:
-            item = next(item for item in self.items if item.key == name)
-            arr.append(item.clean(self.df[name]))
-        return pd.concat(arr, axis='columns')
+        objs = []
+        for col in self.df:
+            item = next(item for item in self.items if item.key == col)
+            objs.append(item.clean(self.df[col]))
+        return pd.concat(objs, axis='columns')
 
     def persist(self) -> None:
         raise NotImplementedError
@@ -86,8 +86,7 @@ class RacePersistMixin:
     # TODO: Use model._meta to automate lookup and persistence
     @transaction.atomic
     def persist(self):
-        prefix = 'race_'
-        df = self.clean().rename(columns=lambda c: c[len(prefix):] if str(c).startswith(prefix) else c)
+        df = self.clean().pipe(select_columns_startwith, 'race__', rename=True)
 
         for row in df.to_dict('records'):
             race = filter_na(row)

@@ -13,9 +13,9 @@ logger = logging.getLogger(__name__)
 
 # TODO: Move inline
 def symbols(s: pd.Series):
-    s1 = s.str[0].map(choices.RACE_HORSE_TYPE_SYMBOL.options()).rename('race_horse_type_symbol')
-    s2 = s.str[1].map(choices.RACE_HORSE_SEX_SYMBOL.options()).rename('race_horse_sex_symbol')
-    s3 = s.str[2].map(choices.RACE_INTERLEAGUE_SYMBOL.options()).rename('race_interleague_symbol')
+    s1 = s.str[0].map(choices.RACE_HORSE_TYPE_SYMBOL.options()).rename('race__horse_type_symbol')
+    s2 = s.str[1].map(choices.RACE_HORSE_SEX_SYMBOL.options()).rename('race__horse_sex_symbol')
+    s3 = s.str[2].map(choices.RACE_INTERLEAGUE_SYMBOL.options()).rename('race__interleague_symbol')
     return pd.concat([s1, s2, s3], axis='columns')
 
 
@@ -26,20 +26,20 @@ def nth_occurrence(s: pd.Series):
     return s.str.extract(r'([0-9]+)', expand=False) \
         .astype(float) \
         .astype('Int64') \
-        .rename('race_nth_occurrence')
+        .rename('race__nth_occurrence')
 
 
 # TODO: Move inline
 def betting_ticket_sale_flag(s: pd.Series):
     colmap = {
-        0: 'race_sold_win',  # 単勝
-        1: 'race_sold_show',  # 複勝
-        2: 'race_sold_bracket_quinella',  # 枠連
-        3: 'race_sold_quinella',  # 馬連
-        4: 'race_sold_exacta',  # 馬単
-        5: 'race_sold_duet',  # ワイド
-        6: 'race_sold_trio',  # ３連複
-        7: 'race_sold_trifecta'  # ３連単
+        0: 'race__sold_win',  # 単勝
+        1: 'race__sold_show',  # 複勝
+        2: 'race__sold_bracket_quinella',  # 枠連
+        3: 'race__sold_quinella',  # 馬連
+        4: 'race__sold_exacta',  # 馬単
+        5: 'race__sold_duet',  # ワイド
+        6: 'race__sold_trio',  # ３連複
+        7: 'race__sold_trifecta'  # ３連単
     }
 
     return s.str.strip() \

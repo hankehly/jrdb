@@ -37,7 +37,7 @@ def filter_na(obj: dict) -> dict:
     return {k: v for k, v in obj.items() if v not in [None, np.nan, pd.NaT]}
 
 
-def select_column_startswith(df: pd.DataFrame, prefix: str, rename: bool = False) -> pd.DataFrame:
+def select_columns_startwith(df: pd.DataFrame, prefix: str, rename: bool = False) -> pd.DataFrame:
     df = df.copy()
 
     cols = [col for col in df.columns if col.startswith(prefix)]

@@ -59,7 +59,7 @@ class ModelItem(Item, ABC):
 
     @property
     def key(self) -> str:
-        return self.symbol.split('.', maxsplit=1).pop().lower().replace('.', '_')
+        return self.symbol.split('.', maxsplit=1).pop().lower().replace('.', '__')
 
     def get_model(self) -> Any:
         model, _ = self.symbol.rsplit('.', maxsplit=1)
@@ -72,9 +72,10 @@ class ModelItem(Item, ABC):
     def _validate(self) -> None:
         super()._validate()
         assert len(self.symbol.split('.')) == 3, f'invalid symbol <{self.symbol}>'
-        assert self.get_field().get_internal_type() in MODEL_ITEM_FIELD_MAP.get(self.__class__.__name__), \
-            f"field <name: {self.get_field().name}, type: {self.get_field().get_internal_type()}> " + \
+        assert self.get_field().get_internal_type() in MODEL_ITEM_FIELD_MAP.get(self.__class__.__name__), (
+            f"field <name: {self.get_field().name}, type: {self.get_field().get_internal_type()}> "
             f"not found in MODEL_ITEM_FIELD_MAP['{self.__class__.__name__}']"
+        )
 
 
 @dataclass(eq=False, frozen=True)
@@ -145,7 +146,7 @@ class ForeignKeyItem(ModelItem):
 
         model_name = self.get_model()._meta.model_name
         field_name = self.get_field().column
-        index_name = '_'.join((model_name, field_name))
+        index_name = '__'.join((model_name, field_name))
 
         return s.map({record[remote_field.name]: record['id'] for record in remote_records}) \
             .astype('Int64') \
