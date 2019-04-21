@@ -5,7 +5,7 @@ from django.db import IntegrityError, transaction
 
 from ..models import choices, Trainer
 from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
-from .parse import filter_na
+from .parse import filter_na, select_columns_startwith
 from .template import Template
 
 logger = logging.getLogger(__name__)
@@ -45,12 +45,12 @@ class CZA(Template):
     ]
 
     def clean(self) -> pd.DataFrame:
-        self.df = self.df[~self.df.name.str.contains('削除')]
+        self.df = self.df[~self.df['trainer__name'].str.contains('削除')]
         return super().clean()
 
     @transaction.atomic
     def persist(self):
-        df = self.clean()
+        df = self.clean().pipe(select_columns_startwith, 'trainer__', rename=True)
         for row in df.to_dict('records'):
             record = filter_na(row)
             try:
