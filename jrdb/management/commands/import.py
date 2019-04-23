@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 def import_document(parser: Template) -> str:
     parser.parse().persist()
-    return parser.filepath
+    return parser.path
 
 
 class Command(BaseCommand):
@@ -26,8 +26,9 @@ class Command(BaseCommand):
         self.success_count = 0
 
     def add_arguments(self, parser):
-        parser.add_argument('template', choices=['BAC', 'CSA', 'CZA', 'KSA', 'KZA', 'SED', 'SRB', 'UKC'],
-                            help='Template parser used during import.')
+        template_choices = ['BAC', 'CSA', 'CZA', 'KSA', 'KYI', 'KZA', 'OT', 'OU', 'OV', 'OW', 'OZ', 'SED', 'SRB', 'UKC']
+        parser.add_argument('template', choices=template_choices, help='Template parser used during import.')
+
         parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')
         parser.add_argument('--threads', type=int, help='Threads to use during processing (default is 1)', default=1)
 

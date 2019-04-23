@@ -1,6 +1,3 @@
-from typing import List, Union
-
-import pandas as pd
 from django.db import models
 
 
@@ -21,15 +18,6 @@ class SimpleCode(models.Model):
 
     class Meta:
         abstract = True
-
-    @classmethod
-    def key2id(cls, series: Union[pd.Series, List], allow_null=False, name=None) -> pd.Series:
-        if name is None:
-            name = cls.__name__
-        codes = cls.objects.filter(key__in=series)
-        code_map = {code.key: code.id for code in codes}
-        dtype = 'Int64' if allow_null else 'int64'
-        return pd.Series(series).map(code_map).astype(dtype).rename(name)
 
 
 class HoofCode(SimpleCode):

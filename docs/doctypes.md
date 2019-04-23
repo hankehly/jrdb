@@ -7,6 +7,7 @@ This file supersedes SEC as the main JRDB成績データ file. It contains past 
 ＊ The "種別" keys in the description file are incorrect. The correct declaration values are found in the [larger code list](http://www.jrdb.com/program/jrdb_code.txt).
 木	17:00
 
+TODO: Start with predecessor templates, and subclass until you get to the current version (given the contents match)
 #### SEC（JRDB成績データ）
 The predecessor of SED
 木	17:00

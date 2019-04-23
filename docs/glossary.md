@@ -51,6 +51,9 @@
 | ブリンカー | | | 馬の視野を制限するための馬具 ([1](https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AA%E3%83%B3%E3%82%AB%E3%83%BC))([2](https://www.nabioo.com/entry/2017/0609/brinker)) |
 | 万券 | まんけん | | ([1](https://www.bt-navi.net/terms/manken/)) |
 | 連闘 | れんとう | | ([1](http://www.jra.go.jp/kouza/yougo/w312.html)) |
+| | | croup / rump | ([1](https://umas.club/hp0243)) |
+| トモ | | The part of the horse from the hip behind | ([1](http://d.hatena.ne.jp/Southend/20100809/p1))([2](http://www.jra.go.jp/kouza/yougo/w119.html)) |
+| 付け根 | つけね | dock | The fleshy top part of the horse's tail ([1](https://www.habitatforhorses.org/kidscorral/vocabulary_I.html)) |
  
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  
@@ -89,3 +92,6 @@ In general, it is best not to abbreviate variable names for understandability; h
 ## Dictionaries and word lists
 - [JRA-VAN DB Code List](http://cattle.x-winz.net/edb2_manual/12-3-99-CODE.html)
 - [競馬バンク競馬用語集](http://www.kei-bank.com/dic)
+- [馬の身体の部位の名前と測定箇所](https://umas.club/hp0243)
+- [競走馬の馬体を評価する基準](http://d.hatena.ne.jp/Southend/20100809/p1)
+- [Horse Body Parts](https://www.habitatforhorses.org/kidscorral/vocabulary_I.html)

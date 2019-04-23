@@ -1,12 +1,11 @@
 import logging
 
 from django.db import IntegrityError, transaction
-import numpy as np
 
-from jrdb.models.choices import AREA, TRAINEE_CATEGORY
-from jrdb.models import Jockey, Trainer
-from jrdb.templates.parse import filter_na, parse_comma_separated_integer_list, parse_int_or, parse_date
+from jrdb.models import Jockey, Trainer, choices
 from jrdb.templates.template import Template
+from jrdb.templates.item import StringItem, DateItem, ChoiceItem, IntegerItem, ArrayItem
+from .parse import select_index_startwith
 
 logger = logging.getLogger(__name__)
 
@@ -17,92 +16,54 @@ class KZA(Template):
     """
     name = '全騎手'
     items = [
-        ['code', '騎手コード', None, '5', '99999', '1', None],
-        ['is_retired', '登録抹消フラグ', None, '1', '9', '6', '1:抹消,0:現役'],
-        ['retired_on', '登録抹消年月日', None, '8', '9', '7', 'YYYYMMDD'],
-        ['name', '騎手名', None, '12', 'X', '15', '全角６文字'],
-        ['name_kana', '騎手カナ', None, '30', 'X', '27', '全角１５文字'],
-        ['name_abbr', '騎手名略称', None, '6', 'X', '57', '全角３文字'],
-        ['area', '所属コード', None, '1', '9', '63', '1:関東,2:関西,3:他'],
-        ['training_center_name', '所属地域名', None, '4', 'X', '64', '全角２文字、地方の場合'],
-        ['birthday', '生年月日', None, '8', '9', '68', 'YYYYMMDD'],
-        ['lic_acquired_yr', '初免許年', None, '4', '9', '76', 'YYYY'],
-        ['trainee_cat', '見習い区分', None, '1', '9', '80', '1:☆(1K減),2:△(2K),3:▲(3K)'],
-        ['trainer_code', '所属厩舎', None, '5', '9', '81', '所属厩舎の調教師コード'],
-        ['jrdb_comment', '騎手コメント', None, '40', 'X', '86', 'ＪＲＤＢスタッフの騎手評価'],
-        ['jrdb_comment_date', 'コメント入力年月日', None, '8', 'X', '126', '騎手コメントを入力した年月日'],
-        ['cur_yr_leading', '本年リーディング', None, '3', 'ZZ9', '134', None],
-        ['cur_yr_flat_r', '本年平地成績', None, '12', 'ZZ9*4', '137', '１－２－３－着外(3*4)'],
-        ['cur_yr_obst_r', '本年障害成績', None, '12', 'ZZ9*4', '149', '１－２－３－着外(3*4)'],
-        ['cur_yr_sp_wins', '本年特別勝数', None, '3', 'ZZ9', '161', None],
-        ['cur_yr_hs_wins', '本年重賞勝数', None, '3', 'ZZ9', '164', None],
-        ['prev_yr_leading', '昨年リーディング', None, '3', 'ZZ9', '167', None],
-        ['prev_yr_flat_r', '昨年平地成績', None, '12', 'ZZ9*4', '170', '１－２－３－着外(3*4)'],
-        ['prev_yr_obst_r', '昨年障害成績', None, '12', 'ZZ9*4', '182', '１－２－３－着外(3*4)'],
-        ['prev_yr_sp_wins', '昨年特別勝数', None, '3', 'ZZ9', '194', None],
-        ['prev_yr_hs_wins', '昨年重賞勝数', None, '3', 'ZZ9', '197', None],
-        ['sum_flat_r', '通算平地成績', None, '20', 'ZZZZ9*4', '200', '１－２－３－着外(5*4)'],
-        ['sum_obst_r', '通算障害成績', None, '20', 'ZZZZ9*4', '220', '１－２－３－着外(5*4)'],
-        ['jrdb_saved_on', 'データ年月日', None, '8', 'X', '240', 'スペース'],
-        ['reserved', '予備', None, '23', 'X', '248', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '271', 'ＣＲ・ＬＦ']
+        StringItem('騎手コード', 5, 0, 'jrdb.Jockey.code'),
+        # 'is_retired', '登録抹消フラグ', width=1, start=5
+        DateItem('登録抹消年月日', 8, 6, 'jrdb.Jockey.retired_on'),
+        StringItem('騎手名', 12, 14, 'jrdb.Jockey.name'),
+        StringItem('騎手カナ', 30, 26, 'jrdb.Jockey.name_kana'),
+        StringItem('騎手名略称', 6, 56, 'jrdb.Jockey.name_abbr'),
+        ChoiceItem('所属コード', 1, 62, 'jrdb.Jockey.area', choices.AREA.options()),
+        StringItem('所属地域名', 4, 63, 'jrdb.Jockey.training_center_name'),
+        DateItem('生年月日', 8, 67, 'jrdb.Jockey.birthday'),
+        IntegerItem('初免許年', 4, 75, 'jrdb.Jockey.lic_acquired_yr'),
+        ChoiceItem('見習い区分', 1, 79, 'jrdb.Jockey.trainee_cat', choices.TRAINEE_CATEGORY.options()),
+        StringItem('所属厩舎', 5, 80, 'jrdb.Trainer.code'),
+        StringItem('騎手コメント', 40, 85, 'jrdb.Jockey.jrdb_comment'),
+        DateItem('コメント入力年月日', 8, 125, 'jrdb.Jockey.jrdb_comment_date'),
+        IntegerItem('本年リーディング', 3, 133, 'jrdb.Jockey.cur_yr_leading'),
+        ArrayItem('本年平地成績', 12, 136, 'jrdb.Jockey.cur_yr_flat_r', 4),
+        ArrayItem('本年障害成績', 12, 148, 'jrdb.Jockey.cur_yr_obst_r', 4),
+        IntegerItem('本年特別勝数', 3, 160, 'jrdb.Jockey.cur_yr_sp_wins'),
+        IntegerItem('本年重賞勝数', 3, 163, 'jrdb.Jockey.cur_yr_hs_wins'),
+        IntegerItem('昨年リーディング', 3, 166, 'jrdb.Jockey.prev_yr_leading'),
+        ArrayItem('昨年平地成績', 12, 169, 'jrdb.Jockey.prev_yr_flat_r', 4),
+        ArrayItem('昨年障害成績', 12, 181, 'jrdb.Jockey.prev_yr_obst_r', 4),
+        IntegerItem('昨年特別勝数', 3, 193, 'jrdb.Jockey.prev_yr_sp_wins'),
+        IntegerItem('昨年重賞勝数', 3, 196, 'jrdb.Jockey.prev_yr_hs_wins'),
+        ArrayItem('通算平地成績', 20, 199, 'jrdb.Jockey.sum_flat_r', 4),
+        ArrayItem('通算障害成績', 20, 219, 'jrdb.Jockey.sum_obst_r', 4),
+        DateItem('データ年月日', 8, 239, 'jrdb.Jockey.jrdb_saved_on')
     ]
 
     def clean(self):
-        t = self.df[~self.df.name.str.contains('削除')]
-
-        code = t.code.str.strip()
-        code.name = 'code'
-
-        df = code.to_frame()
-
-        df['retired_on'] = t.retired_on.apply(parse_date, args=('%Y%m%d',))
-        df['name'] = t.name.str.strip()
-        df['name_kana'] = t.name_kana.str.strip()
-        df['name_abbr'] = t.name_abbr.str.strip()
-
-        df['area'] = t.area.map(AREA.get_key_map())
-        df['training_center_name'] = t.training_center_name.str.strip()
-        df['birthday'] = t.birthday.apply(parse_date, args=('%Y%m%d',))
-        df['lic_acquired_yr'] = t.lic_acquired_yr.astype(int)
-        df['trainee_cat'] = t.trainee_cat.map(TRAINEE_CATEGORY.get_key_map())
-        df['trainer_code'] = t.trainer_code.str.strip()
-        df['jrdb_comment'] = t.jrdb_comment.str.strip()
-        df['jrdb_comment_date'] = t.jrdb_comment_date.apply(parse_date, args=('%Y%m%d',))
-
-        df['cur_yr_leading'] = t.cur_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        df['cur_yr_flat_r'] = t.cur_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['cur_yr_obst_r'] = t.cur_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['cur_yr_sp_wins'] = t.cur_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-        df['cur_yr_hs_wins'] = t.cur_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-
-        df['prev_yr_leading'] = t.prev_yr_leading.str.strip().apply(parse_int_or, args=(np.nan,)).astype('Int64')
-        df['prev_yr_flat_r'] = t.prev_yr_flat_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['prev_yr_obst_r'] = t.prev_yr_obst_r.apply(parse_comma_separated_integer_list, args=(3,))
-        df['prev_yr_sp_wins'] = t.prev_yr_sp_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-        df['prev_yr_hs_wins'] = t.prev_yr_hs_wins.str.strip().apply(parse_int_or, args=(0,)).astype(int)
-
-        df['sum_flat_r'] = t.sum_flat_r.apply(parse_comma_separated_integer_list, args=(5,))
-        df['sum_obst_r'] = t.sum_obst_r.apply(parse_comma_separated_integer_list, args=(5,))
-
-        df['jrdb_saved_on'] = self.df.jrdb_saved_on.apply(parse_date, args=('%Y%m%d',))
-
-        return df
+        self.df = self.df[~self.df['jockey__name'].str.contains('削除')]
+        return super().clean()
 
     @transaction.atomic
     def persist(self):
-        df = self.clean()
-        for row in df.to_dict('records'):
-            record = filter_na(row)
-
+        for _, row in self.clean().iterrows():
             try:
-                trainer, _ = Trainer.objects.get_or_create(code=record.pop('trainer_code'))
-                record['trainer_id'] = trainer.id
+                j = row.pipe(select_index_startwith, 'jockey__', rename=True).dropna().to_dict()
 
-                jockey, created = Jockey.objects.get_or_create(code=record.pop('code'), defaults=record)
+                if row.trainer__code:
+                    trainer, _ = Trainer.objects.get_or_create(code=row.trainer__code)
+                    j['trainer_id'] = trainer.id
+
+                jockey, created = Jockey.objects.get_or_create(code=j.pop('code'), defaults=j)
+
                 if not created:
-                    if jockey.jrdb_saved_on is None or record['jrdb_saved_on'] >= jockey.jrdb_saved_on:
-                        for name, value in record.items():
+                    if jockey.jrdb_saved_on is None or j['jrdb_saved_on'] >= jockey.jrdb_saved_on:
+                        for name, value in j.items():
                             setattr(jockey, name, value)
                         jockey.save()
             except IntegrityError as e:

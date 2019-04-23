@@ -9,6 +9,13 @@ class ChoiceMixin:
 
     @classmethod
     def get_key_map(cls):
+        """
+        Deprecated. Use options instead.
+        """
+        return cls.options()
+
+    @classmethod
+    def options(cls) -> dict:
         return {
             t[0]: t[1] for t in cls.MAP
         }
@@ -25,7 +32,25 @@ class AREA(ChoiceMixin):
     )
 
 
-class BLINKER_USAGE(ChoiceMixin):
+class APTITUDE_CODE(ChoiceMixin):
+    """
+    適性を３段階評価したもの。
+
+    1 ◎ 得意
+    2 ○ 普通
+    3 △ 苦手
+    """
+    STRONG = 'STRONG'
+    NORMAL = 'NORMAL'
+    WEAK = 'WEAK'
+    MAP = (
+        ('1', STRONG, '得意'),
+        ('2', NORMAL, '普通'),
+        ('3', WEAK, '苦手'),
+    )
+
+
+class BLINKER(ChoiceMixin):
     """
     1 初装着
     2 再装着 => using again after having removed
@@ -134,6 +159,91 @@ class DIRECTION(ChoiceMixin):
     )
 
 
+class FIGURE_OVERALL(ChoiceMixin):
+    """
+    体型
+
+    1:長方形
+    2:普通
+    3:正方形
+    """
+    RECT = 'RECT'
+    NORMAL = 'NORMAL'
+    SQUARE = 'SQUARE'
+    MAP = (
+        ('1', RECT, '長方形'),
+        ('2', NORMAL, '普通'),
+        ('3', SQUARE, '正方形'),
+    )
+
+
+class FIGURE_SIZE(ChoiceMixin):
+    """
+    大きさ
+
+    1:大きい
+    2:普通
+    3:小さい
+    """
+    LARGE = 'LARGE'
+    NORMAL = 'NORMAL'
+    SMALL = 'SMALL'
+    MAP = (
+        ('1', LARGE, '大きい'),
+        ('2', NORMAL, '普通'),
+        ('3', SMALL, '小さい'),
+    )
+
+
+class FIGURE_ANGLE(FIGURE_SIZE):
+    """
+    角度
+
+    1:大きい
+    2:普通
+    3:小さい
+
+    (same values as FIGURE_SIZE)
+    """
+    pass
+
+
+class FIGURE_STRIDE(ChoiceMixin):
+    """
+    歩幅
+
+    1:広い
+    2:普通
+    3:狭い
+    """
+    WIDE = 'WIDE'
+    NORMAL = 'NORMAL'
+    NARROW = 'NARROW'
+    MAP = (
+        ('1', WIDE, '広い'),
+        ('2', NORMAL, '普通'),
+        ('3', NARROW, '狭い'),
+    )
+
+
+class FIGURE_LENGTH(ChoiceMixin):
+    """
+    長さ
+
+    1:長い
+    2:普通
+    3:短い
+    """
+    LONG = 'LONG'
+    NORMAL = 'NORMAL'
+    SHORT = 'SHORT'
+    MAP = (
+        ('1', LONG, '長い'),
+        ('2', NORMAL, '普通'),
+        ('3', SHORT, '短い'),
+    )
+
+
 class FLAT_OUT_RUN_TYPE(ChoiceMixin):
     """
     激走タイプ
@@ -235,6 +345,19 @@ class PHYSIQUE(ChoiceMixin):
         ('6', FRESH, '張り'),
         ('7', LOOSE, '緩い')
     )
+
+
+class PRIOR_CONTEXT_RACE_CLASS(ChoiceMixin):
+    NO_CHANGE = 'NO_CHANGE'
+    POST_PROMOTION_FIRST = 'POST_PROMOTION_FIRST'
+    RANK_LOWERED = 'RANK_LOWERED'
+    ATTEMPT_RISE_RANK = 'ATTEMPT_RISE_RANK'
+
+
+class PRIOR_CONTEXT_SURFACE(ChoiceMixin):
+    NO_CHANGE = 'NO_CHANGE'
+    CHANGE = 'CHANGE'
+    FIRST = 'FIRST'
 
 
 class HORSE_SYMBOL(ChoiceMixin):
@@ -648,6 +771,28 @@ class STABLE_HORSE_EVALUATION(ChoiceMixin):
     )
 
 
+class STABLE_RANK(ChoiceMixin):
+    S = 'S'
+    A = 'A'
+    B = 'B'
+    NORMAL = 'NORMAL'
+    D = 'D'
+    E = 'E'
+    F = 'F'
+    BELOW_F = 'BELOW_F'
+
+    MAP = (
+        ('1', S, 'S級 ピンク'),
+        ('2', A, 'A級 オレンジ'),
+        ('3', B, 'B級 黄色'),
+        ('5', NORMAL, 'ノーマル'),
+        ('6', D, 'D級 青'),
+        ('7', E, 'E級 紫'),
+        ('8', F, 'F級 灰色'),
+        ('9', BELOW_F, 'その他総数１０以下の厩舎')
+    )
+
+
 class SURFACE(ChoiceMixin):
     TURF = 'TURF'
     DIRT = 'DIRT'
@@ -657,6 +802,19 @@ class SURFACE(ChoiceMixin):
         ('2', DIRT, 'ダート'),
         ('3', OBSTACLE, '障害'),
     )
+
+
+class TAIL_SWING_INTENSITY(ChoiceMixin):
+    """
+    尾の振り方
+
+    1:激しい
+    2:少し
+    3:あまり振らない
+    """
+    HIGH = 'HIGH'
+    LOW = 'LOW'
+    BARELY = 'BARELY'
 
 
 class TRACK_CONDITION(ChoiceMixin):
@@ -881,7 +1039,7 @@ class WEATHER(ChoiceMixin):
     )
 
 
-class YIELDING_TRACK_APTITUDE(ChoiceMixin):
+class YIELDING_TRACK_APTITUDE(APTITUDE_CODE):
     """
     重適性コード
 
@@ -890,11 +1048,4 @@ class YIELDING_TRACK_APTITUDE(ChoiceMixin):
     2 ○ 普通
     3 △ 苦手
     """
-    STRONG = 'STRONG'
-    NORMAL = 'NORMAL'
-    WEAK = 'WEAK'
-    MAP = (
-        ('1', STRONG, '得意'),
-        ('2', NORMAL, '普通'),
-        ('3', WEAK, '苦手'),
-    )
+    pass

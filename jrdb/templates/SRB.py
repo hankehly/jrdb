@@ -1,79 +1,36 @@
 import logging
 
-from django.db import IntegrityError, transaction
-
-from jrdb.models import Racetrack, Race
-from jrdb.templates.parse import parse_comma_separated_integer_list, filter_na
-from jrdb.templates.template import Template
+from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
+from .template import Template, RacePersistMixin
 
 logger = logging.getLogger(__name__)
 
 
-class SRB(Template):
+class SRB(Template, RacePersistMixin):
     """
     http://www.jrdb.com/program/Srb/srb_doc.txt
     """
     name = 'JRDB成績レースデータ（SRB）'
     items = [
-        ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['yr', '年', None, '2', '99', '3', None],
-        ['round', '回', None, '1', '9', '5', None],
-        ['day', '日', None, '1', 'F', '6', None],
-        ['num', 'Ｒ', None, '2', '99', '7', None],
-        ['furlong_time', 'ハロンタイム', '18', '3', '999', '9', '3*18=54BYTE 先頭馬の１ハロン毎のタイム 0.1秒単位　※１'],  # IGNORED
-        ['cor_1_pos', '１コーナー', None, '64', 'X', '63', None],  # IGNORED
-        ['cor_2_pos', '２コーナー', None, '64', 'X', '127', None],  # IGNORED
-        ['cor_3_pos', '３コーナー', None, '64', 'X', '191', None],  # IGNORED
-        ['cor_4_pos', '４コーナー', None, '64', 'X', '255', None],  # IGNORED
-        ['pace_up_pos', 'ペースアップ位置', None, '2', '9', '319', '残りハロン数'],  # IGNORED
-        ['c1_track_bias', 'トラックバイアス（１角）', None, '3', 'X', '321', '（内、中、外）'],
-        ['c2_track_bias', 'トラックバイアス（２角）', None, '3', 'X', '324', '（内、中、外）'],
-        ['bs_track_bias', 'トラックバイアス（向正）', None, '3', 'X', '327', '（内、中、外）'],
-        ['c3_track_bias', 'トラックバイアス（３角）', None, '3', 'X', '330', '（内、中、外）'],
-        ['c4_track_bias', 'トラックバイアス（４角）', None, '5', 'X', '333', '（最内、内、中、外、大外）'],
-        ['hs_track_bias', 'トラックバイアス（直線）', None, '5', 'X', '338', '（最内、内、中、外、大外）'],
-        ['comment', 'レースコメント', None, '500', 'X', '343', None],
-        ['reserved', '予備', None, '8', 'X', '843', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '851', 'ＣＲ・ＬＦ'],
+        ForeignKeyItem('場コード', 2, 0, 'jrdb.Race.racetrack', 'jrdb.Racetrack.code'),
+        IntegerItem('年', 2, 2, 'jrdb.Race.yr'),
+        IntegerItem('回', 1, 4, 'jrdb.Race.round'),
+        StringItem('日', 1, 5, 'jrdb.Race.day'),
+        IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
+
+        # TODO:
+        #   - ArrayItem('ハロンタイム', 3, 8, 'furlong_time'),
+        #   - ArrayItem('１コーナー', 64, 62, 'c1pos'),
+        #   - ArrayItem('２コーナー', 64, 126, 'c2pos'),
+        #   - ArrayItem('３コーナー', 64, 190, 'c3pos'),
+        #   - ArrayItem('４コーナー', 64, 254, 'c4pos'),
+        #   - ArrayItem('ペースアップ位置', 2, 318, 'pace_up_pos'),
+
+        ArrayItem('トラックバイアス（１角）', 3, 320, 'jrdb.Race.c1_track_bias', 3),
+        ArrayItem('トラックバイアス（２角）', 3, 323, 'jrdb.Race.c2_track_bias', 3),
+        ArrayItem('トラックバイアス（向正）', 3, 326, 'jrdb.Race.bs_track_bias', 3),
+        ArrayItem('トラックバイアス（３角）', 3, 329, 'jrdb.Race.c3_track_bias', 3),
+        ArrayItem('トラックバイアス（４角）', 5, 332, 'jrdb.Race.c4_track_bias', 5),
+        ArrayItem('トラックバイアス（直線）', 5, 337, 'jrdb.Race.hs_track_bias', 5),
+        StringItem('レースコメント', 500, 342, 'jrdb.Race.comment'),
     ]
-
-    def clean(self):
-        racetracks = Racetrack.objects.filter(code__in=self.df.racetrack_code).values('code', 'id')
-        s = self.df.racetrack_code.map({racetrack['code']: racetrack['id'] for racetrack in racetracks})
-        s.name = 'racetrack_id'
-
-        df = s.to_frame()
-        df['yr'] = self.df.yr.astype(int)
-        df['round'] = self.df['round'].astype(int)
-        df['day'] = self.df.day.str.strip()
-        df['num'] = self.df.num.astype(int)
-
-        df['c1_track_bias'] = self.df.c1_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c2_track_bias'] = self.df.c2_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c3_track_bias'] = self.df.c3_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['c4_track_bias'] = self.df.c4_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['bs_track_bias'] = self.df.bs_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-        df['hs_track_bias'] = self.df.hs_track_bias.apply(parse_comma_separated_integer_list, args=(1,))
-
-        df['comment'] = self.df.comment.str.strip()
-
-        return df
-
-    @transaction.atomic
-    def persist(self):
-        df = self.clean()
-        for row in df.to_dict('records'):
-            obj = filter_na(row)
-
-            unique_key = {
-                'racetrack_id': obj.pop('racetrack_id'),
-                'yr': obj.pop('yr'),
-                'round': obj.pop('round'),
-                'day': obj.pop('day'),
-                'num': obj.pop('num')
-            }
-
-            try:
-                Race.objects.update_or_create(**unique_key, defaults=obj)
-            except IntegrityError as e:
-                logger.exception(e)
