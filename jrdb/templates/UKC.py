@@ -1,11 +1,10 @@
 import logging
-import math
 
 from django.db import IntegrityError, transaction
 
 from ..models import Horse, choices
 from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem, BooleanItem
-from .parse import filter_na
+from .parse import filter_na, select_columns_startwith
 from .template import Template
 
 logger = logging.getLogger(__name__)
@@ -41,13 +40,11 @@ class UKC(Template):
 
     @transaction.atomic
     def persist(self):
-        df = self.clean()
-        for row in df.to_dict('records'):
-            record = filter_na(row)
+        df = self.clean().pipe(select_columns_startwith, 'horse__', rename=True)
+        for _, row in df.iterrows():
+            record = row.dropna().to_dict()
             try:
-                lookup = {
-                    'pedigree_reg_num': record.pop('pedigree_reg_num')
-                }
+                lookup = {'pedigree_reg_num': record.pop('pedigree_reg_num')}
                 horse, created = Horse.objects.get_or_create(**lookup, defaults=record)
                 if not created:
                     if horse.jrdb_saved_on is None or record['jrdb_saved_on'] >= horse.jrdb_saved_on:
