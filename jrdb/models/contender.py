@@ -11,15 +11,15 @@ class Contender(BaseModel):
     num = models.PositiveSmallIntegerField('馬番')
 
     # SEDから取得（成績系）
-    order_of_finish = models.PositiveSmallIntegerField('着順')
-    penalty = models.CharField('異常区分', max_length=255, choices=choices.PENALTY.CHOICES())
+    order_of_finish = models.PositiveSmallIntegerField('着順', null=True)
+    penalty = models.CharField('異常区分', max_length=255, null=True, choices=choices.PENALTY.CHOICES())
     time = models.FloatField('タイム', null=True)
-    mounted_weight = models.FloatField('斤量')
+    mounted_weight = models.FloatField('斤量', null=True)
     odds_win = models.FloatField('確定単勝オッズ', null=True)
     odds_show = models.FloatField('確定複勝オッズ下', null=True)
     odds_win_10AM = models.FloatField('10時単勝オッズ', null=True)
     odds_show_10AM = models.FloatField('10時複勝オッズ', null=True)
-    popularity = models.PositiveSmallIntegerField('確定単勝人気順位')
+    popularity = models.PositiveSmallIntegerField('確定単勝人気順位', null=True)
 
     IDM = models.SmallIntegerField('ＩＤＭ', null=True)
     speed_idx = models.SmallIntegerField('素点', null=True)

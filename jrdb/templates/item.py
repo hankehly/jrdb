@@ -5,10 +5,12 @@ from typing import Optional, Union, Any, Callable, Tuple, Dict
 import pandas as pd
 from django.apps import apps
 
+from .parse import lower_first
+
 MODEL_ITEM_FIELD_MAP: Dict[str, Tuple[str]] = {
     'IntegerItem': ('PositiveSmallIntegerField', 'SmallIntegerField', 'PositiveIntegerField'),
     'FloatItem': ('FloatField',),
-    'StringItem': ('CharField', 'TextField'),
+    'StringItem': ('CharField', 'TextField', 'ForeignKey'),
     'DateItem': ('DateField',),
     'ForeignKeyItem': ('ForeignKey',),
     'DateTimeItem': ('DateTimeField',),
@@ -59,7 +61,8 @@ class ModelItem(Item, ABC):
 
     @property
     def key(self) -> str:
-        return self.symbol.split('.', maxsplit=1).pop().lower().replace('.', '__')
+        value = self.symbol.split('.', maxsplit=1).pop()
+        return lower_first(value).replace('.', '__')
 
     def get_model(self) -> Any:
         model, _ = self.symbol.rsplit('.', maxsplit=1)

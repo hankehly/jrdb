@@ -37,6 +37,11 @@ def filter_na(obj: dict) -> dict:
     return {k: v for k, v in obj.items() if v not in [None, np.nan, pd.NaT]}
 
 
+def lower_first(value: str) -> str:
+    assert isinstance(value, str)
+    return value[:1].lower() + value[1:] if value else ''
+
+
 def select_columns_startwith(df: pd.DataFrame, prefix: str, rename: bool = False) -> pd.DataFrame:
     df = df.copy()
 
@@ -48,6 +53,16 @@ def select_columns_startwith(df: pd.DataFrame, prefix: str, rename: bool = False
 
     df.prefix = prefix
     return df
+
+
+def select_index_startwith(se: pd.Series, prefix: str, rename: bool = False) -> pd.Series:
+    se = se.copy()
+    names = [name for name in se.index if name.startswith(prefix)]
+    se = se[names]
+    if rename:
+        se = se.rename(index=lambda name: name[len(prefix):] if name.startswith(prefix) else name)
+    se.prefix = prefix
+    return se
 
 
 def parse_template(path):

@@ -1,6 +1,13 @@
-from ..models import choices
+import logging
+
+from django.db import transaction, IntegrityError
+
+from ..models import choices, Trainer, Race, Horse, Jockey, Contender
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
+from .parse import select_index_startwith
 from .template import Template
+
+logger = logging.getLogger(__name__)
 
 
 class KYI(Template):
@@ -89,8 +96,8 @@ class KYI(Template):
 
         ChoiceItem('芝適性コード', 1, 333, 'jrdb.Contender.turf_apt', choices.APTITUDE_CODE.options()),
         ChoiceItem('ダ適性コード', 1, 334, 'jrdb.Contender.dirt_apt', choices.APTITUDE_CODE.options()),
-        ForeignKeyItem('騎手コード', 5, 335, 'jrdb.Contender.jockey', 'jrdb.Jockey.code'),
-        ForeignKeyItem('調教師コード', 5, 340, 'jrdb.Contender.trainer', 'jrdb.Trainer.code'),
+        StringItem('騎手コード', 5, 335, 'jrdb.Jockey.code'),
+        StringItem('調教師コード', 5, 340, 'jrdb.Trainer.code'),
         # ===以下第６版にて追加===
         # 賞金情報
         # IntegerItem('jrdb.', '獲得賞金', '6', 'ZZZZZ9', '347', '単位万円(含む付加賞)'),
@@ -187,3 +194,26 @@ class KYI(Template):
         ChoiceItem('放牧先ランク', 1, 622, 'jrdb.Contender.pasture_rank', choices.PASTURE_RANK.options()),
         ChoiceItem('厩舎ランク', 1, 623, 'jrdb.Contender.stable_rank', choices.STABLE_RANK.options()),
     ]
+
+    @transaction.atomic
+    def persist(self):
+        # import ipdb; ipdb.set_trace()
+        for _, row in self.clean().iterrows():
+            r = row.pipe(select_index_startwith, 'race__', rename=True).dropna().to_dict()
+            race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),
+                                                 round=r.pop('round'), day=r.pop('day'), num=r.pop('num'))
+
+            h = row.pipe(select_index_startwith, 'horse__', rename=True).dropna().to_dict()
+            horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)
+
+            j = row.pipe(select_index_startwith, 'jockey__', rename=True).dropna().to_dict()
+            jockey, _ = Jockey.objects.get_or_create(code=j.pop('code'), defaults=j)
+
+            t = row.pipe(select_index_startwith, 'trainer__', rename=True).dropna().to_dict()
+            trainer, _ = Trainer.objects.get_or_create(code=t.pop('code'), defaults=t)
+
+            try:
+                c = row.pipe(select_index_startwith, 'contender__', rename=True).dropna().to_dict()
+                Contender.objects.update_or_create(race=race, horse=horse, jockey=jockey, trainer=trainer, defaults=c)
+            except IntegrityError as e:
+                logger.exception(e)
