@@ -6,8 +6,8 @@ from jrdb.models import BaseModel, choices
 class Contender(BaseModel):
     race = models.ForeignKey('jrdb.Race', models.CASCADE, verbose_name='レース')
     horse = models.ForeignKey('jrdb.Horse', models.CASCADE, verbose_name='馬')
-    jockey = models.ForeignKey('jrdb.Jockey', models.CASCADE, verbose_name='騎手')
-    trainer = models.ForeignKey('jrdb.Trainer', models.CASCADE, verbose_name='調教師')
+    jockey = models.ForeignKey('jrdb.Jockey', models.SET_NULL, verbose_name='騎手', null=True)
+    trainer = models.ForeignKey('jrdb.Trainer', models.SET_NULL, verbose_name='調教師', null=True)
     num = models.PositiveSmallIntegerField('馬番')
 
     # SEDから取得（成績系）
@@ -58,9 +58,10 @@ class Contender(BaseModel):
     run_style = models.CharField('レース脚質', max_length=255, null=True, choices=choices.RUNNING_STYLE.CHOICES())
     purse = models.FloatField('本賞金', null=True)
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', models.CASCADE, verbose_name='本賞金', null=True)
-    c4_race_line = models.CharField('４角コース取り', max_length=255, null=True, choices=choices.RACE_LINE.CHOICES(), help_text='1:最内,2:内,3:中,4:外,5:大外')
+    c4_race_line = models.CharField('４角コース取り', max_length=255, null=True, choices=choices.RACE_LINE.CHOICES(),
+                                    help_text='1:最内,2:内,3:中,4:外,5:大外')
 
-    # KYIから取得（前日系）
+    # (KYI)
     prel_jockey_idx = models.FloatField('騎手指数', null=True, help_text='基準オッズと騎手の連対率の関係を基に算出された指数値')
     prel_info_idx = models.FloatField('情報指数', null=True, help_text='基準オッズ、厩舎指数、調教指数等様々な情報を基に算出された指数値')
     prel_total_idx = models.FloatField('総合指数', null=True, help_text='ＩＤＭ、騎手指数、情報指数を合計した値')
@@ -87,11 +88,16 @@ class Contender(BaseModel):
     sym_total_t_dark = models.PositiveSmallIntegerField('総合情報▲', null=True)
     sym_total_t = models.PositiveSmallIntegerField('総合情報△', null=True)
     sym_total_x = models.PositiveSmallIntegerField('総合情報×', null=True)
-    trainer_outlook = models.CharField('調教矢印コード', max_length=255, null=True, choices=choices.TRAINER_HORSE_EVALUATION.CHOICES())
-    stable_outlook = models.CharField('厩舎評価コード', max_length=255, null=True, choices=choices.STABLE_HORSE_EVALUATION.CHOICES())
-    jockey_exp_1o2_place_rate = models.FloatField('騎手期待連対率', null=True, help_text='騎手Ａが単勝基準オッズＢの馬に乗った場合の過去の成績を集計し、算出された連対率')
-    paddock_observed_hoof = models.CharField('蹄コード', max_length=255, null=True, choices=choices.PADDOCK_OBSERVED_HOOF.CHOICES())
-    yield_track_apt = models.CharField('重適正コード', max_length=255, null=True, choices=choices.YIELDING_TRACK_APTITUDE.CHOICES())
+    trainer_outlook = models.CharField('調教矢印コード', max_length=255, null=True,
+                                       choices=choices.TRAINER_HORSE_EVALUATION.CHOICES())
+    stable_outlook = models.CharField('厩舎評価コード', max_length=255, null=True,
+                                      choices=choices.STABLE_HORSE_EVALUATION.CHOICES())
+    jockey_exp_1o2_place_rate = models.FloatField('騎手期待連対率', null=True,
+                                                  help_text='騎手Ａが単勝基準オッズＢの馬に乗った場合の過去の成績を集計し、算出された連対率')
+    paddock_observed_hoof = models.CharField('蹄コード', max_length=255, null=True,
+                                             choices=choices.PADDOCK_OBSERVED_HOOF.CHOICES())
+    yield_track_apt = models.CharField('重適正コード', max_length=255, null=True,
+                                       choices=choices.YIELDING_TRACK_APTITUDE.CHOICES())
     blinker = models.CharField('ブリンカー', max_length=255, null=True, choices=choices.BLINKER.CHOICES())
     post_position = models.PositiveSmallIntegerField('枠番', null=True)
 
@@ -121,7 +127,8 @@ class Contender(BaseModel):
     goal_position = models.PositiveSmallIntegerField('ゴール順位', null=True)
     goal_margin = models.FloatField('ゴール差', null=True)
     goal_race_line = models.CharField('ゴール内外', max_length=255, null=True, choices=choices.RACE_LINE.CHOICES())
-    race_development_symbol = models.CharField('展開記号', max_length=255, null=True, choices=choices.RACE_DEVELOPMENT_SYMBOL.CHOICES())
+    race_development_symbol = models.CharField('展開記号', max_length=255, null=True,
+                                               choices=choices.RACE_DEVELOPMENT_SYMBOL.CHOICES())
 
     dist_apt_2 = models.PositiveSmallIntegerField('距離適性２', null=True)
     # null is not a valid value for is_cancelled, so do not use NullBooleanField
@@ -135,10 +142,12 @@ class Contender(BaseModel):
     positioning_idx_position = models.PositiveSmallIntegerField('位置指数順位', null=True)
     jockey_exp_win_rate = models.FloatField('騎手期待単勝率', null=True)
     jockey_exp_show_rate = models.FloatField('騎手期待３着内率', null=True)
-    transport_category = models.CharField('輸送区分', max_length=255, null=True, choices=choices.TRANSPORT_CATEGORY.CHOICES())
+    transport_category = models.CharField('輸送区分', max_length=255, null=True,
+                                          choices=choices.TRANSPORT_CATEGORY.CHOICES())
 
     # 体型
-    figure_overall = models.CharField('体型', max_length=255, null=True, choices=choices.FIGURE_OVERALL.CHOICES(), help_text='馬体の全体的な形状')
+    figure_overall = models.CharField('体型', max_length=255, null=True, choices=choices.FIGURE_OVERALL.CHOICES(),
+                                      help_text='馬体の全体的な形状')
     length_back = models.CharField('背中', max_length=255, null=True, choices=choices.FIGURE_LENGTH.CHOICES())
     length_body = models.CharField('体型', max_length=255, null=True, choices=choices.FIGURE_LENGTH.CHOICES())
     size_rump = models.CharField('背中', max_length=255, null=True, choices=choices.FIGURE_SIZE.CHOICES())
@@ -155,14 +164,21 @@ class Contender(BaseModel):
     length_pastern_front = models.CharField('前繋', max_length=255, null=True, choices=choices.FIGURE_LENGTH.CHOICES())
     length_pastern_rear = models.CharField('後繋', max_length=255, null=True, choices=choices.FIGURE_LENGTH.CHOICES())
     is_dock_raised = models.BooleanField('尾', null=True, help_text='つけ根の上げ方 TRUE:上げる, FALSE:下げる')
-    tail_swing_intensity = models.CharField('振', max_length=255, null=True, choices=choices.TAIL_SWING_INTENSITY.CHOICES())
+    tail_swing_intensity = models.CharField('振', max_length=255, null=True,
+                                            choices=choices.TAIL_SWING_INTENSITY.CHOICES())
 
-    figure_sp_mention_1 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合１', null=True)
-    figure_sp_mention_2 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合２', null=True)
-    figure_sp_mention_3 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合３', null=True)
-    horse_sp_mention_1 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='馬特記１', null=True)
-    horse_sp_mention_2 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='馬特記２', null=True)
-    horse_sp_mention_3 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='馬特記３', null=True)
+    figure_sp_mention_1 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合１',
+                                            null=True)
+    figure_sp_mention_2 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合２',
+                                            null=True)
+    figure_sp_mention_3 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合３',
+                                            null=True)
+    horse_sp_mention_1 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='馬特記１',
+                                           null=True)
+    horse_sp_mention_2 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='馬特記２',
+                                           null=True)
+    horse_sp_mention_3 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='馬特記３',
+                                           null=True)
 
     # 展開参考データ
     horse_start_idx = models.FloatField('馬スタート指数', null=True)
@@ -171,11 +187,14 @@ class Contender(BaseModel):
     big_bet_idx = models.PositiveSmallIntegerField('万券指数', null=True)
     sym_big_bet = models.PositiveSmallIntegerField('万券印', null=True)
     rank_lowered = models.CharField('降級フラグ', max_length=255, null=True, choices=choices.RANK_LOWERED.CHOICES())
-    flat_out_run_type = models.CharField('激走タイプ', max_length=255, null=True, choices=choices.FLAT_OUT_RUN_TYPE.CHOICES())
+    flat_out_run_type = models.CharField('激走タイプ', max_length=255, null=True,
+                                         choices=choices.FLAT_OUT_RUN_TYPE.CHOICES())
     rest_reason = models.CharField('休養理由分類コード', max_length=255, null=True, choices=choices.REST_REASON.CHOICES())
-    prior_context_surface = models.CharField('芝ダ障害フラグ', max_length=255, null=True, choices=choices.PRIOR_CONTEXT_SURFACE.CHOICES())
+    prior_context_surface = models.CharField('芝ダ障害フラグ', max_length=255, null=True,
+                                             choices=choices.PRIOR_CONTEXT_SURFACE.CHOICES())
     is_longest_race_dist_yet = models.BooleanField('距離フラグ', null=True)
-    prior_context_race_class = models.CharField('クラスフラグ', max_length=255, null=True, choices=choices.PRIOR_CONTEXT_RACE_CLASS.CHOICES())
+    prior_context_race_class = models.CharField('クラスフラグ', max_length=255, null=True,
+                                                choices=choices.PRIOR_CONTEXT_RACE_CLASS.CHOICES())
     nth_race_since_stable_change = models.PositiveSmallIntegerField('転厩フラグ', null=True)
     nth_race_since_castration = models.PositiveSmallIntegerField('去勢フラグ', null=True)
     # ??? = ('乗替フラグ', max_length=255, null=True, choices=choices.???.CHOICES())
@@ -186,6 +205,30 @@ class Contender(BaseModel):
     pasture_rank = models.CharField('放牧先ランク', max_length=255, null=True, choices=choices.PASTURE_RANK.CHOICES())
     stable_rank = models.CharField('厩舎ランク', max_length=255, null=True, choices=choices.STABLE_RANK.CHOICES())
 
+    # (SKB)
+    sp_mention = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='特記コード', null=True)
+    horse_gear = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='馬具コード', null=True)
+
+    # 脚元コード
+    hoof_overall = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='総合', null=True)
+    hoof_front_left = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='左前', null=True)
+    hoof_front_right = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='右前', null=True)
+    hoof_back_left = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='左後', null=True)
+    hoof_back_right = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='右後', null=True)
+
+    paddock_comment = models.CharField('パドックコメント', max_length=40, null=True)
+    hoof_comment = models.CharField('脚元コメント', max_length=40, null=True)
+    horse_gear_or_other_comment = models.CharField('馬具', max_length=40, null=True)
+    race_comment = models.CharField('レースコメント', max_length=40, null=True)
+
+    # 分析用データ
+    bit = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='ハミ', null=True)
+    bandage = models.BooleanField('バンテージ', null=True)
+    horseshoe = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='蹄鉄', null=True)
+    hoof_cond = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='蹄状態', null=True)
+    periostitis = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='ソエ', null=True)
+    exostosis = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='骨瘤', null=True)
+
     class Meta:
         db_table = 'contenders'
-        unique_together = ('race', 'horse', 'jockey', 'trainer')
+        unique_together = ('race', 'horse')

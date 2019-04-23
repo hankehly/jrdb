@@ -1,5 +1,12 @@
-from jrdb.models import Racetrack, SpecialMentionCode
-from jrdb.templates.template import Template
+import logging
+
+from django.db import transaction, IntegrityError
+
+from ..models import Horse, Race, Contender
+from .template import Template, select_index_startwith
+from .item import ForeignKeyItem, IntegerItem, StringItem, BooleanItem
+
+logger = logging.getLogger(__name__)
 
 
 class SKB(Template):
@@ -8,45 +15,45 @@ class SKB(Template):
     """
     name = 'JRDB成績拡張データ（SKB）'
     items = [
-        ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['yr', '年', None, '2', '99', '3', None],
-        ['round', '回', None, '1', '9', '5', None],
-        ['day', '日', None, '1', 'F', '6', '16進数(数字 or 小文字アルファベット)'],
-        ['race_num', 'Ｒ', None, '2', '99', '7', None],
-        ['num', '馬番', None, '2', '99', '9', None],
-        ['pedigree_reg_num', '血統登録番号', None, '8', 'X', '11', None],
-        ['race_date', '年月日', None, '8', '9', '19', 'YYYYMMDD'],  # IGNORED (use value from BAC)
-        ['special_mention_code', '特記コード', '6', '3', '999', '27', '特記コード表参照 ※1'],
-        ['horse_gear_code', '馬具コード', '8', '3', '999', '45', '馬具コード表参照 ※1 ※3'],
-        ['hoof_code_overall', '総合', '3', '3', '999', '69', None],
-        ['hoof_code_front_left', '左前', '3', '3', '999', '78', None],
-        ['hoof_code_front_right', '右前', '3', '3', '999', '87', None],
-        ['hoof_code_back_left', '左後', '3', '3', '999', '96', None],
-        ['hoof_code_back_right', '右後', '3', '3', '999', '105', None],
-        ['paddock_comment', 'パドックコメント', None, '40', 'X', '114', '全角半角混在'],
-        ['hoof_comment', '脚元コメント', None, '40', 'X', '154', '全角半角混在'],
-        ['horse_gear_or_other_comment', '馬具(その他)コメント', None, '40', 'X', '194', '全角半角混在'],
-        ['race_comment', 'レースコメント', None, '40', 'X', '234', '全角半角混在'],
-        ['bit', 'ハミ', None, '3', '999', '274', '馬具コード表参照 ※5'],
-        ['bandage', 'バンテージ', None, '3', '999', '277', '007:バンテージ'],
-        ['horseshoe', '蹄鉄', None, '3', '999', '280', '馬具コード表参照 ※5'],
-        ['hoof_condition', '蹄状態', None, '3', '999', '283', '馬具コード表参照 ※5'],
-        ['periostitis', 'ソエ', None, '3', '999', '286', '馬具コード表参照 ※5'],
-        ['exostosis', '骨瘤', None, '3', '999', '289', '馬具コード表参照 ※5'],
-        ['reserved', '予備', None, '11', 'X', '292', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '303', 'ＣＲ・ＬＦ']
+        ForeignKeyItem('場コード', 2, 0, 'jrdb.Race.racetrack', 'jrdb.Racetrack.code'),
+        IntegerItem('年', 2, 2, 'jrdb.Race.yr'),
+        IntegerItem('回', 1, 4, 'jrdb.Race.round'),
+        StringItem('日', 1, 5, 'jrdb.Race.day'),
+        IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
+        IntegerItem('馬番', 2, 8, 'jrdb.Contender.num'),
+        StringItem('血統登録番号', 8, 10, 'jrdb.Horse.pedigree_reg_num'),
+        # ['race_date', '年月日', '8', '9', '19', 'YYYYMMDD'],  # IGNORED (use value from BAC)
+        ForeignKeyItem('特記コード', 3, 26, 'jrdb.Contender.sp_mention', 'jrdb.SpecialMentionCode.key'),
+        ForeignKeyItem('馬具コード', 3, 44, 'jrdb.Contender.horse_gear', 'jrdb.HorseGearCode.key'),
+        ForeignKeyItem('総合', 3, 68, 'jrdb.Contender.hoof_overall', 'jrdb.HorseGearCode.key'),
+        ForeignKeyItem('左前', 3, 77, 'jrdb.Contender.hoof_front_left', 'jrdb.HorseGearCode.key'),
+        ForeignKeyItem('右前', 3, 86, 'jrdb.Contender.hoof_front_right', 'jrdb.HorseGearCode.key'),
+        ForeignKeyItem('左後', 3, 95, 'jrdb.Contender.hoof_back_left', 'jrdb.HorseGearCode.key'),
+        ForeignKeyItem('右後', 3, 104, 'jrdb.Contender.hoof_back_right', 'jrdb.HorseGearCode.key'),
+        StringItem('パドックコメント', 40, 113, 'jrdb.Contender.paddock_comment'),
+        StringItem('脚元コメント', 40, 153, 'jrdb.Contender.hoof_comment'),
+        StringItem('馬具', 40, 193, 'jrdb.Contender.horse_gear_or_other_comment'),
+        StringItem('レースコメント', 40, 233, 'jrdb.Contender.race_comment'),
+        ForeignKeyItem('ハミ', 3, 273, 'jrdb.Contender.bit', 'jrdb.HorseGearCode.key'),
+        BooleanItem('バンテージ', 3, 276, 'jrdb.Contender.bandage', value_true='007', value_false=''),
+        ForeignKeyItem('蹄鉄', 3, 279, 'jrdb.Contender.horseshoe', 'jrdb.HorseGearCode.key'),
+        ForeignKeyItem('蹄状態', 3, 282, 'jrdb.Contender.hoof_cond', 'jrdb.HorseGearCode.key'),
+        ForeignKeyItem('ソエ', 3, 285, 'jrdb.Contender.periostitis', 'jrdb.HorseGearCode.key'),
+        ForeignKeyItem('骨瘤', 3, 288, 'jrdb.Contender.exostosis', 'jrdb.HorseGearCode.key'),
     ]
 
-    def clean(self):
-        racetracks = Racetrack.objects.filter(code__in=self.df.racetrack_code).values('code', 'id')
-        s = self.df.racetrack_code.map({racetrack['code']: racetrack['id'] for racetrack in racetracks})
-        s.name = 'racetrack_id'
+    @transaction.atomic
+    def persist(self):
+        for _, row in self.clean().iterrows():
+            r = row.pipe(select_index_startwith, 'race__', rename=True).dropna().to_dict()
+            race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),
+                                                 round=r.pop('round'), day=r.pop('day'), num=r.pop('num'))
 
-        df = s.to_frame()
-        df['yr'] = self.df.yr.astype(int)
-        df['round'] = self.df['round'].astype(int)
-        df['day'] = self.df.day.str.strip()
-        df['num'] = self.df.race_num.astype(int)
-        df['special_mention_id'] = SpecialMentionCode.key2id(self.df.special_mention_code)
+            h = row.pipe(select_index_startwith, 'horse__', rename=True).dropna().to_dict()
+            horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)
 
-        df['horse_pedigree_reg_num'] = self.df.pedigree_reg_num
+            try:
+                c = row.pipe(select_index_startwith, 'contender__', rename=True).dropna().to_dict()
+                Contender.objects.update_or_create(race=race, horse=horse, defaults=c)
+            except IntegrityError as e:
+                logger.exception(e)
