@@ -8,7 +8,7 @@ from django.db import transaction, IntegrityError
 
 from ..models import Race
 from .item import ArrayItem
-from .parse import filter_na, select_columns_startwith
+from .parse import select_columns_startwith
 
 logger = logging.getLogger(__name__)
 
@@ -85,8 +85,8 @@ class RacePersistMixin:
     def persist(self):
         df = self.clean().pipe(select_columns_startwith, 'race__', rename=True)
 
-        for row in df.to_dict('records'):
-            race = filter_na(row)
+        for _, row in df.iterrows():
+            race = row.dropna().to_dict()
             lookup = {
                 'racetrack_id': race.pop('racetrack_id'),
                 'yr':           race.pop('yr'),
