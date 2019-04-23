@@ -2,10 +2,9 @@ import logging
 
 from django.db import IntegrityError, transaction
 
-from jrdb.models import Jockey, Trainer, choices
-from jrdb.templates.template import Template
-from jrdb.templates.item import StringItem, DateItem, ChoiceItem, IntegerItem, ArrayItem
-from .parse import select_index_startwith
+from ..models import Jockey, Trainer, choices
+from .template import Template, select_index_startwith
+from .item import StringItem, DateItem, ChoiceItem, IntegerItem, ArrayItem
 
 logger = logging.getLogger(__name__)
 

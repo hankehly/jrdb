@@ -1,9 +1,7 @@
 import logging
 
-from django.template import Template
-
 from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from .template import RacePersistMixin
+from .template import Template, RacePersistMixin
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
 import logging
 
-from jrdb.templates.item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from jrdb.templates.template import Template, RacePersistMixin
+from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
+from .template import Template, RacePersistMixin
 
 logger = logging.getLogger(__name__)
 

@@ -1,12 +1,12 @@
 import logging
 
-from jrdb.templates.item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from jrdb.templates.OZ import OZ
+from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
+from .template import RacePersistMixin, Template
 
 logger = logging.getLogger(__name__)
 
 
-class OT(OZ):
+class OT(Template, RacePersistMixin):
     """
     http://www.jrdb.com/program/Ot/Otdata_doc.txt
     """

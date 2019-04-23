@@ -4,8 +4,7 @@ from django.db import transaction, IntegrityError
 
 from ..models import choices, Trainer, Race, Horse, Jockey, Contender
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
-from .parse import select_index_startwith
-from .template import Template
+from .template import Template, select_index_startwith
 
 logger = logging.getLogger(__name__)
 

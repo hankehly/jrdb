@@ -5,10 +5,17 @@ import pandas as pd
 from django.db import IntegrityError, transaction
 
 from ..models import Jockey, Trainer, Race, Contender, Horse, choices
-from .parse import select_index_startwith
-from .template import Template
-from .item import StringItem, ForeignKeyItem, IntegerItem, ChoiceItem, FloatItem, InvokeItem, parse_int_or, \
+from .template import Template, select_index_startwith
+from .item import (
+    StringItem,
+    ForeignKeyItem,
+    IntegerItem,
+    ChoiceItem,
+    FloatItem,
+    InvokeItem,
+    parse_int_or,
     parse_float_or
+)
 
 logger = logging.getLogger(__name__)
 

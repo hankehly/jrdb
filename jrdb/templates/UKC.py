@@ -4,8 +4,7 @@ from django.db import IntegrityError, transaction
 
 from ..models import Horse, choices
 from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem, BooleanItem
-from .parse import select_columns_startwith
-from .template import Template
+from .template import Template, select_columns_startwith
 
 logger = logging.getLogger(__name__)
 

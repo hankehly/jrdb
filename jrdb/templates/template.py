@@ -8,7 +8,6 @@ from django.db import transaction, IntegrityError
 
 from ..models import Race
 from .item import ArrayItem
-from .parse import select_columns_startwith
 
 logger = logging.getLogger(__name__)
 
@@ -98,3 +97,23 @@ class RacePersistMixin:
                 Race.objects.update_or_create(**lookup, defaults=race)
             except IntegrityError as e:
                 logger.exception(e)
+
+
+def select_columns_startwith(df: pd.DataFrame, prefix: str, rename: bool = False) -> pd.DataFrame:
+    df = df.copy()
+    cols = [col for col in df.columns if col.startswith(prefix)]
+    df = df[cols]
+    if rename:
+        df = df.rename(columns=lambda col: col[len(prefix):] if col.startswith(prefix) else col)
+    df.prefix = prefix
+    return df
+
+
+def select_index_startwith(se: pd.Series, prefix: str, rename: bool = False) -> pd.Series:
+    se = se.copy()
+    names = [name for name in se.index if name.startswith(prefix)]
+    se = se[names]
+    if rename:
+        se = se.rename(index=lambda name: name[len(prefix):] if name.startswith(prefix) else name)
+    se.prefix = prefix
+    return se

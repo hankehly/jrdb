@@ -5,8 +5,6 @@ from typing import Optional, Union, Any, Callable, Tuple, Dict
 import pandas as pd
 from django.apps import apps
 
-from .parse import lower_first
-
 MODEL_ITEM_FIELD_MAP: Dict[str, Tuple[str]] = {
     'IntegerItem': ('PositiveSmallIntegerField', 'SmallIntegerField', 'PositiveIntegerField'),
     'FloatItem': ('FloatField',),
@@ -32,6 +30,11 @@ def parse_float_or(value: str, default: Optional[Any] = None) -> Optional[float]
         return float(value)
     except ValueError:
         return default
+
+
+def lower_first(value: str) -> str:
+    assert isinstance(value, str)
+    return value[:1].lower() + value[1:] if value else ''
 
 
 @dataclass(eq=False, frozen=True)
