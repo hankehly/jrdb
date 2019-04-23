@@ -5,7 +5,7 @@ from django.db import IntegrityError, transaction
 
 from ..models import choices, Trainer
 from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
-from .parse import filter_na, select_columns_startwith
+from .parse import select_columns_startwith
 from .template import Template
 
 logger = logging.getLogger(__name__)
@@ -51,8 +51,8 @@ class CZA(Template):
     @transaction.atomic
     def persist(self):
         df = self.clean().pipe(select_columns_startwith, 'trainer__', rename=True)
-        for row in df.to_dict('records'):
-            record = filter_na(row)
+        for _, row in df.iterrows():
+            record = row.dropna().to_dict()
             try:
                 trainer, created = Trainer.objects.get_or_create(code=record.pop('code'), defaults=record)
                 if not created:

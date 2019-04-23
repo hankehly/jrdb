@@ -197,7 +197,6 @@ class KYI(Template):
 
     @transaction.atomic
     def persist(self):
-        # import ipdb; ipdb.set_trace()
         for _, row in self.clean().iterrows():
             r = row.pipe(select_index_startwith, 'race__', rename=True).dropna().to_dict()
             race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),

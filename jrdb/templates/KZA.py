@@ -3,9 +3,9 @@ import logging
 from django.db import IntegrityError, transaction
 
 from jrdb.models import Jockey, Trainer, choices
-from jrdb.templates.parse import filter_na
 from jrdb.templates.template import Template
-from jrdb.templates.item import StringItem, DateItem, ChoiceItem, IntegerItem, ForeignKeyItem, ArrayItem
+from jrdb.templates.item import StringItem, DateItem, ChoiceItem, IntegerItem, ArrayItem
+from .parse import select_index_startwith
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +27,7 @@ class KZA(Template):
         DateItem('生年月日', 8, 67, 'jrdb.Jockey.birthday'),
         IntegerItem('初免許年', 4, 75, 'jrdb.Jockey.lic_acquired_yr'),
         ChoiceItem('見習い区分', 1, 79, 'jrdb.Jockey.trainee_cat', choices.TRAINEE_CATEGORY.options()),
-        ForeignKeyItem('所属厩舎', 5, 80, 'jrdb.Jockey.trainer', 'jrdb.Trainer.code'),
+        StringItem('所属厩舎', 5, 80, 'jrdb.Trainer.code'),
         StringItem('騎手コメント', 40, 85, 'jrdb.Jockey.jrdb_comment'),
         DateItem('コメント入力年月日', 8, 125, 'jrdb.Jockey.jrdb_comment_date'),
         IntegerItem('本年リーディング', 3, 133, 'jrdb.Jockey.cur_yr_leading'),
@@ -46,26 +46,24 @@ class KZA(Template):
     ]
 
     def clean(self):
-        self.df = self.df[~self.df.name.str.contains('削除')]
+        self.df = self.df[~self.df['jockey__name'].str.contains('削除')]
         return super().clean()
 
     @transaction.atomic
     def persist(self):
-        df = self.clean()
-        for row in df.to_dict('records'):
-            record = filter_na(row)
+        for _, row in self.clean().iterrows():
             try:
-                # trainer_code is changed to trainer_id during ForeignKeyItem.clean
-                # and trainer_id is nan because there is no trainer
-                # we want to create the related records during persist
-                # only way to prevent this problem right now is to create Trainer records beforehand
-                if record.get('trainer_code'):
-                    trainer, _ = Trainer.objects.get_or_create(code=record.pop('trainer_code'))
-                    record['trainer_id'] = trainer.id
-                jockey, created = Jockey.objects.get_or_create(code=record.pop('code'), defaults=record)
+                j = row.pipe(select_index_startwith, 'jockey__', rename=True).dropna().to_dict()
+
+                if row.trainer__code:
+                    trainer, _ = Trainer.objects.get_or_create(code=row.trainer__code)
+                    j['trainer_id'] = trainer.id
+
+                jockey, created = Jockey.objects.get_or_create(code=j.pop('code'), defaults=j)
+
                 if not created:
-                    if jockey.jrdb_saved_on is None or record['jrdb_saved_on'] >= jockey.jrdb_saved_on:
-                        for name, value in record.items():
+                    if jockey.jrdb_saved_on is None or j['jrdb_saved_on'] >= jockey.jrdb_saved_on:
+                        for name, value in j.items():
                             setattr(jockey, name, value)
                         jockey.save()
             except IntegrityError as e:
