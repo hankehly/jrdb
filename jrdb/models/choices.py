@@ -817,6 +817,68 @@ class TAIL_SWING_INTENSITY(ChoiceMixin):
     BARELY = 'BARELY'
 
 
+class TRAINING_RESULT_IDX_CHANGE(ChoiceMixin):
+    """
+    仕上指数変化（参考値）
+
+    前走（中央競馬のレース出走時）の仕上指数との比較です。
+    1 ++(攻め強化大)
+    2 + (攻め強化)
+    3   (平行線)
+    4 - (攻め弱化)
+    """
+    BOLSTER_MAX = 'BOLSTER_MAX'
+    BOLSTER = 'BOLSTER'
+    NO_CHANGE = 'NO_CHANGE'
+    WEAKEN = 'WEAKEN'
+    MAP = (
+        ('1', BOLSTER_MAX, '++(攻め強化大)'),
+        ('2', BOLSTER, '+ (攻め強化)'),
+        ('3', NO_CHANGE, '(平行線)'),
+        ('4', WEAKEN, '- (攻め弱化)')
+    )
+
+
+class TRAINING_AMOUNT_EVAL(ChoiceMixin):
+    """
+    調教量評価
+    調教量についての評価です。
+
+    A （多い）
+    B （普通）
+    C （少ない）
+    D （非常に少ない）
+    """
+    LARGE = 'LARGE'
+    NORMAL = 'NORMAL'
+    SMALL = 'SMALL'
+    VERY_LITTLE = 'VERY_LITTLE'
+    MAP = (
+        ('A', LARGE, '多い'),
+        ('B', NORMAL, '普通'),
+        ('C', SMALL, '少ない'),
+        ('D', VERY_LITTLE, '非常に少ない'),
+    )
+
+
+class THREE_STAGE_EVAL(ChoiceMixin):
+    """
+    ３段階評価
+
+    1 ◎
+    2 ○
+    3 △
+    """
+    BEST = 'BEST'
+    GOOD = 'GOOD'
+    OK = 'OK'
+    MAP = (
+        ('1', BEST, '◎'),
+        ('2', GOOD, '○'),
+        ('3', OK, '△'),
+    )
+
+
 class TRACK_CONDITION(ChoiceMixin):
     """
     馬場状態
@@ -885,6 +947,60 @@ class TRAINING_COURSE_CATEGORY(ChoiceMixin):
         ('4', '4', '障害（障害練習）'),
         ('5', '5', '障害他（障害練習＋α）'),
         ('0', '0', '他（調教なし、不明）')
+    )
+
+
+class TRAINING_DISTANCE(ChoiceMixin):
+    """
+    調教距離
+
+    本追い切り（※）の調教距離です。
+    1 長め
+    2 標準
+    3 短め
+    4 ２本
+    0 他（調教なし、不明）
+
+    ※【本追い切り】の定義
+    基本的にレース週の水曜、木曜の調教で1番強い調教を【本追い切り】としています。
+    """
+    LONG = 'LONG'
+    NORMAL = 'NORMAL'
+    SHORT = 'SHORT'
+    TWO_RUNS = 'TWO_RUNS'
+    OTHER = 'OTHER'
+    MAP = (
+        ('1', LONG, '長め'),
+        ('2', NORMAL, '標準'),
+        ('3', SHORT, '短め'),
+        ('4', TWO_RUNS, '２本'),
+        ('0', OTHER, '他（調教なし、不明）'),
+    )
+
+
+class TRAINING_EMPHASIS(ChoiceMixin):
+    """
+    調教重点
+
+    本追い切りにおいて"テン"、"中間"、"終い"のどの部分に重点を置いたかを調教時計から分析しています。
+
+    1 テン重点
+    2 中間重点
+    3 終い重点
+    4 平均的
+    0 他（調教なし、不明）
+    """
+    F3F = 'F3F'
+    MID = 'MID'
+    L3F = 'L3F'
+    AVG = 'AVG'
+    OTHER = 'OTHER'
+    MAP = (
+        ('1', F3F, 'テン重点'),
+        ('2', MID, '中間重点'),
+        ('3', L3F, '終い重点'),
+        ('4', AVG, '平均的'),
+        ('0', OTHER, '他（調教なし、不明）'),
     )
 
 

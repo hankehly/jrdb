@@ -54,6 +54,7 @@
 | | | croup / rump | ([1](https://umas.club/hp0243)) |
 | トモ | | The part of the horse from the hip behind | ([1](http://d.hatena.ne.jp/Southend/20100809/p1))([2](http://www.jra.go.jp/kouza/yougo/w119.html)) |
 | 付け根 | つけね | dock | The fleshy top part of the horse's tail ([1](https://www.habitatforhorses.org/kidscorral/vocabulary_I.html)) |
+| ２本（調教）| | 2 "runs" | ([1](https://company.jra.jp/equinst/magazine/pdf/paddock_21.pdf)) |
  
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  

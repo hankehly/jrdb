@@ -229,6 +229,26 @@ class Contender(BaseModel):
     periostitis = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='ソエ', null=True)
     exostosis = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='骨瘤', null=True)
 
+    # (CYB)
+    training_style = models.CharField('調教タイプ', max_length=255, null=True, choices=choices.TRAINING_STYLE.CHOICES())
+    training_course_cat = models.CharField('調教コース種別', max_length=255, null=True, choices=choices.TRAINING_COURSE_CATEGORY.CHOICES())
+    trained_hill = models.BooleanField('坂', null=True, help_text='坂路')
+    trained_wood_chip = models.BooleanField('Ｗ', null=True, help_text='ウッドコース')
+    trained_dirt = models.BooleanField('ダ', null=True, help_text='ダートコース')
+    trained_turf = models.BooleanField('芝', null=True, help_text='芝コース')
+    trained_pool = models.BooleanField('プ', null=True, help_text='プール調教')
+    trained_obstacle = models.BooleanField('障', null=True, help_text='障害練習')
+    trained_poly_track = models.BooleanField('ポ', null=True, help_text='ポリトラック')
+    training_distance = models.CharField('調教距離', max_length=255, null=True, choices=choices.TRAINING_DISTANCE.CHOICES())
+    training_emphasis = models.CharField('調教重点', max_length=255, null=True, choices=choices.TRAINING_EMPHASIS.CHOICES())
+    warm_up_time_idx = models.PositiveSmallIntegerField('追切指数', null=True)
+    training_result_idx = models.PositiveSmallIntegerField('仕上指数', null=True)
+    training_amount_eval = models.CharField('調教量評価', max_length=255, null=True, choices=choices.TRAINING_AMOUNT_EVAL.CHOICES())
+    training_result_idx_change = models.CharField('仕上指数変化', max_length=255, null=True, choices=choices.TRAINING_RESULT_IDX_CHANGE.CHOICES())
+    training_comment = models.CharField('調教コメント', max_length=255, null=True)
+    training_comment_date = models.DateField('コメント年月日', null=True)
+    training_evaluation = models.CharField('調教評価', max_length=255, null=True, choices=choices.THREE_STAGE_EVAL.CHOICES())
+
     class Meta:
         db_table = 'contenders'
         unique_together = ('race', 'horse')
