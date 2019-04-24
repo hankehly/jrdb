@@ -3,7 +3,7 @@ import logging
 from django.db import transaction, IntegrityError
 
 from ..models import choices, Race, Contender
-from .template import Template, select_index_startwith
+from .template import Template, startswith
 from .item import IntegerItem, StringItem, ForeignKeyItem, BooleanItem, ChoiceItem, DateItem
 
 logger = logging.getLogger(__name__)
@@ -42,7 +42,8 @@ class CYB(Template):
         IntegerItem('追切指数', 3, 29, 'jrdb.Contender.warm_up_time_idx'),
         IntegerItem('仕上指数', 3, 32, 'jrdb.Contender.training_result_idx'),
         ChoiceItem('調教量評価', 1, 35, 'jrdb.Contender.training_amount_eval', choices.TRAINING_AMOUNT_EVAL.options()),
-        ChoiceItem('仕上指数変化', 1, 36, 'jrdb.Contender.training_result_idx_change', choices.TRAINING_RESULT_IDX_CHANGE.options()),
+        ChoiceItem('仕上指数変化', 1, 36, 'jrdb.Contender.training_result_idx_change',
+                   choices.TRAINING_RESULT_IDX_CHANGE.options()),
         StringItem('調教コメント', 40, 37, 'jrdb.Contender.training_comment'),
         DateItem('コメント年月日', 8, 77, 'jrdb.Contender.training_comment_date'),
         ChoiceItem('調教評価', 1, 85, 'jrdb.Contender.training_evaluation', choices.THREE_STAGE_EVAL.options()),
@@ -51,15 +52,12 @@ class CYB(Template):
     @transaction.atomic
     def persist(self):
         for _, row in self.clean().iterrows():
-            r = row.pipe(select_index_startwith, 'race__', rename=True).dropna().to_dict()
+            r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
             race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),
                                                  round=r.pop('round'), day=r.pop('day'), num=r.pop('num'))
 
-            # h = row.pipe(select_index_startwith, 'horse__', rename=True).dropna().to_dict()
-            # horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)
-
             try:
-                c = row.pipe(select_index_startwith, 'contender__', rename=True).dropna().to_dict()
-                Contender.objects.update_or_create(race=race, horse=horse, defaults=c)
+                c = row.pipe(startswith, 'contender__', rename=True).dropna().to_dict()
+                Contender.objects.update_or_create(race=race, num=c.pop('num'), defaults=c)
             except IntegrityError as e:
                 logger.exception(e)

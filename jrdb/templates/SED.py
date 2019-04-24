@@ -5,7 +5,7 @@ import pandas as pd
 from django.db import IntegrityError, transaction
 
 from ..models import Jockey, Trainer, Race, Contender, Horse, choices
-from .template import Template, select_index_startwith
+from .template import Template, startswith
 from .item import (
     StringItem,
     ForeignKeyItem,
@@ -171,21 +171,24 @@ class SED(Template):
     @transaction.atomic
     def persist(self):
         for _, row in self.clean().iterrows():
-            r = row.pipe(select_index_startwith, 'race__', rename=True).dropna().to_dict()
+            r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
             race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),
                                                  round=r.pop('round'), day=r.pop('day'), num=r.pop('num'))
 
-            h = row.pipe(select_index_startwith, 'horse__', rename=True).dropna().to_dict()
+            h = row.pipe(startswith, 'horse__', rename=True).dropna().to_dict()
             horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)
 
-            j = row.pipe(select_index_startwith, 'jockey__', rename=True).dropna().to_dict()
+            j = row.pipe(startswith, 'jockey__', rename=True).dropna().to_dict()
             jockey, _ = Jockey.objects.get_or_create(code=j.pop('code'), defaults=j)
 
-            t = row.pipe(select_index_startwith, 'trainer__', rename=True).dropna().to_dict()
+            t = row.pipe(startswith, 'trainer__', rename=True).dropna().to_dict()
             trainer, _ = Trainer.objects.get_or_create(code=t.pop('code'), defaults=t)
 
             try:
-                c = row.pipe(select_index_startwith, 'contender__', rename=True).dropna().to_dict()
-                Contender.objects.update_or_create(race=race, horse=horse, jockey=jockey, trainer=trainer, defaults=c)
+                c = row.pipe(startswith, 'contender__', rename=True).dropna().to_dict()
+                c['horse_id'] = horse.id
+                c['jockey_id'] = jockey.id
+                c['trainer_id'] = trainer.id
+                Contender.objects.update_or_create(race=race, num=c.pop('num'), defaults=c)
             except IntegrityError as e:
                 logger.exception(e)

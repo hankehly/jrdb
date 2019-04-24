@@ -3,7 +3,7 @@ import logging
 from django.db import IntegrityError, transaction
 
 from ..models import Jockey, Trainer, choices
-from .template import Template, select_index_startwith
+from .template import Template, startswith
 from .item import StringItem, DateItem, ChoiceItem, IntegerItem, ArrayItem
 
 logger = logging.getLogger(__name__)
@@ -52,7 +52,7 @@ class KZA(Template):
     def persist(self):
         for _, row in self.clean().iterrows():
             try:
-                j = row.pipe(select_index_startwith, 'jockey__', rename=True).dropna().to_dict()
+                j = row.pipe(startswith, 'jockey__', rename=True).dropna().to_dict()
 
                 if row.trainer__code:
                     trainer, _ = Trainer.objects.get_or_create(code=row.trainer__code)

@@ -1,6 +1,6 @@
 import logging
 from abc import ABC
-from typing import List, Any
+from typing import List, Any, Union
 
 import numpy as np
 import pandas as pd
@@ -82,7 +82,7 @@ class RacePersistMixin:
 
     @transaction.atomic
     def persist(self):
-        df = self.clean().pipe(select_columns_startwith, 'race__', rename=True)
+        df = self.clean().pipe(startswith, 'race__', rename=True)
 
         for _, row in df.iterrows():
             race = row.dropna().to_dict()
@@ -99,21 +99,16 @@ class RacePersistMixin:
                 logger.exception(e)
 
 
-def select_columns_startwith(df: pd.DataFrame, prefix: str, rename: bool = False) -> pd.DataFrame:
-    df = df.copy()
-    cols = [col for col in df.columns if col.startswith(prefix)]
-    df = df[cols]
+def startswith(
+        f: Union[pd.Series, pd.DataFrame],
+        prefix: str,
+        rename: bool = False
+) -> Union[pd.Series, pd.DataFrame]:
+    f = f.copy()
+    axis = 'columns' if isinstance(f, pd.DataFrame) else 'index'
+    names = [name for name in getattr(f, axis) if name.startswith(prefix)]
+    f = f[names]
     if rename:
-        df = df.rename(columns=lambda col: col[len(prefix):] if col.startswith(prefix) else col)
-    df.prefix = prefix
-    return df
-
-
-def select_index_startwith(se: pd.Series, prefix: str, rename: bool = False) -> pd.Series:
-    se = se.copy()
-    names = [name for name in se.index if name.startswith(prefix)]
-    se = se[names]
-    if rename:
-        se = se.rename(index=lambda name: name[len(prefix):] if name.startswith(prefix) else name)
-    se.prefix = prefix
-    return se
+        f = f.rename(**{axis: lambda name: name[len(prefix):] if name.startswith(prefix) else name})
+    f.prefix = prefix
+    return f

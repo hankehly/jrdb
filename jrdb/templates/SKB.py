@@ -3,7 +3,7 @@ import logging
 from django.db import transaction, IntegrityError
 
 from ..models import Horse, Race, Contender
-from .template import Template, select_index_startwith
+from .template import Template, startswith
 from .item import ForeignKeyItem, IntegerItem, StringItem, BooleanItem
 
 logger = logging.getLogger(__name__)
@@ -45,15 +45,16 @@ class SKB(Template):
     @transaction.atomic
     def persist(self):
         for _, row in self.clean().iterrows():
-            r = row.pipe(select_index_startwith, 'race__', rename=True).dropna().to_dict()
+            r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
             race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),
                                                  round=r.pop('round'), day=r.pop('day'), num=r.pop('num'))
 
-            h = row.pipe(select_index_startwith, 'horse__', rename=True).dropna().to_dict()
+            h = row.pipe(startswith, 'horse__', rename=True).dropna().to_dict()
             horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)
 
             try:
-                c = row.pipe(select_index_startwith, 'contender__', rename=True).dropna().to_dict()
-                Contender.objects.update_or_create(race=race, horse=horse, defaults=c)
+                c = row.pipe(startswith, 'contender__', rename=True).dropna().to_dict()
+                c['horse_id'] = horse.id
+                Contender.objects.update_or_create(race=race, num=c.pop('num'), defaults=c)
             except IntegrityError as e:
                 logger.exception(e)

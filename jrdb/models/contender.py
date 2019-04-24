@@ -5,10 +5,11 @@ from jrdb.models import BaseModel, choices
 
 class Contender(BaseModel):
     race = models.ForeignKey('jrdb.Race', models.CASCADE, verbose_name='レース')
-    horse = models.ForeignKey('jrdb.Horse', models.CASCADE, verbose_name='馬')
+    num = models.PositiveSmallIntegerField('馬番')
+
+    horse = models.ForeignKey('jrdb.Horse', models.SET_NULL, verbose_name='馬', null=True)
     jockey = models.ForeignKey('jrdb.Jockey', models.SET_NULL, verbose_name='騎手', null=True)
     trainer = models.ForeignKey('jrdb.Trainer', models.SET_NULL, verbose_name='調教師', null=True)
-    num = models.PositiveSmallIntegerField('馬番')
 
     # SEDから取得（成績系）
     order_of_finish = models.PositiveSmallIntegerField('着順', null=True)
@@ -231,7 +232,8 @@ class Contender(BaseModel):
 
     # (CYB)
     training_style = models.CharField('調教タイプ', max_length=255, null=True, choices=choices.TRAINING_STYLE.CHOICES())
-    training_course_cat = models.CharField('調教コース種別', max_length=255, null=True, choices=choices.TRAINING_COURSE_CATEGORY.CHOICES())
+    training_course_cat = models.CharField('調教コース種別', max_length=255, null=True,
+                                           choices=choices.TRAINING_COURSE_CATEGORY.CHOICES())
     trained_hill = models.BooleanField('坂', null=True, help_text='坂路')
     trained_wood_chip = models.BooleanField('Ｗ', null=True, help_text='ウッドコース')
     trained_dirt = models.BooleanField('ダ', null=True, help_text='ダートコース')
@@ -243,12 +245,15 @@ class Contender(BaseModel):
     training_emphasis = models.CharField('調教重点', max_length=255, null=True, choices=choices.TRAINING_EMPHASIS.CHOICES())
     warm_up_time_idx = models.PositiveSmallIntegerField('追切指数', null=True)
     training_result_idx = models.PositiveSmallIntegerField('仕上指数', null=True)
-    training_amount_eval = models.CharField('調教量評価', max_length=255, null=True, choices=choices.TRAINING_AMOUNT_EVAL.CHOICES())
-    training_result_idx_change = models.CharField('仕上指数変化', max_length=255, null=True, choices=choices.TRAINING_RESULT_IDX_CHANGE.CHOICES())
+    training_amount_eval = models.CharField('調教量評価', max_length=255, null=True,
+                                            choices=choices.TRAINING_AMOUNT_EVAL.CHOICES())
+    training_result_idx_change = models.CharField('仕上指数変化', max_length=255, null=True,
+                                                  choices=choices.TRAINING_RESULT_IDX_CHANGE.CHOICES())
     training_comment = models.CharField('調教コメント', max_length=255, null=True)
     training_comment_date = models.DateField('コメント年月日', null=True)
-    training_evaluation = models.CharField('調教評価', max_length=255, null=True, choices=choices.THREE_STAGE_EVAL.CHOICES())
+    training_evaluation = models.CharField('調教評価', max_length=255, null=True,
+                                           choices=choices.THREE_STAGE_EVAL.CHOICES())
 
     class Meta:
         db_table = 'contenders'
-        unique_together = ('race', 'horse')
+        unique_together = ('race', 'num')

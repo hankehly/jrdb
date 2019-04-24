@@ -4,7 +4,7 @@ from django.db import IntegrityError, transaction
 
 from ..models import Horse, choices
 from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem, BooleanItem
-from .template import Template, select_columns_startwith
+from .template import Template, startswith
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +39,7 @@ class UKC(Template):
 
     @transaction.atomic
     def persist(self):
-        df = self.clean().pipe(select_columns_startwith, 'horse__', rename=True)
+        df = self.clean().pipe(startswith, 'horse__', rename=True)
         for _, row in df.iterrows():
             record = row.dropna().to_dict()
             try:
