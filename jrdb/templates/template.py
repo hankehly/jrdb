@@ -4,7 +4,7 @@ from typing import List, Any, Union
 
 import numpy as np
 import pandas as pd
-from django.db import transaction, IntegrityError
+from django.db import transaction, IntegrityError, connection
 
 from ..models import Race
 from .item import ArrayItem
@@ -80,23 +80,39 @@ class Template(ABC):
 # TODO: Use model._meta to automate lookup and persistence
 class RacePersistMixin:
 
+    # def persist(self):
+    #     df = self.clean().pipe(startswith, 'program__', rename=True)
+    #
+    #     columns = ','.join('"{}"'.format(key) for key in df.columns)
+    #     values = ','.join(map(str, map(tuple, df.values))).replace('nan', 'NULL')
+    #
+    #     unique_together = ['racetrack_id', 'yr', 'round', 'day']
+    #     conflict = ','.join('"{}"'.format(key) for key in unique_together)
+    #     updates = ', '.join((f'{key}=excluded.{key}' for key in df.columns if key not in unique_together))
+    #
+    #     sql = (
+    #         f'INSERT INTO programs ({columns}) '
+    #         f'VALUES {values} '
+    #         f'ON CONFLICT ({conflict}) '
+    #         f'DO UPDATE SET {updates}'
+    #     )
+    #
+    #     with connection.cursor() as c:
+    #         c.execute(sql)
+
     @transaction.atomic
     def persist(self):
-        df = self.clean().pipe(startswith, 'race__', rename=True)
+        from ..models import Program
+        for _, row in self.clean().iterrows():
+            program_dct = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
+            program_unique_keys = ['racetrack_id', 'yr', 'round', 'day']
+            program_lookup = {key: value for key, value in program_dct.items() if key in program_unique_keys}
+            program, _ = Program.objects.get_or_create(**program_lookup)
 
-        for _, row in df.iterrows():
-            race = row.dropna().to_dict()
-            lookup = {
-                'racetrack_id': race.pop('racetrack_id'),
-                'yr':           race.pop('yr'),
-                'round':        race.pop('round'),
-                'day':          race.pop('day'),
-                'num':          race.pop('num')
-            }
-            try:
-                Race.objects.update_or_create(**lookup, defaults=race)
-            except IntegrityError as e:
-                logger.exception(e)
+            race_dct = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
+            race_lookup = {'program_id': program.id, 'num': race_dct.get('num')}
+            race_defaults = {key: value for key, value in race_dct.items() if key != 'num'}
+            race, _ = Race.objects.update_or_create(**race_lookup, defaults=race_defaults)
 
 
 def startswith(
