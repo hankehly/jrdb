@@ -1,6 +1,6 @@
 import logging
 
-from django.db import IntegrityError, transaction
+from django.db import IntegrityError, transaction, connection
 from django.utils.functional import cached_property
 
 from ..models import Jockey, Trainer, choices
@@ -27,7 +27,7 @@ class KZA(Template):
         DateItem('生年月日', 8, 67, 'jrdb.Jockey.birthday'),
         IntegerItem('初免許年', 4, 75, 'jrdb.Jockey.lic_acquired_yr'),
         ChoiceItem('見習い区分', 1, 79, 'jrdb.Jockey.trainee_cat', choices.TRAINEE_CATEGORY.options()),
-        StringItem('所属厩舎', 5, 80, 'jrdb.Trainer.code'),
+        # StringItem('所属厩舎', 5, 80, 'jrdb.Trainer.code'), # IGNORED (no data)
         StringItem('騎手コメント', 40, 85, 'jrdb.Jockey.jrdb_comment'),
         DateItem('コメント入力年月日', 8, 125, 'jrdb.Jockey.jrdb_comment_date'),
         IntegerItem('本年リーディング', 3, 133, 'jrdb.Jockey.cur_yr_leading'),
@@ -50,22 +50,44 @@ class KZA(Template):
         self.df = self.df[~self.df['jockey__name'].str.contains('削除')]
         return super().clean
 
-    @transaction.atomic
     def persist(self):
-        for _, row in self.clean.iterrows():
-            try:
-                j = row.pipe(startswith, 'jockey__', rename=True).dropna().to_dict()
+        df = self.clean.pipe(startswith, 'jockey__', rename=True)
 
-                if row.trainer__code:
-                    trainer, _ = Trainer.objects.get_or_create(code=row.trainer__code)
-                    j['trainer_id'] = trainer.id
+        cols = ','.join('"{}"'.format(key) for key in df.columns)
+        # TODO: Handle null transformations more elegantly
+        vals = ','.join(map(str, map(tuple, df.values))) \
+            .replace('nan', 'NULL') \
+            .replace('None', 'NULL') \
+            .replace('\'NaT\'', 'NULL')
+        updates = ','.join((f'{key}=excluded.{key}' for key in df.columns))
 
-                jockey, created = Jockey.objects.get_or_create(code=j.pop('code'), defaults=j)
+        sql = (
+            f'INSERT INTO jockeys ({cols}) '
+            f'VALUES {vals} '
+            f'ON CONFLICT (code) '
+            f'DO UPDATE SET {updates} '
+            f'WHERE excluded.jrdb_saved_on >= jockeys.jrdb_saved_on'
+        )
 
-                if not created:
-                    if jockey.jrdb_saved_on is None or j['jrdb_saved_on'] >= jockey.jrdb_saved_on:
-                        for name, value in j.items():
-                            setattr(jockey, name, value)
-                        jockey.save()
-            except IntegrityError as e:
-                logger.exception(e)
+        with connection.cursor() as c:
+            c.execute(sql)
+
+    # @transaction.atomic
+    # def persist(self):
+    # for _, row in self.clean.iterrows():
+    #     try:
+    #         j = row.pipe(startswith, 'jockey__', rename=True).dropna().to_dict()
+    #
+    #         if row.trainer__code:
+    #             trainer, _ = Trainer.objects.get_or_create(code=row.trainer__code)
+    #             j['trainer_id'] = trainer.id
+    #
+    #         jockey, created = Jockey.objects.get_or_create(code=j.pop('code'), defaults=j)
+    #
+    #         if not created:
+    #             if jockey.jrdb_saved_on is None or j['jrdb_saved_on'] >= jockey.jrdb_saved_on:
+    #                 for name, value in j.items():
+    #                     setattr(jockey, name, value)
+    #                 jockey.save()
+    #     except IntegrityError as e:
+    #         logger.exception(e)
