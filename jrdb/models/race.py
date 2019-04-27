@@ -1,15 +1,11 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-from jrdb.models import BaseModel, choices
+from jrdb.models import choices
 
 
-class Race(BaseModel):
-    # key related data
-    racetrack = models.ForeignKey('jrdb.Racetrack', on_delete=models.CASCADE)
-    yr = models.PositiveSmallIntegerField()
-    round = models.PositiveSmallIntegerField()
-    day = models.CharField(max_length=1)
+class Race(models.Model):
+    program = models.ForeignKey('jrdb.Program', models.CASCADE)
     num = models.PositiveSmallIntegerField()
 
     # codes
@@ -21,13 +17,16 @@ class Race(BaseModel):
     impost_class = models.CharField(max_length=255, choices=choices.IMPOST_CLASS.CHOICES(), null=True)
     grade = models.CharField(max_length=255, choices=choices.GRADE.CHOICES(), null=True)
     track_cond = models.CharField(max_length=255, choices=choices.TRACK_CONDITION.CHOICES(), null=True)
-    weather = models.CharField(max_length=255, choices=choices.WEATHER.CHOICES(), null=True)
+
+    # TODO: Duplicated in program. Check to see if sibling values differ or not.
+    weather = models.CharField('天候', max_length=255, choices=choices.WEATHER.CHOICES(), null=True)
+    host_category = models.CharField(max_length=255, choices=choices.HOST_CATEGORY.CHOICES(), null=True)
+    nth_occurrence = models.PositiveSmallIntegerField(null=True)
 
     name = models.CharField(max_length=50, null=True)
     name_abbr = models.CharField(max_length=8, null=True)
     name_short = models.CharField(max_length=18, null=True)
 
-    # composed of yr/month/date + hh/mm from separate files
     started_at = models.DateTimeField(null=True)
 
     distance = models.PositiveSmallIntegerField(null=True)
@@ -35,9 +34,7 @@ class Race(BaseModel):
     direction = models.CharField(max_length=255, choices=choices.DIRECTION.CHOICES(), null=True)
     course_inout = models.CharField(max_length=255, choices=choices.COURSE_INOUT.CHOICES(), null=True)
     course_label = models.CharField(max_length=255, choices=choices.COURSE_LABEL.CHOICES(), null=True)
-    host_category = models.CharField(max_length=255, choices=choices.HOST_CATEGORY.CHOICES(), null=True)
     comment = models.TextField(max_length=500)
-    nth_occurrence = models.PositiveSmallIntegerField(null=True)
     win5 = models.PositiveSmallIntegerField(null=True)
 
     # contender_count is accurate about 99.995% of the time
@@ -88,4 +85,4 @@ class Race(BaseModel):
 
     class Meta:
         db_table = 'races'
-        unique_together = ('racetrack', 'yr', 'round', 'day', 'num')
+        unique_together = ('program', 'num')

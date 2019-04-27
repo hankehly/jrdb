@@ -27,7 +27,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('template', choices=[
-            'BAC', 'CSA', 'CYB', 'CZA', 'KSA', 'KYI', 'KZA', 'OT', 'OU', 'OV', 'OW', 'OZ', 'SED', 'SKB', 'SRB', 'UKC'
+            'BAC', 'CSA', 'CYB', 'CZA', 'KAB', 'KSA', 'KYI', 'KZA', 'OT', 'OU', 'OV', 'OW', 'OZ', 'SED', 'SKB', 'SRB', 'UKC'
         ], help='Template parser used during import.')
 
         parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')

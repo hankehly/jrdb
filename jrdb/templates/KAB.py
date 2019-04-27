@@ -1,4 +1,13 @@
-from jrdb.templates.template import Template
+import logging
+
+import numpy as np
+from django.db import connection
+
+from ..models import choices
+from .template import Template, startswith
+from .item import ForeignKeyItem, IntegerItem, StringItem, ChoiceItem, BooleanItem, FloatItem
+
+logger = logging.getLogger(__name__)
 
 
 class KAB(Template):
@@ -10,39 +19,52 @@ class KAB(Template):
     """
     name = 'JRDB開催データ（KAB）'
     items = [
-        ['racetrack_code', '場コード', None, '2', '99', '1', None],
-        ['yr', '年', None, '2', '99', '3', None],
-        ['round', '回', None, '1', '9', '5', None],
-        ['day', '日', None, '1', 'F', '6', None],
-        ['date', '年月日', None, '8', '9', '7', 'YYYYMMDD'],
-        ['host_category', '開催区分', None, '1', '9', '15', '1:関東, 2:関西, 3:ローカル'],
-        ['weekday', '曜日', None, '2', 'X', '16', '日－土'],
-        ['racetrack_name', '場名', None, '4', 'X', '18', '競馬場名'],
-        ['weather_code', '天候コード', None, '1', '9', '22', '推 →JRDBデータコード表'],
-        ['turf_track_condition_code', '芝馬場状態コード', None, '2', '9', '23', '推 →JRDBデータコード表'],
-        ['turf_track_condition_inner', '芝馬場状態内', None, '1', '9', '25', '推 1:絶好, 2:良, 3,稍荒, 4:荒'],
-        ['turf_track_condition_middle', '芝馬場状態中', None, '1', '9', '26', '推 1:絶好, 2:良, 3,稍荒, 4:荒'],
-        ['turf_track_condition_outer', '芝馬場状態外', None, '1', '9', '27', '推 1:絶好, 2:良, 3,稍荒, 4:荒'],
-        ['turf_track_speed_shift', '芝馬場差', None, '3', '9', '28', '推'],
-        ['hs_track_speed_shift__innermost', '直線馬場差最内', None, '2', '99', '31', '推'],
-        ['hs_track_speed_shift__inner', '直線馬場差内', None, '2', '99', '33', '推'],
-        ['hs_track_speed_shift__middle', '直線馬場差中', None, '2', '99', '35', '推'],
-        ['hs_track_speed_shift__outer', '直線馬場差外', None, '2', '99', '37', '推'],
-        ['hs_track_speed_shift__outermost', '直線馬場差大外', None, '2', '99', '39', '推'],
-        ['dirt_track_condition_code', 'ダ馬場状態コード', None, '2', '9', '41', '推 →JRDBデータコード表'],
-        ['dirt_track_condition_inner', 'ダ馬場状態内', None, '1', '9', '43', '推 1:絶好, 2:良, 3,稍荒, 4:荒'],
-        ['dirt_track_condition_middle', 'ダ馬場状態中', None, '1', '9', '44', '推 1:絶好, 2:良, 3,稍荒, 4:荒'],
-        ['dirt_track_condition_outer', 'ダ馬場状態外', None, '1', '9', '45', '推 1:絶好, 2:良, 3,稍荒, 4:荒'],
-        ['dirt_track_speed_shift', 'ダ馬場差', None, '3', '9', '46', '推'],
-        ['data_category_1', 'データ区分', None, '1', '9', '49', '1:特別登録,2:想定確定,3:枠確定,4:前日'],
-        ['nth_occurrence', '連続何日目', None, '2', '9', '50', '日数'],
-        ['turf_type', '芝種類', None, '1', 'X', '52', '1:野芝, 2:洋芝, 3:混生'],
-        ['grass_height', '草丈', None, '4', 'Z9.9', '53', '単位cm'],
-        ['used_rolling_compactor', '転圧', None, '1', 'X', '57', '1:転圧, 0:無し'],
-        ['used_anti_freeze_agent', '凍結防止剤', None, '1', 'X', '58', '1:凍結防止剤散布, 0:無し'],
-        ['mm_precipitation', '中間降水量', None, '5', 'ZZ9.9', '59', '単位mm'],
-        ['reserved', '予備', None, '7', 'X', '64', 'スペース'],
-        ['newline', '改行', None, '2', 'X', '71', 'ＣＲ・ＬＦ'],
-        ['data_category_2', 'データ区分', None, '1', '9', '49', '1:特別登録,2:想定確定,3前日'],
-        ['data_category_3', 'データ区分', None, '1', '9', '49', '1:特別登録,2:想定確定,3:枠確定,4:前日']
+        ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
+        IntegerItem('年', 2, 2, 'jrdb.Program.yr'),
+        IntegerItem('回', 1, 4, 'jrdb.Program.round'),
+        StringItem('日', 1, 5, 'jrdb.Program.day'),
+        # ['date', '年月日', None, '8', '9', '7', 'YYYYMMDD'], # IGNORED (supplied in BAC)
+        ChoiceItem('開催区分', 1, 14, 'jrdb.Program.host_category', choices.HOST_CATEGORY.options()),
+        # ['weekday', '曜日', None, '2', 'X', '16', '日－土'],  # IGNORED (inferrable)
+        # ['racename', '場名', None, '4', 'X', '18', '競馬場名'],  # IGNORED (inferrable)
+        ChoiceItem('天候コード', 1, 21, 'jrdb.Program.weather', choices.WEATHER.options()),
+        ChoiceItem('芝馬場状態コード', 2, 22, 'jrdb.Program.turf_cond', choices.TRACK_CONDITION_KA.options()),
+        ChoiceItem('芝馬場状態内', 1, 24, 'jrdb.Program.turf_cond_inner', choices.TRACK_CONDITION_KA.options()),
+        ChoiceItem('芝馬場状態中', 1, 25, 'jrdb.Program.turf_cond_mid', choices.TRACK_CONDITION_KA.options()),
+        ChoiceItem('芝馬場状態外', 1, 26, 'jrdb.Program.turf_cond_outer', choices.TRACK_CONDITION_KA.options()),
+        IntegerItem('芝馬場差', 3, 27, 'jrdb.Program.turf_speed_shift'),
+        IntegerItem('直線馬場差最内', 2, 30, 'jrdb.Program.hs_speed_shift_innermost'),
+        IntegerItem('直線馬場差内', 2, 32, 'jrdb.Program.hs_speed_shift_inner'),
+        IntegerItem('直線馬場差中', 2, 34, 'jrdb.Program.hs_speed_shift_mid'),
+        IntegerItem('直線馬場差外', 2, 36, 'jrdb.Program.hs_speed_shift_outer'),
+        IntegerItem('直線馬場差大外', 2, 38, 'jrdb.Program.hs_speed_shift_outermost'),
+        ChoiceItem('ダ馬場状態コード', 2, 40, 'jrdb.Program.dirt_cond', choices.TRACK_CONDITION_KA.options()),
+        ChoiceItem('ダ馬場状態内', 1, 42, 'jrdb.Program.dirt_cond_inner', choices.TRACK_CONDITION_KA.options()),
+        ChoiceItem('ダ馬場状態中', 1, 43, 'jrdb.Program.dirt_cond_mid', choices.TRACK_CONDITION_KA.options()),
+        ChoiceItem('ダ馬場状態外', 1, 44, 'jrdb.Program.dirt_cond_outer', choices.TRACK_CONDITION_KA.options()),
+        IntegerItem('ダ馬場差', 3, 45, 'jrdb.Program.dirt_speed_shift'),
+        # StringItem('データ区分', 1, 48, 'jrdb.Program.data_category_1'), # IGNORED (not needed)
+        IntegerItem('連続何日目', 2, 49, 'jrdb.Program.nth_occurrence'),
+        ChoiceItem('芝種類', 1, 51, 'jrdb.Program.turf_type', choices.TURF_TYPE.options()),
+        FloatItem('草丈', 4, 52, 'jrdb.Program.grass_height', default=np.nan),
+        BooleanItem('転圧', 1, 56, 'jrdb.Program.used_rolling_compactor'),
+        BooleanItem('凍結防止剤', 1, 57, 'jrdb.Program.used_anti_freeze_agent'),
+        FloatItem('中間降水量', 5, 58, 'jrdb.Program.mm_precipitation', default=np.nan),
     ]
+
+    def persist(self):
+        df = self.clean().pipe(startswith, 'program__', rename=True)
+
+        columns = ','.join('"{}"'.format(key) for key in df.columns)
+        values = ','.join(map(str, map(tuple, df.values))).replace('nan', 'NULL')
+        updates = ', '.join((f'{key}=excluded.{key}' for key in df.columns))
+
+        sql = (
+            f'INSERT INTO programs ({columns}) '
+            f'VALUES {values} '
+            f'ON CONFLICT (racetrack_id, yr, round, day) '
+            f'DO UPDATE SET {updates}'
+        )
+
+        with connection.cursor() as c:
+            c.execute(sql)

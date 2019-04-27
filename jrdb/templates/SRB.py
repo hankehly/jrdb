@@ -12,10 +12,10 @@ class SRB(Template, RacePersistMixin):
     """
     name = 'JRDB成績レースデータ（SRB）'
     items = [
-        ForeignKeyItem('場コード', 2, 0, 'jrdb.Race.racetrack', 'jrdb.Racetrack.code'),
-        IntegerItem('年', 2, 2, 'jrdb.Race.yr'),
-        IntegerItem('回', 1, 4, 'jrdb.Race.round'),
-        StringItem('日', 1, 5, 'jrdb.Race.day'),
+        ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
+        IntegerItem('年', 2, 2, 'jrdb.Program.yr'),
+        IntegerItem('回', 1, 4, 'jrdb.Program.round'),
+        StringItem('日', 1, 5, 'jrdb.Program.day'),
         IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
 
         # TODO:

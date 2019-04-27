@@ -1,4 +1,3 @@
-from .base import BaseModel
 from .codes import (
     HoofCode,
     HorseGearCode,
@@ -11,6 +10,7 @@ from .codes import (
 from .contender import Contender
 from .horse import Horse
 from .jockey import Jockey
+from .program import Program
 from .race import Race
 from .racetrack import Racetrack
 from .trainer import Trainer

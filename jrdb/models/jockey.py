@@ -1,10 +1,10 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-from jrdb.models import BaseModel, choices
+from jrdb.models import choices
 
 
-class Jockey(BaseModel):
+class Jockey(models.Model):
     code = models.CharField(max_length=5, unique=True)
     trainer = models.ForeignKey('jrdb.Trainer', on_delete=models.SET_NULL, null=True)
     retired_on = models.DateField(null=True)

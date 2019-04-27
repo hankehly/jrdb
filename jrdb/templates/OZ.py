@@ -13,10 +13,10 @@ class OZ(Template, RacePersistMixin):
     """
     name = 'JRDB基準オッズデータ（OZ）'
     items = [
-        ForeignKeyItem('場コード', 2, 0, 'jrdb.Race.racetrack', 'jrdb.Racetrack.code'),
-        IntegerItem('年', 2, 2, 'jrdb.Race.yr'),
-        IntegerItem('回', 1, 4, 'jrdb.Race.round'),
-        StringItem('日', 1, 5, 'jrdb.Race.day'),
+        ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
+        IntegerItem('年', 2, 2, 'jrdb.Program.yr'),
+        IntegerItem('回', 1, 4, 'jrdb.Program.round'),
+        StringItem('日', 1, 5, 'jrdb.Program.day'),
         IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
         IntegerItem('登録頭数', 2, 8, 'jrdb.Race.contender_count'),
         ArrayItem('単勝オッズ', 5 * 18, 10, 'jrdb.Race.odds_win', 18),

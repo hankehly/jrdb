@@ -1,9 +1,9 @@
 from django.db import models
 
-from . import BaseModel, choices
+from . import choices
 
 
-class Horse(BaseModel):
+class Horse(models.Model):
     pedigree_reg_num = models.CharField(max_length=8, unique=True)
     name = models.CharField(max_length=36)
     sex = models.CharField(verbose_name='性別', max_length=255, null=True, choices=choices.SEX.CHOICES())

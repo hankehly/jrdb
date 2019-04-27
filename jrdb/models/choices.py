@@ -914,6 +914,27 @@ class TRACK_CONDITION(ChoiceMixin):
     )
 
 
+class TRACK_CONDITION_KA(ChoiceMixin):
+    """
+    内|中|外などの馬場状態(KABのみで使用)
+
+    1: 絶好
+    2: 良
+    3: 稍荒
+    4: 荒
+    """
+    GREAT = 'GREAT'
+    GOOD = 'GOOD'
+    SLIGHT_ROUGH = 'SLIGHT_ROUGH'
+    ROUGH = 'ROUGH'
+    MAP = (
+        ('1', GREAT, '絶好'),
+        ('2', GOOD, '良'),
+        ('3', SLIGHT_ROUGH, '稍荒'),
+        ('4', ROUGH, '荒')
+    )
+
+
 class TRAINEE_CATEGORY(ChoiceMixin):
     """
     1: (1K減) ☆
@@ -1090,6 +1111,22 @@ class TRANSPORT_CATEGORY(ChoiceMixin):
         ('2', NORMAL, '通常'),
         ('3', VISIT, '遠征'),
         ('0', UNKNOWN, '不明'),
+    )
+
+
+class TURF_TYPE(ChoiceMixin):
+    """
+    芝種類
+
+    https://keiba-thetop.com/shibamain/#outline__1_1
+    """
+    NATURAL = 'NATURAL'
+    WESTERN = 'WESTERN'
+    MIXED = 'MIXED'
+    MAP = (
+        ('1', NATURAL, '野芝'),
+        ('2', WESTERN, '洋芝'),
+        ('3', MIXED, '混生'),
     )
 
 

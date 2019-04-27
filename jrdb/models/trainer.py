@@ -1,10 +1,10 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-from jrdb.models import BaseModel, choices
+from jrdb.models import choices
 
 
-class Trainer(BaseModel):
+class Trainer(models.Model):
     code = models.CharField(max_length=5, unique=True)
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=12, null=True)

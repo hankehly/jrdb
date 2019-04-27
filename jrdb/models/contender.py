@@ -1,9 +1,9 @@
 from django.db import models
 
-from jrdb.models import BaseModel, choices
+from jrdb.models import choices
 
 
-class Contender(BaseModel):
+class Contender(models.Model):
     race = models.ForeignKey('jrdb.Race', models.CASCADE, verbose_name='レース')
     num = models.PositiveSmallIntegerField('馬番')
 

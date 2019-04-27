@@ -43,9 +43,6 @@ class Item(ABC):
     width: int
     start: int
 
-    def __post_init__(self):
-        self._validate()
-
     @property
     def key(self) -> str:
         return self.label
@@ -89,6 +86,7 @@ class IntegerItem(ModelItem):
     default: Optional[int] = None
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         return s.apply(parse_int_or, args=(self.default,)).astype('Int64')
 
 
@@ -98,6 +96,7 @@ class FloatItem(ModelItem):
     scale: float = 1.
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         return s.apply(parse_float_or, args=(self.default,)).apply(lambda n: n * self.scale).astype(float)
 
 
@@ -114,6 +113,7 @@ class ArrayItem(ModelItem):
         return self.get_field().base_field
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         # TODO: Make clean logic from other items reusable in ArrayItem.clean
         base_field_type = self.base_field.get_internal_type()
 
@@ -144,6 +144,7 @@ class ForeignKeyItem(ModelItem):
         return apps.get_model(model)._meta.get_field(field)
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         remote_field = self.get_remote_field()
 
         remote_records = remote_field.model.objects \
@@ -168,6 +169,7 @@ class DateItem(ModelItem):
     format: str = '%Y%m%d'
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         return pd.to_datetime(s, format=self.format, errors='coerce').dt.date
 
 
@@ -177,6 +179,7 @@ class DateTimeItem(ModelItem):
     tz: str = 'Asia/Tokyo'
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         return pd.to_datetime(s, format=self.format).dt.tz_localize(self.tz).rename(self.key)
 
 
@@ -184,6 +187,7 @@ class DateTimeItem(ModelItem):
 class StringItem(ModelItem):
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         return s.str.strip()
 
 
@@ -192,6 +196,7 @@ class ChoiceItem(ModelItem):
     options: dict
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         return s.str.strip().map(self.options)
 
 
@@ -201,6 +206,7 @@ class BooleanItem(ModelItem):
     value_false: str = '0'
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         return s.str.strip().map({self.value_true: True, self.value_false: False})
 
 
@@ -209,4 +215,5 @@ class InvokeItem(Item):
     handler: Callable
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+        self._validate()
         return self.handler(s)
