@@ -34,7 +34,7 @@ class Race(models.Model):
     direction = models.CharField(max_length=255, choices=choices.DIRECTION.CHOICES(), null=True)
     course_inout = models.CharField(max_length=255, choices=choices.COURSE_INOUT.CHOICES(), null=True)
     course_label = models.CharField(max_length=255, choices=choices.COURSE_LABEL.CHOICES(), null=True)
-    comment = models.TextField(max_length=500)
+    comment = models.TextField(max_length=500, null=True)
     win5 = models.PositiveSmallIntegerField(null=True)
 
     # contender_count is accurate about 99.995% of the time
@@ -71,7 +71,7 @@ class Race(models.Model):
 
     track_speed_shift = models.SmallIntegerField(null=True)
 
-    pace_cat = models.CharField(max_length=255, choices=choices.PACE_CATEGORY.CHOICES())
+    pace_cat = models.CharField(max_length=255, choices=choices.PACE_CATEGORY.CHOICES(), null=True)
     pace_idx = models.FloatField(null=True, help_text='レースのペースを指数化したもの')
     pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
 
