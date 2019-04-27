@@ -51,7 +51,7 @@ class CYB(Template):
 
     @transaction.atomic
     def persist(self):
-        for _, row in self.clean().iterrows():
+        for _, row in self.clean.iterrows():
             r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
             race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),
                                                  round=r.pop('round'), day=r.pop('day'), num=r.pop('num'))

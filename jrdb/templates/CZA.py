@@ -45,11 +45,11 @@ class CZA(Template):
 
     def clean(self) -> pd.DataFrame:
         self.df = self.df[~self.df['trainer__name'].str.contains('削除')]
-        return super().clean()
+        return super().clean
 
     @transaction.atomic
     def persist(self):
-        df = self.clean().pipe(startswith, 'trainer__', rename=True)
+        df = self.clean.pipe(startswith, 'trainer__', rename=True)
         for _, row in df.iterrows():
             record = row.dropna().to_dict()
             try:

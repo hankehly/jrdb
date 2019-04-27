@@ -46,11 +46,11 @@ class KZA(Template):
 
     def clean(self):
         self.df = self.df[~self.df['jockey__name'].str.contains('削除')]
-        return super().clean()
+        return super().clean
 
     @transaction.atomic
     def persist(self):
-        for _, row in self.clean().iterrows():
+        for _, row in self.clean.iterrows():
             try:
                 j = row.pipe(startswith, 'jockey__', rename=True).dropna().to_dict()
 

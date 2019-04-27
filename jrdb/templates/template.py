@@ -5,6 +5,7 @@ from typing import List, Any, Union
 import numpy as np
 import pandas as pd
 from django.db import connection
+from django.utils.functional import cached_property
 
 from ..models import Program
 from .item import ArrayItem
@@ -19,6 +20,7 @@ class Template(ABC):
     def __init__(self, path):
         self.path = path
         self._df = None
+        self._clean_df = None
 
     @property
     def df(self) -> pd.DataFrame:
@@ -69,6 +71,7 @@ class Template(ABC):
             row.append(cell)
         return row
 
+    @cached_property
     def clean(self) -> pd.DataFrame:
         objs = []
         for col in self.df:
@@ -82,10 +85,8 @@ class RacePersistMixin:
     SEP = ','
 
     def persist(self):
-        df = self.clean()
-
-        p_df = df.pipe(startswith, 'program__', rename=True)
-        r_df = df.pipe(startswith, 'race__', rename=True)
+        p_df = self.clean.pipe(startswith, 'program__', rename=True)
+        r_df = self.clean.pipe(startswith, 'race__', rename=True)
 
         # PROGRAM
         p_cols = self.SEP.join('"{}"'.format(key) for key in p_df.columns)
@@ -130,7 +131,7 @@ class RacePersistMixin:
     # @transaction.atomic
     # def persist(self):
     #     from ..models import Program
-    #     for _, row in self.clean().iterrows():
+    #     for _, row in self.clean.iterrows():
     #         program_dct = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
     #         program_unique_keys = ['racetrack_id', 'yr', 'round', 'day']
     #         program_lookup = {key: value for key, value in program_dct.items() if key in program_unique_keys}

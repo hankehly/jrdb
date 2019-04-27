@@ -39,7 +39,7 @@ class UKC(Template):
 
     @transaction.atomic
     def persist(self):
-        df = self.clean().pipe(startswith, 'horse__', rename=True)
+        df = self.clean.pipe(startswith, 'horse__', rename=True)
         for _, row in df.iterrows():
             record = row.dropna().to_dict()
             try:

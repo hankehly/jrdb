@@ -53,7 +53,7 @@ class KAB(Template):
     ]
 
     def persist(self):
-        df = self.clean().pipe(startswith, 'program__', rename=True)
+        df = self.clean.pipe(startswith, 'program__', rename=True)
 
         columns = ','.join('"{}"'.format(key) for key in df.columns)
         values = ','.join(map(str, map(tuple, df.values))).replace('nan', 'NULL')
