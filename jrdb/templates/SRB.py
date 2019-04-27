@@ -1,12 +1,12 @@
 import logging
 
 from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from .template import Template, RacePersistMixin
+from .template import Template, ProgramRacePersistMixin
 
 logger = logging.getLogger(__name__)
 
 
-class SRB(Template, RacePersistMixin):
+class SRB(Template, ProgramRacePersistMixin):
     """
     http://www.jrdb.com/program/Srb/srb_doc.txt
     """

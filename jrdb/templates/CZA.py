@@ -1,7 +1,7 @@
 import logging
 
 import pandas as pd
-from django.db import IntegrityError, transaction
+from django.db import IntegrityError, transaction, connection
 from django.utils.functional import cached_property
 
 from ..models import choices, Trainer
@@ -49,17 +49,39 @@ class CZA(Template):
         self.df = self.df[~self.df['trainer__name'].str.contains('削除')]
         return super().clean
 
-    @transaction.atomic
     def persist(self):
         df = self.clean.pipe(startswith, 'trainer__', rename=True)
-        for _, row in df.iterrows():
-            record = row.dropna().to_dict()
-            try:
-                trainer, created = Trainer.objects.get_or_create(code=record.pop('code'), defaults=record)
-                if not created:
-                    if trainer.jrdb_saved_on is None or record['jrdb_saved_on'] >= trainer.jrdb_saved_on:
-                        for name, value in record.items():
-                            setattr(trainer, name, value)
-                        trainer.save()
-            except IntegrityError as e:
-                logger.exception(e)
+
+        cols = ','.join('"{}"'.format(key) for key in df.columns)
+        # TODO: Handle null transformations more elegantly
+        vals = ','.join(map(str, map(tuple, df.values))) \
+            .replace('nan', 'NULL') \
+            .replace('None', 'NULL') \
+            .replace('\'NaT\'', 'NULL')
+        updates = ','.join((f'{key}=excluded.{key}' for key in df.columns))
+
+        sql = (
+            f'INSERT INTO trainers ({cols}) '
+            f'VALUES {vals} '
+            f'ON CONFLICT (code) '
+            f'DO UPDATE SET {updates} '
+            f'WHERE excluded.jrdb_saved_on >= trainers.jrdb_saved_on'
+        )
+
+        with connection.cursor() as c:
+            c.execute(sql)
+
+        # Implementation using Django model methods (for speed comparison)
+        # def persist(self):
+        # df = self.clean.pipe(startswith, 'trainer__', rename=True)
+        # for _, row in df.iterrows():
+        #     record = row.dropna().to_dict()
+        #     try:
+        #         trainer, created = Trainer.objects.get_or_create(code=record.pop('code'), defaults=record)
+        #         if not created:
+        #             if trainer.jrdb_saved_on is None or record['jrdb_saved_on'] >= trainer.jrdb_saved_on:
+        #                 for name, value in record.items():
+        #                     setattr(trainer, name, value)
+        #                 trainer.save()
+        #     except IntegrityError as e:
+        #         logger.exception(e)

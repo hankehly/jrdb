@@ -6,7 +6,7 @@ import pandas as pd
 
 from ..models import choices
 from .item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem
-from .template import Template, RacePersistMixin
+from .template import Template, ProgramRacePersistMixin
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ def betting_ticket_sale_flag(s: pd.Series):
         .rename(columns=colmap)
 
 
-class BAC(Template, RacePersistMixin):
+class BAC(Template, ProgramRacePersistMixin):
     """
     レース番組情報
 

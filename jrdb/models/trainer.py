@@ -9,7 +9,7 @@ class Trainer(models.Model):
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=12, null=True)
     name_kana = models.CharField(max_length=30, null=True)
-    name_abbr = models.CharField(max_length=6, null=True)
+    name_abbr = models.CharField(max_length=255, null=True)
     area = models.CharField(max_length=255, choices=choices.AREA.CHOICES(), null=True)
     training_center_name = models.CharField(max_length=4, null=True)
     birthday = models.DateField(null=True)

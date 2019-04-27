@@ -89,19 +89,24 @@ class Template(ABC):
 #         model, _ = symbol.rsplit('.', maxsplit=1)
 #         return apps.get_model(model)
 #
-#     @cached_property
-#     def unique_together(self):
-#         return ['racetrack_id', 'yr', 'round', 'day']
+#     def unique_together(self, symbol):
+#         # Assumes only 1 combination
+#         model = self.get_model(symbol)
+#         return [
+#             model._meta.get_field(field).attname
+#             for field in model._meta.unique_together[0]
+#         ]
 #
-#     def persist_(self, symbol):
+#     def persist_model(self, symbol):
 #         prefix = f'{self.get_model(symbol).model_name}__'
 #         df = self.clean.pipe(startswith, prefix, rename=True)
 #
 #         cols = self.SEP.join('"{}"'.format(key) for key in df.columns)
 #         vals = self.SEP.join(map(str, map(tuple, df.values))).replace('nan', 'NULL')
 #
-#         uniq_str = self.SEP.join('"{}"'.format(key) for key in self.unique_together)
-#         updates = self.SEP.join((f'{key}=excluded.{key}' for key in df.columns if key not in self.unique_together))
+#         uniq = self.unique_together(symbol)
+#         uniq_str = self.SEP.join('"{}"'.format(key) for key in uniq)
+#         updates = self.SEP.join((f'{key}=excluded.{key}' for key in df.columns if key not in uniq))
 #
 #         sql = (
 #             f'INSERT INTO programs ({cols}) '
@@ -118,7 +123,7 @@ class Template(ABC):
 
 
 # TODO: Use model._meta to automate lookup and persistence
-class RacePersistMixin:
+class ProgramRacePersistMixin:
     SEP = ','
 
     def persist(self):
@@ -164,20 +169,21 @@ class RacePersistMixin:
                 f'DO UPDATE SET {r_updates}'
             )
 
-    # Old implementation (left for speed comparison)
-    # @transaction.atomic
-    # def persist(self):
-    #     from ..models import Program, Race
-    #     for _, row in self.clean.iterrows():
-    #         program_dct = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
-    #         program_unique_keys = ['racetrack_id', 'yr', 'round', 'day']
-    #         program_lookup = {key: value for key, value in program_dct.items() if key in program_unique_keys}
-    #         program, _ = Program.objects.get_or_create(**program_lookup)
-    #
-    #         race_dct = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
-    #         race_lookup = {'program_id': program.id, 'num': race_dct.get('num')}
-    #         race_defaults = {key: value for key, value in race_dct.items() if key != 'num'}
-    #         race, _ = Race.objects.update_or_create(**race_lookup, defaults=race_defaults)
+    def persist_(self):
+        """
+        Django implementation (for speed comparison)
+        """
+        from ..models import Program, Race
+        for _, row in self.clean.iterrows():
+            program_dct = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
+            program_unique_keys = ['racetrack_id', 'yr', 'round', 'day']
+            program_lookup = {key: value for key, value in program_dct.items() if key in program_unique_keys}
+            program, _ = Program.objects.get_or_create(**program_lookup)
+
+            race_dct = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
+            race_lookup = {'program_id': program.id, 'num': race_dct.get('num')}
+            race_defaults = {key: value for key, value in race_dct.items() if key != 'num'}
+            race, _ = Race.objects.update_or_create(**race_lookup, defaults=race_defaults)
 
 
 def startswith(

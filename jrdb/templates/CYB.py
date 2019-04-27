@@ -4,13 +4,13 @@ import pandas as pd
 from django.db import transaction, connection, IntegrityError
 
 from ..models import choices, Program, Race, Contender
-from .template import Template, startswith
+from .template import Template, startswith, ProgramRacePersistMixin
 from .item import IntegerItem, StringItem, ForeignKeyItem, BooleanItem, ChoiceItem, DateItem
 
 logger = logging.getLogger(__name__)
 
 
-class CYB(Template):
+class CYB(Template, ProgramRacePersistMixin):
     """
     仕様: http://www.jrdb.com/program/Cyb/cyb_doc.txt
     内容説明: http://www.jrdb.com/program/Cyb/cybsiyo_doc.txt
@@ -53,47 +53,12 @@ class CYB(Template):
     # WIP
     # TODO: Duplicate Contenders exist
     # def persist(self):
-    #     sep = ','
+    #     super().persist()
     #
-    #     p_df = self.clean.pipe(startswith, 'program__', rename=True)
+    #     sep = ','
     #     r_df = self.clean.pipe(startswith, 'race__', rename=True)
     #     c_df = self.clean.pipe(startswith, 'contender__', rename=True)
     #
-    #     # PROGRAM
-    #     p_cols = sep.join('"{}"'.format(key) for key in p_df.columns)
-    #     p_vals = sep.join(map(str, map(tuple, p_df.values))).replace('nan', 'NULL')
-    #
-    #     with connection.cursor() as c:
-    #         c.execute(
-    #             f'INSERT INTO programs ({p_cols}) '
-    #             f'VALUES {p_vals} '
-    #             f'ON CONFLICT DO NOTHING'
-    #         )
-    #
-    #     # RACE
-    #     p_lookup = {
-    #         'day__in': p_df.day,
-    #         'racetrack_id__in': p_df.racetrack_id,
-    #         'yr__in': p_df.yr,
-    #         'round__in': p_df['round']
-    #     }
-    #
-    #     p_search = Program.objects.filter(**p_lookup).values('id', 'racetrack_id', 'yr', 'round', 'day')
-    #     p_search_df = pd.DataFrame(p_search)
-    #
-    #     r_df['program_id'] = p_df.merge(p_search_df).id
-    #
-    #     r_cols = sep.join('"{}"'.format(key) for key in r_df.columns)
-    #     r_vals = sep.join(map(str, map(tuple, r_df.values))).replace('nan', 'NULL')
-    #
-    #     with connection.cursor() as c:
-    #         c.execute(
-    #             f'INSERT INTO races ({r_cols}) '
-    #             f'VALUES {r_vals} '
-    #             f'ON CONFLICT DO NOTHING'
-    #         )
-    #
-    #     # CONTENDER
     #     r_lookup = {
     #         'program_id__in': r_df.program_id,
     #         'num__in': r_df.num,

@@ -1,12 +1,12 @@
 import logging
 
 from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from .template import Template, RacePersistMixin
+from .template import Template, ProgramRacePersistMixin
 
 logger = logging.getLogger(__name__)
 
 
-class OZ(Template, RacePersistMixin):
+class OZ(Template, ProgramRacePersistMixin):
     """
     http://www.jrdb.com/program/Oz/Ozdata_doc.txt
     http://www.jrdb.com/program/Oz/Ozsiyo_doc.txt
