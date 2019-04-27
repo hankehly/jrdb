@@ -57,12 +57,15 @@ class KAB(Template):
 
         columns = ','.join('"{}"'.format(key) for key in df.columns)
         values = ','.join(map(str, map(tuple, df.values))).replace('nan', 'NULL')
-        updates = ', '.join((f'{key}=excluded.{key}' for key in df.columns))
+
+        unique_together = ['racetrack_id', 'yr', 'round', 'day']
+        conflict = ','.join('"{}"'.format(key) for key in unique_together)
+        updates = ', '.join((f'{key}=excluded.{key}' for key in df.columns if key not in unique_together))
 
         sql = (
             f'INSERT INTO programs ({columns}) '
             f'VALUES {values} '
-            f'ON CONFLICT (racetrack_id, yr, round, day) '
+            f'ON CONFLICT ({conflict}) '
             f'DO UPDATE SET {updates}'
         )
 
