@@ -116,18 +116,15 @@ class RacePersistMixin:
 
         r_uniq = ['program_id', 'num']
         r_uniq_str = self.SEP.join('"{}"'.format(key) for key in r_uniq)
-
         r_updates = self.SEP.join((f'{key}=excluded.{key}' for key in r_df.columns if key not in r_uniq))
 
-        race_sql = (
-            f'INSERT INTO races ({r_cols}) '
-            f'VALUES {r_vals} '
-            f'ON CONFLICT ({r_uniq_str}) '
-            f'DO UPDATE SET {r_updates}'
-        )
-
         with connection.cursor() as c:
-            c.execute(race_sql)
+            c.execute(
+                f'INSERT INTO races ({r_cols}) '
+                f'VALUES {r_vals} '
+                f'ON CONFLICT ({r_uniq_str}) '
+                f'DO UPDATE SET {r_updates}'
+            )
 
     # Old implementation (left for speed comparison)
     # @transaction.atomic
