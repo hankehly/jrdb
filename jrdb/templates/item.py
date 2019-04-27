@@ -1,3 +1,4 @@
+import json
 from abc import ABC
 from dataclasses import dataclass
 from typing import Optional, Union, Any, Callable, Tuple, Dict
@@ -114,15 +115,16 @@ class ArrayItem(ModelItem):
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        # TODO: Make clean logic from other items reusable in ArrayItem.clean
+
         base_field_type = self.base_field.get_internal_type()
 
+        se = s.copy()
         if base_field_type in MODEL_ITEM_FIELD_MAP['IntegerItem']:
-            return s.apply(lambda a: [int(el) if el.isdigit() else 0 for el in map(str.strip, a)])
+            se = se.apply(lambda a: [int(el) if el.isdigit() else 0 for el in map(str.strip, a)])
         elif base_field_type in MODEL_ITEM_FIELD_MAP['FloatItem']:
-            return s.apply(lambda a: pd.Series(a).apply(parse_float_or).tolist())
+            se = se.apply(lambda a: pd.Series(a).apply(parse_float_or).tolist())
 
-        return s
+        return se.apply(json.dumps).str.replace('[', '{').str.replace(']', '}')
 
     def _validate(self) -> None:
         super()._validate()
@@ -180,7 +182,7 @@ class DateTimeItem(ModelItem):
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        return pd.to_datetime(s, format=self.format).dt.tz_localize(self.tz).rename(self.key)
+        return pd.to_datetime(s, format=self.format).dt.tz_localize(self.tz).astype(str).rename(self.key)
 
 
 @dataclass(eq=False, frozen=True)
