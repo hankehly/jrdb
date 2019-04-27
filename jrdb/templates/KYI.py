@@ -2,7 +2,7 @@ import logging
 
 from django.db import transaction, IntegrityError
 
-from ..models import choices, Trainer, Race, Horse, Jockey, Contender
+from ..models import choices, Trainer, Race, Horse, Jockey, Contender, Program
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
 from .template import Template, startswith
 
@@ -197,9 +197,12 @@ class KYI(Template):
     @transaction.atomic
     def persist(self):
         for _, row in self.clean.iterrows():
+            p = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
+            program, _ = Program.objects.get_or_create(racetrack_id=p.pop('racetrack_id'), yr=p.pop('yr'),
+                                                       round=p.pop('round'), day=p.pop('day'))
+
             r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
-            race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),
-                                                 round=r.pop('round'), day=r.pop('day'), num=r.pop('num'))
+            race, _ = Race.objects.get_or_create(program=program, num=r.pop('num'))
 
             h = row.pipe(startswith, 'horse__', rename=True).dropna().to_dict()
             horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)

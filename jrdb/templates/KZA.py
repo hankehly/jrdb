@@ -1,6 +1,7 @@
 import logging
 
 from django.db import IntegrityError, transaction
+from django.utils.functional import cached_property
 
 from ..models import Jockey, Trainer, choices
 from .template import Template, startswith
@@ -44,6 +45,7 @@ class KZA(Template):
         DateItem('データ年月日', 8, 239, 'jrdb.Jockey.jrdb_saved_on')
     ]
 
+    @cached_property
     def clean(self):
         self.df = self.df[~self.df['jockey__name'].str.contains('削除')]
         return super().clean

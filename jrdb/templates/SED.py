@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from django.db import IntegrityError, transaction
 
-from ..models import Jockey, Trainer, Race, Contender, Horse, choices
+from ..models import Jockey, Trainer, Race, Contender, Horse, choices, Program
 from .template import Template, startswith
 from .item import (
     StringItem,
@@ -171,9 +171,12 @@ class SED(Template):
     @transaction.atomic
     def persist(self):
         for _, row in self.clean.iterrows():
+            p = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
+            program, _ = Program.objects.get_or_create(racetrack_id=p.pop('racetrack_id'), yr=p.pop('yr'),
+                                                       round=p.pop('round'), day=p.pop('day'))
+
             r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
-            race, _ = Race.objects.get_or_create(racetrack_id=r.pop('racetrack_id'), yr=r.pop('yr'),
-                                                 round=r.pop('round'), day=r.pop('day'), num=r.pop('num'))
+            race, _ = Race.objects.update_or_create(program=program, num=r.pop('num'), defaults=r)
 
             h = row.pipe(startswith, 'horse__', rename=True).dropna().to_dict()
             horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)

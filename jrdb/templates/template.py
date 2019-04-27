@@ -167,7 +167,7 @@ class RacePersistMixin:
     # Old implementation (left for speed comparison)
     # @transaction.atomic
     # def persist(self):
-    #     from ..models import Program
+    #     from ..models import Program, Race
     #     for _, row in self.clean.iterrows():
     #         program_dct = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
     #         program_unique_keys = ['racetrack_id', 'yr', 'round', 'day']
