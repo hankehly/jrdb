@@ -172,6 +172,7 @@ class DateItem(ModelItem):
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
+        # import ipdb; ipdb.set_trace()
         return pd.to_datetime(s, format=self.format, errors='coerce').dt.date
 
 

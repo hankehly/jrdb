@@ -4,6 +4,7 @@ from typing import List, Any, Union
 
 import numpy as np
 import pandas as pd
+from django.apps import apps
 from django.db import connection
 from django.utils.functional import cached_property
 
@@ -78,6 +79,42 @@ class Template(ABC):
             item = next(item for item in self.items if item.key == col)
             objs.append(item.clean(self.df[col]))
         return pd.concat(objs, axis='columns')
+
+
+# WIP
+# class ModelPersistMixin:
+#     SEP = ','
+#
+#     def get_model(self, symbol: str):
+#         model, _ = symbol.rsplit('.', maxsplit=1)
+#         return apps.get_model(model)
+#
+#     @cached_property
+#     def unique_together(self):
+#         return ['racetrack_id', 'yr', 'round', 'day']
+#
+#     def persist_(self, symbol):
+#         prefix = f'{self.get_model(symbol).model_name}__'
+#         df = self.clean.pipe(startswith, prefix, rename=True)
+#
+#         cols = self.SEP.join('"{}"'.format(key) for key in df.columns)
+#         vals = self.SEP.join(map(str, map(tuple, df.values))).replace('nan', 'NULL')
+#
+#         uniq_str = self.SEP.join('"{}"'.format(key) for key in self.unique_together)
+#         updates = self.SEP.join((f'{key}=excluded.{key}' for key in df.columns if key not in self.unique_together))
+#
+#         sql = (
+#             f'INSERT INTO programs ({cols}) '
+#             f'VALUES {vals} '
+#         )
+#
+#         if updates:
+#             sql += f'ON CONFLICT ({uniq_str}) DO UPDATE SET {updates}'
+#         else:
+#             sql += f'ON CONFLICT DO NOTHING'
+#
+#         with connection.cursor() as c:
+#             c.execute(sql)
 
 
 # TODO: Use model._meta to automate lookup and persistence

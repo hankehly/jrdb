@@ -2,6 +2,7 @@ import logging
 
 import pandas as pd
 from django.db import IntegrityError, transaction
+from django.utils.functional import cached_property
 
 from ..models import choices, Trainer
 from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
@@ -43,6 +44,7 @@ class CZA(Template):
         DateItem('データ年月日', 8, 233, 'jrdb.Trainer.jrdb_saved_on'),
     ]
 
+    @cached_property
     def clean(self) -> pd.DataFrame:
         self.df = self.df[~self.df['trainer__name'].str.contains('削除')]
         return super().clean
