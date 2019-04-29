@@ -1,17 +1,28 @@
 import glob
 import logging
+import os
 from concurrent.futures import as_completed
 from concurrent.futures.process import ProcessPoolExecutor
 
 from django.core.management import BaseCommand
 from django.utils.module_loading import import_string
 
-from jrdb.templates.template import Template
-
 logger = logging.getLogger(__name__)
 
+TEMPLATES = [
+    'BAC',
+    'CSA', 'CYB', 'CZA',
+    'KAB', 'KSA', 'KYI', 'KZA',
+    'OT', 'OU', 'OV', 'OW', 'OZ',
+    'SED', 'SKB', 'SRB',
+    'UKC'
+]
 
-def import_document(parser: Template) -> str:
+
+def import_document(path: str) -> str:
+    template = os.path.basename(path)[:3]
+    module_path = '.'.join(['jrdb', 'templates', template])
+    parser = import_string(module_path)(path)
     parser.parse().persist()
     return parser.path
 
@@ -26,31 +37,24 @@ class Command(BaseCommand):
         self.success_count = 0
 
     def add_arguments(self, parser):
-        # parser.add_argument('template', choices=[
-        #     'BAC', 'CSA', 'CYB', 'CZA', 'KAB', 'KSA', 'KYI', 'KZA', 'OT', 'OU', 'OV', 'OW', 'OZ', 'SED', 'SKB', 'SRB', 'UKC'
-        # ], help='Template parser used during import.')
-
         parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')
-        parser.add_argument('--workers', type=int, help='Threads to use during processing (default is 1)', default=1)
+        parser.add_argument('--workers', type=int,
+                            help='Number of processes in pool (defaults to the number of processors on the machine)')
 
     def handle(self, *args, **options):
         options_str = ', '.join([f'{name}: {value}' for name, value in options.items()])
         logger.info(f"START <{options_str}>")
 
-        if options['threads'] > 1:
-            self._process_multi_thread(options)
-        else:
-            self._process_single_thread(options)
+        self._process(options)
 
         logger.info(f'FINISH <successful {self.success_count}, errors {self.error_count}>')
 
-    def _process_multi_thread(self, options: dict):
-        module_path = '.'.join(['jrdb', 'templates', options['template']])
-        parser_cls = import_string(module_path)
-
-        with ProcessPoolExecutor(max_workers=options['threads']) as executor:
+    def _process(self, options: dict):
+        with ProcessPoolExecutor(max_workers=options.get('workers')) as executor:
             futures = {
-                executor.submit(import_document, parser_cls(path)): path for path in glob.iglob(options['path'])
+                executor.submit(import_document, path): path
+                for path in glob.iglob(options['path'])
+                if os.path.basename(path)[:3] in TEMPLATES
             }
 
             for future in as_completed(futures):
@@ -63,20 +67,6 @@ class Command(BaseCommand):
                     self._increment_error_count()
                 else:
                     self._increment_success_count()
-
-    def _process_single_thread(self, options: dict):
-        module_path = '.'.join(['jrdb', 'templates', options['template']])
-        parser_cls = import_string(module_path)
-
-        for path in glob.iglob(options['path']):
-            try:
-                logger.info(f'import <{path}>')
-                import_document(parser_cls(path))
-            except ValueError as e:
-                logger.exception(e)
-                self._increment_error_count()
-            else:
-                self._increment_success_count()
 
     def _increment_error_count(self):
         self.error_count += 1
