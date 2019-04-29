@@ -1,7 +1,7 @@
 import glob
 import logging
 from concurrent.futures import as_completed
-from concurrent.futures.thread import ThreadPoolExecutor
+from concurrent.futures.process import ProcessPoolExecutor
 
 from django.core.management import BaseCommand
 from django.utils.module_loading import import_string
@@ -26,12 +26,12 @@ class Command(BaseCommand):
         self.success_count = 0
 
     def add_arguments(self, parser):
-        parser.add_argument('template', choices=[
-            'BAC', 'CSA', 'CYB', 'CZA', 'KAB', 'KSA', 'KYI', 'KZA', 'OT', 'OU', 'OV', 'OW', 'OZ', 'SED', 'SKB', 'SRB', 'UKC'
-        ], help='Template parser used during import.')
+        # parser.add_argument('template', choices=[
+        #     'BAC', 'CSA', 'CYB', 'CZA', 'KAB', 'KSA', 'KYI', 'KZA', 'OT', 'OU', 'OV', 'OW', 'OZ', 'SED', 'SKB', 'SRB', 'UKC'
+        # ], help='Template parser used during import.')
 
         parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')
-        parser.add_argument('--threads', type=int, help='Threads to use during processing (default is 1)', default=1)
+        parser.add_argument('--workers', type=int, help='Threads to use during processing (default is 1)', default=1)
 
     def handle(self, *args, **options):
         options_str = ', '.join([f'{name}: {value}' for name, value in options.items()])
@@ -48,7 +48,7 @@ class Command(BaseCommand):
         module_path = '.'.join(['jrdb', 'templates', options['template']])
         parser_cls = import_string(module_path)
 
-        with ThreadPoolExecutor(max_workers=options['threads']) as executor:
+        with ProcessPoolExecutor(max_workers=options['threads']) as executor:
             futures = {
                 executor.submit(import_document, parser_cls(path)): path for path in glob.iglob(options['path'])
             }
