@@ -1,6 +1,6 @@
 import logging
 from abc import ABC
-from typing import List, Any, Union
+from typing import List, Any, Union, Iterable
 
 import numpy as np
 import pandas as pd
@@ -122,68 +122,105 @@ class Template(ABC):
 #             c.execute(sql)
 
 
-# TODO: Use model._meta to automate lookup and persistence
-class ProgramRacePersistMixin:
+class PersistHelper:
     SEP = ','
 
+    def fmt_cols(self, symbol: str):
+        prefix = apps.get_model(symbol)._meta.model_name
+        df = self.clean.pipe(startswith, prefix, rename=True)
+        return '(' + self.SEP.join('"{}"'.format(key) for key in df.columns) + ')'
+
+    def fmt_vals(self, symbol: str):
+        prefix = apps.get_model(symbol)._meta.model_name
+        df = self.clean.pipe(startswith, prefix, rename=True)
+        return self.SEP.join(map(str, map(tuple, df.values))).replace('nan', 'NULL')
+
+
+class ProgramRacePersistMixin(PersistHelper):
+    SEP = ','
+
+    def as_comma_sep_str(self, a: Iterable) -> str:
+        return ','.join('"{}"'.format(key) for key in a)
+
+    def as_comma_sep_tuples_str(self, a: Iterable) -> str:
+        return ','.join(map(str, map(tuple, a)))
+
     def persist(self):
-        p_df = self.clean.pipe(startswith, 'program__', rename=True)
-        r_df = self.clean.pipe(startswith, 'race__', rename=True)
+        pdf = self.clean.pipe(startswith, 'program__', rename=True)
 
-        # PROGRAM
-        p_cols = self.SEP.join('"{}"'.format(key) for key in p_df.columns)
-        p_vals = self.SEP.join(map(str, map(tuple, p_df.values))).replace('nan', 'NULL')
+        pcol = self.as_comma_sep_str(pdf.columns)
+        pval = self.as_comma_sep_tuples_str(pdf.drop_duplicates().values)
 
         with connection.cursor() as c:
-            c.execute(
-                f'INSERT INTO programs ({p_cols}) '
-                f'VALUES {p_vals} '
-                f'ON CONFLICT DO NOTHING'
-            )
+            c.execute(f'INSERT INTO programs ({pcol}) VALUES {pval} ON CONFLICT DO NOTHING')
 
-        # RACE
-        p_lookup = {
-            'day__in': p_df.day,
-            'racetrack_id__in': p_df.racetrack_id,
-            'yr__in': p_df.yr,
-            'round__in': p_df['round']
-        }
+        programs = pd.DataFrame(
+            Program.objects
+                   .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
+                   .values('id', 'racetrack_id', 'yr', 'round', 'day')
+        )
 
-        p_search = Program.objects.filter(**p_lookup).values('id', 'racetrack_id', 'yr', 'round', 'day')
-        p_search_df = pd.DataFrame(p_search)
+        rdf = self.clean.pipe(startswith, 'race__', rename=True)
+        rdf['program_id'] = pdf.merge(programs).id
 
-        r_df['program_id'] = p_df.merge(p_search_df).id
+        rcol = self.as_comma_sep_str(rdf.columns)
+        rval = self.as_comma_sep_tuples_str(rdf.values)
 
-        r_cols = self.SEP.join('"{}"'.format(key) for key in r_df.columns)
-        r_vals = self.SEP.join(map(str, map(tuple, r_df.values))).replace('nan', 'NULL')
+        rupd = self.SEP.join((f'{key}=excluded.{key}' for key in rdf.columns if key not in ['program_id', 'num']))
 
-        r_uniq = ['program_id', 'num']
-        r_uniq_str = self.SEP.join('"{}"'.format(key) for key in r_uniq)
-        r_updates = self.SEP.join((f'{key}=excluded.{key}' for key in r_df.columns if key not in r_uniq))
+        sql = (
+            f'INSERT INTO races ({rcol}) VALUES {rval} ON CONFLICT (program_id, num) DO UPDATE SET {rupd}'
+            .replace('nan', 'NULL')
+        )
 
         with connection.cursor() as c:
-            c.execute(
-                f'INSERT INTO races ({r_cols}) '
-                f'VALUES {r_vals} '
-                f'ON CONFLICT ({r_uniq_str}) '
-                f'DO UPDATE SET {r_updates}'
-            )
+            c.execute(sql)
 
-    def persist_(self):
-        """
-        Django implementation (for speed comparison)
-        """
-        from ..models import Program, Race
-        for _, row in self.clean.iterrows():
-            program_dct = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
-            program_unique_keys = ['racetrack_id', 'yr', 'round', 'day']
-            program_lookup = {key: value for key, value in program_dct.items() if key in program_unique_keys}
-            program, _ = Program.objects.get_or_create(**program_lookup)
-
-            race_dct = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
-            race_lookup = {'program_id': program.id, 'num': race_dct.get('num')}
-            race_defaults = {key: value for key, value in race_dct.items() if key != 'num'}
-            race, _ = Race.objects.update_or_create(**race_lookup, defaults=race_defaults)
+    # def persist(self):
+    #     pdf = self.clean.pipe(startswith, 'program__', rename=True)
+    #
+    #     pcol = self.as_comma_sep_str(pdf.columns)
+    #     pval = self.as_comma_sep_tuples_str(pdf.drop_duplicates().values)
+    #
+    #     rdf = self.clean.pipe(startswith, 'race__', rename=True)
+    #     rcol = self.as_comma_sep_str(['program_id'] + rdf.columns.tolist())
+    #
+    #     program_idx = [
+    #         f"(SELECT id FROM programs WHERE racetrack_id = {row.racetrack_id} AND yr = {row.yr} AND round = {row.round} AND day = '{row.day}')"
+    #         for row in pdf.itertuples()
+    #     ]
+    #
+    #     rval = self.as_comma_sep_tuples_str(np.c_[program_idx, rdf.values]).replace('"(', '(').replace(')"', ')')
+    #     rupd = self.SEP.join((f'{key}=excluded.{key}' for key in rdf.columns if key not in ['program_id', 'num']))
+    #
+    #     sql = (
+    #         f'WITH '
+    #         f'  cte AS ( '
+    #         f'      INSERT INTO programs ({pcol}) VALUES {pval} '
+    #         f'      ON CONFLICT DO NOTHING '
+    #         f'  ) '
+    #         f'INSERT INTO races ({rcol}) VALUES {rval} '
+    #         f'ON CONFLICT (program_id, num) DO UPDATE SET {rupd}'
+    #     ).replace('nan', 'NULL').replace('NaN', 'NULL')
+    #     # import ipdb; ipdb.set_trace()
+    #     with connection.cursor() as c:
+    #         c.execute(sql)
+    #
+    # def persist_(self):
+    #     """
+    #     Django implementation (for speed comparison)
+    #     """
+    #     from ..models import Program, Race
+    #     for _, row in self.clean.iterrows():
+    #         program_dct = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
+    #         program_unique_keys = ['racetrack_id', 'yr', 'round', 'day']
+    #         program_lookup = {key: value for key, value in program_dct.items() if key in program_unique_keys}
+    #         program, _ = Program.objects.get_or_create(**program_lookup)
+    #
+    #         race_dct = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
+    #         race_lookup = {'program_id': program.id, 'num': race_dct.get('num')}
+    #         race_defaults = {key: value for key, value in race_dct.items() if key != 'num'}
+    #         race, _ = Race.objects.update_or_create(**race_lookup, defaults=race_defaults)
 
 
 def startswith(
