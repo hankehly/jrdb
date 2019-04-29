@@ -18,11 +18,11 @@ class Contender(models.Model):
     mounted_weight = models.FloatField('斤量', null=True)
     odds_win = models.FloatField('確定単勝オッズ', null=True)
     odds_show = models.FloatField('確定複勝オッズ下', null=True)
-    odds_win_10AM = models.FloatField('10時単勝オッズ', null=True)
-    odds_show_10AM = models.FloatField('10時複勝オッズ', null=True)
+    odds_win_10am = models.FloatField('10時単勝オッズ', null=True)
+    odds_show_10am = models.FloatField('10時複勝オッズ', null=True)
     popularity = models.PositiveSmallIntegerField('確定単勝人気順位', null=True)
 
-    IDM = models.SmallIntegerField('ＩＤＭ', null=True)
+    idm = models.SmallIntegerField('ＩＤＭ', null=True)
     speed_idx = models.SmallIntegerField('素点', null=True)
     pace = models.SmallIntegerField('ペース', null=True)
     positioning = models.SmallIntegerField('位置取', null=True)
@@ -63,6 +63,7 @@ class Contender(models.Model):
                                     help_text='1:最内,2:内,3:中,4:外,5:大外')
 
     # (KYI)
+    weight_reduction = models.CharField('', max_length=255, null=True, choices=choices.WEIGHT_REDUCTION.CHOICES())
     prel_jockey_idx = models.FloatField('騎手指数', null=True, help_text='基準オッズと騎手の連対率の関係を基に算出された指数値')
     prel_info_idx = models.FloatField('情報指数', null=True, help_text='基準オッズ、厩舎指数、調教指数等様々な情報を基に算出された指数値')
     prel_total_idx = models.FloatField('総合指数', null=True, help_text='ＩＤＭ、騎手指数、情報指数を合計した値')
@@ -71,7 +72,7 @@ class Contender(models.Model):
     prel_stable_idx = models.FloatField('厩舎指数', null=True)
     flat_out_run_idx = models.SmallIntegerField('激走指数', null=True)
     rotation = models.PositiveSmallIntegerField('ローテーション', null=True, help_text='間に金曜日が入っている数で決定、連闘は０、初出走はNULL')
-    prel_IDM = models.FloatField('前日ＩＤＭ', null=True)
+    prel_idm = models.FloatField('前日ＩＤＭ', null=True)
     prel_run_style = models.CharField('前日脚質', max_length=255, null=True, choices=choices.RUNNING_STYLE.CHOICES())
     dist_apt = models.PositiveSmallIntegerField('距離適性', null=True)
     prel_improvement = models.CharField('前日上昇度コード', max_length=255, null=True, choices=choices.IMPROVEMENT.CHOICES())
@@ -104,7 +105,7 @@ class Contender(models.Model):
 
     # 印コード
     sym_overall = models.PositiveSmallIntegerField('総合印', null=True)
-    sym_IDM = models.PositiveSmallIntegerField('ＩＤＭ印', null=True)
+    sym_idm = models.PositiveSmallIntegerField('ＩＤＭ印', null=True)
     sym_info = models.PositiveSmallIntegerField('情報印', null=True)
     sym_jockey = models.PositiveSmallIntegerField('騎手印', null=True)
     sym_stable = models.PositiveSmallIntegerField('厩舎印', null=True)
@@ -136,7 +137,7 @@ class Contender(models.Model):
     # but may be missing during import, so setting null=True on BooleanField
     is_cancelled = models.BooleanField('取消フラグ', null=True)
     flat_out_run_position = models.PositiveSmallIntegerField('激走順位', null=True, help_text='レース出走馬中での順位')
-    LS_idx_position = models.PositiveSmallIntegerField('LS指数順位', null=True)
+    ls_idx_position = models.PositiveSmallIntegerField('LS指数順位', null=True)
     b3f_idx_position = models.PositiveSmallIntegerField('テン指数順位', null=True)
     pace_idx_position = models.PositiveSmallIntegerField('ペース指数順位', null=True)
     f3f_idx_position = models.PositiveSmallIntegerField('上がり指数順位', null=True)

@@ -1,16 +1,15 @@
 import logging
 
 import numpy as np
-from django.db import connection
 
 from ..models import choices
-from .template import Template, startswith
+from .template import Template, ModelPersistMixin
 from .item import ForeignKeyItem, IntegerItem, StringItem, ChoiceItem, BooleanItem, FloatItem
 
 logger = logging.getLogger(__name__)
 
 
-class KAB(Template):
+class KAB(Template, ModelPersistMixin):
     """
     http://www.jrdb.com/program/Kab/kab_doc.txt
 
@@ -53,21 +52,4 @@ class KAB(Template):
     ]
 
     def persist(self):
-        df = self.clean.pipe(startswith, 'program__', rename=True)
-
-        columns = ','.join('"{}"'.format(key) for key in df.columns)
-        values = ','.join(map(str, map(tuple, df.values))).replace('nan', 'NULL')
-
-        unique_together = ['racetrack_id', 'yr', 'round', 'day']
-        conflict = ','.join('"{}"'.format(key) for key in unique_together)
-        updates = ', '.join((f'{key}=excluded.{key}' for key in df.columns if key not in unique_together))
-
-        sql = (
-            f'INSERT INTO programs ({columns}) '
-            f'VALUES {values} '
-            f'ON CONFLICT ({conflict}) '
-            f'DO UPDATE SET {updates}'
-        )
-
-        with connection.cursor() as c:
-            c.execute(sql)
+        self.persist_model('jrdb.Program')

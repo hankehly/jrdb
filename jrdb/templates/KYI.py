@@ -1,15 +1,15 @@
 import logging
 
-from django.db import transaction, IntegrityError
+import pandas as pd
 
-from ..models import choices, Trainer, Race, Horse, Jockey, Contender, Program
+from ..models import choices, Trainer, Race, Horse, Jockey, Program
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
-from .template import Template, startswith
+from .template import Template, startswith, ModelPersistMixin
 
 logger = logging.getLogger(__name__)
 
 
-class KYI(Template):
+class KYI(Template, ModelPersistMixin):
     """
     http://www.jrdb.com/program/Kyi/kyi_doc.txt
     http://www.jrdb.com/program/Kyi/ky_siyo_doc.txt
@@ -26,7 +26,7 @@ class KYI(Template):
         StringItem('血統登録番号', 8, 10, 'jrdb.Horse.pedigree_reg_num'),
         StringItem('馬名', 36, 18, 'jrdb.Horse.name'),
 
-        FloatItem('ＩＤＭ', 5, 54, 'jrdb.Contender.prel_IDM'),
+        FloatItem('ＩＤＭ', 5, 54, 'jrdb.Contender.prel_idm'),
         FloatItem('騎手指数', 5, 59, 'jrdb.Contender.prel_jockey_idx'),
         FloatItem('情報指数', 5, 64, 'jrdb.Contender.prel_info_idx'),
         FloatItem('総合指数', 5, 84, 'jrdb.Contender.prel_total_idx'),
@@ -68,7 +68,7 @@ class KYI(Template):
         ChoiceItem('ブリンカー', 1, 170, 'jrdb.Contender.blinker', choices.BLINKER.options()),
         StringItem('騎手名', 12, 171, 'jrdb.Jockey.name'),
         FloatItem('負担重量', 3, 183, 'jrdb.Contender.mounted_weight'),
-        ChoiceItem('見習い区分', 1, 186, 'jrdb.Jockey.trainee_cat', choices.TRAINEE_CATEGORY.options()),
+        ChoiceItem('見習い区分', 1, 186, 'jrdb.Contender.weight_reduction', choices.WEIGHT_REDUCTION.options()),
         StringItem('調教師名', 12, 187, 'jrdb.Trainer.name'),
         ChoiceItem('調教師所属', 4, 199, 'jrdb.Trainer.area', choices.AREA.options()),
         # 他データリンク用キー
@@ -86,7 +86,7 @@ class KYI(Template):
         # ===以下第５版にて追加===
         # 印コード
         IntegerItem('総合印', 1, 326, 'jrdb.Contender.sym_overall'),
-        IntegerItem('ＩＤＭ印', 1, 327, 'jrdb.Contender.sym_IDM'),
+        IntegerItem('ＩＤＭ印', 1, 327, 'jrdb.Contender.sym_idm'),
         IntegerItem('情報印', 1, 328, 'jrdb.Contender.sym_info'),
         IntegerItem('騎手印', 1, 329, 'jrdb.Contender.sym_jockey'),
         IntegerItem('厩舎印', 1, 330, 'jrdb.Contender.sym_stable'),
@@ -131,7 +131,7 @@ class KYI(Template):
         ForeignKeyItem('馬主会コード', 2, 444, 'jrdb.Horse.owner_racetrack', 'jrdb.Racetrack.code'),
         ChoiceItem('馬記号コード', 2, 446, 'jrdb.Horse.symbol', choices.HORSE_SYMBOL.options()),
         IntegerItem('激走順位', 2, 448, 'jrdb.Contender.flat_out_run_position'),
-        IntegerItem('LS指数順位', 2, 450, 'jrdb.Contender.LS_idx_position'),
+        IntegerItem('LS指数順位', 2, 450, 'jrdb.Contender.ls_idx_position'),
         IntegerItem('テン指数順位', 2, 452, 'jrdb.Contender.b3f_idx_position'),
         IntegerItem('ペース指数順位', 2, 454, 'jrdb.Contender.pace_idx_position'),
         IntegerItem('上がり指数順位', 2, 456, 'jrdb.Contender.f3f_idx_position'),
@@ -194,30 +194,56 @@ class KYI(Template):
         ChoiceItem('厩舎ランク', 1, 623, 'jrdb.Contender.stable_rank', choices.STABLE_RANK.options()),
     ]
 
-    @transaction.atomic
     def persist(self):
-        for _, row in self.clean.iterrows():
-            p = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
-            program, _ = Program.objects.get_or_create(racetrack_id=p.pop('racetrack_id'), yr=p.pop('yr'),
-                                                       round=p.pop('round'), day=p.pop('day'))
+        self.persist_model('jrdb.Program')
 
-            r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
-            race, _ = Race.objects.get_or_create(program=program, num=r.pop('num'))
+        pdf = self.clean.pipe(startswith, 'program__', rename=True)
+        rdf = self.clean.pipe(startswith, 'race__', rename=True)
+        hdf = self.clean.pipe(startswith, 'horse__', rename=True)
+        tdf = self.clean.pipe(startswith, 'trainer__', rename=True)
+        jdf = self.clean.pipe(startswith, 'jockey__', rename=True)
 
-            h = row.pipe(startswith, 'horse__', rename=True).dropna().to_dict()
-            horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)
+        programs = pd.DataFrame(
+            Program.objects
+                .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
+                .values('id', 'racetrack_id', 'yr', 'round', 'day')
+        )
+        program_id = pdf.merge(programs).id
 
-            j = row.pipe(startswith, 'jockey__', rename=True).dropna().to_dict()
-            jockey, _ = Jockey.objects.get_or_create(code=j.pop('code'), defaults=j)
+        self.persist_model('jrdb.Race', program_id=program_id)
+        self.persist_model('jrdb.Horse')
+        self.persist_model('jrdb.Jockey')
+        self.persist_model('jrdb.Trainer')
 
-            t = row.pipe(startswith, 'trainer__', rename=True).dropna().to_dict()
-            trainer, _ = Trainer.objects.get_or_create(code=t.pop('code'), defaults=t)
+        races = pd.DataFrame(
+            Race.objects
+                .filter(program_id__in=program_id, num__in=rdf.num)
+                .values('id', 'program_id', 'num')
+        )
 
-            try:
-                c = row.pipe(startswith, 'contender__', rename=True).dropna().to_dict()
-                c['horse_id'] = horse.id
-                c['jockey_id'] = jockey.id
-                c['trainer_id'] = trainer.id
-                Contender.objects.update_or_create(race=race, num=c.pop('num'), defaults=c)
-            except IntegrityError as e:
-                logger.exception(e)
+        horses = pd.DataFrame(
+            Horse.objects
+                .filter(pedigree_reg_num__in=hdf.pedigree_reg_num)
+                .values('id', 'pedigree_reg_num')
+        )
+
+        jockeys = pd.DataFrame(
+            Jockey.objects
+                .filter(code__in=jdf.code)
+                .values('id', 'code')
+        )
+
+        trainers = pd.DataFrame(
+            Trainer.objects
+                .filter(code__in=tdf.code)
+                .values('id', 'code')
+        )
+
+        rdf['program_id'] = program_id
+        race_id = rdf.merge(races).id
+        horse_id = hdf.merge(horses).id
+        jockey_id = jdf.merge(jockeys).id
+        trainer_id = tdf.merge(trainers).id
+
+        self.persist_model('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id,
+                           trainer_id=trainer_id)

@@ -5,7 +5,7 @@ from jrdb.models import choices
 
 
 class Trainer(models.Model):
-    code = models.CharField(max_length=5, unique=True)
+    code = models.CharField(max_length=5)
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=255, null=True)
     name_kana = models.CharField(max_length=255, null=True)
@@ -32,3 +32,4 @@ class Trainer(models.Model):
 
     class Meta:
         db_table = 'trainers'
+        unique_together = ('code',)

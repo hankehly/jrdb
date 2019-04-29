@@ -5,7 +5,7 @@ from jrdb.models import choices
 
 
 class Jockey(models.Model):
-    code = models.CharField(max_length=5, unique=True)
+    code = models.CharField(max_length=5)
     retired_on = models.DateField(null=True)
     name = models.CharField(max_length=255, null=True)
     name_kana = models.CharField(max_length=255, null=True)
@@ -14,7 +14,6 @@ class Jockey(models.Model):
     training_center_name = models.CharField(max_length=4, null=True)
     birthday = models.DateField(null=True)
     lic_acquired_yr = models.PositiveIntegerField(null=True)
-    trainee_cat = models.CharField(max_length=255, choices=choices.TRAINEE_CATEGORY.CHOICES(), null=True)
     jrdb_comment = models.CharField(max_length=40, null=True)
     jrdb_comment_date = models.DateField(null=True)
     cur_yr_leading = models.PositiveIntegerField(null=True)
@@ -33,3 +32,4 @@ class Jockey(models.Model):
 
     class Meta:
         db_table = 'jockeys'
+        unique_together = ('code',)

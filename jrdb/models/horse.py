@@ -4,7 +4,7 @@ from . import choices
 
 
 class Horse(models.Model):
-    pedigree_reg_num = models.CharField(max_length=8, unique=True)
+    pedigree_reg_num = models.CharField(max_length=8)
     name = models.CharField(max_length=36)
     sex = models.CharField(verbose_name='性別', max_length=255, null=True, choices=choices.SEX.CHOICES())
     hair_color = models.CharField(max_length=255, null=True, choices=choices.HAIR_COLOR.CHOICES())
@@ -27,3 +27,4 @@ class Horse(models.Model):
 
     class Meta:
         db_table = 'horses'
+        unique_together = ('pedigree_reg_num',)

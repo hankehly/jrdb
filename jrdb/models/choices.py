@@ -935,24 +935,6 @@ class TRACK_CONDITION_KA(ChoiceMixin):
     )
 
 
-class TRAINEE_CATEGORY(ChoiceMixin):
-    """
-    1: (1K減) ☆
-    2: (2K減) △
-    3: (3K減) ▲
-
-    http://www.jra.go.jp/kouza/yougo/w574.html
-    """
-    REDUCE_1K = 'REDUCE_1K'
-    REDUCE_2K = 'REDUCE_2K'
-    REDUCE_3K = 'REDUCE_3K'
-    MAP = (
-        ('1', REDUCE_1K, '1K減'),
-        ('2', REDUCE_2K, '2K減'),
-        ('3', REDUCE_3K, '3K減'),
-    )
-
-
 class TRAINING_COURSE_CATEGORY(ChoiceMixin):
     """
     調教コース種別
@@ -1189,6 +1171,24 @@ class WEATHER(ChoiceMixin):
         ('4', RAINY, '雨'),
         ('5', LIGHT_SNOW, '小雪'),
         ('6', SNOW, '雪')
+    )
+
+
+class WEIGHT_REDUCTION(ChoiceMixin):
+    """
+    1: (1K減) ☆
+    2: (2K減) △
+    3: (3K減) ▲
+
+    http://www.jra.go.jp/kouza/yougo/w574.html
+    """
+    REDUCE_1K = 'REDUCE_1K'
+    REDUCE_2K = 'REDUCE_2K'
+    REDUCE_3K = 'REDUCE_3K'
+    MAP = (
+        ('1', REDUCE_1K, '1K減'),
+        ('2', REDUCE_2K, '2K減'),
+        ('3', REDUCE_3K, '3K減'),
     )
 
 

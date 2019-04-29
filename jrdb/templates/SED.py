@@ -110,7 +110,7 @@ class SED(Template):
         FloatItem('確定単勝オッズ', 6, 174, 'jrdb.Contender.odds_win', np.nan),
         IntegerItem('確定単勝人気順位', 2, 180, 'jrdb.Contender.popularity'),
         # ＪＲＤＢデータ
-        IntegerItem('ＩＤＭ', 3, 182, 'jrdb.Contender.IDM'),
+        IntegerItem('ＩＤＭ', 3, 182, 'jrdb.Contender.idm'),
         IntegerItem('素点', 3, 185, 'jrdb.Contender.speed_idx'),
         IntegerItem('馬場差', 3, 188, 'jrdb.Race.track_speed_shift'),
         IntegerItem('ペース', 3, 191, 'jrdb.Contender.pace'),
@@ -144,8 +144,8 @@ class SED(Template):
         FloatItem('後３Ｆタイム', 3, 261, 'jrdb.Contender.f3f_time', np.nan, 0.1),
         # StringItem('備考', 24, 264, 'note'),  # IGNORED
         FloatItem('確定複勝オッズ下', 6, 290, 'jrdb.Contender.odds_show', np.nan),
-        FloatItem('10時単勝オッズ', 6, 296, 'jrdb.Contender.odds_win_10AM', np.nan),
-        FloatItem('10時複勝オッズ', 6, 302, 'jrdb.Contender.odds_show_10AM', np.nan),
+        FloatItem('10時単勝オッズ', 6, 296, 'jrdb.Contender.odds_win_10am', np.nan),
+        FloatItem('10時複勝オッズ', 6, 302, 'jrdb.Contender.odds_show_10am', np.nan),
         InvokeItem('コーナー順位１', 2, 308, c1p),
         InvokeItem('コーナー順位２', 2, 310, c2p),
         InvokeItem('コーナー順位３', 2, 312, c3p),

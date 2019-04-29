@@ -3,6 +3,7 @@ from abc import ABC
 from dataclasses import dataclass
 from typing import Optional, Union, Any, Callable, Tuple, Dict
 
+import numpy as np
 import pandas as pd
 from django.apps import apps
 
@@ -93,7 +94,7 @@ class IntegerItem(ModelItem):
 
 @dataclass(eq=False, frozen=True)
 class FloatItem(ModelItem):
-    default: Optional[float] = None
+    default: Optional[float] = np.nan
     scale: float = 1.
 
     def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:

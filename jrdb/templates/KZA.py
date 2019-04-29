@@ -26,7 +26,7 @@ class KZA(Template):
         StringItem('所属地域名', 4, 63, 'jrdb.Jockey.training_center_name'),
         DateItem('生年月日', 8, 67, 'jrdb.Jockey.birthday'),
         IntegerItem('初免許年', 4, 75, 'jrdb.Jockey.lic_acquired_yr'),
-        ChoiceItem('見習い区分', 1, 79, 'jrdb.Jockey.trainee_cat', choices.TRAINEE_CATEGORY.options()),
+        # ChoiceItem('見習い区分', 1, 79, 'jrdb.Jockey.trainee_cat', choices.TRAINEE_CATEGORY.options()), # IGNORED (differs per race)
         # StringItem('所属厩舎', 5, 80, 'jrdb.Trainer.code'), # IGNORED (no data)
         StringItem('騎手コメント', 40, 85, 'jrdb.Jockey.jrdb_comment'),
         DateItem('コメント入力年月日', 8, 125, 'jrdb.Jockey.jrdb_comment_date'),
