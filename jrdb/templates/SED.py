@@ -2,10 +2,10 @@ import logging
 
 import numpy as np
 import pandas as pd
-from django.db import IntegrityError, transaction
+from django.utils.functional import cached_property
 
-from ..models import Jockey, Trainer, Race, Contender, Horse, choices, Program
-from .template import Template, startswith
+from ..models import Jockey, Trainer, Race, Horse, choices, Program
+from .template import Template, startswith, ModelPersistMixin
 from .item import (
     StringItem,
     ForeignKeyItem,
@@ -62,7 +62,7 @@ def c4p(se: pd.Series):
             .rename('contender__c4p'))
 
 
-class SED(Template):
+class SED(Template, ModelPersistMixin):
     """
     http://www.jrdb.com/program/Sed/sed_doc.txt
 
@@ -168,30 +168,68 @@ class SED(Template):
         ChoiceItem('４角コース取り', 1, 369, 'jrdb.Contender.c4_race_line', choices.RACE_LINE.options()),
     ]
 
-    @transaction.atomic
+    @cached_property
+    def clean(self) -> pd.DataFrame:
+        df = super(SED, self).clean
+
+        speed_shift = df.groupby(['program__racetrack_id', 'race__num']).race__track_speed_shift.apply(pd.Series.mode)
+        new_values = []
+        for item in df.itertuples():
+            track = speed_shift.loc[item.program__racetrack_id]
+            value = track.loc[item.race__num][0] if item.race__num in track else None
+            new_values.append(value)
+        df.race__track_speed_shift = pd.Series(new_values)
+        return df
+
     def persist(self):
-        for _, row in self.clean.iterrows():
-            p = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
-            program, _ = Program.objects.get_or_create(racetrack_id=p.pop('racetrack_id'), yr=p.pop('yr'),
-                                                       round=p.pop('round'), day=p.pop('day'))
+        self.persist_model('jrdb.Program')
 
-            r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
-            race, _ = Race.objects.update_or_create(program=program, num=r.pop('num'), defaults=r)
+        pdf = self.clean.pipe(startswith, 'program__', rename=True)
+        rdf = self.clean.pipe(startswith, 'race__', rename=True)
+        hdf = self.clean.pipe(startswith, 'horse__', rename=True)
+        tdf = self.clean.pipe(startswith, 'trainer__', rename=True)
+        jdf = self.clean.pipe(startswith, 'jockey__', rename=True)
 
-            h = row.pipe(startswith, 'horse__', rename=True).dropna().to_dict()
-            horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)
+        programs = pd.DataFrame(
+            Program.objects
+                .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
+                .values('id', 'racetrack_id', 'yr', 'round', 'day')
+        )
+        program_id = pdf.merge(programs).id
+        self.persist_model('jrdb.Race', program_id=program_id)
+        self.persist_model('jrdb.Horse')
+        self.persist_model('jrdb.Jockey')
+        self.persist_model('jrdb.Trainer')
 
-            j = row.pipe(startswith, 'jockey__', rename=True).dropna().to_dict()
-            jockey, _ = Jockey.objects.get_or_create(code=j.pop('code'), defaults=j)
+        races = pd.DataFrame(
+            Race.objects
+                .filter(program_id__in=program_id, num__in=rdf.num)
+                .values('id', 'program_id', 'num')
+        )
 
-            t = row.pipe(startswith, 'trainer__', rename=True).dropna().to_dict()
-            trainer, _ = Trainer.objects.get_or_create(code=t.pop('code'), defaults=t)
+        horses = pd.DataFrame(
+            Horse.objects
+                .filter(pedigree_reg_num__in=hdf.pedigree_reg_num)
+                .values('id', 'pedigree_reg_num')
+        )
 
-            try:
-                c = row.pipe(startswith, 'contender__', rename=True).dropna().to_dict()
-                c['horse_id'] = horse.id
-                c['jockey_id'] = jockey.id
-                c['trainer_id'] = trainer.id
-                Contender.objects.update_or_create(race=race, num=c.pop('num'), defaults=c)
-            except IntegrityError as e:
-                logger.exception(e)
+        jockeys = pd.DataFrame(
+            Jockey.objects
+                .filter(code__in=jdf.code)
+                .values('id', 'code')
+        )
+
+        trainers = pd.DataFrame(
+            Trainer.objects
+                .filter(code__in=tdf.code)
+                .values('id', 'code')
+        )
+
+        rdf['program_id'] = program_id
+        race_id = rdf.merge(races).id
+        horse_id = hdf.merge(horses).id
+        jockey_id = jdf.merge(jockeys).id
+        trainer_id = tdf.merge(trainers).id
+
+        self.persist_model('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id,
+                           trainer_id=trainer_id)
