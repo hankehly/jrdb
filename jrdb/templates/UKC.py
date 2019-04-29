@@ -1,15 +1,13 @@
 import logging
 
-from django.db import IntegrityError, transaction, connection
-
-from ..models import Horse, choices
+from ..models import choices
 from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem, BooleanItem
-from .template import Template, startswith
+from .template import Template, ModelPersistMixin
 
 logger = logging.getLogger(__name__)
 
 
-class UKC(Template):
+class UKC(Template, ModelPersistMixin):
     """
     http://www.jrdb.com/program/Ukc/ukc_doc.txt
     """
@@ -38,39 +36,7 @@ class UKC(Template):
     ]
 
     def persist(self):
-        df = self.clean.pipe(startswith, 'horse__', rename=True)
-
-        cols = ','.join('"{}"'.format(key) for key in df.columns)
-        # TODO: Handle null transformations more elegantly
-        vals = ','.join(map(str, map(tuple, df.values))) \
-            .replace('nan', 'NULL') \
-            .replace('None', 'NULL') \
-            .replace('\'NaT\'', 'NULL')
-        updates = ','.join((f'{key}=excluded.{key}' for key in df.columns))
-
-        sql = (
-            f'INSERT INTO horses ({cols}) '
-            f'VALUES {vals} '
-            f'ON CONFLICT (pedigree_reg_num) '
-            f'DO UPDATE SET {updates} '
-            f'WHERE horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'
+        self.persist_model(
+            symbol='jrdb.Horse',
+            conflict_condition='horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'
         )
-
-        with connection.cursor() as c:
-            c.execute(sql)
-
-    # @transaction.atomic
-    # def persist(self):
-    #     df = self.clean.pipe(startswith, 'horse__', rename=True)
-    #     for _, row in df.iterrows():
-    #         record = row.dropna().to_dict()
-    #         try:
-    #             lookup = {'pedigree_reg_num': record.pop('pedigree_reg_num')}
-    #             horse, created = Horse.objects.get_or_create(**lookup, defaults=record)
-    #             if not created:
-    #                 if horse.jrdb_saved_on is None or record['jrdb_saved_on'] >= horse.jrdb_saved_on:
-    #                     for name, value in record.items():
-    #                         setattr(horse, name, value)
-    #                     horse.save()
-    #         except IntegrityError as e:
-    #             logger.exception(e)
