@@ -112,6 +112,7 @@ class ModelPersistMixin:
                 .replace('nan', 'NULL')
                 .replace('NaN', 'NULL')
                 .replace('\'NaT\'', 'NULL')
+                .replace(',)', ')')
         )
 
         sql = f'INSERT INTO {table_name} ({columns}) VALUES {values}'

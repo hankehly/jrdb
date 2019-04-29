@@ -1,16 +1,15 @@
 import logging
 
 import pandas as pd
-from django.db import transaction, IntegrityError, connection
 
-from ..models import Horse, Race, Contender, Program
-from .template import Template, startswith
+from ..models import Horse, Race, Program
+from .template import Template, startswith, ModelPersistMixin
 from .item import ForeignKeyItem, IntegerItem, StringItem, BooleanItem
 
 logger = logging.getLogger(__name__)
 
 
-class SKB(Template):
+class SKB(Template, ModelPersistMixin):
     """
     http://www.jrdb.com/program/Skb/skb_doc.txt
     """
@@ -43,92 +42,37 @@ class SKB(Template):
         ForeignKeyItem('骨瘤', 3, 288, 'jrdb.Contender.exostosis', 'jrdb.HorseGearCode.key'),
     ]
 
-    def persist_races(self):
-        sep = ','
+    def persist(self):
+        self.persist_model('jrdb.Program')
 
-        p_df = self.clean.pipe(startswith, 'program__', rename=True)
-        r_df = self.clean.pipe(startswith, 'race__', rename=True)
+        pdf = self.clean.pipe(startswith, 'program__', rename=True)
+        rdf = self.clean.pipe(startswith, 'race__', rename=True)
+        hdf = self.clean.pipe(startswith, 'horse__', rename=True)
 
-        # PROGRAM
-        p_cols = sep.join('"{}"'.format(key) for key in p_df.columns)
-        p_vals = sep.join(map(str, map(tuple, p_df.values))).replace('nan', 'NULL')
+        programs = pd.DataFrame(
+            Program.objects
+                .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
+                .values('id', 'racetrack_id', 'yr', 'round', 'day')
+        )
+        program_id = pdf.merge(programs).id
 
-        with connection.cursor() as c:
-            c.execute(
-                f'INSERT INTO programs ({p_cols}) '
-                f'VALUES {p_vals} '
-                f'ON CONFLICT DO NOTHING'
-            )
+        self.persist_model('jrdb.Race', program_id=program_id)
+        self.persist_model('jrdb.Horse')
 
-        # RACE
-        p_lookup = {
-            'day__in': p_df.day,
-            'racetrack_id__in': p_df.racetrack_id,
-            'yr__in': p_df.yr,
-            'round__in': p_df['round']
-        }
-
-        p_search = Program.objects.filter(**p_lookup).values('id', 'racetrack_id', 'yr', 'round', 'day')
-        p_search_df = pd.DataFrame(p_search)
-
-        r_df['program_id'] = p_df.merge(p_search_df).id
-
-        r_cols = sep.join('"{}"'.format(key) for key in r_df.columns)
-        r_vals = sep.join(map(str, map(tuple, r_df.values))).replace('nan', 'NULL')
-
-        r_uniq = ['program_id', 'num']
-        r_uniq_str = sep.join('"{}"'.format(key) for key in r_uniq)
-        r_updates = sep.join((f'{key}=excluded.{key}' for key in r_df.columns if key not in r_uniq))
-
-        with connection.cursor() as c:
-            c.execute(
-                f'INSERT INTO races ({r_cols}) '
-                f'VALUES {r_vals} '
-                f'ON CONFLICT ({r_uniq_str}) '
-                f'DO UPDATE SET {r_updates}'
-            )
-
-    def persist_horses(self):
-        df = self.clean.pipe(startswith, 'horse__', rename=True)
-
-        cols = ','.join('"{}"'.format(key) for key in df.columns)
-        # TODO: Handle null transformations more elegantly
-        vals = ','.join(map(str, map(tuple, df.values))) \
-            .replace('nan', 'NULL') \
-            .replace('None', 'NULL') \
-            .replace('\'NaT\'', 'NULL')
-        updates = ','.join((f'{key}=excluded.{key}' for key in df.columns))
-
-        sql = (
-            f'INSERT INTO horses ({cols}) '
-            f'VALUES {vals} '
-            f'ON CONFLICT (pedigree_reg_num) '
-            f'DO UPDATE SET {updates} '
-            f'WHERE horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'
+        races = pd.DataFrame(
+            Race.objects
+                .filter(program_id__in=program_id, num__in=rdf.num)
+                .values('id', 'program_id', 'num')
         )
 
-        with connection.cursor() as c:
-            c.execute(sql)
+        horses = pd.DataFrame(
+            Horse.objects
+                .filter(pedigree_reg_num__in=hdf.pedigree_reg_num)
+                .values('id', 'pedigree_reg_num')
+        )
 
-    @transaction.atomic
-    def persist(self):
-        # self.persist_races()
-        # self.persist_horses()
+        rdf['program_id'] = program_id
+        race_id = rdf.merge(races).id
+        horse_id = hdf.merge(horses).id
 
-        for _, row in self.clean.iterrows():
-            p = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
-            program, _ = Program.objects.get_or_create(racetrack_id=p.pop('racetrack_id'), yr=p.pop('yr'),
-                                                       round=p.pop('round'), day=p.pop('day'))
-
-            r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
-            race, _ = Race.objects.get_or_create(program=program, num=r.pop('num'))
-
-            h = row.pipe(startswith, 'horse__', rename=True).dropna().to_dict()
-            horse, _ = Horse.objects.get_or_create(pedigree_reg_num=h.pop('pedigree_reg_num'), defaults=h)
-
-            try:
-                c = row.pipe(startswith, 'contender__', rename=True).dropna().to_dict()
-                c['horse_id'] = horse.id
-                Contender.objects.update_or_create(race=race, num=c.pop('num'), defaults=c)
-            except IntegrityError as e:
-                logger.exception(e)
+        self.persist_model('jrdb.Contender', race_id=race_id, horse_id=horse_id)

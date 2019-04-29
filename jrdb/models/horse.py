@@ -5,7 +5,7 @@ from . import choices
 
 class Horse(models.Model):
     pedigree_reg_num = models.CharField(max_length=8)
-    name = models.CharField(max_length=36)
+    name = models.CharField(max_length=36, null=True)
     sex = models.CharField(verbose_name='性別', max_length=255, null=True, choices=choices.SEX.CHOICES())
     hair_color = models.CharField(max_length=255, null=True, choices=choices.HAIR_COLOR.CHOICES())
     symbol = models.CharField(verbose_name='馬記号', max_length=255, null=True, choices=choices.HORSE_SYMBOL.CHOICES())
