@@ -1,9 +1,8 @@
 import logging
 
 import pandas as pd
-from django.db import transaction, connection, IntegrityError
 
-from ..models import choices, Program, Race, Contender
+from ..models import choices, Program, Race
 from .template import Template, startswith, ProgramRacePersistMixin
 from .item import IntegerItem, StringItem, ForeignKeyItem, BooleanItem, ChoiceItem, DateItem
 
@@ -50,54 +49,27 @@ class CYB(Template, ProgramRacePersistMixin):
         ChoiceItem('調教評価', 1, 85, 'jrdb.Contender.training_evaluation', choices.THREE_STAGE_EVAL.options()),
     ]
 
-    # WIP
-    # TODO: Duplicate Contenders exist
-    # def persist(self):
-    #     super().persist()
-    #
-    #     sep = ','
-    #     r_df = self.clean.pipe(startswith, 'race__', rename=True)
-    #     c_df = self.clean.pipe(startswith, 'contender__', rename=True)
-    #
-    #     r_lookup = {
-    #         'program_id__in': r_df.program_id,
-    #         'num__in': r_df.num,
-    #     }
-    #
-    #     r_search = Race.objects.filter(**r_lookup).values('id', 'program_id', 'num')
-    #     r_search_df = pd.DataFrame(r_search)
-    #
-    #     c_df['race_id'] = c_df.merge(r_search_df).id
-    #
-    #     c_cols = sep.join('"{}"'.format(key) for key in c_df.columns)
-    #     c_vals = sep.join(map(str, map(tuple, c_df.values))).replace('nan', 'NULL').replace('NaT', 'NULL')
-    #
-    #     c_uniq = ['race_id', 'num']
-    #     c_uniq_str = sep.join('"{}"'.format(key) for key in c_uniq)
-    #     c_updates = sep.join((f'{key}=excluded.{key}' for key in c_df.columns if key not in c_uniq))
-    #
-    #     c_sql = (
-    #         f'INSERT INTO contenders ({c_cols}) '
-    #         f'VALUES {c_vals} '
-    #         f'ON CONFLICT ({c_uniq_str}) '
-    #         f'DO UPDATE SET {c_updates}'
-    #     )
-    #
-    #     with connection.cursor() as c:
-    #         c.execute(c_sql)
-
-    @transaction.atomic
     def persist(self):
-        for _, row in self.clean.iterrows():
-            p = row.pipe(startswith, 'program__', rename=True).dropna().to_dict()
-            program, _ = Program.objects.get_or_create(racetrack_id=p.pop('racetrack_id'), yr=p.pop('yr'),
-                                                       round=p.pop('round'), day=p.pop('day'))
+        self.persist_model('jrdb.Program')
 
-            r = row.pipe(startswith, 'race__', rename=True).dropna().to_dict()
-            race, _ = Race.objects.get_or_create(program=program, num=r.pop('num'))
+        pdf = self.clean.pipe(startswith, 'program__', rename=True)
+        rdf = self.clean.pipe(startswith, 'race__', rename=True)
 
-            try:
-                c = row.pipe(startswith, 'contender__', rename=True).dropna().to_dict()
-                Contender.objects.update_or_create(race=race, num=c.pop('num'), defaults=c)
-            except IntegrityError as e:
-                logger.exception(e)
+        programs = pd.DataFrame(
+            Program.objects
+                .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
+                .values('id', 'racetrack_id', 'yr', 'round', 'day')
+        )
+        program_id = pdf.merge(programs).id
+
+        self.persist_model('jrdb.Race', program_id=program_id)
+
+        races = pd.DataFrame(
+            Race.objects
+                .filter(program_id__in=program_id, num__in=rdf.num)
+                .values('id', 'program_id', 'num')
+        )
+        rdf['program_id'] = program_id
+        race_id = rdf.merge(races).id
+
+        self.persist_model('jrdb.Contender', race_id=race_id)
