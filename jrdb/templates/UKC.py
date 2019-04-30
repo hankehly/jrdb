@@ -2,12 +2,12 @@ import logging
 
 from ..models import choices
 from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem, BooleanItem
-from .template import Template, ModelPersistMixin
+from .template import Template, PostgresUpsertMixin
 
 logger = logging.getLogger(__name__)
 
 
-class UKC(Template, ModelPersistMixin):
+class UKC(Template, PostgresUpsertMixin):
     """
     http://www.jrdb.com/program/Ukc/ukc_doc.txt
     """
@@ -36,7 +36,7 @@ class UKC(Template, ModelPersistMixin):
     ]
 
     def persist(self):
-        self.persist_model(
+        self.upsert(
             symbol='jrdb.Horse',
-            conflict_condition='horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'
+            index_predicate='horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'
         )

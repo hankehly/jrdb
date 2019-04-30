@@ -3,13 +3,13 @@ import logging
 import pandas as pd
 
 from ..models import Horse, Race, Program
-from .template import Template, startswith, ModelPersistMixin
+from .template import Template, startswith, PostgresUpsertMixin
 from .item import ForeignKeyItem, IntegerItem, StringItem, BooleanItem
 
 logger = logging.getLogger(__name__)
 
 
-class SKB(Template, ModelPersistMixin):
+class SKB(Template, PostgresUpsertMixin):
     """
     http://www.jrdb.com/program/Skb/skb_doc.txt
     """
@@ -43,7 +43,7 @@ class SKB(Template, ModelPersistMixin):
     ]
 
     def persist(self):
-        self.persist_model('jrdb.Program')
+        self.upsert('jrdb.Program')
 
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
         rdf = self.clean.pipe(startswith, 'race__', rename=True)
@@ -56,8 +56,8 @@ class SKB(Template, ModelPersistMixin):
         )
         program_id = pdf.merge(programs).id
 
-        self.persist_model('jrdb.Race', program_id=program_id)
-        self.persist_model('jrdb.Horse')
+        self.upsert('jrdb.Race', program_id=program_id)
+        self.upsert('jrdb.Horse')
 
         races = pd.DataFrame(
             Race.objects
@@ -75,4 +75,4 @@ class SKB(Template, ModelPersistMixin):
         race_id = rdf.merge(races).id
         horse_id = hdf.merge(horses).id
 
-        self.persist_model('jrdb.Contender', race_id=race_id, horse_id=horse_id)
+        self.upsert('jrdb.Contender', race_id=race_id, horse_id=horse_id)

@@ -6,12 +6,12 @@ from django.utils.functional import cached_property
 
 from ..models import choices
 from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
-from .template import Template, startswith, ModelPersistMixin
+from .template import Template, startswith, PostgresUpsertMixin
 
 logger = logging.getLogger(__name__)
 
 
-class CZA(Template, ModelPersistMixin):
+class CZA(Template, PostgresUpsertMixin):
     """
     http://www.jrdb.com/program/Cs/Cs_doc1.txt
     """
@@ -50,4 +50,4 @@ class CZA(Template, ModelPersistMixin):
         return super().clean
 
     def persist(self):
-        self.persist_model('jrdb.Trainer', conflict_condition='excluded.jrdb_saved_on >= trainers.jrdb_saved_on')
+        self.upsert('jrdb.Trainer', index_predicate='excluded.jrdb_saved_on >= trainers.jrdb_saved_on')

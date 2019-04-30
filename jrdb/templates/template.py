@@ -81,7 +81,7 @@ class Template(ABC):
         return pd.concat(objs, axis='columns')
 
 
-class ModelPersistMixin:
+class PostgresUpsertMixin:
 
     def get_foreign_key_fields(self, symbol: str):
         meta = apps.get_model(symbol)._meta
@@ -92,19 +92,18 @@ class ModelPersistMixin:
             meta.get_field(field).is_relation and hasattr(meta.get_field(field).remote_field, 'model')
         ]
 
-    def persist_model(self, symbol: str, **kwargs):
-        meta = apps.get_model(symbol)._meta
+    def upsert(self, app_label_model_name: str, **kwargs):
+        meta = apps.get_model(app_label_model_name)._meta
 
         prefix = meta.model_name + '__'
         df = self.clean.pipe(startswith, prefix, rename=True)
 
-        for field in self.get_foreign_key_fields(symbol):
+        for field in self.get_foreign_key_fields(app_label_model_name):
             if field.attname in kwargs:
                 df[field.attname] = kwargs[field.attname]
 
         df.drop_duplicates(inplace=True)
 
-        table_name = meta.db_table
         columns = ','.join('"{}"'.format(key) for key in df.columns)
 
         values = (
@@ -115,29 +114,29 @@ class ModelPersistMixin:
                 .replace(',)', ')')
         )
 
-        sql = f'INSERT INTO {table_name} ({columns}) VALUES {values}'
+        sql = f'INSERT INTO {meta.db_table} ({columns}) VALUES {values}'
 
         unique_fields = meta.unique_together[0] if meta.unique_together else []
         conflict_fields = [meta.get_field(field).attname for field in unique_fields]
         conflict_target = ','.join('"{}"'.format(key) for key in conflict_fields)
-        conflict_action = ','.join((f'{key}=excluded.{key}' for key in df.columns if key not in conflict_fields))
+        update_columns = ','.join((f'{key}=EXCLUDED.{key}' for key in df.columns if key not in conflict_fields))
 
-        if conflict_target and conflict_action:
-            sql += f'ON CONFLICT ({conflict_target}) DO UPDATE SET {conflict_action} '
+        if conflict_target and update_columns:
+            sql += f'ON CONFLICT ({conflict_target}) DO UPDATE SET {update_columns} '
         else:
-            sql += f'ON CONFLICT DO NOTHING '
+            sql += 'ON CONFLICT DO NOTHING '
 
-        if 'conflict_condition' in kwargs:
-            sql += 'WHERE ' + kwargs['conflict_condition']
+        if 'index_predicate' in kwargs:
+            sql += ' '.join(('WHERE', kwargs['index_predicate']))
 
         with connection.cursor() as c:
             c.execute(sql)
 
 
-class ProgramRacePersistMixin(ModelPersistMixin):
+class ProgramRacePersistMixin(PostgresUpsertMixin):
 
     def persist(self):
-        self.persist_model('jrdb.Program')
+        self.upsert('jrdb.Program')
 
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
 
@@ -147,7 +146,7 @@ class ProgramRacePersistMixin(ModelPersistMixin):
                 .values('id', 'racetrack_id', 'yr', 'round', 'day')
         )
 
-        self.persist_model('jrdb.Race', program_id=pdf.merge(programs).id)
+        self.upsert('jrdb.Race', program_id=pdf.merge(programs).id)
 
 
 def startswith(

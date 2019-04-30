@@ -3,13 +3,13 @@ import logging
 from django.utils.functional import cached_property
 
 from ..models import choices
-from .template import Template, ModelPersistMixin
+from .template import Template, PostgresUpsertMixin
 from .item import StringItem, DateItem, ChoiceItem, IntegerItem, ArrayItem
 
 logger = logging.getLogger(__name__)
 
 
-class KZA(Template, ModelPersistMixin):
+class KZA(Template, PostgresUpsertMixin):
     """
     http://www.jrdb.com/program/Ks/Ks_doc1.txt
     """
@@ -50,4 +50,4 @@ class KZA(Template, ModelPersistMixin):
         return super().clean
 
     def persist(self):
-        self.persist_model('jrdb.Jockey', conflict_condition='excluded.jrdb_saved_on >= jockeys.jrdb_saved_on')
+        self.upsert('jrdb.Jockey', index_predicate='excluded.jrdb_saved_on >= jockeys.jrdb_saved_on')

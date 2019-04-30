@@ -5,7 +5,7 @@ import pandas as pd
 from django.utils.functional import cached_property
 
 from ..models import Jockey, Trainer, Race, Horse, choices, Program
-from .template import Template, startswith, ModelPersistMixin
+from .template import Template, startswith, PostgresUpsertMixin
 from .item import (
     StringItem,
     ForeignKeyItem,
@@ -62,7 +62,7 @@ def c4p(se: pd.Series):
             .rename('contender__c4p'))
 
 
-class SED(Template, ModelPersistMixin):
+class SED(Template, PostgresUpsertMixin):
     """
     http://www.jrdb.com/program/Sed/sed_doc.txt
 
@@ -182,7 +182,7 @@ class SED(Template, ModelPersistMixin):
         return df
 
     def persist(self):
-        self.persist_model('jrdb.Program')
+        self.upsert('jrdb.Program')
 
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
         rdf = self.clean.pipe(startswith, 'race__', rename=True)
@@ -196,10 +196,10 @@ class SED(Template, ModelPersistMixin):
                 .values('id', 'racetrack_id', 'yr', 'round', 'day')
         )
         program_id = pdf.merge(programs).id
-        self.persist_model('jrdb.Race', program_id=program_id)
-        self.persist_model('jrdb.Horse')
-        self.persist_model('jrdb.Jockey')
-        self.persist_model('jrdb.Trainer')
+        self.upsert('jrdb.Race', program_id=program_id)
+        self.upsert('jrdb.Horse')
+        self.upsert('jrdb.Jockey')
+        self.upsert('jrdb.Trainer')
 
         races = pd.DataFrame(
             Race.objects
@@ -231,5 +231,5 @@ class SED(Template, ModelPersistMixin):
         jockey_id = jdf.merge(jockeys).id
         trainer_id = tdf.merge(trainers).id
 
-        self.persist_model('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id,
+        self.upsert('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id,
                            trainer_id=trainer_id)

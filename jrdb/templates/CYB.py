@@ -50,7 +50,7 @@ class CYB(Template, ProgramRacePersistMixin):
     ]
 
     def persist(self):
-        self.persist_model('jrdb.Program')
+        self.upsert('jrdb.Program')
 
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
         rdf = self.clean.pipe(startswith, 'race__', rename=True)
@@ -62,7 +62,7 @@ class CYB(Template, ProgramRacePersistMixin):
         )
         program_id = pdf.merge(programs).id
 
-        self.persist_model('jrdb.Race', program_id=program_id)
+        self.upsert('jrdb.Race', program_id=program_id)
 
         races = pd.DataFrame(
             Race.objects
@@ -72,4 +72,4 @@ class CYB(Template, ProgramRacePersistMixin):
         rdf['program_id'] = program_id
         race_id = rdf.merge(races).id
 
-        self.persist_model('jrdb.Contender', race_id=race_id)
+        self.upsert('jrdb.Contender', race_id=race_id)

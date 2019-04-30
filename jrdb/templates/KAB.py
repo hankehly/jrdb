@@ -3,13 +3,13 @@ import logging
 import numpy as np
 
 from ..models import choices
-from .template import Template, ModelPersistMixin
+from .template import Template, PostgresUpsertMixin
 from .item import ForeignKeyItem, IntegerItem, StringItem, ChoiceItem, BooleanItem, FloatItem
 
 logger = logging.getLogger(__name__)
 
 
-class KAB(Template, ModelPersistMixin):
+class KAB(Template, PostgresUpsertMixin):
     """
     http://www.jrdb.com/program/Kab/kab_doc.txt
 
@@ -52,4 +52,4 @@ class KAB(Template, ModelPersistMixin):
     ]
 
     def persist(self):
-        self.persist_model('jrdb.Program')
+        self.upsert('jrdb.Program')

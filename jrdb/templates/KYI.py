@@ -4,12 +4,12 @@ import pandas as pd
 
 from ..models import choices, Trainer, Race, Horse, Jockey, Program
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
-from .template import Template, startswith, ModelPersistMixin
+from .template import Template, startswith, PostgresUpsertMixin
 
 logger = logging.getLogger(__name__)
 
 
-class KYI(Template, ModelPersistMixin):
+class KYI(Template, PostgresUpsertMixin):
     """
     http://www.jrdb.com/program/Kyi/kyi_doc.txt
     http://www.jrdb.com/program/Kyi/ky_siyo_doc.txt
@@ -195,7 +195,7 @@ class KYI(Template, ModelPersistMixin):
     ]
 
     def persist(self):
-        self.persist_model('jrdb.Program')
+        self.upsert('jrdb.Program')
 
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
         rdf = self.clean.pipe(startswith, 'race__', rename=True)
@@ -210,10 +210,10 @@ class KYI(Template, ModelPersistMixin):
         )
         program_id = pdf.merge(programs).id
 
-        self.persist_model('jrdb.Race', program_id=program_id)
-        self.persist_model('jrdb.Horse')
-        self.persist_model('jrdb.Jockey')
-        self.persist_model('jrdb.Trainer')
+        self.upsert('jrdb.Race', program_id=program_id)
+        self.upsert('jrdb.Horse')
+        self.upsert('jrdb.Jockey')
+        self.upsert('jrdb.Trainer')
 
         races = pd.DataFrame(
             Race.objects
@@ -245,5 +245,5 @@ class KYI(Template, ModelPersistMixin):
         jockey_id = jdf.merge(jockeys).id
         trainer_id = tdf.merge(trainers).id
 
-        self.persist_model('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id,
+        self.upsert('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id,
                            trainer_id=trainer_id)
