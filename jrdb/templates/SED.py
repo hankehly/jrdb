@@ -172,13 +172,19 @@ class SED(Template, PostgresUpsertMixin):
     def clean(self) -> pd.DataFrame:
         df = super(SED, self).clean
 
-        speed_shift = df.groupby(['program__racetrack_id', 'race__num']).race__track_speed_shift.apply(pd.Series.mode)
-        new_values = []
-        for item in df.itertuples():
-            track = speed_shift.loc[item.program__racetrack_id]
-            value = track.loc[item.race__num][0] if item.race__num in track else None
-            new_values.append(value)
-        df.race__track_speed_shift = pd.Series(new_values)
+        for key, group in df.groupby(['program__racetrack_id', 'race__num']):
+            ss = 'race__track_speed_shift'
+            pc = 'race__pace_cat'
+
+            mode_ss = group[ss].mode()
+            mode_pc = group[pc].mode()
+
+            if len(mode_ss.index):
+                df.loc[group.index, ss] = group[ss].replace(' ', np.nan).fillna(mode_ss.iloc[0])
+
+            if len(mode_pc.index):
+                df.loc[group.index, pc] = group[pc].replace(' ', np.nan).fillna(mode_pc.iloc[0])
+
         return df
 
     def persist(self):
