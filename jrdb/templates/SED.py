@@ -232,7 +232,7 @@ class SED(Template, PostgresUpsertMixin):
         )
 
         rdf['program_id'] = program_id
-        race_id = rdf.merge(races, how='left').id
+        race_id = rdf[['program_id', 'num']].merge(races, how='left').id
         horse_id = hdf.merge(horses, how='left').id
         jockey_id = jdf.merge(jockeys, how='left').id
         trainer_id = tdf.merge(trainers, how='left').id

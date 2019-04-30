@@ -70,6 +70,6 @@ class CYB(Template, ProgramRacePersistMixin):
                 .values('id', 'program_id', 'num')
         )
         rdf['program_id'] = program_id
-        race_id = rdf.merge(races, how='left').id
+        race_id = rdf[['program_id', 'num']].merge(races, how='left').id
 
         self.upsert('jrdb.Contender', race_id=race_id)
