@@ -45,11 +45,6 @@ class Command(BaseCommand):
         options_str = ', '.join([f'{name}: {value}' for name, value in options.items()])
         logger.info(f"START <{options_str}>")
 
-        self._process(options)
-
-        logger.info(f'FINISH <successful {self.success_count}, errors {self.error_count}>')
-
-    def _process(self, options: dict):
         with ProcessPoolExecutor(max_workers=options.get('workers')) as executor:
             futures = {
                 executor.submit(import_document, path): path
@@ -62,11 +57,13 @@ class Command(BaseCommand):
                 try:
                     logger.info(f'import <{path}>')
                     future.result()
-                except ValueError as e:
+                except Exception as e:
                     logger.exception(e)
                     self._increment_error_count()
                 else:
                     self._increment_success_count()
+
+        logger.info(f'FINISH <successful {self.success_count}, errors {self.error_count}>')
 
     def _increment_error_count(self):
         self.error_count += 1
