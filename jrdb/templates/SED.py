@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from django.utils.functional import cached_property
 
-from ..models import Jockey, Trainer, Race, Horse, choices, Program
+from ..models import choices
 from .template import Template, startswith, DjangoUpsertMixin
 from .item import (
     StringItem,
@@ -188,31 +188,21 @@ class SED(Template, DjangoUpsertMixin):
         return df
 
     def load(self):
-        # TODO: Return QuerySet<ModelClass> from upsert
-        self.upsert('jrdb.Program')
         pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = (Program.objects
-                    .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
-                    .values('id', 'racetrack_id', 'yr', 'round', 'day').to_dataframe())
+        programs = self.upsert('jrdb.Program').to_dataframe()
         program_id = pdf.merge(programs, how='left').id
 
-        self.upsert('jrdb.Race', program_id=program_id)
+        races = self.upsert('jrdb.Race', program_id=program_id).to_dataframe()
         rdf = self.transform.pipe(startswith, 'race__', rename=True)
-        races = (Race.objects.filter(program_id__in=program_id, num__in=rdf.num).values('id', 'program_id', 'num')
-                 .to_dataframe())
 
-        self.upsert('jrdb.Horse')
+        horses = self.upsert('jrdb.Horse').to_dataframe()
         hdf = self.transform.pipe(startswith, 'horse__', rename=True)
-        horses = (Horse.objects.filter(pedigree_reg_num__in=hdf.pedigree_reg_num).values('id', 'pedigree_reg_num')
-                  .to_dataframe())
 
-        self.upsert('jrdb.Jockey')
+        jockeys = self.upsert('jrdb.Jockey').to_dataframe()
         jdf = self.transform.pipe(startswith, 'jockey__', rename=True)
-        jockeys = Jockey.objects.filter(code__in=jdf.code).values('id', 'code').to_dataframe()
 
-        self.upsert('jrdb.Trainer')
+        trainers = self.upsert('jrdb.Trainer').to_dataframe()
         tdf = self.transform.pipe(startswith, 'trainer__', rename=True)
-        trainers = Trainer.objects.filter(code__in=tdf.code).values('id', 'code').to_dataframe()
 
         rdf['program_id'] = program_id
         race_id = rdf[['program_id', 'num']].merge(races, how='left').id

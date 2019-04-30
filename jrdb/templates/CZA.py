@@ -1,12 +1,11 @@
 import logging
 
 import pandas as pd
-from django.db import connection
 from django.utils.functional import cached_property
 
 from ..models import choices
 from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
-from .template import Template, startswith, DjangoUpsertMixin
+from .template import Template, DjangoUpsertMixin
 
 logger = logging.getLogger(__name__)
 
