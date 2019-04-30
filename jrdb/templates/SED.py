@@ -180,10 +180,10 @@ class SED(Template, PostgresUpsertMixin):
             mode_pc = group[pc].mode()
 
             if len(mode_ss.index):
-                df.loc[group.index, ss] = group[ss].replace(' ', np.nan).fillna(mode_ss.iloc[0])
+                df.loc[group.index, ss] = mode_ss.iloc[0]
 
             if len(mode_pc.index):
-                df.loc[group.index, pc] = group[pc].replace(' ', np.nan).fillna(mode_pc.iloc[0])
+                df.loc[group.index, pc] = mode_pc.iloc[0]
 
         return df
 
