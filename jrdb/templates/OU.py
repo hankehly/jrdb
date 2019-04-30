@@ -1,12 +1,12 @@
 import logging
 
 from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from .template import Template, ProgramRacePersistMixin
+from .template import Template, ProgramRaceLoadMixin
 
 logger = logging.getLogger(__name__)
 
 
-class OU(Template, ProgramRacePersistMixin):
+class OU(Template, ProgramRaceLoadMixin):
     """
     http://www.jrdb.com/program/Ou/Oudata_doc.txt
     """

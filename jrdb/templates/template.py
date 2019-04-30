@@ -21,12 +21,12 @@ class Template(ABC):
     def __init__(self, path):
         self.path = path
         self._df = None
-        self._clean_df = None
+        self._transform_df = None
 
     @property
     def df(self) -> pd.DataFrame:
         if self._df is None:
-            raise ValueError(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.parse.')
+            raise ValueError(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.extract.')
         return self._df
 
     @df.setter
@@ -35,9 +35,9 @@ class Template(ABC):
             raise ValueError(f'df must be type DataFrame, got {type(value)}')
         self._df = value
 
-    def parse(self) -> 'Template':
+    def extract(self) -> 'Template':
         """
-        Parse contents of self.path into DataFrame
+        Extract contents of self.path into DataFrame
 
         Using the slightly slower np.char.decode(byterows, encoding='cp932') rather than decoding
         each cell individually to make parsing less of a hassle for subclasses
@@ -48,7 +48,7 @@ class Template(ABC):
             for line in lines:
                 row = []
                 for item in self.items:
-                    bytes_lst = self.parse_item(line, item)
+                    bytes_lst = self.extract_item(line, item)
                     str_lst = np.char.decode(bytes_lst, encoding='cp932')
                     if len(str_lst) == 1:
                         row.append(str_lst[0])
@@ -58,7 +58,7 @@ class Template(ABC):
         self.df = pd.DataFrame(rows, columns=[item.key for item in self.items])
         return self
 
-    def parse_item(self, line: bytes, item: Any) -> List[bytes]:
+    def extract_item(self, line: bytes, item: Any) -> List[bytes]:
         row = []
         if isinstance(item, ArrayItem):
             for i in range(item.size):
@@ -73,15 +73,15 @@ class Template(ABC):
         return row
 
     @cached_property
-    def clean(self) -> pd.DataFrame:
+    def transform(self) -> pd.DataFrame:
         objs = []
         for col in self.df:
             item = next(item for item in self.items if item.key == col)
-            objs.append(item.clean(self.df[col]))
+            objs.append(item.transform(self.df[col]))
         return pd.concat(objs, axis='columns')
 
 
-class PostgresUpsertMixin:
+class DjangoUpsertMixin:
 
     def _get_unique_together(self, symbol: str):
         meta = apps.get_model(symbol)._meta
@@ -100,7 +100,7 @@ class PostgresUpsertMixin:
         meta = apps.get_model(symbol)._meta
 
         prefix = meta.model_name + '__'
-        df = self.clean.pipe(startswith, prefix, rename=True)
+        df = self.transform.pipe(startswith, prefix, rename=True)
 
         for field in self._get_foreign_key_fields(symbol):
             if field.attname in kwargs:
@@ -140,12 +140,12 @@ class PostgresUpsertMixin:
             c.execute(sql)
 
 
-class ProgramRacePersistMixin(PostgresUpsertMixin):
+class ProgramRaceLoadMixin(DjangoUpsertMixin):
 
-    def persist(self):
+    def load(self):
         self.upsert('jrdb.Program')
 
-        pdf = self.clean.pipe(startswith, 'program__', rename=True)
+        pdf = self.transform.pipe(startswith, 'program__', rename=True)
 
         programs = (Program.objects
                     .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)

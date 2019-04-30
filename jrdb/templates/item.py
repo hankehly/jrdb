@@ -49,7 +49,7 @@ class Item(ABC):
     def key(self) -> str:
         return self.label
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         raise NotImplementedError
 
     def _validate(self) -> None:
@@ -87,7 +87,7 @@ class ModelItem(Item, ABC):
 class IntegerItem(ModelItem):
     default: Optional[int] = None
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         return s.apply(parse_int_or, args=(self.default,)).astype('Int64')
 
@@ -97,7 +97,7 @@ class FloatItem(ModelItem):
     default: Optional[float] = np.nan
     scale: float = 1.
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         return s.apply(parse_float_or, args=(self.default,)).apply(lambda n: n * self.scale).astype(float)
 
@@ -114,7 +114,7 @@ class ArrayItem(ModelItem):
     def base_field(self):
         return self.get_field().base_field
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
 
         base_field_type = self.base_field.get_internal_type()
@@ -146,7 +146,7 @@ class ForeignKeyItem(ModelItem):
         model, field = self.related_symbol.rsplit('.', maxsplit=1)
         return apps.get_model(model)._meta.get_field(field)
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         remote_field = self.get_remote_field()
 
@@ -171,7 +171,7 @@ class ForeignKeyItem(ModelItem):
 class DateItem(ModelItem):
     format: str = '%Y%m%d'
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         date = pd.to_datetime(s, format=self.format, errors='coerce').dt.date.astype(str)
         return date.astype(object).where(date.notnull(), None)
@@ -182,7 +182,7 @@ class DateTimeItem(ModelItem):
     format: str = '%Y%m%d%H%M'
     tz: str = 'Asia/Tokyo'
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         return pd.to_datetime(s, format=self.format).dt.tz_localize(self.tz).astype(str).rename(self.key)
 
@@ -190,7 +190,7 @@ class DateTimeItem(ModelItem):
 @dataclass(eq=False, frozen=True)
 class StringItem(ModelItem):
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         return s.str.strip()
 
@@ -199,7 +199,7 @@ class StringItem(ModelItem):
 class ChoiceItem(ModelItem):
     options: dict
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         return s.str.strip().map(self.options)
 
@@ -209,7 +209,7 @@ class BooleanItem(ModelItem):
     value_true: str = '1'
     value_false: str = '0'
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         return s.str.strip().map({self.value_true: True, self.value_false: False})
 
@@ -218,6 +218,6 @@ class BooleanItem(ModelItem):
 class InvokeItem(Item):
     handler: Callable
 
-    def clean(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         return self.handler(s)

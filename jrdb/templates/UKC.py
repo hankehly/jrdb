@@ -2,12 +2,12 @@ import logging
 
 from ..models import choices
 from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem, BooleanItem
-from .template import Template, PostgresUpsertMixin
+from .template import Template, DjangoUpsertMixin
 
 logger = logging.getLogger(__name__)
 
 
-class UKC(Template, PostgresUpsertMixin):
+class UKC(Template, DjangoUpsertMixin):
     """
     http://www.jrdb.com/program/Ukc/ukc_doc.txt
     """
@@ -35,7 +35,7 @@ class UKC(Template, PostgresUpsertMixin):
         StringItem('母父系統コード', 4, 280, 'jrdb.Horse.damsire_genealogy_code'),
     ]
 
-    def persist(self):
+    def load(self):
         self.upsert(
             symbol='jrdb.Horse',
             index_predicate='horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'

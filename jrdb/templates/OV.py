@@ -1,12 +1,12 @@
 import logging
 
 from .item import ArrayItem, IntegerItem, StringItem, ForeignKeyItem
-from .template import Template, ProgramRacePersistMixin
+from .template import Template, ProgramRaceLoadMixin
 
 logger = logging.getLogger(__name__)
 
 
-class OV(Template, ProgramRacePersistMixin):
+class OV(Template, ProgramRaceLoadMixin):
     """
     http://www.jrdb.com/program/Ov/ovdata_doc.txt
     """

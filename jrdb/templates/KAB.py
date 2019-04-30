@@ -3,13 +3,13 @@ import logging
 import numpy as np
 
 from ..models import choices
-from .template import Template, PostgresUpsertMixin
+from .template import Template, DjangoUpsertMixin
 from .item import ForeignKeyItem, IntegerItem, StringItem, ChoiceItem, BooleanItem, FloatItem
 
 logger = logging.getLogger(__name__)
 
 
-class KAB(Template, PostgresUpsertMixin):
+class KAB(Template, DjangoUpsertMixin):
     """
     http://www.jrdb.com/program/Kab/kab_doc.txt
 
@@ -51,5 +51,5 @@ class KAB(Template, PostgresUpsertMixin):
         FloatItem('中間降水量', 5, 58, 'jrdb.Program.mm_precipitation', default=np.nan),
     ]
 
-    def persist(self):
+    def load(self):
         self.upsert('jrdb.Program')

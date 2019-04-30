@@ -1,13 +1,13 @@
 import logging
 
 from ..models import Horse, Race, Program
-from .template import Template, startswith, PostgresUpsertMixin
+from .template import Template, startswith, DjangoUpsertMixin
 from .item import ForeignKeyItem, IntegerItem, StringItem, BooleanItem
 
 logger = logging.getLogger(__name__)
 
 
-class SKB(Template, PostgresUpsertMixin):
+class SKB(Template, DjangoUpsertMixin):
     """
     http://www.jrdb.com/program/Skb/skb_doc.txt
     """
@@ -40,20 +40,20 @@ class SKB(Template, PostgresUpsertMixin):
         ForeignKeyItem('骨瘤', 3, 288, 'jrdb.Contender.exostosis', 'jrdb.HorseGearCode.key'),
     ]
 
-    def persist(self):
+    def load(self):
         self.upsert('jrdb.Program')
-        pdf = self.clean.pipe(startswith, 'program__', rename=True)
+        pdf = self.transform.pipe(startswith, 'program__', rename=True)
         programs = (Program.objects
                     .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
                     .values('id', 'racetrack_id', 'yr', 'round', 'day').to_dataframe())
         program_id = pdf.merge(programs, how='left').id
 
         self.upsert('jrdb.Race', program_id=program_id)
-        rdf = self.clean.pipe(startswith, 'race__', rename=True)
+        rdf = self.transform.pipe(startswith, 'race__', rename=True)
         races = (Race.objects.filter(program_id__in=program_id, num__in=rdf.num).values('id', 'program_id', 'num')
                  .to_dataframe())
 
-        hdf = self.clean.pipe(startswith, 'horse__', rename=True)
+        hdf = self.transform.pipe(startswith, 'horse__', rename=True)
         self.upsert('jrdb.Horse')
         horses = (Horse.objects.filter(pedigree_reg_num__in=hdf.pedigree_reg_num).values('id', 'pedigree_reg_num')
                   .to_dataframe())

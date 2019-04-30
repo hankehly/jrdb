@@ -5,7 +5,7 @@ import pandas as pd
 from django.utils.functional import cached_property
 
 from ..models import Jockey, Trainer, Race, Horse, choices, Program
-from .template import Template, startswith, PostgresUpsertMixin
+from .template import Template, startswith, DjangoUpsertMixin
 from .item import (
     StringItem,
     ForeignKeyItem,
@@ -62,7 +62,7 @@ def c4p(se: pd.Series):
             .rename('contender__c4p'))
 
 
-class SED(Template, PostgresUpsertMixin):
+class SED(Template, DjangoUpsertMixin):
     """
     http://www.jrdb.com/program/Sed/sed_doc.txt
 
@@ -169,8 +169,8 @@ class SED(Template, PostgresUpsertMixin):
     ]
 
     @cached_property
-    def clean(self) -> pd.DataFrame:
-        df = super(SED, self).clean
+    def transform(self) -> pd.DataFrame:
+        df = super(SED, self).transform
 
         for key, group in df.groupby(['program__racetrack_id', 'race__num']):
             ss = 'race__track_speed_shift'
@@ -187,31 +187,31 @@ class SED(Template, PostgresUpsertMixin):
 
         return df
 
-    def persist(self):
+    def load(self):
         # TODO: Return QuerySet<ModelClass> from upsert
         self.upsert('jrdb.Program')
-        pdf = self.clean.pipe(startswith, 'program__', rename=True)
+        pdf = self.transform.pipe(startswith, 'program__', rename=True)
         programs = (Program.objects
                     .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
                     .values('id', 'racetrack_id', 'yr', 'round', 'day').to_dataframe())
         program_id = pdf.merge(programs, how='left').id
 
         self.upsert('jrdb.Race', program_id=program_id)
-        rdf = self.clean.pipe(startswith, 'race__', rename=True)
+        rdf = self.transform.pipe(startswith, 'race__', rename=True)
         races = (Race.objects.filter(program_id__in=program_id, num__in=rdf.num).values('id', 'program_id', 'num')
                  .to_dataframe())
 
         self.upsert('jrdb.Horse')
-        hdf = self.clean.pipe(startswith, 'horse__', rename=True)
+        hdf = self.transform.pipe(startswith, 'horse__', rename=True)
         horses = (Horse.objects.filter(pedigree_reg_num__in=hdf.pedigree_reg_num).values('id', 'pedigree_reg_num')
                   .to_dataframe())
 
         self.upsert('jrdb.Jockey')
-        jdf = self.clean.pipe(startswith, 'jockey__', rename=True)
+        jdf = self.transform.pipe(startswith, 'jockey__', rename=True)
         jockeys = Jockey.objects.filter(code__in=jdf.code).values('id', 'code').to_dataframe()
 
         self.upsert('jrdb.Trainer')
-        tdf = self.clean.pipe(startswith, 'trainer__', rename=True)
+        tdf = self.transform.pipe(startswith, 'trainer__', rename=True)
         trainers = Trainer.objects.filter(code__in=tdf.code).values('id', 'code').to_dataframe()
 
         rdf['program_id'] = program_id

@@ -6,12 +6,12 @@ from django.utils.functional import cached_property
 
 from ..models import choices
 from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
-from .template import Template, startswith, PostgresUpsertMixin
+from .template import Template, startswith, DjangoUpsertMixin
 
 logger = logging.getLogger(__name__)
 
 
-class CZA(Template, PostgresUpsertMixin):
+class CZA(Template, DjangoUpsertMixin):
     """
     http://www.jrdb.com/program/Cs/Cs_doc1.txt
     """
@@ -45,11 +45,11 @@ class CZA(Template, PostgresUpsertMixin):
     ]
 
     @cached_property
-    def clean(self) -> pd.DataFrame:
+    def transform(self) -> pd.DataFrame:
         self.df = self.df[~self.df['trainer__name'].str.contains('削除')]
-        return super().clean
+        return super().transform
 
-    def persist(self):
+    def load(self):
         self.upsert(
             symbol='jrdb.Trainer',
             index_predicate='trainers.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= trainers.jrdb_saved_on'

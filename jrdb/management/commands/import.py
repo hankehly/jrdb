@@ -23,7 +23,7 @@ def import_document(path: str) -> str:
     template = os.path.basename(path)[:3]
     module_path = '.'.join(['jrdb', 'templates', template])
     parser = import_string(module_path)(path)
-    parser.parse().persist()
+    parser.extract().load()
     return parser.path
 
 
