@@ -2,6 +2,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from jrdb.models import choices
+from jrdb.models.managers import DataFrameQuerySet
 
 
 class Race(models.Model):
@@ -82,6 +83,8 @@ class Race(models.Model):
     odds_win = ArrayField(models.FloatField(null=True), size=18, null=True)
     odds_show = ArrayField(models.FloatField(null=True), size=18, null=True)
     odds_quinella = ArrayField(models.FloatField(null=True), size=153, null=True)
+
+    objects = DataFrameQuerySet.as_manager()
 
     class Meta:
         db_table = 'races'

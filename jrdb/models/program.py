@@ -1,6 +1,7 @@
 from django.db import models
 
-from . import choices
+from jrdb.models import choices
+from jrdb.models.managers import DataFrameQuerySet
 
 
 class Program(models.Model):
@@ -33,6 +34,8 @@ class Program(models.Model):
     used_rolling_compactor = models.BooleanField('転圧', null=True)
     used_anti_freeze_agent = models.BooleanField('凍結防止剤', null=True)
     mm_precipitation = models.FloatField('中間降水量', null=True)
+
+    objects = DataFrameQuerySet.as_manager()
 
     class Meta:
         db_table = 'programs'

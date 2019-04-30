@@ -50,4 +50,7 @@ class CZA(Template, PostgresUpsertMixin):
         return super().clean
 
     def persist(self):
-        self.upsert('jrdb.Trainer', index_predicate='excluded.jrdb_saved_on >= trainers.jrdb_saved_on')
+        self.upsert(
+            symbol='jrdb.Trainer',
+            index_predicate='trainers.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= trainers.jrdb_saved_on'
+        )

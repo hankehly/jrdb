@@ -50,4 +50,7 @@ class KZA(Template, PostgresUpsertMixin):
         return super().clean
 
     def persist(self):
-        self.upsert('jrdb.Jockey', index_predicate='excluded.jrdb_saved_on >= jockeys.jrdb_saved_on')
+        self.upsert(
+            symbol='jrdb.Jockey',
+            index_predicate='jockeys.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= jockeys.jrdb_saved_on'
+        )

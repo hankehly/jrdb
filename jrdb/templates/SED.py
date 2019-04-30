@@ -188,48 +188,31 @@ class SED(Template, PostgresUpsertMixin):
         return df
 
     def persist(self):
+        # TODO: Return QuerySet<ModelClass> from upsert
         self.upsert('jrdb.Program')
-
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
-        rdf = self.clean.pipe(startswith, 'race__', rename=True)
-        hdf = self.clean.pipe(startswith, 'horse__', rename=True)
-        tdf = self.clean.pipe(startswith, 'trainer__', rename=True)
-        jdf = self.clean.pipe(startswith, 'jockey__', rename=True)
-
-        programs = pd.DataFrame(
-            Program.objects
-                .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
-                .values('id', 'racetrack_id', 'yr', 'round', 'day')
-        )
+        programs = (Program.objects
+                    .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
+                    .values('id', 'racetrack_id', 'yr', 'round', 'day').to_dataframe())
         program_id = pdf.merge(programs, how='left').id
+
         self.upsert('jrdb.Race', program_id=program_id)
+        rdf = self.clean.pipe(startswith, 'race__', rename=True)
+        races = (Race.objects.filter(program_id__in=program_id, num__in=rdf.num).values('id', 'program_id', 'num')
+                 .to_dataframe())
+
         self.upsert('jrdb.Horse')
+        hdf = self.clean.pipe(startswith, 'horse__', rename=True)
+        horses = (Horse.objects.filter(pedigree_reg_num__in=hdf.pedigree_reg_num).values('id', 'pedigree_reg_num')
+                  .to_dataframe())
+
         self.upsert('jrdb.Jockey')
+        jdf = self.clean.pipe(startswith, 'jockey__', rename=True)
+        jockeys = Jockey.objects.filter(code__in=jdf.code).values('id', 'code').to_dataframe()
+
         self.upsert('jrdb.Trainer')
-
-        races = pd.DataFrame(
-            Race.objects
-                .filter(program_id__in=program_id, num__in=rdf.num)
-                .values('id', 'program_id', 'num')
-        )
-
-        horses = pd.DataFrame(
-            Horse.objects
-                .filter(pedigree_reg_num__in=hdf.pedigree_reg_num)
-                .values('id', 'pedigree_reg_num')
-        )
-
-        jockeys = pd.DataFrame(
-            Jockey.objects
-                .filter(code__in=jdf.code)
-                .values('id', 'code')
-        )
-
-        trainers = pd.DataFrame(
-            Trainer.objects
-                .filter(code__in=tdf.code)
-                .values('id', 'code')
-        )
+        tdf = self.clean.pipe(startswith, 'trainer__', rename=True)
+        trainers = Trainer.objects.filter(code__in=tdf.code).values('id', 'code').to_dataframe()
 
         rdf['program_id'] = program_id
         race_id = rdf[['program_id', 'num']].merge(races, how='left').id

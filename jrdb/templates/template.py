@@ -147,11 +147,9 @@ class ProgramRacePersistMixin(PostgresUpsertMixin):
 
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
 
-        programs = pd.DataFrame(
-            Program.objects
-                .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
-                .values('id', 'racetrack_id', 'yr', 'round', 'day')
-        )
+        programs = (Program.objects
+                    .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
+                    .values('id', 'racetrack_id', 'yr', 'round', 'day').to_dataframe())
 
         program_id = pdf.merge(programs, how='left').id
         self.upsert('jrdb.Race', program_id=program_id)

@@ -2,6 +2,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from jrdb.models import choices
+from jrdb.models.managers import DataFrameQuerySet
 
 
 class Jockey(models.Model):
@@ -29,6 +30,8 @@ class Jockey(models.Model):
     sum_flat_r = ArrayField(models.PositiveSmallIntegerField(), size=4, null=True)
     sum_obst_r = ArrayField(models.PositiveSmallIntegerField(), size=4, null=True)
     jrdb_saved_on = models.DateField(null=True)
+
+    objects = DataFrameQuerySet.as_manager()
 
     class Meta:
         db_table = 'jockeys'

@@ -1,6 +1,7 @@
 from django.db import models
 
-from . import choices
+from jrdb.models import choices
+from jrdb.models.managers import DataFrameQuerySet
 
 
 class Horse(models.Model):
@@ -24,6 +25,8 @@ class Horse(models.Model):
     sire_genealogy_code = models.CharField(max_length=4, null=True)
     damsire_genealogy_code = models.CharField(max_length=4, null=True)
     jrdb_saved_on = models.DateField(null=True)
+
+    objects = DataFrameQuerySet.as_manager()
 
     class Meta:
         db_table = 'horses'

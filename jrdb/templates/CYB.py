@@ -1,7 +1,5 @@
 import logging
 
-import pandas as pd
-
 from ..models import choices, Program, Race
 from .template import Template, startswith, ProgramRacePersistMixin
 from .item import IntegerItem, StringItem, ForeignKeyItem, BooleanItem, ChoiceItem, DateItem
@@ -51,24 +49,16 @@ class CYB(Template, ProgramRacePersistMixin):
 
     def persist(self):
         self.upsert('jrdb.Program')
-
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
-
-        programs = pd.DataFrame(
-            Program.objects
-                .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
-                .values('id', 'racetrack_id', 'yr', 'round', 'day')
-        )
+        programs = (Program.objects
+                    .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
+                    .values('id', 'racetrack_id', 'yr', 'round', 'day').to_dataframe())
         program_id = pdf.merge(programs).id
 
         self.upsert('jrdb.Race', program_id=program_id)
-
         rdf = self.clean.pipe(startswith, 'race__', rename=True)
-        races = pd.DataFrame(
-            Race.objects
-                .filter(program_id__in=program_id, num__in=rdf.num)
-                .values('id', 'program_id', 'num')
-        )
+        races = (Race.objects.filter(program_id__in=program_id, num__in=rdf.num).values('id', 'program_id', 'num')
+                 .to_dataframe())
         rdf['program_id'] = program_id
         race_id = rdf[['program_id', 'num']].merge(races, how='left').id
 
