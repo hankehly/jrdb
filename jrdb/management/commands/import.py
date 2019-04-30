@@ -1,6 +1,7 @@
 import glob
 import logging
 import os
+import re
 from concurrent.futures import as_completed
 from concurrent.futures.process import ProcessPoolExecutor
 
@@ -19,8 +20,14 @@ TEMPLATES = [
 ]
 
 
+def get_template_name(path: str):
+    basename = os.path.basename(path)
+    filename, _ = os.path.splitext(basename)
+    return re.search('[A-Z]+', filename).group()
+
+
 def import_document(path: str) -> str:
-    template = os.path.basename(path)[:3]
+    template = get_template_name(path)
     module_path = '.'.join(['jrdb', 'templates', template])
     parser = import_string(module_path)(path)
     parser.extract().load()
@@ -49,7 +56,7 @@ class Command(BaseCommand):
             futures = {
                 executor.submit(import_document, path): path
                 for path in glob.iglob(options['path'])
-                if os.path.basename(path)[:3] in TEMPLATES
+                if get_template_name(path) in TEMPLATES
             }
 
             for future in as_completed(futures):
