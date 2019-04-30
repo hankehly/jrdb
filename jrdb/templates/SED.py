@@ -231,5 +231,4 @@ class SED(Template, PostgresUpsertMixin):
         jockey_id = jdf.merge(jockeys, how='left').id
         trainer_id = tdf.merge(trainers, how='left').id
 
-        self.upsert('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id,
-                           trainer_id=trainer_id)
+        self.upsert('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id, trainer_id=trainer_id)
