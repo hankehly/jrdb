@@ -54,7 +54,7 @@ class SKB(Template, PostgresUpsertMixin):
                 .filter(racetrack_id__in=pdf.racetrack_id, yr__in=pdf.yr, round__in=pdf['round'], day__in=pdf.day)
                 .values('id', 'racetrack_id', 'yr', 'round', 'day')
         )
-        program_id = pdf.merge(programs).id
+        program_id = pdf.merge(programs, how='left').id
 
         self.upsert('jrdb.Race', program_id=program_id)
         self.upsert('jrdb.Horse')
@@ -72,7 +72,7 @@ class SKB(Template, PostgresUpsertMixin):
         )
 
         rdf['program_id'] = program_id
-        race_id = rdf.merge(races).id
-        horse_id = hdf.merge(horses).id
+        race_id = rdf.merge(races, how='left').id
+        horse_id = hdf.merge(horses, how='left').id
 
         self.upsert('jrdb.Contender', race_id=race_id, horse_id=horse_id)

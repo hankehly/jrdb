@@ -53,7 +53,6 @@ class CYB(Template, ProgramRacePersistMixin):
         self.upsert('jrdb.Program')
 
         pdf = self.clean.pipe(startswith, 'program__', rename=True)
-        rdf = self.clean.pipe(startswith, 'race__', rename=True)
 
         programs = pd.DataFrame(
             Program.objects
@@ -64,12 +63,13 @@ class CYB(Template, ProgramRacePersistMixin):
 
         self.upsert('jrdb.Race', program_id=program_id)
 
+        rdf = self.clean.pipe(startswith, 'race__', rename=True)
         races = pd.DataFrame(
             Race.objects
                 .filter(program_id__in=program_id, num__in=rdf.num)
                 .values('id', 'program_id', 'num')
         )
         rdf['program_id'] = program_id
-        race_id = rdf.merge(races).id
+        race_id = rdf.merge(races, how='left').id
 
         self.upsert('jrdb.Contender', race_id=race_id)

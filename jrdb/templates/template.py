@@ -83,29 +83,35 @@ class Template(ABC):
 
 class PostgresUpsertMixin:
 
-    def get_foreign_key_fields(self, symbol: str):
+    def _get_unique_together(self, symbol: str):
         meta = apps.get_model(symbol)._meta
-        unique_together = meta.unique_together[0] if meta.unique_together else []
+        return meta.unique_together[0] if meta.unique_together else []
+
+    def _get_foreign_key_fields(self, symbol: str):
+        meta = apps.get_model(symbol)._meta
+        unique_together = self._get_unique_together(symbol)
 
         return [
             meta.get_field(field) for field in unique_together if
             meta.get_field(field).is_relation and hasattr(meta.get_field(field).remote_field, 'model')
         ]
 
-    def upsert(self, app_label_model_name: str, **kwargs):
-        meta = apps.get_model(app_label_model_name)._meta
+    def _build_insert_df(self, symbol: str, **kwargs):
+        meta = apps.get_model(symbol)._meta
 
         prefix = meta.model_name + '__'
         df = self.clean.pipe(startswith, prefix, rename=True)
 
-        for field in self.get_foreign_key_fields(app_label_model_name):
+        for field in self._get_foreign_key_fields(symbol):
             if field.attname in kwargs:
                 df[field.attname] = kwargs[field.attname]
 
-        df.drop_duplicates(inplace=True)
+        return df.drop_duplicates()
+
+    def upsert(self, symbol: str, **kwargs):
+        df = self._build_insert_df(symbol, **kwargs)
 
         columns = ','.join('"{}"'.format(key) for key in df.columns)
-
         values = (
             ','.join(map(str, map(tuple, df.values)))
                 .replace('nan', 'NULL')
@@ -114,9 +120,10 @@ class PostgresUpsertMixin:
                 .replace(',)', ')')
         )
 
+        meta = apps.get_model(symbol)._meta
         sql = f'INSERT INTO {meta.db_table} ({columns}) VALUES {values}'
 
-        unique_fields = meta.unique_together[0] if meta.unique_together else []
+        unique_fields = self._get_unique_together(symbol)
         conflict_fields = [meta.get_field(field).attname for field in unique_fields]
         conflict_target = ','.join('"{}"'.format(key) for key in conflict_fields)
         update_columns = ','.join((f'{key}=EXCLUDED.{key}' for key in df.columns if key not in conflict_fields))
@@ -146,7 +153,8 @@ class ProgramRacePersistMixin(PostgresUpsertMixin):
                 .values('id', 'racetrack_id', 'yr', 'round', 'day')
         )
 
-        self.upsert('jrdb.Race', program_id=pdf.merge(programs).id)
+        program_id = pdf.merge(programs, how='left').id
+        self.upsert('jrdb.Race', program_id=program_id)
 
 
 def startswith(
