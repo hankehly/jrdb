@@ -35,7 +35,7 @@ def import_document(path: str) -> str:
 
 
 class Command(BaseCommand):
-    help = 'Import 1 or more JRDB data files of the same type'
+    help = 'Extract, transform and load JRDB file contents into database'
 
     def __init__(self):
         super().__init__()
