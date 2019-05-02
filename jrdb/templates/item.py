@@ -192,7 +192,7 @@ class StringItem(ModelItem):
 
     def transform(self, se: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        return se.str.strip().mask(lambda string: string == '', None)
+        return se.str.strip().str.replace('\u3000', ' ').mask(lambda string: string == '', None)
 
 
 @dataclass(eq=False, frozen=True)
