@@ -4,9 +4,9 @@ from django.conf import settings
 
 from jrdb.models import Race
 from jrdb.templates import BAC
-from jrdb.test.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase
 
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'test', 'samples', 'BAC080913.txt')
+TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'BAC080913.txt')
 
 
 class TemplateTestCase(JRDBTestCase):

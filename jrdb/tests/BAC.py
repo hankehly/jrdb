@@ -6,10 +6,10 @@ from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import Program, Race, choices
-from jrdb.test.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase
 from jrdb.templates import BAC
 
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'test', 'samples', 'BAC080913.txt')
+TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'BAC080913.txt')
 
 
 class BACTestCase(JRDBTestCase):

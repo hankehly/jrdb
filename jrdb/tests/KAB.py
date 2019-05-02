@@ -4,10 +4,10 @@ from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import choices, Program
-from jrdb.test.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase
 from jrdb.templates import KAB
 
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'test', 'samples', 'KAB080913.txt')
+TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'KAB080913.txt')
 
 
 class KABTestCase(JRDBTestCase):

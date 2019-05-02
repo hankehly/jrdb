@@ -5,10 +5,10 @@ from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import choices, Trainer
-from jrdb.test.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase
 from jrdb.templates import CZA
 
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'test', 'samples', 'CSA020907.txt')
+TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'CSA020907.txt')
 
 
 class CYBTestCase(JRDBTestCase):
