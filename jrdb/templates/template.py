@@ -1,4 +1,5 @@
 import logging
+import re
 from abc import ABC
 from typing import List, Any, Union
 
@@ -109,6 +110,9 @@ class DjangoUpsertMixin:
 
         return df.drop_duplicates()
 
+    def _format_values_string(self, string: str) -> str:
+        return re.sub(r'(None|nan|NaN)', 'NULL', string).replace('\'NaT\'', 'NULL').replace(',)', ')')
+
     def upsert(self, symbol: str, **kwargs):
         """
         Perform postgres INSERT ... ON CONFLICT upsert
@@ -124,11 +128,10 @@ class DjangoUpsertMixin:
         # gather query data
         model = apps.get_model(symbol)
         columns = ','.join('"{}"'.format(key) for key in df.columns)
-        values = (','.join(map(str, map(tuple, df.values)))
-                  .replace('nan', 'NULL')
-                  .replace('NaN', 'NULL')
-                  .replace('\'NaT\'', 'NULL')
-                  .replace(',)', ')'))
+
+        values_dirty = ','.join(map(str, map(tuple, df.values)))
+        values = self._format_values_string(values_dirty)
+
         unique_columns = [model._meta.get_field(field).attname for field in self._get_unique_together(symbol)]
         conflict_target = ','.join('"{}"'.format(key) for key in unique_columns)
         update_columns = ','.join((f'{key}=excluded.{key}' for key in df.columns if key not in unique_columns))

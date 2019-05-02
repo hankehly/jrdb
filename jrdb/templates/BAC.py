@@ -12,14 +12,6 @@ logger = logging.getLogger(__name__)
 
 
 # TODO: Move inline
-def symbols(s: pd.Series):
-    s1 = s.str[0].map(choices.RACE_HORSE_TYPE_SYMBOL.options()).rename('race__horse_type_symbol')
-    s2 = s.str[1].map(choices.RACE_HORSE_SEX_SYMBOL.options()).rename('race__horse_sex_symbol')
-    s3 = s.str[2].map(choices.RACE_INTERLEAGUE_SYMBOL.options()).rename('race__interleague_symbol')
-    return pd.concat([s1, s2, s3], axis='columns')
-
-
-# TODO: Move inline
 def nth_occurrence(s: pd.Series):
     # casting to float prior to Int64 is necessary
     # to convert strings to numbers
@@ -69,8 +61,10 @@ class BAC(Template, ProgramRaceLoadMixin):
         ChoiceItem('右左', 1, 25, 'jrdb.Race.direction', choices.DIRECTION.options()),
         ChoiceItem('内外', 1, 26, 'jrdb.Race.course_inout', choices.COURSE_INOUT.options()),
         ChoiceItem('種別', 2, 27, 'jrdb.Race.category', choices.RACE_CATEGORY.options()),
-        ForeignKeyItem('条件', 2, 29, 'jrdb.Race.cond', 'jrdb.RaceConditionCode.value'),
-        InvokeItem('記号', 2, 31, symbols),
+        ForeignKeyItem('条件', 2, 29, 'jrdb.Race.cond', 'jrdb.RaceConditionCode.key'),
+        ChoiceItem('馬の種類による条件', 1, 31, 'jrdb.Race.horse_type_symbol', choices.RACE_HORSE_TYPE_SYMBOL.options()),
+        ChoiceItem('馬の性別による条件', 1, 32, 'jrdb.Race.horse_sex_symbol', choices.RACE_HORSE_SEX_SYMBOL.options()),
+        ChoiceItem('交流競走の指定', 1, 33, 'jrdb.Race.interleague_symbol', choices.RACE_INTERLEAGUE_SYMBOL.options()),
         ChoiceItem('重量', 1, 34, 'jrdb.Race.impost_class', choices.IMPOST_CLASS.options()),
         ChoiceItem('グレード', 1, 35, 'jrdb.Race.grade', choices.GRADE.options()),
         StringItem('レース名', 50, 36, 'jrdb.Race.name'),

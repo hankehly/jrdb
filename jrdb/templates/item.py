@@ -190,9 +190,9 @@ class DateTimeItem(ModelItem):
 @dataclass(eq=False, frozen=True)
 class StringItem(ModelItem):
 
-    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, se: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        return s.str.strip()
+        return se.str.strip().mask(lambda string: string == '', None)
 
 
 @dataclass(eq=False, frozen=True)
