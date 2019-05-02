@@ -12,7 +12,7 @@ from jrdb.templates import BAC
 TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'test', 'samples', 'BAC080913.txt')
 
 
-class BACTemplateTestCase(JRDBTestCase):
+class BACTestCase(JRDBTestCase):
     fixtures = ['racetrack', 'race_condition_code']
 
     @classmethod
