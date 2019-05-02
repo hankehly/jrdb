@@ -15,6 +15,8 @@ class KAB(Template, DjangoUpsertMixin):
 
     010821200809133土札幌11 222-2 -10 0 0 0 1 111-7 49 214  000
     060841200809131土中山11 111-12-3-2-10 0 1 111-1241 110  007.5
+
+    TODO: Keep IGNORE columns; but add way to filter out before load
     """
     name = 'JRDB開催データ（KAB）'
     items = [
