@@ -105,6 +105,7 @@ class FloatItem(ModelItem):
 @dataclass(eq=False, frozen=True)
 class ArrayItem(ModelItem):
     size: int
+    mapper: Callable = None
 
     @property
     def element_width(self) -> int:
@@ -124,6 +125,9 @@ class ArrayItem(ModelItem):
             se = se.apply(lambda a: [int(el) if el.isdigit() else 0 for el in map(str.strip, a)])
         elif base_field_type in MODEL_ITEM_FIELD_MAP['FloatItem']:
             se = se.apply(lambda a: pd.Series(a).apply(parse_float_or).tolist())
+
+        if self.mapper:
+            se = se.apply(lambda arr: [self.mapper(item) for item in arr])
 
         return se.apply(json.dumps).str.replace('[', '{').str.replace(']', '}')
 
