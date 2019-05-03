@@ -52,14 +52,14 @@ class KYI(Template, DjangoUpsertMixin):
         FloatItem('調教指数', 5, 144, 'jrdb.Contender.prel_trainer_idx'),
         FloatItem('厩舎指数', 5, 149, 'jrdb.Contender.prel_stable_idx'),
         # ===以下第３版にて追加===
-        StringItem('調教矢印コード', 1, 154, 'jrdb.Contender.trainer_outlook'),
-        StringItem('厩舎評価コード', 1, 155, 'jrdb.Contender.stable_outlook'),
+        ChoiceItem('調教矢印コード', 1, 154, 'jrdb.Contender.trainer_outlook', choices.TRAINER_HORSE_EVALUATION.options()),
+        ChoiceItem('厩舎評価コード', 1, 155, 'jrdb.Contender.stable_outlook', choices.STABLE_HORSE_EVALUATION.options()),
         # 騎手Ａが単勝基準オッズＢの馬に乗った場合の過去の成績を集計し、算出された連対率を騎手期待連対率としています。
         FloatItem('騎手期待連対率', 4, 156, 'jrdb.Contender.jockey_exp_1o2_place_rate'),
         # ＪＲＤＢでの穴馬分析は激走指数
         IntegerItem('激走指数', 3, 160, 'jrdb.Contender.flat_out_run_idx'),
         ChoiceItem('蹄コード', 2, 163, 'jrdb.Contender.paddock_observed_hoof', choices.PADDOCK_OBSERVED_HOOF.options()),
-        StringItem('重適性コード', 1, 165, 'jrdb.Contender.yield_track_apt'),
+        ChoiceItem('重適性コード', 1, 165, 'jrdb.Contender.yield_track_apt', choices.YIELDING_TRACK_APTITUDE.options()),
         # TODO: why is each horse different? IGNORE
         # IntegerItem('jrdb.race_class', 'クラスコード', 2, '99', '167'),
         # ===以下第４版にて追加===
@@ -68,7 +68,7 @@ class KYI(Template, DjangoUpsertMixin):
         FloatItem('負担重量', 3, 183, 'jrdb.Contender.mounted_weight'),
         ChoiceItem('見習い区分', 1, 186, 'jrdb.Contender.weight_reduction', choices.WEIGHT_REDUCTION.options()),
         StringItem('調教師名', 12, 187, 'jrdb.Trainer.name'),
-        ChoiceItem('調教師所属', 4, 199, 'jrdb.Trainer.area', choices.AREA.options()),
+        StringItem('調教師所属', 4, 199, 'jrdb.Trainer.training_center_name'),
         # 他データリンク用キー
         # '前走１競走成績キー', '16', '204'  # IGNORE
         # '前走２競走成績キー', '16', '220'  # IGNORE
@@ -123,8 +123,8 @@ class KYI(Template, DjangoUpsertMixin):
         # StringItem('枠確定馬体重', 3, 396, 'jrdb.Contender.post_position_decision_time_weight'), # データ無
         # StringItem('枠確定馬体重増減', 3, 399, 'jrdb.Contender.post_position_decision_time_weight_diff'), # データ無
         # ===以下第７版にて追加===
-        BooleanItem('取消フラグ', 1, 402, 'jrdb.Contender.is_cancelled', value_false=''),
-        StringItem('性別コード', 1, 403, 'jrdb.Horse.sex'),
+        BooleanItem('取消フラグ', 1, 402, 'jrdb.Contender.is_scratched', value_false=''),
+        ChoiceItem('性別コード', 1, 403, 'jrdb.Horse.sex', choices.SEX.options()),
         StringItem('馬主名', 40, 404, 'jrdb.Horse.owner_name'),
         ForeignKeyItem('馬主会コード', 2, 444, 'jrdb.Horse.owner_racetrack', 'jrdb.Racetrack.code'),
         ChoiceItem('馬記号コード', 2, 446, 'jrdb.Horse.symbol', choices.HORSE_SYMBOL.options()),
@@ -183,7 +183,7 @@ class KYI(Template, DjangoUpsertMixin):
                    choices.PRIOR_CONTEXT_RACE_CLASS.options()),
         IntegerItem('転厩フラグ', 1, 546, 'jrdb.Contender.nth_race_since_stable_change'),
         IntegerItem('去勢フラグ', 1, 547, 'jrdb.Contender.nth_race_since_castration'),
-        # ChoiceItem('乗替フラグ', 1, 548, 'jrdb.Contender.???'), # jockey change?
+        # TODO: ChoiceItem('乗替フラグ', 1, 548, 'jrdb.Contender.???'), # jockey change?
         IntegerItem('入厩何走目', 2, 559, 'jrdb.Contender.nth_race_since_training_start'),
         DateItem('入厩年月日', 8, 561, 'jrdb.Contender.training_start_date'),
         IntegerItem('入厩何日前', 3, 569, 'jrdb.Contender.nth_day_since_training_start'),

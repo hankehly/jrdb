@@ -348,16 +348,37 @@ class PHYSIQUE(ChoiceMixin):
 
 
 class PRIOR_CONTEXT_RACE_CLASS(ChoiceMixin):
+    """
+    クラスフラグ
+
+    http://www.jrdb.com/program/Kyi/ky_siyo_doc.txt
+    """
     NO_CHANGE = 'NO_CHANGE'
-    POST_PROMOTION_FIRST = 'POST_PROMOTION_FIRST'
+    POST_RISE_RANK_FIRST = 'POST_RISE_RANK_FIRST'
     RANK_LOWERED = 'RANK_LOWERED'
     ATTEMPT_RISE_RANK = 'ATTEMPT_RISE_RANK'
+    MAP = (
+        ('0', NO_CHANGE, '変化なし'),
+        ('1', POST_RISE_RANK_FIRST, '昇級初戦'),
+        ('2', RANK_LOWERED, '降級'),
+        ('3', ATTEMPT_RISE_RANK, '格上挑戦')
+    )
 
 
 class PRIOR_CONTEXT_SURFACE(ChoiceMixin):
+    """
+    芝ダ障害フラグ
+
+    http://www.jrdb.com/program/Kyi/ky_siyo_doc.txt
+    """
     NO_CHANGE = 'NO_CHANGE'
     CHANGE = 'CHANGE'
     FIRST = 'FIRST'
+    MAP = (
+        ('0', NO_CHANGE, '変化なし'),
+        ('1', CHANGE, 'トラック替り(芝ダ替り)'),
+        ('2', FIRST, '初トラック(初芝,初ダ,初障)')
+    )
 
 
 class HORSE_SYMBOL(ChoiceMixin):
@@ -366,7 +387,9 @@ class HORSE_SYMBOL(ChoiceMixin):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
+    NA = 'NA'
     MAP = (
+        ('00', NA, 'NA'),
         ('01', '01', '○抽'),
         ('02', '02', '□抽'),
         ('03', '03', '○父'),
@@ -767,7 +790,7 @@ class STABLE_HORSE_EVALUATION(ChoiceMixin):
         ('1', SUPER_CONFIDENT, '超強気'),
         ('2', CONFIDENT, '強気'),
         ('3', NO_CHANGE, '現状維持'),
-        ('3', NOT_CONFIDENT, '弱気'),
+        ('4', NOT_CONFIDENT, '弱気'),
     )
 
 

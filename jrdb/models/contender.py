@@ -133,9 +133,9 @@ class Contender(models.Model):
                                                choices=choices.RACE_DEVELOPMENT_SYMBOL.CHOICES())
 
     dist_apt_2 = models.PositiveSmallIntegerField('距離適性２', null=True)
-    # null is not a valid value for is_cancelled, so do not use NullBooleanField
+    # null is not an acceptable value for is_scratched, so do not use NullBooleanField
     # but may be missing during import, so setting null=True on BooleanField
-    is_cancelled = models.BooleanField('取消フラグ', null=True)
+    is_scratched = models.BooleanField('取消フラグ', null=True)
     flat_out_run_position = models.PositiveSmallIntegerField('激走順位', null=True, help_text='レース出走馬中での順位')
     ls_idx_position = models.PositiveSmallIntegerField('LS指数順位', null=True)
     b3f_idx_position = models.PositiveSmallIntegerField('テン指数順位', null=True)
