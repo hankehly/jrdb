@@ -35,8 +35,7 @@ class OTTestCase(JRDBTestCase):
         exp = {'num': 1, 'contender_count': 13}
         self.assertSubDict(exp, act)
 
-        # only test for a few groups
-        # because there are 816 groups of 6 digit numbers
+        self.assertEqual(len(self.race.odds_trio), 816)
         self.assertEqual(self.race.odds_trio[0], 232.5)
         self.assertEqual(self.race.odds_trio[408], 182.3)
         self.assertEqual(self.race.odds_trio[815], None)

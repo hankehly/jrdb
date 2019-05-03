@@ -35,8 +35,7 @@ class OUTestCase(JRDBTestCase):
         exp = {'num': 1, 'contender_count': 13}
         self.assertSubDict(exp, act)
 
-        # only test for a few groups
-        # because there are 306 groups of 6 digit numbers
+        self.assertEqual(len(self.race.odds_exacta), 306)
         self.assertEqual(self.race.odds_exacta[0], 57.8)
         self.assertEqual(self.race.odds_exacta[153], 317.9)
         self.assertEqual(self.race.odds_exacta[305], None)
