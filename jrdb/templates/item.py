@@ -115,14 +115,14 @@ class ArrayItem(ModelItem):
     def base_field(self):
         return self.get_field().base_field
 
-    def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
+    def transform(self, se: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
 
         base_field_type = self.base_field.get_internal_type()
 
-        se = s.copy()
+        se = se.copy()
         if base_field_type in MODEL_ITEM_FIELD_MAP['IntegerItem']:
-            se = se.apply(lambda a: [int(el) if el.isdigit() else 0 for el in map(str.strip, a)])
+            se = se.apply(lambda a: [int(el) if el.isdigit() else None for el in map(str.strip, a)])
         elif base_field_type in MODEL_ITEM_FIELD_MAP['FloatItem']:
             se = se.apply(lambda a: pd.Series(a).apply(parse_float_or).tolist())
 
