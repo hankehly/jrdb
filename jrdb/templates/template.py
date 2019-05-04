@@ -7,9 +7,9 @@ import numpy as np
 import pandas as pd
 from django.apps import apps
 from django.db import connection
+from django.db.models import Q
 from django.utils.functional import cached_property
 
-from ..models import Program
 from .item import ArrayItem
 
 logger = logging.getLogger(__name__)
@@ -85,6 +85,12 @@ class Template(ABC):
 class DjangoUpsertMixin:
     """
     A class to handle SQL upsert queries.
+
+    TODO: This class is poorly built and needs refactoring
+        - constructor should set class fields
+        - should not pass around symbol and other args
+        - needs better separation of concerns in upsert method
+
     """
 
     def _get_unique_together(self, symbol: str):
@@ -148,9 +154,15 @@ class DjangoUpsertMixin:
         with connection.cursor() as c:
             c.execute(sql)
 
-        # TODO: Fetch only records with matching attribute combinations
-        lookup = {f'{name}__in': df[name].tolist() for name in unique_columns}
-        return model.objects.filter(**lookup).values('id', *unique_columns)
+        # return queryset
+        queryset = model.objects.all()
+        lookup = None
+        for attrs in df[unique_columns].to_dict('records'):
+            if lookup is None:
+                lookup = Q(**attrs)
+            else:
+                lookup = lookup | Q(**attrs)
+        return queryset.filter(lookup).values('id', *unique_columns)
 
 
 class ProgramRaceLoadMixin(DjangoUpsertMixin):
