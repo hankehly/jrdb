@@ -1,18 +1,11 @@
-import logging
-import re
 from abc import ABC
 from typing import List, Any, Union
 
 import numpy as np
 import pandas as pd
-from django.apps import apps
-from django.db import connection
-from django.db.models import Q
 from django.utils.functional import cached_property
 
 from .item import ArrayItem
-
-logger = logging.getLogger(__name__)
 
 
 class Template(ABC):
@@ -23,6 +16,11 @@ class Template(ABC):
         self.path = path
         self._df = None
         self._transform_df = None
+
+    @property
+    def loader_cls(self):
+        from .loader import DjangoPostgresUpsertLoader
+        return DjangoPostgresUpsertLoader
 
     @property
     def df(self) -> pd.DataFrame:
@@ -80,170 +78,6 @@ class Template(ABC):
             item = next(item for item in self.items if item.key == col)
             objs.append(item.transform(self.df[col]))
         return pd.concat(objs, axis='columns')
-
-
-class DjangoUpsertMixin:
-    """
-    A class to handle SQL upsert queries.
-
-    TODO: This class is poorly built and needs refactoring
-        - constructor should set class fields
-        - should not pass around symbol and other args
-        - needs better separation of concerns in upsert method
-
-    """
-
-    def _get_unique_together(self, symbol: str):
-        meta = apps.get_model(symbol)._meta
-        return meta.unique_together[0] if meta.unique_together else []
-
-    def _get_foreign_key_fields(self, symbol: str):
-        meta = apps.get_model(symbol)._meta
-        unique_together = self._get_unique_together(symbol)
-
-        return [
-            meta.get_field(field) for field in unique_together if
-            meta.get_field(field).is_relation and hasattr(meta.get_field(field).remote_field, 'model')
-        ]
-
-    def _build_insert_df(self, symbol: str, **kwargs):
-        prefix = apps.get_model(symbol)._meta.model_name + '__'
-        df = self.transform.pipe(startswith, prefix, rename=True)
-
-        for field in self._get_foreign_key_fields(symbol):
-            if field.attname in kwargs:
-                df[field.attname] = kwargs[field.attname]
-
-        return df.drop_duplicates()
-
-    def _format_values_string(self, string: str) -> str:
-        return re.sub(r'(None|nan|NaN)', 'NULL', string).replace('\'NaT\'', 'NULL').replace(',)', ')')
-
-    def upsert(self, symbol: str, **kwargs):
-        """
-        Perform postgres INSERT ... ON CONFLICT upsert
-
-        :param symbol: app_label "." model_name
-        :param kwargs:
-            foreign key series (ex. {'program_id': pd.Series([1, 1, 1, 2, 2, 2, ...])})
-            conflict action predicate (the WHERE clause)
-        :return: A values QuerySet<Model> containing only unique identifier keys
-        """
-        df = self._build_insert_df(symbol, **kwargs)
-
-        # gather query data
-        model = apps.get_model(symbol)
-        columns = ','.join('"{}"'.format(key) for key in df.columns)
-
-        values_dirty = ','.join(map(str, map(tuple, df.values)))
-        values = self._format_values_string(values_dirty)
-
-        unique_columns = [model._meta.get_field(field).attname for field in self._get_unique_together(symbol)]
-        conflict_target = ','.join('"{}"'.format(key) for key in unique_columns)
-        update_columns = ','.join((f'{key}=excluded.{key}' for key in df.columns if key not in unique_columns))
-
-        # build SQL query
-        sql = f'INSERT INTO {model._meta.db_table} ({columns}) VALUES {values}'
-        if conflict_target and update_columns:
-            sql += f'ON CONFLICT ({conflict_target}) DO UPDATE SET {update_columns} '
-        else:
-            sql += 'ON CONFLICT DO NOTHING '
-        if 'index_predicate' in kwargs:
-            sql += ' '.join(('WHERE', kwargs['index_predicate']))
-
-        with connection.cursor() as c:
-            c.execute(sql)
-
-        # return queryset
-        queryset = model.objects.all()
-        lookup = None
-        for attrs in df[unique_columns].to_dict('records'):
-            if lookup is None:
-                lookup = Q(**attrs)
-            else:
-                lookup = lookup | Q(**attrs)
-        return queryset.filter(lookup).values('id', *unique_columns)
-
-
-class DjangoPostgresUpsertLoader:
-
-    def __init__(self, df: pd.DataFrame, app_label: str, model_name: str = None, index_predicate: str = None) -> None:
-        self.df = df
-        self.app_label = app_label
-        self.model_name = model_name
-        self.index_predicate = index_predicate
-
-    @cached_property
-    def model(self) -> Any:
-        return apps.get_model(self.app_label, self.model_name)
-
-    @cached_property
-    def unique_columns(self) -> List[str]:
-        """
-        Assumes:
-            - unique keys are listed in unique_together
-            - only 1 unique index
-        """
-        cols = []
-        if self.model._meta.unique_together:
-            cols = [self.model._meta.get_field(name).attname for name in self.model._meta.unique_together[0]]
-        return cols
-
-    def _build_insert(self) -> str:
-        columns = ','.join('"{}"'.format(key) for key in self.df.columns)
-
-        values_dirty = ','.join(map(str, map(tuple, self.df.values)))
-        values = re.sub(r'(None|nan|NaN|\'NaT\')', 'NULL', values_dirty).replace(',)', ')')
-
-        return ' '.join([
-            f'INSERT INTO {self.model._meta.db_table} ({columns})',
-            f'VALUES {values}'
-        ])
-
-    def _build_conflict(self) -> str:
-        update_cols = ','.join([f'{key}=EXCLUDED.{key}' for key in self.df.columns if key not in self.unique_columns])
-        conflict_target = ','.join('"{}"'.format(key) for key in self.unique_columns)
-
-        sql = 'ON CONFLICT'
-        if conflict_target and update_cols:
-            sql = ' '.join([sql, f'({conflict_target}) DO UPDATE SET {update_cols}'])
-        else:
-            sql = ' '.join([sql, 'DO NOTHING'])
-
-        if self.index_predicate:
-            sql = ' '.join([sql, 'WHERE', self.index_predicate])
-
-        return sql
-
-    def _build_sql(self):
-        return ' '.join([
-            self._build_insert(),
-            self._build_conflict()
-        ])
-
-    def _result_queryset(self):
-        lookup = None
-        for kwargs in self.df[self.unique_columns].to_dict('records'):
-            if lookup is None:
-                lookup = Q(**kwargs)
-            else:
-                lookup = lookup | Q(**kwargs)
-        return self.model.objects.filter(lookup).values('id', *self.unique_columns)
-
-    def load(self):
-        sql = self._build_sql()
-        with connection.cursor() as c:
-            c.execute(sql)
-        return self._result_queryset()
-
-
-class ProgramRaceLoadMixin(DjangoUpsertMixin):
-
-    def load(self):
-        pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = DjangoPostgresUpsertLoader(pdf, 'jrdb.Program').load().to_dataframe()
-        program_id = pdf.merge(programs, how='left').id
-        self.upsert('jrdb.Race', program_id=program_id)
 
 
 def startswith(

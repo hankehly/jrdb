@@ -1,9 +1,6 @@
-import logging
-
 from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from .template import ProgramRaceLoadMixin, Template
-
-logger = logging.getLogger(__name__)
+from .loader import ProgramRaceLoadMixin
+from .template import Template
 
 
 class OT(Template, ProgramRaceLoadMixin):

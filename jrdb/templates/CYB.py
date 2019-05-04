@@ -1,13 +1,9 @@
-import logging
-
 from ..models import choices
-from .template import Template, startswith, ProgramRaceLoadMixin
+from .template import Template, startswith
 from .item import IntegerItem, StringItem, ForeignKeyItem, BooleanItem, ChoiceItem, DateItem
 
-logger = logging.getLogger(__name__)
 
-
-class CYB(Template, ProgramRaceLoadMixin):
+class CYB(Template):
     """
     仕様: http://www.jrdb.com/program/Cyb/cyb_doc.txt
     内容説明: http://www.jrdb.com/program/Cyb/cybsiyo_doc.txt
@@ -49,12 +45,13 @@ class CYB(Template, ProgramRaceLoadMixin):
 
     def load(self):
         pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = self.upsert('jrdb.Program').to_dataframe()
-        program_id = pdf.merge(programs).id
+        programs = self.loader_cls(pdf, 'jrdb.Program').load().to_dataframe()
 
         rdf = self.transform.pipe(startswith, 'race__', rename=True)
-        races = self.upsert('jrdb.Race', program_id=program_id).to_dataframe()
-        rdf['program_id'] = program_id
-        race_id = rdf[['program_id', 'num']].merge(races, how='left').id
+        rdf['program_id'] = pdf.merge(programs, how='left').id
+        races = self.loader_cls(rdf, 'jrdb.Race').load().to_dataframe()
 
-        self.upsert('jrdb.Contender', race_id=race_id)
+        cdf = self.transform.pipe(startswith, 'contender__', rename=True)
+        cdf['race_id'] = rdf[['program_id', 'num']].merge(races, how='left').id
+
+        self.loader_cls(cdf, 'jrdb.Contender').load()

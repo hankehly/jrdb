@@ -1,4 +1,3 @@
-import logging
 import math
 
 import numpy as np
@@ -6,9 +5,8 @@ import pandas as pd
 
 from ..models import choices
 from .item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem
-from .template import Template, ProgramRaceLoadMixin
-
-logger = logging.getLogger(__name__)
+from .loader import ProgramRaceLoadMixin
+from .template import Template
 
 
 # TODO: Move inline

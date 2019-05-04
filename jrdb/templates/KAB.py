@@ -1,15 +1,11 @@
-import logging
-
 import numpy as np
 
 from ..models import choices
-from .template import Template, DjangoUpsertMixin
+from .template import Template, startswith
 from .item import ForeignKeyItem, IntegerItem, StringItem, ChoiceItem, BooleanItem, FloatItem
 
-logger = logging.getLogger(__name__)
 
-
-class KAB(Template, DjangoUpsertMixin):
+class KAB(Template):
     """
     http://www.jrdb.com/program/Kab/kab_doc.txt
 
@@ -54,4 +50,5 @@ class KAB(Template, DjangoUpsertMixin):
     ]
 
     def load(self):
-        self.upsert('jrdb.Program')
+        df = self.transform.pipe(startswith, 'program__', rename=True)
+        self.loader_cls(df, 'jrdb.Program').load()

@@ -1,5 +1,6 @@
 from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from .template import ProgramRaceLoadMixin, Template
+from .loader import ProgramRaceLoadMixin
+from .template import Template
 
 
 class OW(Template, ProgramRaceLoadMixin):

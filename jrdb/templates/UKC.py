@@ -1,13 +1,9 @@
-import logging
-
 from ..models import choices
 from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem, BooleanItem
-from .template import Template, DjangoUpsertMixin
-
-logger = logging.getLogger(__name__)
+from .template import Template, startswith
 
 
-class UKC(Template, DjangoUpsertMixin):
+class UKC(Template):
     """
     http://www.jrdb.com/program/Ukc/ukc_doc.txt
     """
@@ -36,7 +32,6 @@ class UKC(Template, DjangoUpsertMixin):
     ]
 
     def load(self):
-        self.upsert(
-            symbol='jrdb.Horse',
-            index_predicate='horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'
-        )
+        df = self.transform.pipe(startswith, 'horse__', rename=True)
+        index_predicate = 'horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'
+        self.loader_cls(df, 'jrdb.Horse', index_predicate=index_predicate).load()

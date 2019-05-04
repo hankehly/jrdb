@@ -1,13 +1,9 @@
-import logging
-
 from ..models import choices
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
-from .template import Template, startswith, DjangoUpsertMixin
-
-logger = logging.getLogger(__name__)
+from .template import Template, startswith
 
 
-class KYI(Template, DjangoUpsertMixin):
+class KYI(Template):
     """
     http://www.jrdb.com/program/Kyi/kyi_doc.txt
     http://www.jrdb.com/program/Kyi/ky_siyo_doc.txt
@@ -194,25 +190,24 @@ class KYI(Template, DjangoUpsertMixin):
 
     def load(self):
         pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = self.upsert('jrdb.Program').to_dataframe()
-        program_id = pdf.merge(programs, how='left').id
+        programs = self.loader_cls(pdf, 'jrdb.Program').load().to_dataframe()
 
-        races = self.upsert('jrdb.Race', program_id=program_id).to_dataframe()
-        rdf = self.transform.pipe(startswith, 'race__', rename=True)
-
-        horses = self.upsert('jrdb.Horse').to_dataframe()
         hdf = self.transform.pipe(startswith, 'horse__', rename=True)
+        horses = self.loader_cls(hdf, 'jrdb.Horse').load().to_dataframe()
 
-        jockeys = self.upsert('jrdb.Jockey').to_dataframe()
         jdf = self.transform.pipe(startswith, 'jockey__', rename=True)
+        jockeys = self.loader_cls(jdf, 'jrdb.Jockey').load().to_dataframe()
 
-        trainers = self.upsert('jrdb.Trainer').to_dataframe()
         tdf = self.transform.pipe(startswith, 'trainer__', rename=True)
+        trainers = self.loader_cls(tdf, 'jrdb.Trainer').load().to_dataframe()
 
-        rdf['program_id'] = program_id
-        race_id = rdf[['program_id', 'num']].merge(races, how='left').id
-        horse_id = hdf.merge(horses, how='left').id
-        jockey_id = jdf.merge(jockeys, how='left').id
-        trainer_id = tdf.merge(trainers, how='left').id
+        rdf = self.transform.pipe(startswith, 'race__', rename=True)
+        rdf['program_id'] = pdf.merge(programs, how='left').id
+        races = self.loader_cls(rdf, 'jrdb.Race').load().to_dataframe()
 
-        self.upsert('jrdb.Contender', race_id=race_id, horse_id=horse_id, jockey_id=jockey_id, trainer_id=trainer_id)
+        cdf = self.transform.pipe(startswith, 'contender__', rename=True)
+        cdf['race_id'] = rdf[['program_id', 'num']].merge(races, how='left').id
+        cdf['horse_id'] = hdf.merge(horses, how='left').id
+        cdf['jockey_id'] = jdf.merge(jockeys, how='left').id
+        cdf['trainer_id'] = tdf.merge(trainers, how='left').id
+        self.loader_cls(cdf, 'jrdb.Contender').load()

@@ -1,15 +1,11 @@
-import logging
-
 from django.utils.functional import cached_property
 
 from ..models import choices
-from .template import Template, DjangoUpsertMixin
+from .template import Template, startswith
 from .item import StringItem, DateItem, ChoiceItem, IntegerItem, ArrayItem
 
-logger = logging.getLogger(__name__)
 
-
-class KZA(Template, DjangoUpsertMixin):
+class KZA(Template):
     """
     http://www.jrdb.com/program/Ks/Ks_doc1.txt
     """
@@ -50,7 +46,6 @@ class KZA(Template, DjangoUpsertMixin):
         return super().transform
 
     def load(self):
-        self.upsert(
-            symbol='jrdb.Jockey',
-            index_predicate='jockeys.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= jockeys.jrdb_saved_on'
-        )
+        df = self.transform.pipe(startswith, 'jockey__', rename=True)
+        index_predicate = 'jockeys.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= jockeys.jrdb_saved_on'
+        self.loader_cls(df, 'jrdb.Jockey', index_predicate=index_predicate).load()

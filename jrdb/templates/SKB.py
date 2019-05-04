@@ -1,12 +1,8 @@
-import logging
-
-from .template import Template, startswith, DjangoUpsertMixin
+from .template import Template, startswith
 from .item import ForeignKeyItem, IntegerItem, StringItem, BooleanItem
 
-logger = logging.getLogger(__name__)
 
-
-class SKB(Template, DjangoUpsertMixin):
+class SKB(Template):
     """
     http://www.jrdb.com/program/Skb/skb_doc.txt
     """
@@ -41,17 +37,16 @@ class SKB(Template, DjangoUpsertMixin):
 
     def load(self):
         pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = self.upsert('jrdb.Program').to_dataframe()
-        program_id = pdf.merge(programs, how='left').id
-
-        races = self.upsert('jrdb.Race', program_id=program_id).to_dataframe()
-        rdf = self.transform.pipe(startswith, 'race__', rename=True)
+        programs = self.loader_cls(pdf, 'jrdb.Program').load().to_dataframe()
 
         hdf = self.transform.pipe(startswith, 'horse__', rename=True)
-        horses = self.upsert('jrdb.Horse').to_dataframe()
+        horses = self.loader_cls(hdf, 'jrdb.Horse').load().to_dataframe()
 
-        rdf['program_id'] = program_id
-        race_id = rdf[['program_id', 'num']].merge(races, how='left').id
-        horse_id = hdf.merge(horses, how='left').id
+        rdf = self.transform.pipe(startswith, 'race__', rename=True)
+        rdf['program_id'] = pdf.merge(programs, how='left').id
+        races = self.loader_cls(rdf, 'jrdb.Race').load().to_dataframe()
 
-        self.upsert('jrdb.Contender', race_id=race_id, horse_id=horse_id)
+        cdf = self.transform.pipe(startswith, 'contender__', rename=True)
+        cdf['race_id'] = rdf[['program_id', 'num']].merge(races, how='left').id
+        cdf['horse_id'] = hdf.merge(horses, how='left').id
+        self.loader_cls(cdf, 'jrdb.Contender').load()
