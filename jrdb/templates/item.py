@@ -125,6 +125,8 @@ class ArrayItem(ModelItem):
             se = se.apply(lambda a: [int(el) if el.isdigit() else None for el in map(str.strip, a)])
         elif base_field_type in MODEL_ITEM_FIELD_MAP['FloatItem']:
             se = se.apply(lambda a: pd.Series(a).apply(parse_float_or).tolist())
+        else:
+            se = se.map(list).map(lambda lst: [None if x.replace(' ', '') == '' else x for x in lst])
 
         if self.mapper:
             se = se.apply(lambda arr: [self.mapper(item) for item in arr])

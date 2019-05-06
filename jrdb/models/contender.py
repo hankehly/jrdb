@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 from jrdb.models import choices
@@ -169,6 +170,7 @@ class Contender(models.Model):
     tail_swing_intensity = models.CharField('振', max_length=255, null=True,
                                             choices=choices.TAIL_SWING_INTENSITY.CHOICES())
 
+    # TODO: Array field?
     figure_sp_mention_1 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合１',
                                             null=True)
     figure_sp_mention_2 = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='体型総合２',
@@ -208,15 +210,16 @@ class Contender(models.Model):
     stable_rank = models.CharField('厩舎ランク', max_length=255, null=True, choices=choices.STABLE_RANK.CHOICES())
 
     # (SKB)
-    sp_mention = models.ForeignKey('jrdb.SpecialMentionCode', models.SET_NULL, '+', verbose_name='特記コード', null=True)
-    horse_gear = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='馬具コード', null=True)
+    # TODO: Foreign key validation
+    sp_mention = ArrayField(models.CharField(max_length=255, null=True), size=6, verbose_name='特記コード')
+    horse_gear = ArrayField(models.CharField(max_length=255, null=True), size=8, verbose_name='馬具コード')
 
     # 脚元コード
-    hoof_overall = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='総合', null=True)
-    hoof_front_left = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='左前', null=True)
-    hoof_front_right = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='右前', null=True)
-    hoof_back_left = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='左後', null=True)
-    hoof_back_right = models.ForeignKey('jrdb.HorseGearCode', models.SET_NULL, '+', verbose_name='右後', null=True)
+    hoof_overall = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='総合')
+    hoof_front_left = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='左前')
+    hoof_front_right = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='右前')
+    hoof_back_left = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='左後')
+    hoof_back_right = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='右後')
 
     paddock_comment = models.CharField('パドックコメント', max_length=40, null=True)
     hoof_comment = models.CharField('脚元コメント', max_length=40, null=True)
