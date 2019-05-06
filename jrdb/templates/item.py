@@ -122,9 +122,9 @@ class ArrayItem(ModelItem):
 
         se = se.copy()
         if base_field_type in MODEL_ITEM_FIELD_MAP['IntegerItem']:
-            se = se.apply(lambda a: [int(el) if el.isdigit() else None for el in map(str.strip, a)])
+            se = se.apply(lambda a: [parse_int_or(el) for el in a])
         elif base_field_type in MODEL_ITEM_FIELD_MAP['FloatItem']:
-            se = se.apply(lambda a: [parse_float_or(item) for item in a])
+            se = se.apply(lambda a: [parse_float_or(el) for el in a])
         else:
             se = se.map(list).map(lambda lst: [None if x.replace(' ', '') == '' else x for x in lst])
 
