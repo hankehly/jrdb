@@ -156,17 +156,17 @@ class ForeignKeyItem(ModelItem):
         self._validate()
         remote_field = self.get_remote_field()
 
-        remote_records = remote_field.model.objects \
-            .filter(**{f'{remote_field.name}__in': s}) \
-            .values(remote_field.name, 'id')
+        remote_records = (remote_field.model.objects
+                          .filter(**{f'{remote_field.name}__in': s})
+                          .values(remote_field.name, 'id'))
 
         model_name = self.get_model()._meta.model_name
         field_name = self.get_field().column
         index_name = '__'.join((model_name, field_name))
 
-        return s.map({record[remote_field.name]: record['id'] for record in remote_records}) \
-            .astype('Int64') \
-            .rename(index_name)
+        return (s.map({record[remote_field.name]: record['id'] for record in remote_records})
+                .astype('Int64')
+                .rename(index_name))
 
     def _validate(self) -> None:
         super()._validate()
