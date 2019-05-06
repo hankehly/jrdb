@@ -211,15 +211,15 @@ class Contender(models.Model):
 
     # (SKB)
     # TODO: Foreign key validation
-    sp_mention = ArrayField(models.CharField(max_length=255, null=True), size=6, verbose_name='特記コード')
-    horse_gear = ArrayField(models.CharField(max_length=255, null=True), size=8, verbose_name='馬具コード')
+    sp_mention = ArrayField(models.CharField(max_length=255, null=True), size=6, verbose_name='特記コード', null=True)
+    horse_gear = ArrayField(models.CharField(max_length=255, null=True), size=8, verbose_name='馬具コード', null=True)
 
     # 脚元コード
-    hoof_overall = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='総合')
-    hoof_front_left = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='左前')
-    hoof_front_right = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='右前')
-    hoof_back_left = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='左後')
-    hoof_back_right = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='右後')
+    hoof_overall = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='総合', null=True)
+    hoof_front_left = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='左前', null=True)
+    hoof_front_right = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='右前', null=True)
+    hoof_back_left = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='左後', null=True)
+    hoof_back_right = ArrayField(models.CharField(max_length=255, null=True), size=3, verbose_name='右後', null=True)
 
     paddock_comment = models.CharField('パドックコメント', max_length=40, null=True)
     hoof_comment = models.CharField('脚元コメント', max_length=40, null=True)
