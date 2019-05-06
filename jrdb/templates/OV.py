@@ -15,5 +15,6 @@ class OV(Template, ProgramRaceLoadMixin):
         StringItem('日', 1, 5, 'jrdb.Program.day'),
         IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
         IntegerItem('登録頭数', 2, 8, 'jrdb.Race.contender_count'),
-        ArrayItem('３連単オッズ', 7 * 4896, 10, 'jrdb.Race.odds_trifecta', 4896, lambda n: round(n * 0.1, 1))
+        ArrayItem('３連単オッズ', 7 * 4896, 10, 'jrdb.Race.odds_trifecta', 4896,
+                  lambda n: None if n is None else round(n * 0.1, 1))
     ]

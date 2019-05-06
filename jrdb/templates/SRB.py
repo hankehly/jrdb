@@ -15,7 +15,8 @@ class SRB(Template, ProgramRaceLoadMixin):
         StringItem('日', 1, 5, 'jrdb.Program.day'),
         IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
 
-        ArrayItem('ハロンタイム', 3 * 18, 8, 'jrdb.Race.furlong_times', size=18, mapper=lambda n: round(n * 0.1, 1)),
+        ArrayItem('ハロンタイム', 3 * 18, 8, 'jrdb.Race.furlong_times', size=18,
+                  mapper=lambda n: None if n is None else round(n * 0.1, 1)),
         # ArrayItem('１コーナー', 64, 62, 'jrdb.Race.c1pos', ),  # TODO: 意味不明
         # ArrayItem('２コーナー', 64, 126, 'jrdb.Race.c2pos', ),  # TODO: 意味不明
         # ArrayItem('３コーナー', 64, 190, 'jrdb.Race.c3pos', ),  # TODO: 意味不明
