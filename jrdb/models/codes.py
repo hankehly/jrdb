@@ -78,6 +78,14 @@ class PaceFlowCode(SimpleCode):
         db_table = 'pace_flow_codes'
 
 
+class Pedigree(models.Model):
+    objects = SimpleCodeManager()
+
+    key = models.CharField(max_length=255, unique=True)
+    strain_small = models.CharField(max_length=255)
+    strain_large = models.CharField(max_length=255)
+
+
 class RaceClass(SimpleCode):
     """
     クラスコード

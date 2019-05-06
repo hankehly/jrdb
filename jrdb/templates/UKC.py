@@ -27,8 +27,8 @@ class UKC(Template):
         StringItem('産地名', 8, 259, 'jrdb.Horse.breeding_loc_name'),
         BooleanItem('登録抹消フラグ', 1, 267, 'jrdb.Horse.is_retired'),
         DateItem('データ年月日', 8, 268, 'jrdb.Horse.jrdb_saved_on'),
-        StringItem('父系統コード', 4, 276, 'jrdb.Horse.sire_genealogy_code'),
-        StringItem('母父系統コード', 4, 280, 'jrdb.Horse.damsire_genealogy_code'),
+        ForeignKeyItem('父系統コード', 4, 276, 'jrdb.Horse.pedigree_sire', 'jrdb.Pedigree.key'),
+        ForeignKeyItem('母父系統コード', 4, 280, 'jrdb.Horse.pedigree_damsire', 'jrdb.Pedigree.key'),
     ]
 
     def load(self):

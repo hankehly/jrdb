@@ -3,6 +3,7 @@ from .codes import (
     HorseGearCode,
     HorseGearCodeCategory,
     PaceFlowCode,
+    Pedigree,
     RaceConditionCode,
     RaceConditionGroupCode,
     SpecialMentionCode,

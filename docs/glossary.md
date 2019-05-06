@@ -56,6 +56,7 @@
 | 付け根 | つけね | dock | The fleshy top part of the horse's tail ([1](https://www.habitatforhorses.org/kidscorral/vocabulary_I.html)) |
 | ２本（調教）| | 2 "runs" | ([1](https://company.jra.jp/equinst/magazine/pdf/paddock_21.pdf)) |
 | 野芝 | のしば | | ([1](https://keiba-thetop.com/shibamain/#outline__1_1)) |
+| 小系統 | | | 小系統は大系統をさらに細かく分類したものです ([1](http://blood-b.com/bunrui.html)) |
  
 ## Abbreviations
 In general, it is best not to abbreviate variable names for understandability; however, due to the large number of columns per table, the following abbreviations are used in db column names to prevent users from having to type unnecessarily long lines.  

@@ -1,0 +1,749 @@
+[
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 1,
+        "fields": {
+            "key": "1101",
+            "strain_small": "ノーザンダンサー系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 2,
+        "fields": {
+            "key": "1102",
+            "strain_small": "ニジンスキー系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 3,
+        "fields": {
+            "key": "1103",
+            "strain_small": "ヴァイスリージェント系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 4,
+        "fields": {
+            "key": "1104",
+            "strain_small": "リファール系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 5,
+        "fields": {
+            "key": "1105",
+            "strain_small": "ノーザンテースト系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 6,
+        "fields": {
+            "key": "1106",
+            "strain_small": "ダンジグ系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 7,
+        "fields": {
+            "key": "1107",
+            "strain_small": "ヌレイエフ系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 8,
+        "fields": {
+            "key": "1108",
+            "strain_small": "ストームバード系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 9,
+        "fields": {
+            "key": "1109",
+            "strain_small": "サドラーズウェルズ系",
+            "strain_large": "ノーザンダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 10,
+        "fields": {
+            "key": "1201",
+            "strain_small": "ロイヤルチャージャー系",
+            "strain_large": "ロイヤルチャージャー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 11,
+        "fields": {
+            "key": "1202",
+            "strain_small": "ターントゥ系",
+            "strain_large": "ロイヤルチャージャー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 12,
+        "fields": {
+            "key": "1203",
+            "strain_small": "ヘイルトゥリーズン系",
+            "strain_large": "ロイヤルチャージャー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 13,
+        "fields": {
+            "key": "1204",
+            "strain_small": "サーゲイロード系",
+            "strain_large": "ロイヤルチャージャー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 14,
+        "fields": {
+            "key": "1205",
+            "strain_small": "ハビタット系",
+            "strain_large": "ロイヤルチャージャー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 15,
+        "fields": {
+            "key": "1206",
+            "strain_small": "ヘイロー系",
+            "strain_large": "ロイヤルチャージャー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 16,
+        "fields": {
+            "key": "1207",
+            "strain_small": "ロベルト系",
+            "strain_large": "ロイヤルチャージャー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 17,
+        "fields": {
+            "key": "1301",
+            "strain_small": "ナスルーラ系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 18,
+        "fields": {
+            "key": "1302",
+            "strain_small": "グレイソヴリン系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 19,
+        "fields": {
+            "key": "1303",
+            "strain_small": "ネヴァーベンド系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 20,
+        "fields": {
+            "key": "1304",
+            "strain_small": "プリンスリーギフト系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 21,
+        "fields": {
+            "key": "1305",
+            "strain_small": "ボールドルーラー系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 22,
+        "fields": {
+            "key": "1306",
+            "strain_small": "レッドゴッド系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 23,
+        "fields": {
+            "key": "1307",
+            "strain_small": "ゼダーン系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 24,
+        "fields": {
+            "key": "1308",
+            "strain_small": "カロ系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 25,
+        "fields": {
+            "key": "1309",
+            "strain_small": "ミルリーフ系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 26,
+        "fields": {
+            "key": "1310",
+            "strain_small": "リヴァーマン系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 27,
+        "fields": {
+            "key": "1311",
+            "strain_small": "シアトルスルー系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 28,
+        "fields": {
+            "key": "1312",
+            "strain_small": "ブラッシンググルーム系",
+            "strain_large": "ナスルーラ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 29,
+        "fields": {
+            "key": "1401",
+            "strain_small": "ネアルコ系",
+            "strain_large": "ネアルコ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 30,
+        "fields": {
+            "key": "1402",
+            "strain_small": "ニアークティック系",
+            "strain_large": "ネアルコ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 31,
+        "fields": {
+            "key": "1403",
+            "strain_small": "デリングドゥ系",
+            "strain_large": "ネアルコ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 32,
+        "fields": {
+            "key": "1501",
+            "strain_small": "ネイティヴダンサー系",
+            "strain_large": "ネイティヴダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 33,
+        "fields": {
+            "key": "1502",
+            "strain_small": "シャーペンアップ系",
+            "strain_large": "ネイティヴダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 34,
+        "fields": {
+            "key": "1503",
+            "strain_small": "ミスタープロスペクター系",
+            "strain_large": "ネイティヴダンサー系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 35,
+        "fields": {
+            "key": "1601",
+            "strain_small": "フェアウェイ系",
+            "strain_large": "フェアウェイ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 36,
+        "fields": {
+            "key": "1602",
+            "strain_small": "バックパサー系",
+            "strain_large": "フェアウェイ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 37,
+        "fields": {
+            "key": "1603",
+            "strain_small": "ファラリス系",
+            "strain_large": "フェアウェイ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 38,
+        "fields": {
+            "key": "1701",
+            "strain_small": "ダマスカス系",
+            "strain_large": "ダマスカス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 39,
+        "fields": {
+            "key": "1702",
+            "strain_small": "テディ系",
+            "strain_large": "ダマスカス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 40,
+        "fields": {
+            "key": "1801",
+            "strain_small": "ハイペリオン系",
+            "strain_large": "ハイペリオン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 41,
+        "fields": {
+            "key": "1802",
+            "strain_small": "オリオール系",
+            "strain_large": "ハイペリオン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 42,
+        "fields": {
+            "key": "1803",
+            "strain_small": "ロックフェラ系",
+            "strain_large": "ハイペリオン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 43,
+        "fields": {
+            "key": "1804",
+            "strain_small": "テューダーミンストレル系",
+            "strain_large": "ハイペリオン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 44,
+        "fields": {
+            "key": "1805",
+            "strain_small": "オーエンテューダー系",
+            "strain_large": "ハイペリオン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 45,
+        "fields": {
+            "key": "1806",
+            "strain_small": "スターキングダム系",
+            "strain_large": "ハイペリオン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 46,
+        "fields": {
+            "key": "1807",
+            "strain_small": "フォルリ系",
+            "strain_large": "ハイペリオン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 47,
+        "fields": {
+            "key": "1901",
+            "strain_small": "エクリプス系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 48,
+        "fields": {
+            "key": "1902",
+            "strain_small": "ブランドフォード系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 49,
+        "fields": {
+            "key": "1903",
+            "strain_small": "ドンカスター系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 50,
+        "fields": {
+            "key": "1904",
+            "strain_small": "ドミノ系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 51,
+        "fields": {
+            "key": "1905",
+            "strain_small": "ヒムヤー系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 52,
+        "fields": {
+            "key": "1906",
+            "strain_small": "エルバジェ系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 53,
+        "fields": {
+            "key": "1907",
+            "strain_small": "ダークロナルド系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 54,
+        "fields": {
+            "key": "1908",
+            "strain_small": "ファイントップ系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 55,
+        "fields": {
+            "key": "1909",
+            "strain_small": "ゲインズボロー系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 56,
+        "fields": {
+            "key": "1910",
+            "strain_small": "ハーミット系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 57,
+        "fields": {
+            "key": "1911",
+            "strain_small": "アイシングラス系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 58,
+        "fields": {
+            "key": "1912",
+            "strain_small": "コングリーヴ系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 59,
+        "fields": {
+            "key": "1913",
+            "strain_small": "ロックサンド系",
+            "strain_large": "エクリプス系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 60,
+        "fields": {
+            "key": "2001",
+            "strain_small": "セントサイモン系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 61,
+        "fields": {
+            "key": "2002",
+            "strain_small": "リボー系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 62,
+        "fields": {
+            "key": "2003",
+            "strain_small": "ヒズマジェスティ系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 63,
+        "fields": {
+            "key": "2004",
+            "strain_small": "グロースターク系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 64,
+        "fields": {
+            "key": "2005",
+            "strain_small": "トムロルフ系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 65,
+        "fields": {
+            "key": "2006",
+            "strain_small": "ワイルドリスク系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 66,
+        "fields": {
+            "key": "2007",
+            "strain_small": "チャウサー系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 67,
+        "fields": {
+            "key": "2008",
+            "strain_small": "プリンスローズ系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 68,
+        "fields": {
+            "key": "2009",
+            "strain_small": "プリンスキロ系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 69,
+        "fields": {
+            "key": "2010",
+            "strain_small": "ラウンドテーブル系",
+            "strain_large": "セントサイモン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 70,
+        "fields": {
+            "key": "2101",
+            "strain_small": "マッチェム系",
+            "strain_large": "マッチェム系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 71,
+        "fields": {
+            "key": "2102",
+            "strain_small": "フェアプレイ系",
+            "strain_large": "マッチェム系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 72,
+        "fields": {
+            "key": "2103",
+            "strain_small": "ハリーオン系",
+            "strain_large": "マッチェム系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 73,
+        "fields": {
+            "key": "2104",
+            "strain_small": "マンノウォー系",
+            "strain_large": "マッチェム系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 74,
+        "fields": {
+            "key": "2105",
+            "strain_small": "インリアリティ系",
+            "strain_large": "マッチェム系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 75,
+        "fields": {
+            "key": "2201",
+            "strain_small": "パーソロン系",
+            "strain_large": "パーソロン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 76,
+        "fields": {
+            "key": "2202",
+            "strain_small": "リュティエ系",
+            "strain_large": "パーソロン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 77,
+        "fields": {
+            "key": "2203",
+            "strain_small": "ジェベル系",
+            "strain_large": "パーソロン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 78,
+        "fields": {
+            "key": "2204",
+            "strain_small": "トウルビヨン系",
+            "strain_large": "パーソロン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 79,
+        "fields": {
+            "key": "2205",
+            "strain_small": "ザテトラーク系",
+            "strain_large": "パーソロン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 80,
+        "fields": {
+            "key": "2206",
+            "strain_small": "ヘロド系",
+            "strain_large": "パーソロン系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 81,
+        "fields": {
+            "key": "2301",
+            "strain_small": "サンドリッジ系",
+            "strain_large": "サンドリッジ系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 82,
+        "fields": {
+            "key": "2401",
+            "strain_small": "スウィンフォード系",
+            "strain_large": "スウィンフォード系"
+        }
+    },
+    {
+        "model": "jrdb.Pedigree",
+        "pk": 83,
+        "fields": {
+            "key": "9901",
+            "strain_small": "アラ系",
+            "strain_large": "アラ系"
+        }
+    }
+]
