@@ -1,43 +1,18 @@
-import math
-
-import numpy as np
 import pandas as pd
 
 from ..models import choices
-from .item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem
+from .item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem, BooleanItem
 from .loader import ProgramRaceLoadMixin
 from .template import Template
 
 
-# TODO: Move inline
-def nth_occurrence(s: pd.Series):
+def nth_occurrence(se: pd.Series):
     # casting to float prior to Int64 is necessary
     # to convert strings to numbers
-    return s.str.extract(r'([0-9]+)', expand=False) \
-        .astype(float) \
-        .astype('Int64') \
-        .rename('race__nth_occurrence')
-
-
-# TODO: Move inline
-def betting_ticket_sale_flag(s: pd.Series):
-    colmap = {
-        0: 'race__sold_win',  # 単勝
-        1: 'race__sold_show',  # 複勝
-        2: 'race__sold_bracket_quinella',  # 枠連
-        3: 'race__sold_quinella',  # 馬連
-        4: 'race__sold_exacta',  # 馬単
-        5: 'race__sold_duet',  # ワイド
-        6: 'race__sold_trio',  # ３連複
-        7: 'race__sold_trifecta'  # ３連単
-    }
-
-    return s.str.strip() \
-        .map(list) \
-        .apply(pd.Series) \
-        .astype(float) \
-        .applymap(lambda flag: np.nan if math.isnan(flag) else bool(flag)) \
-        .rename(columns=colmap)
+    return (se.str.extract(r'([0-9]+)', expand=False)
+            .astype(float)
+            .astype('Int64')
+            .rename('race__nth_occurrence'))
 
 
 class BAC(Template, ProgramRaceLoadMixin):
@@ -80,6 +55,13 @@ class BAC(Template, ProgramRaceLoadMixin):
         IntegerItem('５着賞金', 5, 145, 'jrdb.Race.p5_purse'),
         IntegerItem('１着算入賞金', 5, 150, 'jrdb.Race.p1_prize'),
         IntegerItem('２着算入賞金', 5, 155, 'jrdb.Race.p2_prize'),
-        InvokeItem('馬券発売フラグ', 16, 160, betting_ticket_sale_flag),
+        BooleanItem('単勝', 1, 160, 'jrdb.Race.sold_win'),
+        BooleanItem('複勝', 1, 161, 'jrdb.Race.sold_show'),
+        BooleanItem('枠連', 1, 162, 'jrdb.Race.sold_bracket_quinella'),
+        BooleanItem('馬連', 1, 163, 'jrdb.Race.sold_quinella'),
+        BooleanItem('馬単', 1, 164, 'jrdb.Race.sold_exacta'),
+        BooleanItem('ワイド', 1, 165, 'jrdb.Race.sold_duet'),
+        BooleanItem('３連複', 1, 166, 'jrdb.Race.sold_trio'),
+        BooleanItem('３連単', 1, 167, 'jrdb.Race.sold_trifecta'),
         IntegerItem('WIN5フラグ', 1, 176, 'jrdb.Race.win5'),
     ]
