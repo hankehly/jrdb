@@ -1,4 +1,9 @@
+import os
+
+from django.conf import settings
 from django.test import TestCase
+
+SAMPLES_DIR = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples')
 
 
 class JRDBTestCase(TestCase):
