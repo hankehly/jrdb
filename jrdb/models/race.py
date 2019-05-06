@@ -52,13 +52,16 @@ class Race(models.Model):
     p1_prize = models.PositiveSmallIntegerField(null=True)
     p2_prize = models.PositiveSmallIntegerField(null=True)
 
+    # SRB
+    furlong_times = ArrayField(models.FloatField(null=True), null=True, verbose_name='ハロンタイム')
+
     # track bias
-    c1_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True)
-    c2_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True)
-    bs_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True, verbose_name='Backstretch track bias')
-    c3_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True)
-    c4_track_bias = ArrayField(models.SmallIntegerField(), size=5, null=True)
-    hs_track_bias = ArrayField(models.SmallIntegerField(), size=5, null=True, verbose_name='Homestretch track bias')
+    c1_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True, verbose_name='トラックバイアス（１角）')
+    c2_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True, verbose_name='トラックバイアス（２角）')
+    bs_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True, verbose_name='トラックバイアス（向正）')
+    c3_track_bias = ArrayField(models.SmallIntegerField(), size=3, null=True, verbose_name='トラックバイアス（３角）')
+    c4_track_bias = ArrayField(models.SmallIntegerField(), size=5, null=True, verbose_name='トラックバイアス（４角）')
+    hs_track_bias = ArrayField(models.SmallIntegerField(), size=5, null=True, verbose_name='トラックバイアス（直線）')
 
     # betting ticket sales
     sold_win = models.BooleanField(null=True)

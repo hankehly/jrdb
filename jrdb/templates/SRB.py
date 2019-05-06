@@ -16,12 +16,12 @@ class SRB(Template, ProgramRaceLoadMixin):
         IntegerItem('Ｒ', 2, 6, 'jrdb.Race.num'),
 
         # TODO:
-        #   - ArrayItem('ハロンタイム', 3, 8, 'furlong_time'),
-        #   - ArrayItem('１コーナー', 64, 62, 'c1pos'),
-        #   - ArrayItem('２コーナー', 64, 126, 'c2pos'),
-        #   - ArrayItem('３コーナー', 64, 190, 'c3pos'),
-        #   - ArrayItem('４コーナー', 64, 254, 'c4pos'),
-        #   - ArrayItem('ペースアップ位置', 2, 318, 'pace_up_pos'),
+        ArrayItem('ハロンタイム', 3 * 18, 8, 'jrdb.Race.furlong_times', size=18, mapper=lambda n: round(n * 0.1, 1)),
+        # ArrayItem('１コーナー', 64, 62, 'jrdb.Race.c1pos', ),
+        # ArrayItem('２コーナー', 64, 126, 'jrdb.Race.c2pos', ),
+        # ArrayItem('３コーナー', 64, 190, 'jrdb.Race.c3pos', ),
+        # ArrayItem('４コーナー', 64, 254, 'jrdb.Race.c4pos', ),
+        # ArrayItem('ペースアップ位置', 2, 318, 'jrdb.Race.pace_up_pos', ),
 
         ArrayItem('トラックバイアス（１角）', 3, 320, 'jrdb.Race.c1_track_bias', 3),
         ArrayItem('トラックバイアス（２角）', 3, 323, 'jrdb.Race.c2_track_bias', 3),

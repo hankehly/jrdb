@@ -37,6 +37,10 @@ class SRBTestCase(JRDBTestCase):
         act = model_to_dict(self.race)
         exp = {
             'num': 1,
+            'furlong_times': [
+                12.1, 11.0, 11.4, 11.8, 11.4, 12.6,
+                None, None, None, None, None, None, None, None, None, None, None, None
+            ],
             'c1_track_bias': [None, None, None],
             'c2_track_bias': [None, None, None],
             'bs_track_bias': [2, 4, 3],
