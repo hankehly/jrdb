@@ -4,7 +4,8 @@
         "pk": 1,
         "fields": {
             "code": "01",
-            "name": "札幌"
+            "name": "札幌",
+            "name_en": "SAPPORO"
         }
     },
     {
@@ -12,7 +13,8 @@
         "pk": 2,
         "fields": {
             "code": "02",
-            "name": "函館"
+            "name": "函館",
+            "name_en": "HAKODATE"
         }
     },
     {
@@ -20,7 +22,8 @@
         "pk": 3,
         "fields": {
             "code": "03",
-            "name": "福島"
+            "name": "福島",
+            "name_en": "FUKUSHIMA"
         }
     },
     {
@@ -28,7 +31,8 @@
         "pk": 4,
         "fields": {
             "code": "04",
-            "name": "新潟"
+            "name": "新潟",
+            "name_en": "NIIGATA"
         }
     },
     {
@@ -36,7 +40,8 @@
         "pk": 5,
         "fields": {
             "code": "05",
-            "name": "東京"
+            "name": "東京",
+            "name_en": "TOKYO"
         }
     },
     {
@@ -44,7 +49,8 @@
         "pk": 6,
         "fields": {
             "code": "06",
-            "name": "中山"
+            "name": "中山",
+            "name_en": "NAKAYAMA"
         }
     },
     {
@@ -52,7 +58,8 @@
         "pk": 7,
         "fields": {
             "code": "07",
-            "name": "中京"
+            "name": "中京",
+            "name_en": "CHUKYO"
         }
     },
     {
@@ -60,7 +67,8 @@
         "pk": 8,
         "fields": {
             "code": "08",
-            "name": "京都"
+            "name": "京都",
+            "name_en": "KYOTO"
         }
     },
     {
@@ -68,7 +76,8 @@
         "pk": 9,
         "fields": {
             "code": "09",
-            "name": "阪神"
+            "name": "阪神",
+            "name_en": "HANSHIN"
         }
     },
     {
@@ -76,7 +85,8 @@
         "pk": 10,
         "fields": {
             "code": "10",
-            "name": "小倉"
+            "name": "小倉",
+            "name_en": "KOGURA"
         }
     },
     {
@@ -84,7 +94,8 @@
         "pk": 11,
         "fields": {
             "code": "21",
-            "name": "旭川"
+            "name": "旭川",
+            "name_en": "ASAHIKAWA"
         }
     },
     {
@@ -92,7 +103,8 @@
         "pk": 12,
         "fields": {
             "code": "22",
-            "name": "札幌"
+            "name": "札幌",
+            "name_en": "SAPPORO (LOCAL)"
         }
     },
     {
@@ -100,7 +112,8 @@
         "pk": 13,
         "fields": {
             "code": "23",
-            "name": "門別"
+            "name": "門別",
+            "name_en": "MONBETSU"
         }
     },
     {
@@ -108,7 +121,8 @@
         "pk": 14,
         "fields": {
             "code": "24",
-            "name": "函館"
+            "name": "函館",
+            "name_en": "HAKODATE (LOCAL)"
         }
     },
     {
@@ -116,7 +130,8 @@
         "pk": 15,
         "fields": {
             "code": "25",
-            "name": "盛岡"
+            "name": "盛岡",
+            "name_en": "MORIOKA"
         }
     },
     {
@@ -124,7 +139,8 @@
         "pk": 16,
         "fields": {
             "code": "26",
-            "name": "水沢"
+            "name": "水沢",
+            "name_en": "MIZUSAWA"
         }
     },
     {
@@ -132,7 +148,8 @@
         "pk": 17,
         "fields": {
             "code": "27",
-            "name": "上山"
+            "name": "上山",
+            "name_en": "KAMINOYAMA"
         }
     },
     {
@@ -140,7 +157,8 @@
         "pk": 18,
         "fields": {
             "code": "28",
-            "name": "新潟"
+            "name": "新潟",
+            "name_en": "NIIGATA (LOCAL)"
         }
     },
     {
@@ -148,7 +166,8 @@
         "pk": 19,
         "fields": {
             "code": "29",
-            "name": "三条"
+            "name": "三条",
+            "name_en": "SANJYO"
         }
     },
     {
@@ -156,7 +175,8 @@
         "pk": 20,
         "fields": {
             "code": "30",
-            "name": "足利"
+            "name": "足利",
+            "name_en": "ASHIKAGA"
         }
     },
     {
@@ -164,7 +184,8 @@
         "pk": 21,
         "fields": {
             "code": "31",
-            "name": "宇都"
+            "name": "宇都",
+            "name_en": "UTSUNOMIYA"
         }
     },
     {
@@ -172,7 +193,8 @@
         "pk": 22,
         "fields": {
             "code": "32",
-            "name": "高崎"
+            "name": "高崎",
+            "name_en": "TAKASAKI"
         }
     },
     {
@@ -180,7 +202,8 @@
         "pk": 23,
         "fields": {
             "code": "33",
-            "name": "浦和"
+            "name": "浦和",
+            "name_en": "URAWA"
         }
     },
     {
@@ -188,7 +211,8 @@
         "pk": 24,
         "fields": {
             "code": "34",
-            "name": "船橋"
+            "name": "船橋",
+            "name_en": "FUNABASHI"
         }
     },
     {
@@ -196,7 +220,8 @@
         "pk": 25,
         "fields": {
             "code": "35",
-            "name": "大井"
+            "name": "大井",
+            "name_en": "OHI"
         }
     },
     {
@@ -204,7 +229,8 @@
         "pk": 26,
         "fields": {
             "code": "36",
-            "name": "川崎"
+            "name": "川崎",
+            "name_en": "KAWASAKI"
         }
     },
     {
@@ -212,7 +238,8 @@
         "pk": 27,
         "fields": {
             "code": "37",
-            "name": "金沢"
+            "name": "金沢",
+            "name_en": "KANAZAWA"
         }
     },
     {
@@ -220,7 +247,8 @@
         "pk": 28,
         "fields": {
             "code": "38",
-            "name": "笠松"
+            "name": "笠松",
+            "name_en": "KASAMATSU"
         }
     },
     {
@@ -228,7 +256,8 @@
         "pk": 29,
         "fields": {
             "code": "39",
-            "name": "名古"
+            "name": "名古",
+            "name_en": "NAGOYA"
         }
     },
     {
@@ -236,7 +265,8 @@
         "pk": 30,
         "fields": {
             "code": "40",
-            "name": "中京"
+            "name": "中京",
+            "name_en": "CHUKYO (LOCAL)"
         }
     },
     {
@@ -244,7 +274,8 @@
         "pk": 31,
         "fields": {
             "code": "41",
-            "name": "園田"
+            "name": "園田",
+            "name_en": "SONODA"
         }
     },
     {
@@ -252,7 +283,8 @@
         "pk": 32,
         "fields": {
             "code": "42",
-            "name": "姫路"
+            "name": "姫路",
+            "name_en": "HIMEJI"
         }
     },
     {
@@ -260,7 +292,8 @@
         "pk": 33,
         "fields": {
             "code": "43",
-            "name": "益田"
+            "name": "益田",
+            "name_en": "MASUDA"
         }
     },
     {
@@ -268,7 +301,8 @@
         "pk": 34,
         "fields": {
             "code": "44",
-            "name": "福山"
+            "name": "福山",
+            "name_en": "FUKUYAMA"
         }
     },
     {
@@ -276,7 +310,8 @@
         "pk": 35,
         "fields": {
             "code": "45",
-            "name": "高知"
+            "name": "高知",
+            "name_en": "KOCHI"
         }
     },
     {
@@ -284,7 +319,8 @@
         "pk": 36,
         "fields": {
             "code": "46",
-            "name": "佐賀"
+            "name": "佐賀",
+            "name_en": "SAGA"
         }
     },
     {
@@ -292,7 +328,8 @@
         "pk": 37,
         "fields": {
             "code": "47",
-            "name": "荒尾"
+            "name": "荒尾",
+            "name_en": "ARAO"
         }
     },
     {
@@ -300,7 +337,8 @@
         "pk": 38,
         "fields": {
             "code": "48",
-            "name": "中津"
+            "name": "中津",
+            "name_en": "NAKATSU"
         }
     },
     {
@@ -308,7 +346,8 @@
         "pk": 39,
         "fields": {
             "code": "61",
-            "name": "英国"
+            "name": "英国",
+            "name_en": "ENGLAND"
         }
     },
     {
@@ -316,7 +355,8 @@
         "pk": 40,
         "fields": {
             "code": "62",
-            "name": "アイルランド"
+            "name": "アイルランド",
+            "name_en": "IRELAND"
         }
     },
     {
@@ -324,7 +364,8 @@
         "pk": 41,
         "fields": {
             "code": "63",
-            "name": "仏国"
+            "name": "仏国",
+            "name_en": "FRANCE"
         }
     },
     {
@@ -332,7 +373,8 @@
         "pk": 42,
         "fields": {
             "code": "64",
-            "name": "伊国"
+            "name": "伊国",
+            "name_en": "ITALY"
         }
     },
     {
@@ -340,7 +382,8 @@
         "pk": 43,
         "fields": {
             "code": "65",
-            "name": "独国"
+            "name": "独国",
+            "name_en": "GERMANY"
         }
     },
     {
@@ -348,7 +391,8 @@
         "pk": 44,
         "fields": {
             "code": "66",
-            "name": "米国"
+            "name": "米国",
+            "name_en": "AMERICA"
         }
     },
     {
@@ -356,7 +400,8 @@
         "pk": 45,
         "fields": {
             "code": "67",
-            "name": "カナダ"
+            "name": "カナダ",
+            "name_en": "CANADA"
         }
     },
     {
@@ -364,7 +409,8 @@
         "pk": 46,
         "fields": {
             "code": "68",
-            "name": "アラブ首長国連邦"
+            "name": "アラブ首長国連邦",
+            "name_en": "UNITED ARAB EMIRATES"
         }
     },
     {
@@ -372,7 +418,8 @@
         "pk": 47,
         "fields": {
             "code": "69",
-            "name": "オーストラリア"
+            "name": "オーストラリア",
+            "name_en": "AUSTRALIA"
         }
     },
     {
@@ -380,7 +427,8 @@
         "pk": 48,
         "fields": {
             "code": "70",
-            "name": "ニュージーランド"
+            "name": "ニュージーランド",
+            "name_en": "NEW ZEALAND"
         }
     },
     {
@@ -388,7 +436,8 @@
         "pk": 49,
         "fields": {
             "code": "71",
-            "name": "香港"
+            "name": "香港",
+            "name_en": "HONG KONG"
         }
     },
     {
@@ -396,7 +445,8 @@
         "pk": 50,
         "fields": {
             "code": "72",
-            "name": "チリ"
+            "name": "チリ",
+            "name_en": "CHILE"
         }
     },
     {
@@ -404,7 +454,8 @@
         "pk": 51,
         "fields": {
             "code": "73",
-            "name": "シンガポール"
+            "name": "シンガポール",
+            "name_en": "SINGAPORE"
         }
     },
     {
@@ -412,7 +463,8 @@
         "pk": 52,
         "fields": {
             "code": "74",
-            "name": "スウェーデン"
+            "name": "スウェーデン",
+            "name_en": "SWEDEN"
         }
     },
     {
@@ -420,7 +472,8 @@
         "pk": 53,
         "fields": {
             "code": "75",
-            "name": "マカ"
+            "name": "マカ",
+            "name_en": ""
         }
     },
     {
@@ -428,7 +481,8 @@
         "pk": 54,
         "fields": {
             "code": "76",
-            "name": "オーストリア"
+            "name": "オーストリア",
+            "name_en": "AUSTRIA"
         }
     },
     {
@@ -436,7 +490,8 @@
         "pk": 55,
         "fields": {
             "code": "77",
-            "name": "トルコ"
+            "name": "トルコ",
+            "name_en": "TURKEY"
         }
     },
     {
@@ -444,7 +499,8 @@
         "pk": 56,
         "fields": {
             "code": "78",
-            "name": "カタール"
+            "name": "カタール",
+            "name_en": "QATAR"
         }
     },
     {
@@ -452,7 +508,8 @@
         "pk": 57,
         "fields": {
             "code": "79",
-            "name": "韓国"
+            "name": "韓国",
+            "name_en": "KOREA"
         }
     }
 ]
