@@ -1,19 +1,16 @@
 import os
 
-from django.conf import settings
-
 from jrdb.models import Race
 from jrdb.templates import BAC
-from jrdb.tests.base import JRDBTestCase
-
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'BAC080913.txt')
+from jrdb.tests.base import JRDBTestCase, SAMPLES_DIR
 
 
 class TemplateTestCase(JRDBTestCase):
     fixtures = ['racetrack']
 
     def test_created_record_count_equals_template_row_count(self):
-        t = BAC(TEMPLATE_PATH).extract()
+        template_path = os.path.join(SAMPLES_DIR, 'BAC080913.txt')
+        t = BAC(template_path).extract()
         t.load()
 
         exp_count = len(t.df.index)
@@ -22,7 +19,8 @@ class TemplateTestCase(JRDBTestCase):
         self.assertEqual(act_count, exp_count)
 
     def test_before_after_update_record_count(self):
-        t = BAC(TEMPLATE_PATH).extract()
+        template_path = os.path.join(SAMPLES_DIR, 'BAC080913.txt')
+        t = BAC(template_path).extract()
 
         t.load()
         t.load()

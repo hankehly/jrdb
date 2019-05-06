@@ -1,14 +1,11 @@
 import datetime
 import os
 
-from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import choices, Trainer
-from jrdb.tests.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase, SAMPLES_DIR
 from jrdb.templates import CZA
-
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'CSA020907.txt')
 
 
 class CYBTestCase(JRDBTestCase):
@@ -16,7 +13,8 @@ class CYBTestCase(JRDBTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        t = CZA(TEMPLATE_PATH).extract()
+        template_path = os.path.join(SAMPLES_DIR, 'CSA020907.txt')
+        t = CZA(template_path).extract()
 
         # only import the first row to make
         # test record easy to identify

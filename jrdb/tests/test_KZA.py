@@ -1,14 +1,11 @@
 import datetime
 import os
 
-from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import choices, Jockey
-from jrdb.tests.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase, SAMPLES_DIR
 from jrdb.templates import KZA
-
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'KSA020907.txt')
 
 
 class KZATestCase(JRDBTestCase):
@@ -16,7 +13,8 @@ class KZATestCase(JRDBTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        t = KZA(TEMPLATE_PATH).extract()
+        template_path = os.path.join(SAMPLES_DIR, 'KSA020907.txt')
+        t = KZA(template_path).extract()
 
         # only import the first row to make
         # test record easy to identify

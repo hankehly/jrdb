@@ -2,14 +2,11 @@ import datetime
 import os
 
 import pytz
-from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import Program, Race, choices
-from jrdb.tests.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase, SAMPLES_DIR
 from jrdb.templates import BAC
-
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'BAC080913.txt')
 
 
 class BACTestCase(JRDBTestCase):
@@ -17,7 +14,8 @@ class BACTestCase(JRDBTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        t = BAC(TEMPLATE_PATH).extract()
+        template_path = os.path.join(SAMPLES_DIR, 'BAC080913.txt')
+        t = BAC(template_path).extract()
 
         # only import the first row to make
         # test record easy to identify

@@ -1,14 +1,11 @@
 import datetime
 import os
 
-from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import choices, Program, Race, Contender, Horse, Trainer, Jockey
-from jrdb.tests.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase, SAMPLES_DIR
 from jrdb.templates import KYI
-
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'KYI150801.txt')
 
 
 class KYITestCase(JRDBTestCase):
@@ -16,7 +13,8 @@ class KYITestCase(JRDBTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        t = KYI(TEMPLATE_PATH).extract()
+        template_path = os.path.join(SAMPLES_DIR, 'KYI150801.txt')
+        t = KYI(template_path).extract()
 
         # only import the first row to make
         # test record easy to identify

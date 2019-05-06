@@ -1,13 +1,10 @@
 import os
 
-from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import Program, Race
-from jrdb.tests.base import JRDBTestCase
+from jrdb.tests.base import JRDBTestCase, SAMPLES_DIR
 from jrdb.templates import OV
-
-TEMPLATE_PATH = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples', 'OV040828.txt')
 
 
 class OVTestCase(JRDBTestCase):
@@ -15,7 +12,8 @@ class OVTestCase(JRDBTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        t = OV(TEMPLATE_PATH).extract()
+        template_path = os.path.join(SAMPLES_DIR, 'OV040828.txt')
+        t = OV(template_path).extract()
 
         # only import the first row to make
         # test record easy to identify
