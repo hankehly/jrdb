@@ -45,14 +45,14 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')
-        parser.add_argument('--workers', type=int,
-                            help='Number of processes in pool (defaults to the number of processors on the machine)')
+        parser.add_argument('-m', '--max-workers', type=int,
+                            help='Max number of processes in pool (defaults to number of processors on the machine)')
 
     def handle(self, *args, **options):
         options_str = ', '.join([f'{name}: {value}' for name, value in options.items()])
         logger.info(f"START <{options_str}>")
 
-        with ProcessPoolExecutor(max_workers=options.get('workers')) as executor:
+        with ProcessPoolExecutor(max_workers=options.get('max_workers')) as executor:
             futures = {
                 executor.submit(import_document, path): path
                 for path in glob.iglob(options['path'])
@@ -64,11 +64,10 @@ class Command(BaseCommand):
                 try:
                     logger.info(f'import <{path}>')
                     future.result()
+                    self._increment_success_count()
                 except Exception as e:
                     logger.exception(e)
                     self._increment_error_count()
-                else:
-                    self._increment_success_count()
 
         logger.info(f'FINISH <successful {self.success_count}, errors {self.error_count}>')
 
