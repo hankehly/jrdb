@@ -42,7 +42,7 @@ class DjangoPostgresUpsertLoader(Loader):
     def _build_insert(self) -> str:
         columns = ','.join('"{}"'.format(key) for key in self.df.columns)
 
-        values_dirty = ','.join(map(str, map(tuple, self.df.values)))
+        values_dirty = ','.join(map(str, map(tuple, self.df.drop_duplicates().values)))
         values = re.sub(r'(None|nan|NaN|\'NaT\')', 'NULL', values_dirty).replace(',)', ')')
 
         return ' '.join([
