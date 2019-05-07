@@ -73,7 +73,7 @@ class DjangoPostgresUpsertLoader(Loader):
 
     def _result_queryset(self):
         lookup = None
-        for kwargs in self.df[self.unique_columns].to_dict('records'):
+        for kwargs in self.df[self.unique_columns].drop_duplicates().to_dict('records'):
             if lookup is None:
                 lookup = Q(**kwargs)
             else:
