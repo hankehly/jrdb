@@ -188,7 +188,7 @@ class Contender(models.Model):
     horse_start_idx = models.FloatField('馬スタート指数', null=True)
     late_start_rate = models.FloatField('馬出遅率', null=True)
 
-    big_bet_idx = models.PositiveSmallIntegerField('万券指数', null=True)
+    big_bet_idx = models.SmallIntegerField('万券指数', null=True)
     sym_big_bet = models.PositiveSmallIntegerField('万券印', null=True)
     rank_lowered = models.CharField('降級フラグ', max_length=255, null=True, choices=choices.RANK_LOWERED.CHOICES())
     flat_out_run_type = models.CharField('激走タイプ', max_length=255, null=True,
