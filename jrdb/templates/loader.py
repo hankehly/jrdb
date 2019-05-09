@@ -10,12 +10,7 @@ from django.utils.functional import cached_property
 from .template import startswith
 
 
-class Loader:
-    def load(self):
-        raise NotImplementedError
-
-
-class DjangoPostgresUpsertLoader(Loader):
+class DjangoPostgresUpsertLoader:
 
     def __init__(self, df: pd.DataFrame, app_label: str, model_name: str = None, index_predicate: str = None) -> None:
         self.df = df
