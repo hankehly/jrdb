@@ -79,6 +79,7 @@ class Command(BaseCommand):
             logger.info(f'>>> RETRIES <<<')
 
             while len(self._failed) > 0 and self._retries < 3:
+                self._retries += 1
                 retries = {executor.submit(load, path): path for path in self._failed}
                 for future in as_completed(retries):
                     path = retries[future]
