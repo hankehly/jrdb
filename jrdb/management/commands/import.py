@@ -43,6 +43,7 @@ class Command(BaseCommand):
         super().__init__()
         self.error_count = 0
         self.success_count = 0
+        self.deadlock_count = 0
 
     def add_arguments(self, parser):
         parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')
@@ -74,6 +75,7 @@ class Command(BaseCommand):
                     except (OperationalError, TransactionRollbackError) as e:
                         message = e.args[0].split('\n')[0]
                         logger.info(f'{message} <{path}>')
+                        self._increment_deadlock_count()
                     except Exception as e:
                         logger.exception(e)
                         pending_load.remove(path)
@@ -86,13 +88,17 @@ class Command(BaseCommand):
             f'FINISH <'
             f'success {self.success_count}, '
             f'unknown errors {self.error_count}, '
+            f'deadlocks {self.deadlock_count}, '
             f'attempts {attempts}, '
-            f'unhandled (unable to load after {max_attempts} attempts) {len(pending_load)}'
+            f'pending {len(pending_load)}'
             f'>'
         )
 
     def _increment_error_count(self):
         self.error_count += 1
+
+    def _increment_deadlock_count(self):
+        self.deadlock_count += 1
 
     def _increment_success_count(self):
         self.success_count += 1
