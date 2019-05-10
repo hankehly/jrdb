@@ -5,7 +5,7 @@ import re
 from concurrent.futures import as_completed
 from concurrent.futures.process import ProcessPoolExecutor
 
-from django.core.management import BaseCommand, CommandError
+from django.core.management import BaseCommand
 from django.db import OperationalError
 from django.utils.module_loading import import_string
 from psycopg2.extensions import TransactionRollbackError
@@ -55,21 +55,25 @@ class Command(BaseCommand):
         logger.info(f"START <{options_pretty}>")
 
         attempts = 0
-        max_attempts = 3
-        pending_load = glob.glob(options.get('path'))
+        attempts_max = 3
+
+        pending = [path for path in glob.glob(options.get('path')) if extract_template_name(path) in TEMPLATES]
+        pending_len = len(pending)
 
         with ProcessPoolExecutor(options.get('max_workers')) as executor:
-            while len(pending_load) > 0 and attempts < max_attempts:
-                attempts += 1
-
+            while len(pending) > 0 and attempts < attempts_max:
                 futures = {
-                    executor.submit(load, path): path for path in pending_load
-                    if extract_template_name(path) in TEMPLATES
+                    executor.submit(load, path): path for path in pending
                 }
 
                 for future in as_completed(futures):
+                    remaining = len(pending)
+                    loaded = pending_len - remaining
+                    progress = round(loaded / pending_len * 100, 1)
+
                     path = futures[future]
-                    logger.info(f'import <path {path}, attempt {attempts}>')
+                    logger.info(f'[{progress}%] ({loaded}/{pending_len}) import <path {path}, attempt {attempts + 1}>')
+
                     try:
                         future.result()
                     except (OperationalError, TransactionRollbackError) as e:
@@ -78,19 +82,21 @@ class Command(BaseCommand):
                         self._increment_deadlock_count()
                     except Exception as e:
                         logger.exception(e)
-                        pending_load.remove(path)
+                        pending.remove(path)
                         self._increment_error_count()
                     else:
-                        pending_load.remove(path)
+                        pending.remove(path)
                         self._increment_success_count()
+
+                attempts += 1
 
         logger.info(
             f'FINISH <'
             f'success {self.success_count}, '
             f'unknown errors {self.error_count}, '
             f'deadlocks {self.deadlock_count}, '
-            f'attempts {attempts}, '
-            f'pending {len(pending_load)}'
+            f'attempts {attempts + 1}, '
+            f'pending {len(pending)}'
             f'>'
         )
 
