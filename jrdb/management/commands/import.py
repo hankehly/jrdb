@@ -5,7 +5,7 @@ import re
 from concurrent.futures import as_completed
 from concurrent.futures.process import ProcessPoolExecutor
 
-from django.core.management import BaseCommand
+from django.core.management import BaseCommand, CommandError
 from django.db import OperationalError
 from django.utils.module_loading import import_string
 from psycopg2.extensions import TransactionRollbackError
@@ -22,14 +22,14 @@ TEMPLATES = [
 ]
 
 
-def get_template_name(path: str):
+def extract_template_name(path: str):
     basename = os.path.basename(path)
     filename, _ = os.path.splitext(basename)
     return re.search('[A-Z]+', filename).group()
 
 
 def load(path: str) -> str:
-    template = get_template_name(path)
+    template = extract_template_name(path)
     module_path = '.'.join(['jrdb', 'templates', template])
     parser = import_string(module_path)(path)
     parser.extract().load()
@@ -41,12 +41,8 @@ class Command(BaseCommand):
 
     def __init__(self):
         super().__init__()
-
         self.error_count = 0
         self.success_count = 0
-
-        self._failed = []
-        self._retries = 0
 
     def add_arguments(self, parser):
         parser.add_argument('path', help='A path (can be glob) pointing to the files to import.')
@@ -54,46 +50,46 @@ class Command(BaseCommand):
                             help='Max number of processes in pool (defaults to number of processors on the machine)')
 
     def handle(self, *args, **options):
-        options_str = ', '.join([f'{name}: {value}' for name, value in options.items()])
-        logger.info(f"START <{options_str}>")
+        options_pretty = ', '.join([f'{name}: {value}' for name, value in options.items()])
+        logger.info(f"START <{options_pretty}>")
 
-        with ProcessPoolExecutor(max_workers=options.get('max_workers')) as executor:
-            futures = {
-                executor.submit(load, path): path for path in glob.iglob(options['path'])
-                if get_template_name(path) in TEMPLATES
-            }
+        attempts = 0
+        max_attempts = 3
+        pending_load = glob.glob(options.get('path'))
 
-            for future in as_completed(futures):
-                path = futures[future]
-                try:
-                    logger.info(f'import <{path}>')
-                    future.result()
-                    self._increment_success_count()
-                except (OperationalError, TransactionRollbackError):
-                    logger.info(f'marking for retry <{path}>')
-                    self._failed.append(path)
-                except Exception as e:
-                    logger.exception(e)
-                    self._increment_error_count()
+        with ProcessPoolExecutor(options.get('max_workers')) as executor:
+            while len(pending_load) > 0 and attempts < max_attempts:
+                attempts += 1
 
-            logger.info(f'>>> RETRIES <<<')
+                futures = {
+                    executor.submit(load, path): path for path in pending_load
+                    if extract_template_name(path) in TEMPLATES
+                }
 
-            while len(self._failed) > 0 and self._retries < 3:
-                self._retries += 1
-                retries = {executor.submit(load, path): path for path in self._failed}
-                for future in as_completed(retries):
-                    path = retries[future]
+                for future in as_completed(futures):
+                    path = futures[future]
+                    logger.info(f'import <path {path}, attempt {attempts}>')
                     try:
-                        logger.info(f'retry <{path}>')
                         future.result()
+                    except (OperationalError, TransactionRollbackError) as e:
+                        message = e.args[0].split('\n')[0]
+                        logger.info(f'{message} <{path}>')
                     except Exception as e:
                         logger.exception(e)
-                        continue
+                        pending_load.remove(path)
+                        self._increment_error_count()
                     else:
-                        ix = self._failed.index(path)
-                        self._failed.pop(ix)
+                        pending_load.remove(path)
+                        self._increment_success_count()
 
-        logger.info(f'FINISH <successful {self.success_count}, errors {self.error_count}>')
+        logger.info(
+            f'FINISH <'
+            f'success {self.success_count}, '
+            f'unknown errors {self.error_count}, '
+            f'attempts {attempts}, '
+            f'unhandled (unable to load after {max_attempts} attempts) {len(pending_load)}'
+            f'>'
+        )
 
     def _increment_error_count(self):
         self.error_count += 1
