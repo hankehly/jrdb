@@ -37,14 +37,14 @@ class SKB(Template):
 
     def load(self):
         pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = self.loader_cls(pdf, 'jrdb.Program').load().to_dataframe()
+        programs = self.loader_cls(pdf, 'jrdb.Program').load()
 
         hdf = self.transform.pipe(startswith, 'horse__', rename=True)
-        horses = self.loader_cls(hdf, 'jrdb.Horse').load().to_dataframe()
+        horses = self.loader_cls(hdf, 'jrdb.Horse').load()
 
         rdf = self.transform.pipe(startswith, 'race__', rename=True)
         rdf['program_id'] = pdf.merge(programs, how='left').id
-        races = self.loader_cls(rdf, 'jrdb.Race').load().to_dataframe()
+        races = self.loader_cls(rdf, 'jrdb.Race').load()
 
         cdf = self.transform.pipe(startswith, 'contender__', rename=True)
         cdf['race_id'] = rdf[['program_id', 'num']].merge(races, how='left').id

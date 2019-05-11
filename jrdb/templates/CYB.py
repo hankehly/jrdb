@@ -45,11 +45,11 @@ class CYB(Template):
 
     def load(self):
         pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = self.loader_cls(pdf, 'jrdb.Program').load().to_dataframe()
+        programs = self.loader_cls(pdf, 'jrdb.Program').load()
 
         rdf = self.transform.pipe(startswith, 'race__', rename=True)
         rdf['program_id'] = pdf.merge(programs, how='left').id
-        races = self.loader_cls(rdf, 'jrdb.Race').load().to_dataframe()
+        races = self.loader_cls(rdf, 'jrdb.Race').load()
 
         cdf = self.transform.pipe(startswith, 'contender__', rename=True)
         cdf['race_id'] = rdf[['program_id', 'num']].merge(races, how='left').id
