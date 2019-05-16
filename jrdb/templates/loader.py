@@ -6,6 +6,9 @@ from django.apps import apps
 from django.db import connection
 from django.db.models import Q
 from django.utils.functional import cached_property
+# from sqlalchemy import MetaData
+# from sqlalchemy.dialects.postgresql import insert
+# from sqlalchemy.testing.schema import Table
 
 from .template import startswith
 
@@ -17,10 +20,15 @@ class DjangoPostgresUpsertLoader:
         self.app_label = app_label
         self.model_name = model_name
         self.index_predicate = index_predicate
+        # self.meta = MetaData()
 
     @cached_property
     def model(self) -> Any:
         return apps.get_model(self.app_label, self.model_name)
+
+    # @cached_property
+    # def table(self):
+    #     return Table(self.model._meta.db_table, self.meta, autoload=True, autoload_with=connection)
 
     @cached_property
     def unique_columns(self) -> List[str]:
@@ -33,6 +41,18 @@ class DjangoPostgresUpsertLoader:
         if self.model._meta.unique_together:
             cols = [self.model._meta.get_field(name).attname for name in self.model._meta.unique_together[0]]
         return cols
+
+    # def _build_sql_sa(self):
+    #     df = self.df.drop_duplicates()
+    #
+    #     insert_stmt = insert(self.table).values(df.values)
+    #
+    #     do_update_stmt = insert_stmt.on_conflict_do_update(
+    #         index_elements=self.unique_columns,
+    #         set_={col: getattr(insert_stmt.excluded, col) for col in df.columns if col not in self.unique_columns}
+    #     )
+    #
+    #     return do_update_stmt
 
     def _build_insert(self) -> str:
         columns = ','.join('"{}"'.format(key) for key in self.df.columns)
