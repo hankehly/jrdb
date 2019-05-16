@@ -62,6 +62,8 @@ class Command(BaseCommand):
 
         with ProcessPoolExecutor(options.get('max_workers')) as executor:
             while len(pending) > 0 and attempts < attempts_max:
+                attempts += 1
+
                 futures = {
                     executor.submit(load, path): path for path in pending
                 }
@@ -72,7 +74,7 @@ class Command(BaseCommand):
                     progress = round(loaded / pending_len * 100, 1)
 
                     path = futures[future]
-                    logger.info(f'[{progress}%] ({loaded}/{pending_len}) import <path {path}, attempt {attempts + 1}>')
+                    logger.info(f'[{progress}%] ({loaded}/{pending_len}) import <path {path}, attempt {attempts}>')
 
                     try:
                         future.result()
@@ -88,14 +90,12 @@ class Command(BaseCommand):
                         pending.remove(path)
                         self._increment_success_count()
 
-                attempts += 1
-
         logger.info(
             f'FINISH <'
             f'success {self.success_count}, '
             f'unknown errors {self.error_count}, '
             f'deadlocks {self.deadlock_count}, '
-            f'attempts {attempts + 1}, '
+            f'attempts {attempts}, '
             f'pending {len(pending)}'
             f'>'
         )

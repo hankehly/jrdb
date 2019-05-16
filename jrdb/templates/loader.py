@@ -4,7 +4,6 @@ from typing import List, Any
 import pandas as pd
 from django.apps import apps
 from django.db import connection
-from django.db.models import Q
 from django.utils.functional import cached_property
 # from sqlalchemy import MetaData
 # from sqlalchemy.dialects.postgresql import insert
@@ -80,33 +79,49 @@ class DjangoPostgresUpsertLoader:
 
         return sql
 
-    def _build_sql(self):
+    def _build_upsert(self) -> str:
         return ' '.join([
             self._build_insert(),
             self._build_conflict()
         ])
 
-    def _result_queryset(self):
-        lookup = None
-        for kwargs in self.df[self.unique_columns].drop_duplicates().to_dict('records'):
-            if lookup is None:
-                lookup = Q(**kwargs)
-            else:
-                lookup = lookup | Q(**kwargs)
-        return self.model.objects.filter(lookup).values('id', *self.unique_columns)
+    def _build_select(self) -> str:
+        def escape(val):
+            return f"'{val}'" if isinstance(val, str) else val
 
-    def load(self):
-        sql = self._build_sql()
+        where = []
+        df = self.df[self.unique_columns].drop_duplicates()
+        for row in df.itertuples():
+            sub_condition = [f'{col}={escape(getattr(row, col))}' for col in df.columns]
+            condition = ' AND '.join(sub_condition)
+            where.append(f'({condition})')
+        where = ' OR '.join(where)
+
+        columns = ['id'] + self.unique_columns
+        columns = ','.join(columns)
+
+        return (
+            f'SELECT {columns} '
+            f'FROM {self.model._meta.db_table} '
+            f'WHERE {where}'
+        )
+
+    def load(self) -> pd.DataFrame:
+        upsert = self._build_upsert()
+        select = self._build_select()
         with connection.cursor() as c:
-            c.execute(sql)
-        return self._result_queryset()
+            c.execute(upsert)
+            c.execute(select)
+            rows = c.fetchall()
+            columns = [col[0] for col in c.description]
+            return pd.DataFrame(rows, columns=columns)
 
 
 class ProgramRaceLoadMixin:
 
     def load(self):
         pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = self.loader_cls(pdf, 'jrdb.Program').load().to_dataframe()
+        programs = self.loader_cls(pdf, 'jrdb.Program').load()
         rdf = self.transform.pipe(startswith, 'race__', rename=True)
         rdf['program_id'] = pdf.merge(programs, how='left').id
         self.loader_cls(rdf, 'jrdb.Race').load()
