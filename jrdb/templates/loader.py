@@ -3,11 +3,12 @@ from typing import List, Any
 
 import pandas as pd
 from django.apps import apps
+from django.conf import settings
 from django.db import connection
 from django.utils.functional import cached_property
-# from sqlalchemy import MetaData
-# from sqlalchemy.dialects.postgresql import insert
-# from sqlalchemy.testing.schema import Table
+from sqlalchemy import MetaData, create_engine, Table
+from sqlalchemy.engine.url import URL
+from sqlalchemy.dialects.postgresql import insert
 
 from .template import startswith
 
@@ -19,15 +20,17 @@ class DjangoPostgresUpsertLoader:
         self.app_label = app_label
         self.model_name = model_name
         self.index_predicate = index_predicate
-        # self.meta = MetaData()
+        # You were importing Table from the wrong module.
+        # The following works fine.
+        # meta = MetaData()
+        # db = connection.settings_dict
+        # url = URL(connection.vendor, db['USER'], db['PASSWORD'], db['HOST'], db['PORT'], db['NAME'])
+        # engine = create_engine(url, echo=settings.DEBUG)
+        # table = Table(self.model._meta.db_table, meta, autoload=True)
 
     @cached_property
     def model(self) -> Any:
         return apps.get_model(self.app_label, self.model_name)
-
-    # @cached_property
-    # def table(self):
-    #     return Table(self.model._meta.db_table, self.meta, autoload=True, autoload_with=connection)
 
     @cached_property
     def unique_columns(self) -> List[str]:
