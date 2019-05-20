@@ -20,17 +20,21 @@ class DjangoPostgresUpsertLoader:
         self.app_label = app_label
         self.model_name = model_name
         self.index_predicate = index_predicate
-        # You were importing Table from the wrong module.
-        # The following works fine.
-        # meta = MetaData()
-        # db = connection.settings_dict
-        # url = URL(connection.vendor, db['USER'], db['PASSWORD'], db['HOST'], db['PORT'], db['NAME'])
-        # engine = create_engine(url, echo=settings.DEBUG)
-        # table = Table(self.model._meta.db_table, meta, autoload=True)
+        self.meta = MetaData()
 
     @cached_property
     def model(self) -> Any:
         return apps.get_model(self.app_label, self.model_name)
+
+    @cached_property
+    def engine(self):
+        db = connection.settings_dict
+        url = URL(connection.vendor, db['USER'], db['PASSWORD'], db['HOST'], db['PORT'], db['NAME'])
+        return create_engine(url, echo=settings.DEBUG)
+
+    @cached_property
+    def table(self):
+        return Table(self.model._meta.db_table, self.meta, autoload=True, autoload_with=self.engine)
 
     @cached_property
     def unique_columns(self) -> List[str]:
@@ -44,17 +48,37 @@ class DjangoPostgresUpsertLoader:
             cols = [self.model._meta.get_field(name).attname for name in self.model._meta.unique_together[0]]
         return cols
 
-    # def _build_sql_sa(self):
-    #     df = self.df.drop_duplicates()
-    #
-    #     insert_stmt = insert(self.table).values(df.values)
-    #
-    #     do_update_stmt = insert_stmt.on_conflict_do_update(
-    #         index_elements=self.unique_columns,
-    #         set_={col: getattr(insert_stmt.excluded, col) for col in df.columns if col not in self.unique_columns}
-    #     )
-    #
-    #     return do_update_stmt
+    def _build_sql_sa(self):
+        """
+        Build UPSERT SQL string with SQLAlchemy Core
+
+        To print a representation of this SQL in the console, do the following
+        >>> from sqlalchemy.dialects import postgresql
+        >>> print(sql.compile(dialect=postgresql.dialect()))
+
+        This should print somthing similar to the following
+        INSERT INTO programs (yr, round, day, racetrack_id)
+        VALUES (%(yr_m0)s, %(round_m0)s, %(day_m0)s, %(racetrack_id_m0)s),
+               (%(yr_m1)s, %(round_m1)s, %(day_m1)s, %(racetrack_id_m1)s)
+        ON CONFLICT (racetrack_id, yr, round, day)
+        DO NOTHING
+
+        More information at
+        https://docs.sqlalchemy.org/en/13/faq/sqlexpressions.html#stringifying-for-specific-databases
+        """
+        df = self.df.drop_duplicates()
+        values = df.to_dict('records')
+
+        insert_stmt = insert(self.table).values(values)
+        insert_cols = {
+            column: getattr(insert_stmt.excluded, column)
+            for column in df.columns if column not in self.unique_columns
+        }
+
+        if insert_cols:
+            return insert_stmt.on_conflict_do_update(index_elements=self.unique_columns, set_=insert_cols)
+
+        return insert_stmt.on_conflict_do_nothing(index_elements=self.unique_columns)
 
     def _build_insert(self) -> str:
         columns = ','.join('"{}"'.format(key) for key in self.df.columns)
