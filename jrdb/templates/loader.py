@@ -67,18 +67,19 @@ class DjangoPostgresUpsertLoader:
         https://docs.sqlalchemy.org/en/13/faq/sqlexpressions.html#stringifying-for-specific-databases
         """
         df = self.df.drop_duplicates()
-        values = df.to_dict('records')
 
-        insert_stmt = insert(self.table).values(values)
-        insert_cols = {
-            column: getattr(insert_stmt.excluded, column)
-            for column in df.columns if column not in self.unique_columns
-        }
+        # forcibly upcast values to prevent psycopg2 type errors
+        # due to numpy dtype values
+        records = df.to_numpy()
+        values = pd.DataFrame(records, columns=df.columns).to_dict('records')
 
-        if insert_cols:
-            return insert_stmt.on_conflict_do_update(index_elements=self.unique_columns, set_=insert_cols)
+        ins = insert(self.table).values(values)
+        ins_cols = {col: getattr(ins.excluded, col) for col in df.columns if col not in self.unique_columns}
 
-        return insert_stmt.on_conflict_do_nothing(index_elements=self.unique_columns)
+        if ins_cols:
+            return ins.on_conflict_do_update(index_elements=self.unique_columns, set_=ins_cols)
+
+        return ins.on_conflict_do_nothing(index_elements=self.unique_columns)
 
     def _build_insert(self) -> str:
         columns = ','.join('"{}"'.format(key) for key in self.df.columns)
@@ -134,6 +135,9 @@ class DjangoPostgresUpsertLoader:
         )
 
     def load(self) -> pd.DataFrame:
+        # with self.engine.connect() as conn:
+        #     upsert = self._build_sql_sa()
+        #     conn.execute(upsert)
         upsert = self._build_upsert()
         select = self._build_select()
         with connection.cursor() as c:
