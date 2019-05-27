@@ -131,7 +131,7 @@ class ArrayItem(ModelItem):
         if self.mapper:
             se = se.apply(lambda arr: [self.mapper(item) for item in arr])
 
-        return se.apply(json.dumps).str.replace('[', '{').str.replace(']', '}')
+        return se
 
     def _validate(self) -> None:
         super()._validate()
@@ -179,7 +179,7 @@ class DateItem(ModelItem):
 
     def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        date = pd.to_datetime(s, format=self.format, errors='coerce').dt.date.astype(str)
+        date = pd.to_datetime(s, format=self.format, errors='coerce').dt.date
         return date.astype(object).where(date.notnull(), None)
 
 
@@ -190,7 +190,7 @@ class DateTimeItem(ModelItem):
 
     def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        return pd.to_datetime(s, format=self.format).dt.tz_localize(self.tz).astype(str).rename(self.key)
+        return pd.to_datetime(s, format=self.format).dt.tz_localize(self.tz).rename(self.key)
 
 
 @dataclass(eq=False, frozen=True)
