@@ -14,25 +14,13 @@ class Template(ABC):
 
     def __init__(self, path):
         self.path = path
-        self._df = None
-        self._transform_df = None
+        self.df = None
 
-    @property
+    @cached_property
     def loader_cls(self):
+        # TODO: Lazy load to prevent import errors
         from .loader import DjangoPostgresUpsertLoader
         return DjangoPostgresUpsertLoader
-
-    @property
-    def df(self) -> pd.DataFrame:
-        if self._df is None:
-            raise ValueError(f'{self.__class__.__name__}.df is invalid. Please run {self.__class__.__name__}.extract.')
-        return self._df
-
-    @df.setter
-    def df(self, value):
-        if not isinstance(value, pd.DataFrame):
-            raise ValueError(f'df must be type DataFrame, got {type(value)}')
-        self._df = value
 
     def extract(self) -> 'Template':
         """
@@ -47,12 +35,12 @@ class Template(ABC):
             for line in lines:
                 row = []
                 for item in self.items:
-                    bytes_lst = self.extract_item(line, item)
-                    str_lst = np.char.decode(bytes_lst, encoding='cp932')
-                    if len(str_lst) == 1:
-                        row.append(str_lst[0])
+                    lst_bytes = self.extract_item(line, item)
+                    lst_str = np.char.decode(lst_bytes, encoding='cp932')
+                    if len(lst_str) == 1:
+                        row.append(lst_str[0])
                     else:
-                        row.append(str_lst)
+                        row.append(lst_str)
                 rows.append(row)
         self.df = pd.DataFrame(rows, columns=[item.key for item in self.items])
         return self

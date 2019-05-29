@@ -67,7 +67,7 @@ class DjangoPostgresUpsertLoader:
         Build UPSERT SQL string with SQLAlchemy Core
         To print a representation of this SQL in the console, specify the correct dialect
         >>> from sqlalchemy.dialects import postgresql
-        >>> print(sql.compile(dialect=postgresql.dialect()))
+        >>> print(stmt.compile(dialect=postgresql.dialect()))
         """
         values = self._data.to_dict('records')
 
