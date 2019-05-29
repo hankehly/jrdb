@@ -4,7 +4,7 @@ import pandas as pd
 from django.apps import apps
 from django.db import connection
 from django.utils.functional import cached_property
-from sqlalchemy import MetaData, create_engine, Table
+from sqlalchemy import MetaData, create_engine, Table, select, or_, and_
 from sqlalchemy.engine.url import URL
 from sqlalchemy.dialects.postgresql import insert
 
@@ -17,7 +17,7 @@ class DjangoPostgresUpsertLoader:
         self.df = df
         self.app_label = app_label
         self.model_name = model_name
-        self.index_predicate = index_predicate
+        # self.index_predicate = index_predicate
         self.meta = MetaData()
 
     @cached_property
@@ -26,8 +26,8 @@ class DjangoPostgresUpsertLoader:
 
     @cached_property
     def engine(self):
-        db = connection.settings_dict
-        url = URL(connection.vendor, db['USER'], db['PASSWORD'], db['HOST'], db['PORT'], db['NAME'])
+        conf = connection.settings_dict
+        url = URL(connection.vendor, conf['USER'], conf['PASSWORD'], conf['HOST'], conf['PORT'], conf['NAME'])
         return create_engine(url)
 
     @cached_property
@@ -37,76 +37,76 @@ class DjangoPostgresUpsertLoader:
     @cached_property
     def unique_columns(self) -> List[str]:
         """
-        Makes the following assumptions
+        Assumes
          - unique keys are listed in unique_together
-         - only 1 unique index
+         - only 1 unique index exists
         """
         cols = []
         if self.model._meta.unique_together:
             cols = [self.model._meta.get_field(name).attname for name in self.model._meta.unique_together[0]]
         return cols
 
-    def _build_sql_sa(self):
+    @cached_property
+    def _data(self) -> pd.DataFrame:
+        indices = self.df[self.unique_columns].drop_duplicates().index
+        df = self.df.iloc[indices]
+
+        # Forcibly upcast values to prevent type errors
+        values = df.to_numpy()
+
+        # Convert all nan values to None. This is work for the transform layer;
+        # but that change requires returning multidimensional arrays of scalar values
+        # as opposed to pandas objects.
+        isna = df.isna().to_numpy()
+        values[isna] = None
+
+        return pd.DataFrame(values, columns=df.columns)
+
+    def _build_upsert(self):
         """
         Build UPSERT SQL string with SQLAlchemy Core
         To print a representation of this SQL in the console, specify the correct dialect
         >>> from sqlalchemy.dialects import postgresql
         >>> print(sql.compile(dialect=postgresql.dialect()))
         """
-        indices = self.df[self.unique_columns].drop_duplicates().index
-        df = self.df.iloc[indices]
-
-        # upcast values to prevent psycopg2 type errors due to numpy dtype values
-        records = df.to_numpy()
-
-        # Convert all nan values to None. This is work for the transform layer.
-        # Making that change will require returning multidimensional arrays of generic data,
-        # rather than pandas objects
-        isnull = df.isna().to_numpy()
-        records[isnull] = None
-
-        values = pd.DataFrame(records, columns=df.columns).to_dict('records')
+        values = self._data.to_dict('records')
 
         ins = insert(self.table).values(values)
-        ins_cols = {col: getattr(ins.excluded, col) for col in df.columns if col not in self.unique_columns}
+        ins_cols = {col: getattr(ins.excluded, col) for col in self._data.columns if col not in self.unique_columns}
 
         if ins_cols:
             return ins.on_conflict_do_update(index_elements=self.unique_columns, set_=ins_cols)
 
         return ins.on_conflict_do_nothing(index_elements=self.unique_columns)
 
-    def _build_select(self) -> str:
-        def escape(val):
-            return f"'{val}'" if isinstance(val, str) else val
+    def _build_select(self):
+        groups = []
+        for row in self._data.itertuples():
+            conditions = and_(*[getattr(self.table.c, col) == getattr(row, col) for col in self.unique_columns])
+            groups.append(conditions)
 
-        where = []
-        df = self.df[self.unique_columns].drop_duplicates()
-        for row in df.itertuples():
-            sub_condition = [f'{col}={escape(getattr(row, col))}' for col in df.columns]
-            condition = ' AND '.join(sub_condition)
-            where.append(f'({condition})')
-        where = ' OR '.join(where)
-
-        columns = ['id'] + self.unique_columns
-        columns = ','.join(columns)
-
-        return (
-            f'SELECT {columns} '
-            f'FROM {self.model._meta.db_table} '
-            f'WHERE {where}'
+        cols = [getattr(self.table.c, col) for col in ['id'] + self.unique_columns]
+        return select(cols).where(
+            or_(*groups)
         )
 
     def load(self) -> pd.DataFrame:
-        # sqlalchemy
-        upsert = self._build_sql_sa()
-        select = self._build_select()
-        with self.engine.connect() as conn:
-            conn.execute(upsert)
-            rows = conn.execute(select)
+        try:
+            stmt_upsert = self._build_upsert()
+            stmt_select = self._build_select()
+
+            with self.engine.connect() as conn:
+                conn.execute(stmt_upsert)
+                rows = conn.execute(stmt_select)
+
             columns = ['id'] + self.unique_columns
             data = pd.DataFrame(rows, columns=columns)
-        self.engine.dispose()
-        return data
+
+            self.engine.dispose()
+            return data
+        except Exception:
+            self.engine.dispose()
+            raise
 
 
 class ProgramRaceLoadMixin:
