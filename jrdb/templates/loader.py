@@ -48,7 +48,7 @@ class DjangoPostgresUpsertLoader:
     @cached_property
     def _data(self) -> pd.DataFrame:
         indices = self.df[self.unique_columns].drop_duplicates().index
-        df = self.df.iloc[indices]
+        df = self.df.loc[indices]
 
         # Forcibly upcast values to prevent type errors
         values = df.to_numpy()
