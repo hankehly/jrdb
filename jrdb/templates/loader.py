@@ -2,12 +2,11 @@ from typing import List, Any, Callable, Optional
 
 import pandas as pd
 from django.apps import apps
-from django.db import connection
 from django.utils.functional import cached_property
-from sqlalchemy import MetaData, create_engine, Table, select, or_, and_
-from sqlalchemy.engine.url import URL
+from sqlalchemy import select, or_, and_
 from sqlalchemy.dialects.postgresql import insert
 
+from .store import store
 from .template import startswith
 
 
@@ -17,21 +16,14 @@ class DjangoPostgresUpsertLoader:
         self.df = df
         self.app_label = app_label
         self.model_name = model_name
-        self.meta = MetaData()
 
     @cached_property
     def model(self) -> Any:
         return apps.get_model(self.app_label, self.model_name)
 
     @cached_property
-    def engine(self):
-        conf = connection.settings_dict
-        url = URL(connection.vendor, conf['USER'], conf['PASSWORD'], conf['HOST'], conf['PORT'], conf['NAME'])
-        return create_engine(url)
-
-    @cached_property
     def table(self):
-        return Table(self.model._meta.db_table, self.meta, autoload=True, autoload_with=self.engine)
+        return store[self.model._meta.db_table]
 
     @cached_property
     def unique_columns(self) -> List[str]:
@@ -90,26 +82,21 @@ class DjangoPostgresUpsertLoader:
             conditions = and_(*[getattr(self.table.c, col) == getattr(row, col) for col in self.unique_columns])
             groups.append(conditions)
 
-        cols = [getattr(self.table.c, col) for col in ['id'] + self.unique_columns]
-        return select(cols).where(or_(*groups))
+        columns = [getattr(self.table.c, column) for column in ['id'] + self.unique_columns]
+        whereclause = or_(*groups)
+
+        return select(columns).where(whereclause)
 
     def load(self, where: Optional[Callable] = None) -> pd.DataFrame:
-        try:
-            upsert_stmt = self._build_upsert(where)
-            select_stmt = self._build_select()
+        upsert_stmt = self._build_upsert(where)
+        select_stmt = self._build_select()
 
-            with self.engine.connect() as conn:
-                conn.execute(upsert_stmt)
-                rows = conn.execute(select_stmt)
+        with store.engine.connect() as conn:
+            conn.execute(upsert_stmt)
+            rows = conn.execute(select_stmt)
 
-            columns = ['id'] + self.unique_columns
-            data = pd.DataFrame(rows, columns=columns)
-
-            self.engine.dispose()
-            return data
-        except Exception:
-            self.engine.dispose()
-            raise
+        columns = ['id'] + self.unique_columns
+        return pd.DataFrame(rows, columns=columns)
 
 
 class ProgramRaceLoadMixin:

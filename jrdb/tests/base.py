@@ -4,6 +4,8 @@ from django.conf import settings
 from django.core.management import call_command
 from django.test import TransactionTestCase
 
+from jrdb.templates.store import store
+
 SAMPLES_DIR = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples')
 
 
@@ -29,6 +31,11 @@ class JRDBTestCase(TransactionTestCase):
     @classmethod
     def setUpTestData(cls):
         pass
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        store.engine.dispose()
 
     def assertSubDict(self, sub, sup):
         diff = [key for key in sub if (key in sup and not sup[key] == sub[key])]

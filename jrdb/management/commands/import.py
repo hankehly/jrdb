@@ -51,8 +51,8 @@ class Command(BaseCommand):
                             help='Max number of processes in pool (defaults to number of processors on the machine)')
 
     def handle(self, *args, **options):
-        options_pretty = ', '.join([f'{name}: {value}' for name, value in options.items()])
-        logger.info(f"START <{options_pretty}>")
+        options_repr = ', '.join([f'{name}: {value}' for name, value in options.items()])
+        logger.info(f"START <{options_repr}>")
 
         attempts = 0
         attempts_max = 3
