@@ -6,9 +6,9 @@ from concurrent.futures import as_completed
 from concurrent.futures.process import ProcessPoolExecutor
 
 from django.core.management import BaseCommand
-from django.db import OperationalError
 from django.utils.module_loading import import_string
 from psycopg2.extensions import TransactionRollbackError
+from sqlalchemy.exc import OperationalError
 
 logger = logging.getLogger(__name__)
 
