@@ -6,6 +6,10 @@ from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
 from .template import Template, startswith
 
 
+def where(stmt):
+    return (stmt.table.c.jrdb_saved_on == None) | (stmt.excluded.jrdb_saved_on >= stmt.table.c.jrdb_saved_on)
+
+
 class CZA(Template):
     """
     http://www.jrdb.com/program/Cs/Cs_doc1.txt
@@ -46,5 +50,4 @@ class CZA(Template):
 
     def load(self):
         df = self.transform.pipe(startswith, 'trainer__', rename=True)
-        index_predicate = 'trainers.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= trainers.jrdb_saved_on'
-        self.loader_cls(df, 'jrdb.Trainer', index_predicate=index_predicate).load()
+        self.loader_cls(df, 'jrdb.Trainer').load(where=where)

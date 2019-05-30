@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import List, Any, Callable, Optional
 
 import pandas as pd
 from django.apps import apps
@@ -13,11 +13,10 @@ from .template import startswith
 
 class DjangoPostgresUpsertLoader:
 
-    def __init__(self, df: pd.DataFrame, app_label: str, model_name: str = None, index_predicate: str = None) -> None:
+    def __init__(self, df: pd.DataFrame, app_label: str, model_name: str = None) -> None:
         self.df = df
         self.app_label = app_label
         self.model_name = model_name
-        # self.index_predicate = index_predicate
         self.meta = MetaData()
 
     @cached_property
@@ -62,22 +61,28 @@ class DjangoPostgresUpsertLoader:
 
         return pd.DataFrame(values, columns=df.columns)
 
-    def _build_upsert(self):
+    def _build_upsert(self, where: Optional[Callable] = None):
         """
-        Build UPSERT SQL string with SQLAlchemy Core
-        To print a representation of this SQL in the console, specify the correct dialect
+        To print a representation of this SQL in the console
+        specify the postgresql dialect during compilation
+
         >>> from sqlalchemy.dialects import postgresql
-        >>> print(stmt.compile(dialect=postgresql.dialect()))
+        >>> print(insert_stmt.compile(dialect=postgresql.dialect()))
         """
         values = self._data.to_dict('records')
+        insert_stmt = insert(self.table).values(values)
 
-        ins = insert(self.table).values(values)
-        ins_cols = {col: getattr(ins.excluded, col) for col in self._data.columns if col not in self.unique_columns}
+        set_ = {
+            col: getattr(insert_stmt.excluded, col)
+            for col in self._data.columns if col not in self.unique_columns
+        }
 
-        if ins_cols:
-            return ins.on_conflict_do_update(index_elements=self.unique_columns, set_=ins_cols)
+        where_stmt = where(insert_stmt) if where else None
 
-        return ins.on_conflict_do_nothing(index_elements=self.unique_columns)
+        if set_:
+            return insert_stmt.on_conflict_do_update(index_elements=self.unique_columns, set_=set_, where=where_stmt)
+
+        return insert_stmt.on_conflict_do_nothing(index_elements=self.unique_columns)
 
     def _build_select(self):
         groups = []
@@ -86,18 +91,16 @@ class DjangoPostgresUpsertLoader:
             groups.append(conditions)
 
         cols = [getattr(self.table.c, col) for col in ['id'] + self.unique_columns]
-        return select(cols).where(
-            or_(*groups)
-        )
+        return select(cols).where(or_(*groups))
 
-    def load(self) -> pd.DataFrame:
+    def load(self, where: Optional[Callable] = None) -> pd.DataFrame:
         try:
-            stmt_upsert = self._build_upsert()
-            stmt_select = self._build_select()
+            upsert_stmt = self._build_upsert(where)
+            select_stmt = self._build_select()
 
             with self.engine.connect() as conn:
-                conn.execute(stmt_upsert)
-                rows = conn.execute(stmt_select)
+                conn.execute(upsert_stmt)
+                rows = conn.execute(select_stmt)
 
             columns = ['id'] + self.unique_columns
             data = pd.DataFrame(rows, columns=columns)

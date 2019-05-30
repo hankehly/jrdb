@@ -3,6 +3,10 @@ from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem,
 from .template import Template, startswith
 
 
+def where(stmt):
+    return (stmt.table.c.jrdb_saved_on == None) | (stmt.excluded.jrdb_saved_on >= stmt.table.c.jrdb_saved_on)
+
+
 class UKC(Template):
     """
     http://www.jrdb.com/program/Ukc/ukc_doc.txt
@@ -33,5 +37,4 @@ class UKC(Template):
 
     def load(self):
         df = self.transform.pipe(startswith, 'horse__', rename=True)
-        index_predicate = 'horses.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= horses.jrdb_saved_on'
-        self.loader_cls(df, 'jrdb.Horse', index_predicate=index_predicate).load()
+        self.loader_cls(df, 'jrdb.Horse').load(where=where)

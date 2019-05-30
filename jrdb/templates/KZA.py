@@ -5,6 +5,10 @@ from .template import Template, startswith
 from .item import StringItem, DateItem, ChoiceItem, IntegerItem, ArrayItem
 
 
+def where(stmt):
+    return (stmt.table.c.jrdb_saved_on == None) | (stmt.excluded.jrdb_saved_on >= stmt.table.c.jrdb_saved_on)
+
+
 class KZA(Template):
     """
     http://www.jrdb.com/program/Ks/Ks_doc1.txt
@@ -47,5 +51,4 @@ class KZA(Template):
 
     def load(self):
         df = self.transform.pipe(startswith, 'jockey__', rename=True)
-        index_predicate = 'jockeys.jrdb_saved_on IS NULL OR excluded.jrdb_saved_on >= jockeys.jrdb_saved_on'
-        self.loader_cls(df, 'jrdb.Jockey', index_predicate=index_predicate).load()
+        self.loader_cls(df, 'jrdb.Jockey').load(where=where)

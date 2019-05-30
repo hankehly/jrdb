@@ -11,8 +11,7 @@ from jrdb.templates import CZA
 class CYBTestCase(JRDBTestCase):
     fixtures = ['racetrack']
 
-    @classmethod
-    def setUpTestData(cls):
+    def setUp(self) -> None:
         template_path = os.path.join(SAMPLES_DIR, 'CSA020907.txt')
         t = CZA(template_path).extract()
 
@@ -21,10 +20,11 @@ class CYBTestCase(JRDBTestCase):
         t.df = t.df.iloc[0].to_frame().T
         t.load()
 
-        cls.trainer = Trainer.objects.first()
+        self.trainer = Trainer.objects.first()
 
     def test_load_trainer(self):
         act = model_to_dict(self.trainer)
+
         exp = {
             'code': '10085',
             'retired_on': None,
@@ -52,3 +52,14 @@ class CYBTestCase(JRDBTestCase):
             'jrdb_saved_on': datetime.date(2002, 9, 7),
         }
         self.assertSubDict(exp, act)
+
+    def test_load_trainer_do_nothing_where_past_results(self):
+        template_path = os.path.join(SAMPLES_DIR, 'CSA010907.txt')
+        t = CZA(template_path).extract()
+        t.df = t.df.iloc[0].to_frame().T
+        t.load()
+
+        exp = self.trainer.jrdb_saved_on
+        act = Trainer.objects.first().jrdb_saved_on
+
+        self.assertEqual(exp, act)
