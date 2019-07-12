@@ -1,6 +1,6 @@
 from celery import shared_task
 
-from helpers import template_factory
+from .templates.template import template_factory
 
 
 @shared_task

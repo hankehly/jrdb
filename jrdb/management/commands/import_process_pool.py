@@ -7,7 +7,7 @@ from django.core.management import BaseCommand
 from psycopg2.extensions import TransactionRollbackError
 from sqlalchemy.exc import OperationalError
 
-from ...helpers import template_factory, extract_template_name
+from ...templates.template import template_factory, extract_template_name
 
 logger = logging.getLogger(__name__)
 

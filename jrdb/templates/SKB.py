@@ -1,5 +1,4 @@
-from ..helpers import startswith
-from .template import Template
+from .template import Template, startswith
 from .item import ForeignKeyItem, IntegerItem, StringItem, BooleanItem, ArrayItem
 
 

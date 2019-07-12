@@ -7,7 +7,7 @@ from sqlalchemy import select, or_, and_
 from sqlalchemy.dialects.postgresql import insert
 
 from .store import store
-from .helpers import startswith
+from .templates.template import startswith
 
 
 class DjangoPostgresUpsertLoader:

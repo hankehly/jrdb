@@ -2,9 +2,8 @@ import numpy as np
 import pandas as pd
 from django.utils.functional import cached_property
 
-from ..helpers import startswith
 from ..models import choices
-from .template import Template
+from .template import Template, startswith
 from .item import (
     StringItem,
     ForeignKeyItem,

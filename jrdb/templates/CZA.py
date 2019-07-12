@@ -1,10 +1,9 @@
 import pandas as pd
 from django.utils.functional import cached_property
 
-from ..helpers import startswith
 from ..models import choices
 from .item import ChoiceItem, DateItem, ArrayItem, StringItem, IntegerItem
-from .template import Template
+from .template import Template, startswith
 
 
 def where(stmt):

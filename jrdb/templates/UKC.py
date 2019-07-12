@@ -1,4 +1,3 @@
-from ..helpers import startswith
 from ..models import choices
 from .item import (
     IntegerItem,
@@ -8,7 +7,7 @@ from .item import (
     ForeignKeyItem,
     BooleanItem,
 )
-from .template import Template
+from .template import Template, startswith
 
 
 def where(stmt):

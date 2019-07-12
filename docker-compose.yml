@@ -12,11 +12,16 @@ services:
     # docker-compose run --rm -v /path/to/local/file.csv:/app/file.csv django poetry run manage.py [command] ./file.csv
     django:
         build: .
-        command: poetry run python /app/manage.py runserver 8000
+        command: poetry run celery -A jrdb worker -l info
         env_file: .env
         volumes:
             - .:/app
         depends_on:
             - db
+            - redis
         ports:
             - '8000:8000'
+    redis:
+        image: redis
+        ports:
+            - '6379:6379'
