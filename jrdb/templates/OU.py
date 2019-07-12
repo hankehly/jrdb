@@ -7,7 +7,7 @@ class OU(Template, ProgramRaceLoadMixin):
     """
     http://www.jrdb.com/program/Ou/Oudata_doc.txt
     """
-    name = '馬単基準オッズデータ（OU）'
+    description = '馬単基準オッズデータ（OU）'
     items = [
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
         IntegerItem('年', 2, 2, 'jrdb.Program.yr'),

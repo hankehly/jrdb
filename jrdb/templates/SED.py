@@ -66,7 +66,7 @@ class SED(Template):
     The "種別" values in the above document are incorrect.
     The correct values can be found [here](http://www.jrdb.com/program/jrdb_code.txt)
     """
-    name = 'JRDB成績データ（SED）'
+    description = 'JRDB成績データ（SED）'
 
     items = [
         # レースキー

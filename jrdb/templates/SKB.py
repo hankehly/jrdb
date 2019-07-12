@@ -7,7 +7,7 @@ class SKB(Template):
     """
     http://www.jrdb.com/program/Skb/skb_doc.txt
     """
-    name = 'JRDB成績拡張データ（SKB）'
+    description = 'JRDB成績拡張データ（SKB）'
     items = [
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
         IntegerItem('年', 2, 2, 'jrdb.Program.yr'),

@@ -8,4 +8,4 @@ class CSA(CZA):
 
     http://www.jrdb.com/program/Cs/Cs_doc1.txt
     """
-    name = 'JRDB調教師データ（CSA）'
+    description = 'JRDB調教師データ（CSA）'

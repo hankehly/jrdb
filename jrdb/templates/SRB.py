@@ -7,7 +7,7 @@ class SRB(Template, ProgramRaceLoadMixin):
     """
     http://www.jrdb.com/program/Srb/srb_doc.txt
     """
-    name = 'JRDB成績レースデータ（SRB）'
+    description = 'JRDB成績レースデータ（SRB）'
     items = [
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
         IntegerItem('年', 2, 2, 'jrdb.Program.yr'),

@@ -15,7 +15,7 @@ class CZA(Template):
     """
     http://www.jrdb.com/program/Cs/Cs_doc1.txt
     """
-    name = '全調教師'
+    description = '全調教師'
     items = [
         StringItem('調教師コード', 5, 0, 'jrdb.Trainer.code'),
         # 'is_retired', '登録抹消フラグ', width=1, start=5

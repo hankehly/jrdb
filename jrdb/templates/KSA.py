@@ -8,4 +8,4 @@ class KSA(KZA):
 
     http://www.jrdb.com/program/Ks/Ks_doc1.txt
     """
-    name = 'JRDB騎手データ（KSA）'
+    description = 'JRDB騎手データ（KSA）'

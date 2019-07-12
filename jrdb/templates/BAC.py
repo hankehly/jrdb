@@ -21,7 +21,7 @@ class BAC(Template, ProgramRaceLoadMixin):
 
     http://www.jrdb.com/program/Bac/bac_doc.txt
     """
-    name = 'JRDB番組データ（BAC）'
+    description = 'JRDB番組データ（BAC）'
     items = [
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
         IntegerItem('年', 2, 2, 'jrdb.Program.yr'),

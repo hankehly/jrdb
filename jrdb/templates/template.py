@@ -1,3 +1,5 @@
+import os
+import re
 from abc import ABC
 from typing import List, Any
 
@@ -9,7 +11,7 @@ from .item import ArrayItem
 
 
 class Template(ABC):
-    name = ''
+    description = ''
     items = []
 
     def __init__(self, path):

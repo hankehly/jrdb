@@ -7,7 +7,7 @@ class OV(Template, ProgramRaceLoadMixin):
     """
     http://www.jrdb.com/program/Ov/ovdata_doc.txt
     """
-    name = '３連単基準オッズデータ（OV）'
+    description = '３連単基準オッズデータ（OV）'
     items = [
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
         IntegerItem('年', 2, 2, 'jrdb.Program.yr'),

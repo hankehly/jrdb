@@ -15,7 +15,7 @@ class KAB(Template):
 
     TODO: Keep IGNORE columns; but add way to filter out before load
     """
-    name = 'JRDB開催データ（KAB）'
+    description = 'JRDB開催データ（KAB）'
     items = [
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
         IntegerItem('年', 2, 2, 'jrdb.Program.yr'),

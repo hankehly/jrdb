@@ -9,7 +9,7 @@ class KYI(Template):
     http://www.jrdb.com/program/Kyi/kyi_doc.txt
     http://www.jrdb.com/program/Kyi/ky_siyo_doc.txt
     """
-    name = 'JRDB競走馬データ（KYI）'
+    description = 'JRDB競走馬データ（KYI）'
     items = [
         # レースキー
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),

@@ -10,7 +10,7 @@ class CYB(Template):
     内容説明: http://www.jrdb.com/program/Cyb/cybsiyo_doc.txt
     サンプル: http://www.jrdb.com/program/Cyb/CYB081018.txt
     """
-    name = 'JRDB調教分析データ（CYB）'
+    description = 'JRDB調教分析データ（CYB）'
     items = [
         # レースキー
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),

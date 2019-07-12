@@ -7,7 +7,7 @@ class OW(Template, ProgramRaceLoadMixin):
     """
     http://www.jrdb.com/program/Oz/Owdata_doc.txt
     """
-    name = 'ワイド基準オッズデータ（OW）'
+    description = 'ワイド基準オッズデータ（OW）'
     items = [
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
         IntegerItem('年', 2, 2, 'jrdb.Program.yr'),

@@ -8,7 +8,7 @@ class OZ(Template, ProgramRaceLoadMixin):
     http://www.jrdb.com/program/Oz/Ozdata_doc.txt
     http://www.jrdb.com/program/Oz/Ozsiyo_doc.txt
     """
-    name = 'JRDB基準オッズデータ（OZ）'
+    description = 'JRDB基準オッズデータ（OZ）'
     items = [
         ForeignKeyItem('場コード', 2, 0, 'jrdb.Program.racetrack', 'jrdb.Racetrack.code'),
         IntegerItem('年', 2, 2, 'jrdb.Program.yr'),

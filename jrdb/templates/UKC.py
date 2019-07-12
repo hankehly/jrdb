@@ -12,7 +12,7 @@ class UKC(Template):
     """
     http://www.jrdb.com/program/Ukc/ukc_doc.txt
     """
-    name = 'JRDB馬基本データ（UKC）'
+    description = 'JRDB馬基本データ（UKC）'
     items = [
         StringItem('血統登録番号', 8, 0, 'jrdb.Horse.pedigree_reg_num'),
         StringItem('馬名', 36, 8, 'jrdb.Horse.name'),

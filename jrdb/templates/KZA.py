@@ -14,7 +14,7 @@ class KZA(Template):
     """
     http://www.jrdb.com/program/Ks/Ks_doc1.txt
     """
-    name = '全騎手'
+    description = '全騎手'
     items = [
         StringItem('騎手コード', 5, 0, 'jrdb.Jockey.code'),
         # 'is_retired', '登録抹消フラグ', width=1, start=5
