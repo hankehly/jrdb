@@ -17,3 +17,6 @@ class OW(Template, ProgramRaceLoadMixin):
         IntegerItem('登録頭数', 2, 8, 'jrdb.Race.contender_count'),
         ArrayItem('ワイドオッズ', 5 * 153, 10, 'jrdb.Race.odds_duet', 153),
     ]
+
+    def load(self) -> None:
+        return self.load_programs_races()

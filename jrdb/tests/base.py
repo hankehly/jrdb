@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.test import TransactionTestCase
 
-from jrdb.templates.store import store
+from jrdb.store import store
 
 SAMPLES_DIR = os.path.join(settings.BASE_DIR, 'jrdb', 'tests', 'samples')
 

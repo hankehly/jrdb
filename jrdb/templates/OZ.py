@@ -20,3 +20,6 @@ class OZ(Template, ProgramRaceLoadMixin):
         ArrayItem('複勝オッズ', 5 * 18, 100, 'jrdb.Race.odds_show', 18),
         ArrayItem('連勝オッズ', 5 * 153, 190, 'jrdb.Race.odds_quinella', 153),
     ]
+
+    def load(self) -> None:
+        return self.load_programs_races()

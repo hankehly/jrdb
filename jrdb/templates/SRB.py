@@ -31,3 +31,6 @@ class SRB(Template, ProgramRaceLoadMixin):
         ArrayItem('トラックバイアス（直線）', 5, 337, 'jrdb.Race.hs_track_bias', 5),
         StringItem('レースコメント', 500, 342, 'jrdb.Race.comment'),
     ]
+
+    def load(self) -> None:
+        return self.load_programs_races()

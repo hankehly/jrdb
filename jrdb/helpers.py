@@ -1,6 +1,11 @@
+import os
+import re
 from typing import Union
 
 import pandas as pd
+from django.utils.module_loading import import_string
+
+from .templates.template import Template
 
 
 def startswith(
@@ -16,3 +21,11 @@ def startswith(
         f = f.rename(**{axis: lambda name: name[len(prefix):] if name.startswith(prefix) else name})
     f.prefix = prefix
     return f
+
+
+def template_factory(path: str) -> Template:
+    basename = os.path.basename(path)
+    filename, _ = os.path.splitext(basename)
+    name = re.search('[A-Z]+', filename).group()
+    module_path = '.'.join(['jrdb', 'templates', name])
+    return import_string(module_path)(path)

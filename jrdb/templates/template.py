@@ -1,5 +1,3 @@
-import os
-import re
 from abc import ABC
 from typing import List, Any
 
@@ -37,7 +35,7 @@ class Template(ABC):
             for line in lines:
                 row = []
                 for item in self.items:
-                    lst_bytes = self.extract_item(line, item)
+                    lst_bytes = self._extract_item(line, item)
                     lst_str = np.char.decode(lst_bytes, encoding='cp932')
                     if len(lst_str) == 1:
                         row.append(lst_str[0])
@@ -47,7 +45,7 @@ class Template(ABC):
         self.df = pd.DataFrame(rows, columns=[item.key for item in self.items])
         return self
 
-    def extract_item(self, line: bytes, item: Any) -> List[bytes]:
+    def _extract_item(self, line: bytes, item: Any) -> List[bytes]:
         row = []
         if isinstance(item, ArrayItem):
             for i in range(item.size):
@@ -68,3 +66,6 @@ class Template(ABC):
             item = next(item for item in self.items if item.key == col)
             objs.append(item.transform(self.df[col]))
         return pd.concat(objs, axis='columns')
+
+    def load(self) -> None:
+        pass

@@ -18,3 +18,6 @@ class OV(Template, ProgramRaceLoadMixin):
         ArrayItem('３連単オッズ', 7 * 4896, 10, 'jrdb.Race.odds_trifecta', 4896,
                   lambda n: None if n is None else round(n * 0.1, 1))
     ]
+
+    def load(self) -> None:
+        return self.load_programs_races()

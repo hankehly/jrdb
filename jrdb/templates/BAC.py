@@ -65,3 +65,6 @@ class BAC(Template, ProgramRaceLoadMixin):
         BooleanItem('３連単', 1, 167, 'jrdb.Race.sold_trifecta'),
         IntegerItem('WIN5フラグ', 1, 176, 'jrdb.Race.win5'),
     ]
+
+    def load(self) -> None:
+        return self.load_programs_races()

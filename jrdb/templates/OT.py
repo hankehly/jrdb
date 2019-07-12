@@ -17,3 +17,6 @@ class OT(Template, ProgramRaceLoadMixin):
         IntegerItem('登録頭数', 2, 8, 'jrdb.Race.contender_count'),
         ArrayItem('３連複オッズ', 6 * 816, 10, 'jrdb.Race.odds_trio', 816),
     ]
+
+    def load(self) -> None:
+        return self.load_programs_races()

@@ -1,14 +1,13 @@
 import glob
 import logging
-import os
-import re
 from concurrent.futures import as_completed
 from concurrent.futures.process import ProcessPoolExecutor
 
 from django.core.management import BaseCommand
-from django.utils.module_loading import import_string
 from psycopg2.extensions import TransactionRollbackError
 from sqlalchemy.exc import OperationalError
+
+from ...helpers import template_factory
 
 logger = logging.getLogger(__name__)
 
@@ -22,18 +21,10 @@ TEMPLATES = [
 ]
 
 
-def extract_template_name(path: str):
-    basename = os.path.basename(path)
-    filename, _ = os.path.splitext(basename)
-    return re.search('[A-Z]+', filename).group()
-
-
 def load(path: str) -> str:
-    template = extract_template_name(path)
-    module_path = '.'.join(['jrdb', 'templates', template])
-    parser = import_string(module_path)(path)
-    parser.extract().load()
-    return parser.path
+    template = template_factory(path)
+    template.extract().load()
+    return template.path
 
 
 class Command(BaseCommand):

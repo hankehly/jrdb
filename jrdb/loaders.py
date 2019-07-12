@@ -101,7 +101,7 @@ class DjangoPostgresUpsertLoader:
 
 class ProgramRaceLoadMixin:
 
-    def load(self):
+    def load_programs_races(self):
         pdf = self.transform.pipe(startswith, 'program__', rename=True)
         programs = self.loader_cls(pdf, 'jrdb.Program').load()
         rdf = self.transform.pipe(startswith, 'race__', rename=True)
