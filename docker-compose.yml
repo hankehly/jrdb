@@ -6,7 +6,6 @@ services:
         image: postgres
         ports:
             - '5432:5432'
-        restart: always
         env_file: .env
     # docker-compose build django
     # docker-compose exec django /app/manage.py [import] -a
