@@ -8,11 +8,10 @@ services:
             - '5432:5432'
         env_file: .env
     # docker-compose build django
-    # docker-compose exec django /app/manage.py [import] -a
-    # docker-compose exec -w /app -v /path/to/local/file.csv:/app/file.csv django ./manage.py [command] ./file.csv
+    # docker-compose run --rm django poetry run manage.py import 'data/*'
+    # docker-compose run --rm -v /path/to/local/file.csv:/app/file.csv django poetry run manage.py [command] ./file.csv
     django:
         build: .
-        command: python /app/manage.py runserver 8000
         env_file: .env
         volumes:
             - .:/app

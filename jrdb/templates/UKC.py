@@ -1,6 +1,7 @@
+from ..helpers import startswith
 from ..models import choices
 from .item import IntegerItem, StringItem, ChoiceItem, DateItem, ForeignKeyItem, BooleanItem
-from .template import Template, startswith
+from .template import Template
 
 
 def where(stmt):

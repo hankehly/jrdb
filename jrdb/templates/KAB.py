@@ -1,7 +1,8 @@
 import numpy as np
 
+from ..helpers import startswith
 from ..models import choices
-from .template import Template, startswith
+from .template import Template
 from .item import ForeignKeyItem, IntegerItem, StringItem, ChoiceItem, BooleanItem, FloatItem
 
 

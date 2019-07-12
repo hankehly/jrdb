@@ -1,5 +1,5 @@
 from .item import ForeignKeyItem, IntegerItem, StringItem, ArrayItem
-from .loader import ProgramRaceLoadMixin
+from ..loaders import ProgramRaceLoadMixin
 from .template import Template
 
 

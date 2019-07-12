@@ -1,5 +1,6 @@
+from ..helpers import startswith
 from ..models import choices
-from .template import Template, startswith
+from .template import Template
 from .item import IntegerItem, StringItem, ForeignKeyItem, BooleanItem, ChoiceItem, DateItem
 
 

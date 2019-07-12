@@ -2,7 +2,7 @@ import pandas as pd
 
 from ..models import choices
 from .item import DateTimeItem, ChoiceItem, ForeignKeyItem, IntegerItem, StringItem, InvokeItem, BooleanItem
-from .loader import ProgramRaceLoadMixin
+from ..loaders import ProgramRaceLoadMixin
 from .template import Template
 
 

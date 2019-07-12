@@ -1,6 +1,7 @@
+from ..helpers import startswith
 from ..models import choices
 from .item import ForeignKeyItem, IntegerItem, StringItem, FloatItem, ChoiceItem, BooleanItem, DateItem
-from .template import Template, startswith
+from .template import Template
 
 
 class KYI(Template):
