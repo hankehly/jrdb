@@ -5,14 +5,20 @@ from sqlalchemy.engine.url import URL
 
 
 class SQLAlchemyModelStore:
-
     def __init__(self):
         self._tables = {}
 
     @cached_property
     def engine(self):
         cnf = connection.settings_dict
-        url = URL(connection.vendor, cnf['USER'], cnf['PASSWORD'], cnf['HOST'], cnf['PORT'], cnf['NAME'])
+        url = URL(
+            connection.vendor,
+            cnf["USER"],
+            cnf["PASSWORD"],
+            cnf["HOST"],
+            cnf["PORT"],
+            cnf["NAME"],
+        )
         return create_engine(url)
 
     @cached_property

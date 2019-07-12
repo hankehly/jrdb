@@ -8,11 +8,11 @@ from jrdb.templates import OZ
 
 
 class OZTestCase(JRDBTestCase):
-    fixtures = ['racetrack']
+    fixtures = ["racetrack"]
 
     @classmethod
     def setUpTestData(cls):
-        template_path = os.path.join(SAMPLES_DIR, 'OZ020908.txt')
+        template_path = os.path.join(SAMPLES_DIR, "OZ020908.txt")
         t = OZ(template_path).extract()
 
         t.df = t.df.iloc[17].to_frame().T.reset_index(drop=True)
@@ -23,12 +23,12 @@ class OZTestCase(JRDBTestCase):
 
     def test_load_program(self):
         act = model_to_dict(self.program)
-        exp = {'racetrack': 4, 'yr': 2, 'round': 4, 'day': '2'}
+        exp = {"racetrack": 4, "yr": 2, "round": 4, "day": "2"}
         self.assertSubDict(exp, act)
 
     def test_load_race(self):
         act = model_to_dict(self.race)
-        exp = {'num': 6, 'contender_count': 18}
+        exp = {"num": 6, "contender_count": 18}
         self.assertSubDict(exp, act)
 
     def test_load_race_odds_win(self):

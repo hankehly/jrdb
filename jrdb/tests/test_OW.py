@@ -8,11 +8,11 @@ from jrdb.templates import OW
 
 
 class OWTestCase(JRDBTestCase):
-    fixtures = ['racetrack']
+    fixtures = ["racetrack"]
 
     @classmethod
     def setUpTestData(cls):
-        template_path = os.path.join(SAMPLES_DIR, 'OW020908.txt')
+        template_path = os.path.join(SAMPLES_DIR, "OW020908.txt")
         t = OW(template_path).extract()
 
         t.df = t.df.iloc[0].to_frame().T
@@ -23,12 +23,12 @@ class OWTestCase(JRDBTestCase):
 
     def test_load_program(self):
         act = model_to_dict(self.program)
-        exp = {'racetrack': 1, 'yr': 2, 'round': 2, 'day': '2'}
+        exp = {"racetrack": 1, "yr": 2, "round": 2, "day": "2"}
         self.assertSubDict(exp, act)
 
     def test_load_race(self):
         act = model_to_dict(self.race)
-        exp = {'num': 1, 'contender_count': 13}
+        exp = {"num": 1, "contender_count": 13}
         self.assertSubDict(exp, act)
 
         self.assertEqual(len(self.race.odds_duet), 153)

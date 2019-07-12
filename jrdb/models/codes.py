@@ -2,7 +2,6 @@ from django.db import models
 
 
 class SimpleCodeManager(models.Manager):
-
     def get_by_natural_key(self, key):
         return self.get(key=key)
 
@@ -11,6 +10,7 @@ class SimpleCode(models.Model):
     """
     Common attributes for basic key-value models
     """
+
     objects = SimpleCodeManager()
 
     key = models.CharField(max_length=255, unique=True)
@@ -26,10 +26,11 @@ class HoofCode(SimpleCode):
 
     http://www.jrdb.com/program/ashimoto_code.txt
     """
+
     value_abbr = models.CharField(max_length=255)
 
     class Meta:
-        db_table = 'hoof_codes'
+        db_table = "hoof_codes"
 
 
 class HorseGearCode(SimpleCode):
@@ -39,11 +40,14 @@ class HorseGearCode(SimpleCode):
 
     http://www.jrdb.com/program/bagu_code.txt
     """
-    horse_gear_code_category = models.ForeignKey('jrdb.HorseGearCodeCategory', on_delete=models.CASCADE)
+
+    horse_gear_code_category = models.ForeignKey(
+        "jrdb.HorseGearCodeCategory", on_delete=models.CASCADE
+    )
     value_abbr = models.CharField(max_length=255)
 
     class Meta:
-        db_table = 'horse_gear_codes'
+        db_table = "horse_gear_codes"
 
 
 class HorseGearCodeCategory(SimpleCode):
@@ -54,7 +58,7 @@ class HorseGearCodeCategory(SimpleCode):
     """
 
     class Meta:
-        db_table = 'horse_gear_code_categories'
+        db_table = "horse_gear_code_categories"
 
 
 class PaceFlowCode(SimpleCode):
@@ -72,10 +76,11 @@ class PaceFlowCode(SimpleCode):
     13    ／＼  ペースアップが早く失速
     12    ／￣  ペースアップが早く持続
     """
+
     display = models.CharField(max_length=2)
 
     class Meta:
-        db_table = 'pace_flow_codes'
+        db_table = "pace_flow_codes"
 
 
 class Pedigree(models.Model):
@@ -99,7 +104,7 @@ class RaceClass(SimpleCode):
     """
 
     class Meta:
-        db_table = 'race_classes'
+        db_table = "race_classes"
 
 
 class RaceConditionCode(SimpleCode):
@@ -108,10 +113,13 @@ class RaceConditionCode(SimpleCode):
 
     http://www.jrdb.com/program/jrdb_code.txt
     """
-    race_condition_group_code = models.ForeignKey('jrdb.RaceConditionGroupCode', on_delete=models.CASCADE)
+
+    race_condition_group_code = models.ForeignKey(
+        "jrdb.RaceConditionGroupCode", on_delete=models.CASCADE
+    )
 
     class Meta:
-        db_table = 'race_condition_codes'
+        db_table = "race_condition_codes"
 
 
 class RaceConditionGroupCode(SimpleCode):
@@ -123,7 +131,7 @@ class RaceConditionGroupCode(SimpleCode):
     """
 
     class Meta:
-        db_table = 'race_condition_group_codes'
+        db_table = "race_condition_group_codes"
 
 
 class SpecialMentionCode(SimpleCode):
@@ -134,4 +142,4 @@ class SpecialMentionCode(SimpleCode):
     """
 
     class Meta:
-        db_table = 'special_mention_codes'
+        db_table = "special_mention_codes"

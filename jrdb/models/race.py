@@ -6,22 +6,40 @@ from jrdb.models.managers import DataFrameQuerySet
 
 
 class Race(models.Model):
-    program = models.ForeignKey('jrdb.Program', models.CASCADE)
+    program = models.ForeignKey("jrdb.Program", models.CASCADE)
     num = models.PositiveSmallIntegerField()
 
     # codes
-    category = models.CharField(max_length=255, choices=choices.RACE_CATEGORY.CHOICES(), null=True)
-    cond = models.ForeignKey('jrdb.RaceConditionCode', on_delete=models.CASCADE, null=True)
-    horse_sex_symbol = models.CharField(max_length=255, choices=choices.RACE_HORSE_SEX_SYMBOL.CHOICES(), null=True)
-    horse_type_symbol = models.CharField(max_length=255, choices=choices.RACE_HORSE_TYPE_SYMBOL.CHOICES(), null=True)
-    interleague_symbol = models.CharField(max_length=255, choices=choices.RACE_INTERLEAGUE_SYMBOL.CHOICES(), null=True)
-    impost_class = models.CharField(max_length=255, choices=choices.IMPOST_CLASS.CHOICES(), null=True)
+    category = models.CharField(
+        max_length=255, choices=choices.RACE_CATEGORY.CHOICES(), null=True
+    )
+    cond = models.ForeignKey(
+        "jrdb.RaceConditionCode", on_delete=models.CASCADE, null=True
+    )
+    horse_sex_symbol = models.CharField(
+        max_length=255, choices=choices.RACE_HORSE_SEX_SYMBOL.CHOICES(), null=True
+    )
+    horse_type_symbol = models.CharField(
+        max_length=255, choices=choices.RACE_HORSE_TYPE_SYMBOL.CHOICES(), null=True
+    )
+    interleague_symbol = models.CharField(
+        max_length=255, choices=choices.RACE_INTERLEAGUE_SYMBOL.CHOICES(), null=True
+    )
+    impost_class = models.CharField(
+        max_length=255, choices=choices.IMPOST_CLASS.CHOICES(), null=True
+    )
     grade = models.CharField(max_length=255, choices=choices.GRADE.CHOICES(), null=True)
-    track_cond = models.CharField(max_length=255, choices=choices.TRACK_CONDITION.CHOICES(), null=True)
+    track_cond = models.CharField(
+        max_length=255, choices=choices.TRACK_CONDITION.CHOICES(), null=True
+    )
 
     # TODO: Duplicated in program. Check to see if sibling values differ or not.
-    weather = models.CharField('天候', max_length=255, choices=choices.WEATHER.CHOICES(), null=True)
-    host_category = models.CharField(max_length=255, choices=choices.HOST_CATEGORY.CHOICES(), null=True)
+    weather = models.CharField(
+        "天候", max_length=255, choices=choices.WEATHER.CHOICES(), null=True
+    )
+    host_category = models.CharField(
+        max_length=255, choices=choices.HOST_CATEGORY.CHOICES(), null=True
+    )
     nth_occurrence = models.PositiveSmallIntegerField(null=True)
 
     name = models.CharField(max_length=50, null=True)
@@ -31,10 +49,18 @@ class Race(models.Model):
     started_at = models.DateTimeField(null=True)
 
     distance = models.PositiveSmallIntegerField(null=True)
-    surface = models.CharField(max_length=255, choices=choices.SURFACE.CHOICES(), null=True)
-    direction = models.CharField(max_length=255, choices=choices.DIRECTION.CHOICES(), null=True)
-    course_inout = models.CharField(max_length=255, choices=choices.COURSE_INOUT.CHOICES(), null=True)
-    course_label = models.CharField(max_length=255, choices=choices.COURSE_LABEL.CHOICES(), null=True)
+    surface = models.CharField(
+        max_length=255, choices=choices.SURFACE.CHOICES(), null=True
+    )
+    direction = models.CharField(
+        max_length=255, choices=choices.DIRECTION.CHOICES(), null=True
+    )
+    course_inout = models.CharField(
+        max_length=255, choices=choices.COURSE_INOUT.CHOICES(), null=True
+    )
+    course_label = models.CharField(
+        max_length=255, choices=choices.COURSE_LABEL.CHOICES(), null=True
+    )
     comment = models.TextField(max_length=500, null=True)
     win5 = models.PositiveSmallIntegerField(null=True)
 
@@ -53,15 +79,47 @@ class Race(models.Model):
     p2_prize = models.PositiveSmallIntegerField(null=True)
 
     # SRB
-    furlong_times = ArrayField(models.FloatField(null=True), null=True, verbose_name='ハロンタイム')
+    furlong_times = ArrayField(
+        models.FloatField(null=True), null=True, verbose_name="ハロンタイム"
+    )
 
     # track bias
-    c1_track_bias = ArrayField(models.SmallIntegerField(null=True), size=3, null=True, verbose_name='トラックバイアス（１角）')
-    c2_track_bias = ArrayField(models.SmallIntegerField(null=True), size=3, null=True, verbose_name='トラックバイアス（２角）')
-    bs_track_bias = ArrayField(models.SmallIntegerField(null=True), size=3, null=True, verbose_name='トラックバイアス（向正）')
-    c3_track_bias = ArrayField(models.SmallIntegerField(null=True), size=3, null=True, verbose_name='トラックバイアス（３角）')
-    c4_track_bias = ArrayField(models.SmallIntegerField(null=True), size=5, null=True, verbose_name='トラックバイアス（４角）')
-    hs_track_bias = ArrayField(models.SmallIntegerField(null=True), size=5, null=True, verbose_name='トラックバイアス（直線）')
+    c1_track_bias = ArrayField(
+        models.SmallIntegerField(null=True),
+        size=3,
+        null=True,
+        verbose_name="トラックバイアス（１角）",
+    )
+    c2_track_bias = ArrayField(
+        models.SmallIntegerField(null=True),
+        size=3,
+        null=True,
+        verbose_name="トラックバイアス（２角）",
+    )
+    bs_track_bias = ArrayField(
+        models.SmallIntegerField(null=True),
+        size=3,
+        null=True,
+        verbose_name="トラックバイアス（向正）",
+    )
+    c3_track_bias = ArrayField(
+        models.SmallIntegerField(null=True),
+        size=3,
+        null=True,
+        verbose_name="トラックバイアス（３角）",
+    )
+    c4_track_bias = ArrayField(
+        models.SmallIntegerField(null=True),
+        size=5,
+        null=True,
+        verbose_name="トラックバイアス（４角）",
+    )
+    hs_track_bias = ArrayField(
+        models.SmallIntegerField(null=True),
+        size=5,
+        null=True,
+        verbose_name="トラックバイアス（直線）",
+    )
 
     # betting ticket sales
     sold_win = models.BooleanField(null=True)
@@ -75,9 +133,13 @@ class Race(models.Model):
 
     track_speed_shift = models.SmallIntegerField(null=True)
 
-    pace_cat = models.CharField(max_length=255, choices=choices.PACE_CATEGORY.CHOICES(), null=True)
-    pace_idx = models.FloatField(null=True, help_text='レースのペースを指数化したもの')
-    pace_flow = models.ForeignKey('jrdb.PaceFlowCode', null=True, on_delete=models.CASCADE)
+    pace_cat = models.CharField(
+        max_length=255, choices=choices.PACE_CATEGORY.CHOICES(), null=True
+    )
+    pace_idx = models.FloatField(null=True, help_text="レースのペースを指数化したもの")
+    pace_flow = models.ForeignKey(
+        "jrdb.PaceFlowCode", null=True, on_delete=models.CASCADE
+    )
 
     odds_trio = ArrayField(models.FloatField(null=True), size=816, null=True)
     odds_exacta = ArrayField(models.FloatField(null=True), size=306, null=True)
@@ -90,5 +152,5 @@ class Race(models.Model):
     objects = DataFrameQuerySet.as_manager()
 
     class Meta:
-        db_table = 'races'
-        unique_together = ('program', 'num')
+        db_table = "races"
+        unique_together = ("program", "num")

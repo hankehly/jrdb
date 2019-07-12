@@ -11,8 +11,9 @@ from .helpers import startswith
 
 
 class DjangoPostgresUpsertLoader:
-
-    def __init__(self, df: pd.DataFrame, app_label: str, model_name: str = None) -> None:
+    def __init__(
+        self, df: pd.DataFrame, app_label: str, model_name: str = None
+    ) -> None:
         self.df = df
         self.app_label = app_label
         self.model_name = model_name
@@ -34,7 +35,10 @@ class DjangoPostgresUpsertLoader:
         """
         cols = []
         if self.model._meta.unique_together:
-            cols = [self.model._meta.get_field(name).attname for name in self.model._meta.unique_together[0]]
+            cols = [
+                self.model._meta.get_field(name).attname
+                for name in self.model._meta.unique_together[0]
+            ]
         return cols
 
     @cached_property
@@ -61,28 +65,38 @@ class DjangoPostgresUpsertLoader:
         >>> from sqlalchemy.dialects import postgresql
         >>> print(insert_stmt.compile(dialect=postgresql.dialect()))
         """
-        values = self._data.to_dict('records')
+        values = self._data.to_dict("records")
         insert_stmt = insert(self.table).values(values)
 
         set_ = {
             col: getattr(insert_stmt.excluded, col)
-            for col in self._data.columns if col not in self.unique_columns
+            for col in self._data.columns
+            if col not in self.unique_columns
         }
 
         where_stmt = where(insert_stmt) if where else None
 
         if set_:
-            return insert_stmt.on_conflict_do_update(index_elements=self.unique_columns, set_=set_, where=where_stmt)
+            return insert_stmt.on_conflict_do_update(
+                index_elements=self.unique_columns, set_=set_, where=where_stmt
+            )
 
         return insert_stmt.on_conflict_do_nothing(index_elements=self.unique_columns)
 
     def _build_select(self):
         groups = []
         for row in self._data.itertuples():
-            conditions = and_(*[getattr(self.table.c, col) == getattr(row, col) for col in self.unique_columns])
+            conditions = and_(
+                *[
+                    getattr(self.table.c, col) == getattr(row, col)
+                    for col in self.unique_columns
+                ]
+            )
             groups.append(conditions)
 
-        columns = [getattr(self.table.c, column) for column in ['id'] + self.unique_columns]
+        columns = [
+            getattr(self.table.c, column) for column in ["id"] + self.unique_columns
+        ]
         whereclause = or_(*groups)
 
         return select(columns).where(whereclause)
@@ -95,15 +109,14 @@ class DjangoPostgresUpsertLoader:
             conn.execute(upsert_stmt)
             rows = conn.execute(select_stmt)
 
-        columns = ['id'] + self.unique_columns
+        columns = ["id"] + self.unique_columns
         return pd.DataFrame(rows, columns=columns)
 
 
 class ProgramRaceLoadMixin:
-
     def load_programs_races(self):
-        pdf = self.transform.pipe(startswith, 'program__', rename=True)
-        programs = self.loader_cls(pdf, 'jrdb.Program').load()
-        rdf = self.transform.pipe(startswith, 'race__', rename=True)
-        rdf['program_id'] = pdf.merge(programs, how='left').id
-        self.loader_cls(rdf, 'jrdb.Race').load()
+        pdf = self.transform.pipe(startswith, "program__", rename=True)
+        programs = self.loader_cls(pdf, "jrdb.Program").load()
+        rdf = self.transform.pipe(startswith, "race__", rename=True)
+        rdf["program_id"] = pdf.merge(programs, how="left").id
+        self.loader_cls(rdf, "jrdb.Race").load()

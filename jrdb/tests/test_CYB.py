@@ -1,6 +1,5 @@
 import os
 
-from django.conf import settings
 from django.forms import model_to_dict
 
 from jrdb.models import choices, Contender, Program, Race
@@ -9,11 +8,11 @@ from jrdb.templates import CYB
 
 
 class CYBTestCase(JRDBTestCase):
-    fixtures = ['racetrack']
+    fixtures = ["racetrack"]
 
     @classmethod
     def setUpTestData(cls):
-        template_path = os.path.join(SAMPLES_DIR, 'CYB081018.txt')
+        template_path = os.path.join(SAMPLES_DIR, "CYB081018.txt")
         t = CYB(template_path).extract()
 
         # only import the first row to make
@@ -27,37 +26,37 @@ class CYBTestCase(JRDBTestCase):
 
     def test_load_program(self):
         act = model_to_dict(self.program)
-        exp = {'racetrack': 5, 'yr': 8, 'round': 4, 'day': '3'}
+        exp = {"racetrack": 5, "yr": 8, "round": 4, "day": "3"}
         self.assertSubDict(exp, act)
 
     def test_load_race(self):
         act = model_to_dict(self.race)
-        exp = {'num': 1}
+        exp = {"num": 1}
         self.assertSubDict(exp, act)
 
     def test_load_contender(self):
         act = model_to_dict(self.contender)
 
         exp = {
-            'num': 1,
-            'training_style': '04',
-            'training_course_cat': '3',
-            'trained_hill': True,
-            'trained_wood_chip': False,
-            'trained_dirt': False,
-            'trained_turf': False,
-            'trained_pool': False,
-            'trained_obstacle': False,
-            'trained_poly_track': True,
-            'training_distance': choices.TRAINING_DISTANCE.LONG,
-            'training_emphasis': choices.TRAINING_EMPHASIS.AVG,
-            'warm_up_time_idx': 56,
-            'training_result_idx': 56,
-            'training_amount_eval': choices.TRAINING_AMOUNT_EVAL.NORMAL,
-            'training_result_idx_change': choices.TRAINING_RESULT_IDX_CHANGE.BOLSTER,
-            'training_comment': None,
-            'training_comment_date': None,
-            'training_evaluation': None,
+            "num": 1,
+            "training_style": "04",
+            "training_course_cat": "3",
+            "trained_hill": True,
+            "trained_wood_chip": False,
+            "trained_dirt": False,
+            "trained_turf": False,
+            "trained_pool": False,
+            "trained_obstacle": False,
+            "trained_poly_track": True,
+            "training_distance": choices.TRAINING_DISTANCE.LONG,
+            "training_emphasis": choices.TRAINING_EMPHASIS.AVG,
+            "warm_up_time_idx": 56,
+            "training_result_idx": 56,
+            "training_amount_eval": choices.TRAINING_AMOUNT_EVAL.NORMAL,
+            "training_result_idx_change": choices.TRAINING_RESULT_IDX_CHANGE.BOLSTER,
+            "training_comment": None,
+            "training_comment_date": None,
+            "training_evaluation": None,
         }
 
         self.assertSubDict(exp, act)

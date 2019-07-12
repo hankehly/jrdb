@@ -34,5 +34,5 @@ class Jockey(models.Model):
     objects = DataFrameQuerySet.as_manager()
 
     class Meta:
-        db_table = 'jockeys'
-        unique_together = ('code',)
+        db_table = "jockeys"
+        unique_together = ("code",)

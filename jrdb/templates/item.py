@@ -7,15 +7,19 @@ import pandas as pd
 from django.apps import apps
 
 MODEL_ITEM_FIELD_MAP: Dict[str, Tuple[str]] = {
-    'IntegerItem': ('PositiveSmallIntegerField', 'SmallIntegerField', 'PositiveIntegerField'),
-    'FloatItem': ('FloatField',),
-    'StringItem': ('CharField', 'TextField', 'ForeignKey'),
-    'DateItem': ('DateField',),
-    'ForeignKeyItem': ('ForeignKey',),
-    'DateTimeItem': ('DateTimeField',),
-    'ChoiceItem': ('CharField',),
-    'ArrayItem': ('ArrayField',),
-    'BooleanItem': ('BooleanField', 'NullBooleanField')
+    "IntegerItem": (
+        "PositiveSmallIntegerField",
+        "SmallIntegerField",
+        "PositiveIntegerField",
+    ),
+    "FloatItem": ("FloatField",),
+    "StringItem": ("CharField", "TextField", "ForeignKey"),
+    "DateItem": ("DateField",),
+    "ForeignKeyItem": ("ForeignKey",),
+    "DateTimeItem": ("DateTimeField",),
+    "ChoiceItem": ("CharField",),
+    "ArrayItem": ("ArrayField",),
+    "BooleanItem": ("BooleanField", "NullBooleanField"),
 }
 
 
@@ -35,7 +39,7 @@ def parse_float_or(value: str, default: Optional[Any] = None) -> Optional[float]
 
 def lower_first(value: str) -> str:
     assert isinstance(value, str)
-    return value[:1].lower() + value[1:] if value else ''
+    return value[:1].lower() + value[1:] if value else ""
 
 
 @dataclass(eq=False, frozen=True)
@@ -52,8 +56,8 @@ class Item(ABC):
         raise NotImplementedError
 
     def _validate(self) -> None:
-        assert self.width >= 0, 'width must be greater than or equal to 0'
-        assert self.start >= 0, 'start must be greater than or equal to 0'
+        assert self.width >= 0, "width must be greater than or equal to 0"
+        assert self.start >= 0, "start must be greater than or equal to 0"
 
 
 @dataclass(eq=False, frozen=True)
@@ -62,22 +66,24 @@ class ModelItem(Item, ABC):
 
     @property
     def key(self) -> str:
-        value = self.symbol.split('.', maxsplit=1).pop()
-        return lower_first(value).replace('.', '__')
+        value = self.symbol.split(".", maxsplit=1).pop()
+        return lower_first(value).replace(".", "__")
 
     def get_model(self) -> Any:
-        model, _ = self.symbol.rsplit('.', maxsplit=1)
+        model, _ = self.symbol.rsplit(".", maxsplit=1)
         return apps.get_model(model)
 
     def get_field(self) -> Any:
-        _, field = self.symbol.rsplit('.', maxsplit=1)
+        _, field = self.symbol.rsplit(".", maxsplit=1)
         return self.get_model()._meta.get_field(field)
 
     def _validate(self) -> None:
         super()._validate()
-        assert len(self.symbol.split('.')) == 3, f'invalid symbol <{self.symbol}>'
-        assert self.get_field().get_internal_type() in MODEL_ITEM_FIELD_MAP.get(self.__class__.__name__), (
-            f"field <name: {self.get_field().name}, type: {self.get_field().get_internal_type()}> "
+        assert len(self.symbol.split(".")) == 3, f"invalid symbol <{self.symbol}>"
+
+        internal_type = self.get_field().get_internal_type()
+        assert internal_type in MODEL_ITEM_FIELD_MAP.get(self.__class__.__name__), (
+            f"field <name: {self.get_field().name}, type: {internal_type}> "
             f"not found in MODEL_ITEM_FIELD_MAP['{self.__class__.__name__}']"
         )
 
@@ -88,17 +94,21 @@ class IntegerItem(ModelItem):
 
     def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        return s.apply(parse_int_or, args=(self.default,)).astype('Int64')
+        return s.apply(parse_int_or, args=(self.default,)).astype("Int64")
 
 
 @dataclass(eq=False, frozen=True)
 class FloatItem(ModelItem):
     default: Optional[float] = np.nan
-    scale: float = 1.
+    scale: float = 1.0
 
     def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        return s.apply(parse_float_or, args=(self.default,)).apply(lambda n: n * self.scale).astype(float)
+        return (
+            s.apply(parse_float_or, args=(self.default,))
+            .apply(lambda n: n * self.scale)
+            .astype(float)
+        )
 
 
 @dataclass(eq=False, frozen=True)
@@ -120,12 +130,14 @@ class ArrayItem(ModelItem):
         base_field_type = self.base_field.get_internal_type()
 
         se = se.copy()
-        if base_field_type in MODEL_ITEM_FIELD_MAP['IntegerItem']:
+        if base_field_type in MODEL_ITEM_FIELD_MAP["IntegerItem"]:
             se = se.apply(lambda a: [parse_int_or(el) for el in a])
-        elif base_field_type in MODEL_ITEM_FIELD_MAP['FloatItem']:
+        elif base_field_type in MODEL_ITEM_FIELD_MAP["FloatItem"]:
             se = se.apply(lambda a: [parse_float_or(el) for el in a])
         else:
-            se = se.map(list).map(lambda lst: [None if x.replace(' ', '') == '' else x for x in lst])
+            se = se.map(list).map(
+                lambda lst: [None if x.replace(" ", "") == "" else x for x in lst]
+            )
 
         if self.mapper:
             se = se.apply(lambda arr: [self.mapper(item) for item in arr])
@@ -134,8 +146,12 @@ class ArrayItem(ModelItem):
 
     def _validate(self) -> None:
         super()._validate()
-        assert self.size >= 0, f'size must be greater than or equal to zero <size: {self.size}>'
-        assert self.width % self.size == 0, f'width must be divisible by size <width: {self.width}, size: {self.size}>'
+        assert (
+            self.size >= 0
+        ), f"size must be greater than or equal to zero <size: {self.size}>"
+        assert (
+            self.width % self.size == 0
+        ), f"width must be divisible by size <width: {self.width}, size: {self.size}>"
 
 
 @dataclass(eq=False, frozen=True)
@@ -145,59 +161,71 @@ class ForeignKeyItem(ModelItem):
     @property
     def key(self) -> str:
         key = super(ForeignKeyItem, self).key
-        return '_'.join([key, self.get_remote_field().name])
+        return "_".join([key, self.get_remote_field().name])
 
     def get_remote_field(self):
-        model, field = self.related_symbol.rsplit('.', maxsplit=1)
+        model, field = self.related_symbol.rsplit(".", maxsplit=1)
         return apps.get_model(model)._meta.get_field(field)
 
     def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
         remote_field = self.get_remote_field()
 
-        remote_records = (remote_field.model.objects
-                          .filter(**{f'{remote_field.name}__in': s})
-                          .values(remote_field.name, 'id'))
+        remote_records = remote_field.model.objects.filter(
+            **{f"{remote_field.name}__in": s}
+        ).values(remote_field.name, "id")
 
         model_name = self.get_model()._meta.model_name
         field_name = self.get_field().column
-        index_name = '__'.join((model_name, field_name))
+        index_name = "__".join((model_name, field_name))
 
-        return (s.map({record[remote_field.name]: record['id'] for record in remote_records})
-                .astype('Int64')
-                .rename(index_name))
+        return (
+            s.map(
+                {record[remote_field.name]: record["id"] for record in remote_records}
+            )
+            .astype("Int64")
+            .rename(index_name)
+        )
 
     def _validate(self) -> None:
         super()._validate()
-        assert len(self.related_symbol.split('.')) == 3, f'invalid related symbol <{self.related_symbol}>'
+        symbol_parts = len(self.related_symbol.split("."))
+        assert symbol_parts == 3, f"invalid related symbol <{self.related_symbol}>"
 
 
 @dataclass(eq=False, frozen=True)
 class DateItem(ModelItem):
-    format: str = '%Y%m%d'
+    format: str = "%Y%m%d"
 
     def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        date = pd.to_datetime(s, format=self.format, errors='coerce').dt.date
+        date = pd.to_datetime(s, format=self.format, errors="coerce").dt.date
         return date.astype(object).where(date.notnull(), None)
 
 
 @dataclass(eq=False, frozen=True)
 class DateTimeItem(ModelItem):
-    format: str = '%Y%m%d%H%M'
-    tz: str = 'Asia/Tokyo'
+    format: str = "%Y%m%d%H%M"
+    tz: str = "Asia/Tokyo"
 
     def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        return pd.to_datetime(s, format=self.format).dt.tz_localize(self.tz).rename(self.key)
+        return (
+            pd.to_datetime(s, format=self.format)
+            .dt.tz_localize(self.tz)
+            .rename(self.key)
+        )
 
 
 @dataclass(eq=False, frozen=True)
 class StringItem(ModelItem):
-
     def transform(self, se: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()
-        return se.str.strip().str.replace('\u3000', ' ').mask(lambda string: string == '', None)
+        return (
+            se.str.strip()
+            .str.replace("\u3000", " ")
+            .mask(lambda string: string == "", None)
+        )
 
 
 @dataclass(eq=False, frozen=True)
@@ -211,8 +239,8 @@ class ChoiceItem(ModelItem):
 
 @dataclass(eq=False, frozen=True)
 class BooleanItem(ModelItem):
-    value_true: str = '1'
-    value_false: str = '0'
+    value_true: str = "1"
+    value_false: str = "0"
 
     def transform(self, s: pd.Series) -> Union[pd.Series, pd.DataFrame]:
         self._validate()

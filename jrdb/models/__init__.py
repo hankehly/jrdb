@@ -1,3 +1,4 @@
+# Flake8: noqa: F401
 from .codes import (
     HoofCode,
     HorseGearCode,

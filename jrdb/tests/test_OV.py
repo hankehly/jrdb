@@ -8,11 +8,11 @@ from jrdb.templates import OV
 
 
 class OVTestCase(JRDBTestCase):
-    fixtures = ['racetrack']
+    fixtures = ["racetrack"]
 
     @classmethod
     def setUpTestData(cls):
-        template_path = os.path.join(SAMPLES_DIR, 'OV040828.txt')
+        template_path = os.path.join(SAMPLES_DIR, "OV040828.txt")
         t = OV(template_path).extract()
 
         # only import the first row to make
@@ -25,12 +25,12 @@ class OVTestCase(JRDBTestCase):
 
     def test_load_program(self):
         act = model_to_dict(self.program)
-        exp = {'racetrack': 1, 'yr': 4, 'round': 1, 'day': '5'}
+        exp = {"racetrack": 1, "yr": 4, "round": 1, "day": "5"}
         self.assertSubDict(exp, act)
 
     def test_load_race(self):
         act = model_to_dict(self.race)
-        exp = {'num': 1, 'contender_count': 10}
+        exp = {"num": 1, "contender_count": 10}
         self.assertSubDict(exp, act)
 
         self.assertEqual(len(self.race.odds_trifecta), 4896)

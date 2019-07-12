@@ -7,4 +7,4 @@ class Racetrack(models.Model):
     name_en = models.CharField(max_length=255)
 
     class Meta:
-        db_table = 'racetracks'
+        db_table = "racetracks"

@@ -34,5 +34,5 @@ class Trainer(models.Model):
     objects = DataFrameQuerySet.as_manager()
 
     class Meta:
-        db_table = 'trainers'
-        unique_together = ('code',)
+        db_table = "trainers"
+        unique_together = ("code",)

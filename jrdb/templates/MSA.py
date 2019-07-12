@@ -8,4 +8,5 @@ class MSA(MZA):
 
     http://www.jrdb.com/program/Msa/msa_doc.txt
     """
-    description = 'JRDB抹消馬データ（MSA）'
+
+    description = "JRDB抹消馬データ（MSA）"
